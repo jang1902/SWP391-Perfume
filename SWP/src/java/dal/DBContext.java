@@ -1,9 +1,12 @@
 
+
+
 package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 
 
 public class DBContext {
@@ -15,6 +18,7 @@ public class DBContext {
             String url = "jdbc:sqlserver://localhost:1433;databaseName= SWP";
             String username = "sa";
             String password = "sa";
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {

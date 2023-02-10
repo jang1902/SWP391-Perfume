@@ -85,6 +85,7 @@ public class UserDAO extends DBContext{
         return null;
     }
     
+
     //check cai username day da ton tai chua????
     // neu ton tai roi tra ve true
     //chua ton tai tra ve false
@@ -145,7 +146,7 @@ public class UserDAO extends DBContext{
     }
      
     
-    
+
     public static void main(String[] args) {
         UserDAO d=new UserDAO();
         

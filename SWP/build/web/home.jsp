@@ -26,31 +26,21 @@
                     <div class="header_top-intro-support">
                         <div class="sp-child hotline">
                             <i class="fa-solid fa-phone icon-sup"></i>
-                            <span>+84 969420123</span>
+
+                            <span>+84 326983680</span>
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
-                            <span>botstore.vn@gmail.com</span>
+                            <span>boonbo@gmail.com</span>
+
                         </div>
                         <div class="sp-child question">
                             <i class="fa-solid fa-headset icon-sup"></i>
                             <span>Hỗ trợ trực tuyến 24/7</span>
                         </div>
-                    </div>
-                    <div class="header_top-intro-language">
-                        Language
-                        <i class="fa-solid fa-chevron-down icon_arrowdown"></i>
-                        <ul class="language-child">
-                            <li class="language_item">
-                                <img src="./assets/img/flagVN.jpg" class="language-item_child flag">
-                                <span class="language-item_child ">VietNam</span>
-                            </li>
-                            <li class="language_item">
-                                <img src="./assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
-                                <span class="language-item_child ">English</span>
-                            </li>
-                        </ul>
-                    </div>
+
+                    </div>                  
+
                 </div>
             </div>
             <!-- end header top -->
@@ -64,7 +54,9 @@
                         </a>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="Tìm Kiếm..." class="input_search">
+
+                        <input type="text" placeholder="Tìm kiếm ..." class="input_search">
+
                         <div class="search-item">
                             <i class="fa-solid fa-magnifying-glass icon-search"></i>
                         </div>
@@ -112,76 +104,31 @@
                         Danh mục sản phẩm
                         <div class="menu_left-child">
                             <ul>
+
+                                <!-- suggest: nen chia nho cac category -->
+                                <c:forEach items="${category}" var="c"> 
                                 <li class="menu_left-item">
-                                    Mô hình xe hơi
+                                    ${c.name}
                                 </li>
-                                <li class="menu_left-item">
-                                    Mô hình Lego
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình phim</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Marvel</li>
-                                            <li class="menu_left-item-child">DC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Transformer
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình anime</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Naruto</li>
-                                            <li class="menu_left-item-child">One Piece</li>
-                                            <li class="menu_left-item-child">Dragon Ball</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Figger
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình khác</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Mô hình cây mini</li>
-                                            <li class="menu_left-item-child">Mô hình trang trí</li>
-                                            <li class="menu_left-item-child">Mô hình PC</li>
-                                        </ul>
-                                    </div>
-                                </li>
+                                </c:forEach>
                             </ul>
-                        </div>
+                        </div>                        
                     </button>
                     <!-- end menu left -->
                     <!-- menu right -->
-                    <ul class="menu_right">
+                    <ul class="menu_right">                      
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./index.html">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
+                            <a class="link_decor_remover hover-link" href="#">Cửa hàng</a>
+                        </li>                        
+                        <li class="menu_right-item">
+                            <a class="link_decor_remover hover-link" href="#">Đơn hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
-                        </li>
-                        <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/oder.html">Đơn hàng</a>
-                        </li>
-                        <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
+                            <a class="link_decor_remover hover-link" href="#">Trang cá nhân</a>
+
                         </li>
                     </ul>
                     <!-- end menu right -->
@@ -223,13 +170,16 @@
                         </div>
                     </div>
                     <div class="body_bot-deal-child">
+
+                        <c:forEach items="${pDiscount}" var="pd">
                         <div class="products">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/lego3.jpg" alt="" class="img_products">
+                            <a href="pdetail?title=${pd.title}&gid=${pd.gender_id}&sid=1">
+                                <img src="${pd.thumbnail}" alt="" class="img_products">
                             </a>
                             <div class="describe_products">
                                 <div class="ratings_products">
-                                    <span>Mô hình Lego Jurassic</span>
+                                    <span>${pd.title}</span>
+
                                     <span>
                                         <i class="fa-solid fa-star icon_star"></i>
                                         <i class="fa-solid fa-star icon_star"></i>
@@ -238,8 +188,10 @@
                                         <i class="fa-solid fa-star icon_star"></i>
                                     </span>
                                     <div>
-                                        <span class="info_price">100$</span>
-                                        <span class="oldprice">200$</span>
+
+                                        <span class="info_price">${pd.price_out * ((100 - pd.discount.value) / 100)}</span>
+                                        <span class="oldprice">${pd.price_out}</span>
+
                                     </div>
                                 </div>
                                 <div class="add_like_products">
@@ -248,79 +200,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="products">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/xe1.png" alt="" class="img_products">
-                            </a>
-                            <div class="describe_products">
-                                <div class="ratings_products">
-                                    <span>Mô hình FERRARI LAFERRARI</span>
-                                    <span>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                    </span>
-                                    <div>
-                                        <span class="info_price">100$</span>
-                                        <span class="oldprice">200$</span>
-                                    </div>
-                                </div>
-                                <div class="add_like_products">
-                                    <i class="fa-regular fa-heart icon_heart"></i>
-                                    <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="products">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/tranformer4.jpg.png" alt="" class="img_products">
-                            </a>
-                            <div class="describe_products">
-                                <div class="ratings_products">
-                                    <span>Mô hình Transformer</span>
-                                    <span>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                    </span>
-                                    <div>
-                                        <span class="info_price">100$</span>
-                                        <span class="oldprice">200$</span>
-                                    </div>
-                                </div>
-                                <div class="add_like_products">
-                                    <i class="fa-regular fa-heart icon_heart"></i>
-                                    <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="products">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/blackpanther.png" alt="" class="img_products">
-                            </a>
-                            <div class="describe_products">
-                                <div class="ratings_products">
-                                    <span>Mô hình Black Panther</span>
-                                    <span>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                        <i class="fa-solid fa-star icon_star"></i>
-                                    </span>
-                                    <div>
-                                        <span class="info_price">100$</span>
-                                        <span class="oldprice">200$</span>
-                                    </div>
-                                </div>
-                                <div class="add_like_products">
-                                    <i class="fa-regular fa-heart icon_heart"></i>
-                                    <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
+
+                        </c:forEach>
+
                     </div>
                 </div>
                 <!-- END DEAL -->
@@ -340,60 +222,30 @@
                         </div>
                     </div>
                     <div class="body_bot-arrivals-info">
+
+                        <c:forEach items="${pBestSeller}" var="pb">
                         <div class="arrivals-info_item">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/cap.jpg" class="img_arrivals-item">
+                            <a href="">
+                                <img src="${pb.thumbnail}" class="img_arrivals-item">
                             </a>
                             <div class="arrivals-info_text">
-                                <span>Captain America</span>
-                                <span class="info_price">50$</span>
+                                <span>${pb.title}</span>
+                                <c:if test="${pb.discount.id != 1}">
+                                <div>                                    
+                                    <span class="info_price">${pb.price_out * (100 - pb.discount.value) / 100}</span>
+                                    <span class="oldprice">${pb.price_out}</span>
+                                </div>
+                                </c:if>
+                                
+                                <c:if test="${pb.discount.id == 1}">
+                                <div>                                    
+                                    <span class="info_price">${pb.price_out}</span>      
+                                </div>
+                                </c:if>
                             </div>
-                        </div>
-                        <div class="arrivals-info_item">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/zoro4.jpg" class="img_arrivals-item">
-                            </a>
-                            <div class="arrivals-info_text">
-                                <span>Zoronoa Zoro</span>
-                                <span class="info_price">39$</span>
-                            </div>
-                        </div>
-                        <div class="arrivals-info_item">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/vegeta.jpg" class="img_arrivals-item">
-                            </a>
-                            <div class="arrivals-info_text">
-                                <span>Vegeta</span>
-                                <span class="info_price">120$</span>
-                            </div>
-                        </div>
-                        <div class="arrivals-info_item">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/dragon.jpg" class="img_arrivals-item">
-                            </a>
-                            <div class="arrivals-info_text">
-                                <span>Dragon Ball</span>
-                                <span class="info_price">70$</span>
-                            </div>
-                        </div>
-                        <div class="arrivals-info_item">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/legoarrivals.png" class="img_arrivals-item">
-                            </a>
-                            <div class="arrivals-info_text">
-                                <span>Lego</span>
-                                <span class="info_price">153$</span>
-                            </div>
-                        </div>
-                        <div class="arrivals-info_item">
-                            <a href="./src/products.html">
-                                <img src="./assets/img/spiderman.png" class="img_arrivals-item">
-                            </a>
-                            <div class="arrivals-info_text">
-                                <span>Spiderman</span>
-                                <span class="info_price">62$</span>
-                            </div>
-                        </div>
+                        </div>   
+                        </c:forEach>
+
                     </div>
                 </div>
                 <!-- end sản phẩm mới -->
@@ -419,10 +271,12 @@
                 </div>
                 <div class="body_bot-recommend">
                     
-                    <c:forEach items="${product}" var="p">
+
+                    <c:forEach items="${pNew}" var="p">
                         
                         <div class="products products_recommend">
-                        <a href="./src/products.html">
+                        <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=1">
+
                             <img src="${p.thumbnail}" alt="" class="img_products">
                         </a>
                         <div class="describe_products">
@@ -435,10 +289,20 @@
                                     <i class="fa-solid fa-star icon_star"></i>
                                     <i class="fa-solid fa-star icon_star"></i>
                                 </span>
-                                <div>
-                                    <span class="info_price">190$</span>
-                                    <span class="oldprice">210$</span>
+
+                                <c:if test="${p.discount.id != 1}">
+                                <div>                                    
+                                    <span class="info_price">${p.price_out * (100 - p.discount.value) / 100}</span>
+                                    <span class="oldprice">${p.price_out}</span>
                                 </div>
+                                </c:if>
+                                
+                                <c:if test="${p.discount.id == 1}">
+                                <div>                                    
+                                    <span class="info_price">${p.price_out}</span>      
+                                </div>
+                                </c:if>
+
                             </div>
                             <div class="add_like_products">
                                 <i class="fa-regular fa-heart icon_heart"></i>
@@ -449,8 +313,8 @@
                      
                     </c:forEach>
                     
-                           
-                     
+                   
+
                     
                 </div>
              <div class="body_info">
