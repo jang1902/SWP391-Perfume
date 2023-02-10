@@ -24,12 +24,16 @@ public class Product {
     private int quantity;
     private Date created_at;
     private Date updated_at;
+
     private Discount discount;
+
 
     public Product() {
     }
 
+
     public Product(int id, int category_id, String title, int gender_id, int price_in, int price_out, int discount_id, String thumbnail, String description, int size_id, int quantity, Date created_at, Date updated_at, Discount discount) {
+
         this.id = id;
         this.category_id = category_id;
         this.title = title;
@@ -43,6 +47,7 @@ public class Product {
         this.quantity = quantity;
         this.created_at = created_at;
         this.updated_at = updated_at;
+
         this.discount = discount;
     }
 
@@ -52,6 +57,7 @@ public class Product {
 
     public void setDiscount(Discount discount) {
         this.discount = discount;
+
     }
 
     public int getId() {

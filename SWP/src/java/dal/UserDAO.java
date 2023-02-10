@@ -85,6 +85,68 @@ public class UserDAO extends DBContext{
         return null;
     }
     
+
+    //check cai username day da ton tai chua????
+    // neu ton tai roi tra ve true
+    //chua ton tai tra ve false
+    
+     public boolean existedUser(String username) {
+        String sql = "SELECT [Username]\n"
+                + "      ,[Password]\n"
+                + "      ,[email]\n"
+                + "  FROM [dbo].[Users]\n"
+                + "  where Username=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, username);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+     
+     //check xem tài khoan co ton tai chua dua vao email
+     //
+     public boolean existedEmailUser(String email) {
+        String sql = "SELECT [Username]\n"
+                + "      ,[Password]\n"
+                + "      ,[email]\n"
+                + "  FROM [dbo].[Users]\n"
+                + "  where email=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+     
+     
+      public void changePassUserByEmail(String newpass, String email) {
+        String sql = "update [Users] set \n"
+                + "password = ?\n"
+                + "where email = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, newpass);
+            st.setString(2, email);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+     
+    
+
     public static void main(String[] args) {
         UserDAO d=new UserDAO();
         

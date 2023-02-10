@@ -26,17 +26,21 @@
                     <div class="header_top-intro-support">
                         <div class="sp-child hotline">
                             <i class="fa-solid fa-phone icon-sup"></i>
+
                             <span>+84 326983680</span>
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
                             <span>boonbo@gmail.com</span>
+
                         </div>
                         <div class="sp-child question">
                             <i class="fa-solid fa-headset icon-sup"></i>
                             <span>Hỗ trợ trực tuyến 24/7</span>
                         </div>
+
                     </div>                  
+
                 </div>
             </div>
             <!-- end header top -->
@@ -50,7 +54,9 @@
                         </a>
                     </div>
                     <div class="search">
+
                         <input type="text" placeholder="Tìm kiếm ..." class="input_search">
+
                         <div class="search-item">
                             <i class="fa-solid fa-magnifying-glass icon-search"></i>
                         </div>
@@ -98,6 +104,7 @@
                         Danh mục sản phẩm
                         <div class="menu_left-child">
                             <ul>
+
                                 <!-- suggest: nen chia nho cac category -->
                                 <c:forEach items="${category}" var="c"> 
                                 <li class="menu_left-item">
@@ -121,6 +128,7 @@
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Trang cá nhân</a>
+
                         </li>
                     </ul>
                     <!-- end menu right -->
@@ -162,6 +170,7 @@
                         </div>
                     </div>
                     <div class="body_bot-deal-child">
+
                         <c:forEach items="${pDiscount}" var="pd">
                         <div class="products">
                             <a href="pdetail?title=${pd.title}&gid=${pd.gender_id}&sid=1">
@@ -170,6 +179,7 @@
                             <div class="describe_products">
                                 <div class="ratings_products">
                                     <span>${pd.title}</span>
+
                                     <span>
                                         <i class="fa-solid fa-star icon_star"></i>
                                         <i class="fa-solid fa-star icon_star"></i>
@@ -178,8 +188,10 @@
                                         <i class="fa-solid fa-star icon_star"></i>
                                     </span>
                                     <div>
+
                                         <span class="info_price">${pd.price_out * ((100 - pd.discount.value) / 100)}</span>
                                         <span class="oldprice">${pd.price_out}</span>
+
                                     </div>
                                 </div>
                                 <div class="add_like_products">
@@ -188,7 +200,9 @@
                                 </div>
                             </div>
                         </div>
+
                         </c:forEach>
+
                     </div>
                 </div>
                 <!-- END DEAL -->
@@ -208,6 +222,7 @@
                         </div>
                     </div>
                     <div class="body_bot-arrivals-info">
+
                         <c:forEach items="${pBestSeller}" var="pb">
                         <div class="arrivals-info_item">
                             <a href="">
@@ -230,6 +245,7 @@
                             </div>
                         </div>   
                         </c:forEach>
+
                     </div>
                 </div>
                 <!-- end sản phẩm mới -->
@@ -255,10 +271,12 @@
                 </div>
                 <div class="body_bot-recommend">
                     
+
                     <c:forEach items="${pNew}" var="p">
                         
                         <div class="products products_recommend">
                         <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=1">
+
                             <img src="${p.thumbnail}" alt="" class="img_products">
                         </a>
                         <div class="describe_products">
@@ -271,6 +289,7 @@
                                     <i class="fa-solid fa-star icon_star"></i>
                                     <i class="fa-solid fa-star icon_star"></i>
                                 </span>
+
                                 <c:if test="${p.discount.id != 1}">
                                 <div>                                    
                                     <span class="info_price">${p.price_out * (100 - p.discount.value) / 100}</span>
@@ -283,6 +302,7 @@
                                     <span class="info_price">${p.price_out}</span>      
                                 </div>
                                 </c:if>
+
                             </div>
                             <div class="add_like_products">
                                 <i class="fa-regular fa-heart icon_heart"></i>
@@ -293,7 +313,9 @@
                      
                     </c:forEach>
                     
+
                     
+
                     
                 </div>
              <div class="body_info">
