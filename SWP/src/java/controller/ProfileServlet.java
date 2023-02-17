@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dal.UserDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,14 +12,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.User;
 
 /**
  *
  * @author Phuong-Linh
  */
-@WebServlet(name = "Register", urlPatterns = {"/register"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "ProfileServlet", urlPatterns = {"/profile"})
+public class ProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Register</title>");
+            out.println("<title>Servlet ProfileServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProfileServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +60,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User usernow = (User) session.getAttribute("userNow");
+        OrderDAO od = new OrderDAO();
+        int sumMoney = od.getSumTotalMoney(usernow.getId());
+        request.setAttribute("userNow", usernow);
+        request.setAttribute("sumMoney", sumMoney);
+        request.getRequestDispatcher("profile_info.jsp").forward(request, response);
     }
 
     /**
@@ -73,40 +80,9 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String re_pass = request.getParameter("repassword");
-        String email = request.getParameter("email");
-
-        UserDAO dao = new UserDAO();
-        User a = dao.getAccountByLoginName(username);
-        User b = dao.getAccountByEmail(email);
-        String ms = null, ms1 = null;
-        if (a != null || b != null) {
-            if (a != null) {
-
-                //day ve trang Sign up, Sign up lai
-                ms = "Tên đăng nhập đã tồn tại";
-            }
-            if (b != null) {
-                //day ve trang Sign up, Sign up lai
-                ms1 = "Email đã được dùng để đăng ký một tài khoản khác";
-            }
-
-            request.setAttribute("ms1", ms1);
-            request.setAttribute("ms", ms);
-            request.setAttribute("name", username);
-            request.setAttribute("emaill", email);
-            request.setAttribute("pass", password);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        } else {
-            //dc sign up
-            dao.addUser(new User(null, null, username, password, email, null, null, null, null, 0));
-            response.sendRedirect("login.jsp");
-        }
+        processRequest(request, response);
     }
-     
+
     /**
      * Returns a short description of the servlet.
      *

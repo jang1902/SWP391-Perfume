@@ -11,10 +11,12 @@ import java.sql.Date;
  * @author ASUS
  */
 public class User {
-    private int id,loginType,role_id;
-    private String firstname,lastname,username,password,email,phone_number,address;
-    private Date created_at,updated_at;
+
+    private int id, loginType, role_id;
+    private String firstname, lastname, username, password, email, phone_number, address;
+    private Date created_at, updated_at;
     private int deleted;
+
     public User() {
     }
 
@@ -22,6 +24,19 @@ public class User {
         this.id = id;
         this.loginType = loginType;
         this.role_id = role_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.address = address;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.deleted = deleted;
+    }
+
+    public User(String firstname, String lastname, String username, String password, String email, String phone_number, String address, Date created_at, Date updated_at, int deleted) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
@@ -138,7 +153,4 @@ public class User {
         this.deleted = deleted;
     }
 
-   
-
-  
 }
