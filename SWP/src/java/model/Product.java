@@ -15,8 +15,6 @@ public class Product {
     private int category_id;
     private String title;
     private int gender_id;
-    private int price_in;
-    private int price_out;
     private int discount_id;
     private String thumbnail;
     private String description;
@@ -26,13 +24,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, int category_id, String title, int gender_id, int price_in, int price_out, int discount_id, String thumbnail, String description, Date created_at, Date updated_at) {
+    public Product(int id, int category_id, String title, int gender_id, int discount_id, String thumbnail, String description, Date created_at, Date updated_at) {
         this.id = id;
         this.category_id = category_id;
         this.title = title;
         this.gender_id = gender_id;
-        this.price_in = price_in;
-        this.price_out = price_out;
+
         this.discount_id = discount_id;
         this.thumbnail = thumbnail;
         this.description = description;
@@ -72,21 +69,6 @@ public class Product {
         this.gender_id = gender_id;
     }
 
-    public int getPrice_in() {
-        return price_in;
-    }
-
-    public void setPrice_in(int price_in) {
-        this.price_in = price_in;
-    }
-
-    public int getPrice_out() {
-        return price_out;
-    }
-
-    public void setPrice_out(int price_out) {
-        this.price_out = price_out;
-    }
 
     public int getDiscount_id() {
         return discount_id;

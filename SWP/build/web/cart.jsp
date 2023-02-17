@@ -255,7 +255,7 @@
                 <div class="body_right-item">
                     <span class="info_order">Đơn đặt hàng của bạn</span>
                     <div class="body_right-item-buy-products">
-                        <c:forEach items="${requestScope.cart}" var="c">
+                        <c:forEach items="${requestScope.listItem}" var="c">
                         <div class="body_right-item-products">
                             <span>
                                 <span class="amount_products">${c.quantity}x</span>  ${c.product.title}</span>
@@ -274,20 +274,11 @@
                         <span>Tổng tiền tạm thời</span>
                         <b>300$</b>
                     </div>
-                    <div class="body_right-item-products">
-                        <span>Thuế</span>
-                        <b>1,0 $</b>
-                    </div>
-                    <div class="body_right-item-products">
-                        <span>Giảm giá</span>
-                        <b> - </b>
-                    </div>
                 </div>
                 <hr class="body_right-decoration">
                 <div class="body_right-item">
                     <div class="body_right-item-products">
-                        <span>Tổng tiền</span>
-                        <b>310 $</b>
+                    
                     </div>
                 </div>
             </div>

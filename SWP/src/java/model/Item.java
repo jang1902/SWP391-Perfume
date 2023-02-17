@@ -9,6 +9,7 @@ package model;
  * @author ASUS
  */
 public class Item {
+    private SizeProduct sizeproduct;
     private Product product;
     private Size size;
     private int quantity;
@@ -17,12 +18,23 @@ public class Item {
     public Item() {
     }
 
-    public Item(Product product, Size size, int quantity, double price) {
+    public Item(SizeProduct sizeproduct, Product product, Size size, int quantity, double price) {
+        this.sizeproduct = sizeproduct;
         this.product = product;
         this.size = size;
         this.quantity = quantity;
         this.price = price;
     }
+
+    public SizeProduct getSizeproduct() {
+        return sizeproduct;
+    }
+
+    public void setSizeproduct(SizeProduct sizeproduct) {
+        this.sizeproduct = sizeproduct;
+    }
+
+   
 
     public Product getProduct() {
         return product;

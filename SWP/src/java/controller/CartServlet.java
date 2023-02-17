@@ -43,7 +43,7 @@ public class CartServlet extends HttpServlet {
                 txt+=o.getValue();
             }
         }
-         User a= (User) request.getSession().getAttribute("acc");
+         User a= (User) request.getSession().getAttribute("userNow");
         Cart cart=new Cart(txt,a);
         List<Item> listItem= cart.getItems();
         int n;
@@ -53,12 +53,8 @@ public class CartServlet extends HttpServlet {
             n=0;
         }
         
-        request.setAttribute("tag", "Cart");
-    
-        request.getSession().setAttribute("amount",n);
-        request.setAttribute("car", cart);
-        request.setAttribute("cart", listItem);
-        request.setAttribute("current", "pages");
+        request.setAttribute("listItem", listItem);
+       
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     } 
 

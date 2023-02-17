@@ -234,9 +234,9 @@
                                     <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
                                 </div>
                             </div>
-                            <form action="" method="post" name="fo">
+                            <form action="action" name="b" method="post" >
                                 <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
-                                    <button  onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
+                                    <button onclick="add('${detail.id}', '${size}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
                         </div>
@@ -277,7 +277,7 @@
                                 <div class="products_cmt-top">
                                     <img src="./assets/img/frog (5).png" class="img_avatar-user">
                                     <div class="user_rated">
-                                        <span class="user_rated-name">Bùi Hạ Long</span>
+                                        <span class="user_rated-name">dM FPT</span>
                                         <div>
                                             <span>
                                                 <i class="fa-solid fa-star icon_star"></i>
@@ -300,7 +300,7 @@
                                 <div class="products_cmt-top">
                                     <img src="./assets/img/frog (2).png" class="img_avatar-user">
                                     <div class="user_rated">
-                                        <span class="user_rated-name">Đỗ Tú Linh</span>
+                                        <span class="user_rated-name">DM trương gia pig</span>
                                         <div>
                                             <span>
                                                 <i class="fa-solid fa-star icon_star"></i>
@@ -492,11 +492,9 @@
         </div>
 
         <script type="text/javascript">
-
             function add(id, size) {
-                var m = document.fo.num.value;
-                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&num=" + m;
-                document.fo.submit();
+                document.b.action="buy?id="+id+"&sid="+size;
+                document.b.submit();
             }
             function choice(id) {
                 var m = document.f.size.value;

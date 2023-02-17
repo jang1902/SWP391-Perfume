@@ -30,8 +30,7 @@ public class DAO extends DBContext {
                 c.setCategory_id(rs.getInt("category_id"));
                 c.setTitle(rs.getString("title"));
                 c.setGender_id(rs.getInt("gender_id"));
-                c.setPrice_in(rs.getInt("price_in"));
-                c.setPrice_out(rs.getInt("price_out"));
+             
                 c.setDiscount_id(rs.getInt("discount_id"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setDescription(rs.getString("description"));

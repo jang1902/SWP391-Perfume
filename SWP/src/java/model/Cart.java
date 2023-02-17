@@ -5,6 +5,7 @@
 package model;
 
 import dal.CartDAO;
+import dal.ProductDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class Cart {
     public Cart(String txt, User user) {
         items = new ArrayList();
         CartDAO d = new CartDAO();
+        ProductDAO dao=new ProductDAO();
         try {
             if (txt != null && txt.length() != 0) {
                 String[] s = txt.split("/");
@@ -75,13 +77,14 @@ public class Cart {
                     int quantity = Integer.parseInt(n[3]);
                     Product p = d.getProductsById(pid);
                     Size size = d.getSizeByID(sid);
+                    SizeProduct sizeproduct=dao.getSizeProductByPidSid(pid, sid);
                     if (user != null) {
                         if (uid == 0 || uid == user.getId()) {
-                            addItem(new Item(p, size, quantity, p.getPrice_out()));
+                            addItem(new Item(sizeproduct,p, size, quantity, sizeproduct.getPrice_out()));
                         }
                     } else {
                         if (uid == 0) {
-                            addItem(new Item(p, size, quantity, p.getPrice_out()));
+                            addItem(new Item(sizeproduct,p, size, quantity, sizeproduct.getPrice_out()));
                         }
                     }
                 }

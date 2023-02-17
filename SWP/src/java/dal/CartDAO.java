@@ -29,7 +29,7 @@ public class CartDAO extends DBContext{
                 p.setCategory_id(rs.getInt("category_id"));
                 p.setTitle(rs.getString("title"));
                 p.setGender_id(rs.getInt("gender_id"));
-                p.setPrice_in(rs.getInt("price_in"));
+      
                 p.setDiscount_id(rs.getInt("discount_id"));
                 p.setThumbnail(rs.getString("thumbnail"));
                 p.setDescription(rs.getString("description"));
@@ -57,5 +57,4 @@ public class CartDAO extends DBContext{
         }
         return null;
     }
-    
 }

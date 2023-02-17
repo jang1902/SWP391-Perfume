@@ -104,7 +104,9 @@ public class DetailServlet extends HttpServlet {
         request.setAttribute("detail", p);
         request.getRequestDispatcher("productdetail.jsp").forward(request, response);
     }
-
+    public static void main(String[] args) {
+            
+    }
     /**
      * Handles the HTTP <code>POST</code> method.
      *
