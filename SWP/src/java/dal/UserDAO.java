@@ -7,31 +7,30 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.sql.Date;
 import model.User;
 
 /**
  *
  * @author ASUS
  */
-
-public class UserDAO extends DBContext {
-
-    public User checkAccount(String username, String password) {
-        String sql = "select * from Users where username=? and password=?";
+public class UserDAO extends DBContext{
+    public User checkAccount(String username, String password){
+        String sql="select * from Users where username=? and password=?";
         try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, username);
-            st.setString(2, password);
-            ResultSet rs = st.executeQuery();
-
-            if (rs.next()) {
-                return new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
+            PreparedStatement st=connection.prepareStatement(sql);
+            st.setString(1,username);
+            st.setString(2,password);
+            ResultSet rs=st.executeQuery();
+                       
+            if(rs.next()){
+                return new User(rs.getInt("id"),rs.getInt("loginType"),rs.getInt("role_id"),
                         rs.getString("firstname"),
-                        rs.getString("lastname"), username, password,
-                        rs.getString("email"), rs.getString("phone_number"), rs.getString("address"),
-                        rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
-                );
-
+                        rs.getString("lastname"),username,password,
+                        rs.getString("email"),rs.getString("phone_number"),rs.getString("address"),
+                        rs.getDate("created_at"),rs.getDate("updated_at"),rs.getInt("deleted")
+                        );
             }
         } catch (SQLException e) {
         }
@@ -71,6 +70,33 @@ public class UserDAO extends DBContext {
             st.setDate(9, user.getUpdated_at());
             st.setInt(10, user.getDeleted());
 
+            st.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void addUserGoogle(String email,Date created_time) {
+        String sql = "INSERT INTO [dbo].[Users]\n"
+                + "           ([loginType]\n"
+                + "           ,[role_id]\n"
+                + "           ,[firstname]\n"
+                + "           ,[lastname]\n"
+                + "           ,[username]\n"
+                + "           ,[password]\n"
+                + "           ,[email]\n"
+                + "           ,[phone_number]\n"
+                + "           ,[address]\n"
+                + "           ,[created_at]\n"
+                + "           ,[updated_at]\n"
+                + "           ,[deleted])\n"
+                + "     VALUES\n"
+                + "           (2, 1, null, null, null, null, ?, null, null, ?, null, null)";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, email);
+            st.setDate(2, created_time);
             st.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);

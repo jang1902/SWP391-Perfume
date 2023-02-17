@@ -20,20 +20,13 @@ public class Product {
     private int discount_id;
     private String thumbnail;
     private String description;
-    private int size_id;
-    private int quantity;
     private Date created_at;
     private Date updated_at;
-
-    private Discount discount;
-
 
     public Product() {
     }
 
-
-    public Product(int id, int category_id, String title, int gender_id, int price_in, int price_out, int discount_id, String thumbnail, String description, int size_id, int quantity, Date created_at, Date updated_at, Discount discount) {
-
+    public Product(int id, int category_id, String title, int gender_id, int price_in, int price_out, int discount_id, String thumbnail, String description, Date created_at, Date updated_at) {
         this.id = id;
         this.category_id = category_id;
         this.title = title;
@@ -43,21 +36,8 @@ public class Product {
         this.discount_id = discount_id;
         this.thumbnail = thumbnail;
         this.description = description;
-        this.size_id = size_id;
-        this.quantity = quantity;
         this.created_at = created_at;
         this.updated_at = updated_at;
-
-        this.discount = discount;
-    }
-
-    public Discount getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Discount discount) {
-        this.discount = discount;
-
     }
 
     public int getId() {
@@ -100,10 +80,8 @@ public class Product {
         this.price_in = price_in;
     }
 
-
     public int getPrice_out() {
         return price_out;
-
     }
 
     public void setPrice_out(int price_out) {
@@ -134,21 +112,6 @@ public class Product {
         this.description = description;
     }
 
-    public int getSize_id() {
-        return size_id;
-    }
-
-    public void setSize_id(int size_id) {
-        this.size_id = size_id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     public Date getCreated_at() {
         return created_at;

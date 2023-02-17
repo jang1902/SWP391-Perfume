@@ -78,21 +78,21 @@ public class LogInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //lay user vaf pass
-
-        String u = request.getParameter("user");
-        String p = request.getParameter("pass");
-
+        String u = request.getParameter("username");
+        String p = request.getParameter("password");
        // String remem = request.getParameter("remem");
 
-        //check
+        
         UserDAO d = new UserDAO();
         User user = d.checkAccount(u, p);
-        if (user == null) {
+       if (user == null) {
 
             request.setAttribute("mess", "Wrong user name or password!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("login").forward(request, response);
 
-        } else {
+        }
+        
+        else {
            
         //    Cookie cu = new Cookie("cuser", u);
          //   Cookie cp = new Cookie("cpass", p);
@@ -116,10 +116,8 @@ public class LogInServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("userNow", user);
           
-
-            //dang nhap thanh cong thi ve home, de tam la productservlet sau sua
-            response.sendRedirect("ProductServlet");
-
+            
+            response.sendRedirect("home");
         }
     }
 

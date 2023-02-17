@@ -5,24 +5,24 @@
 
 package controller;
 
-import dal.DAO;
-import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Product;
+import model.Cart;
+import model.Item;
+import model.User;
 
 /**
  *
- * @author hp
+ * @author ASUS
  */
-@WebServlet(name="ProductServlet", urlPatterns={"/home"})
-public class ProductServlet extends HttpServlet {
+@WebServlet(name="CartServlet", urlPatterns={"/cart"})
+public class CartServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,18 +34,32 @@ public class ProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        Cookie[] arr=request.getCookies();
+       
+        String txt="";
+        if(arr!=null){
+            for (Cookie o:arr) {
+                if(o.getName().equals("cart"))
+                txt+=o.getValue();
+            }
         }
+         User a= (User) request.getSession().getAttribute("acc");
+        Cart cart=new Cart(txt,a);
+        List<Item> listItem= cart.getItems();
+        int n;
+        if(listItem!=null){
+            n=listItem.size();
+        }else{
+            n=0;
+        }
+        
+        request.setAttribute("tag", "Cart");
+    
+        request.getSession().setAttribute("amount",n);
+        request.setAttribute("car", cart);
+        request.setAttribute("cart", listItem);
+        request.setAttribute("current", "pages");
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,12 +73,7 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-  
-            ProductDAO d = new ProductDAO();
-            List<Product> p = d.getAllProduct();
-            request.setAttribute("product", p);
-         
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 

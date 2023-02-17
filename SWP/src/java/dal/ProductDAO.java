@@ -9,8 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Category;
 import model.Product;
 import model.Size;
+import model.SizeProduct;
 
 /**
  *
@@ -20,35 +22,19 @@ public class ProductDAO extends DBContext {
 
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
-        String sql = "SELECT [id]\n"
-                + "      ,[category_id]\n"
-                + "      ,[title]\n"
-                + "      ,[gender_id]\n"
-                + "      ,[price_in]\n"
-                + "      ,[price_out]\n"
-                + "      ,[discount_id]\n"
-                + "      ,[thumbnail]\n"
-                + "      ,[description]\n"
-                + "      ,[size_id]\n"
-                + "      ,[quantity]\n"
-                + "      ,[created_at]\n"
-                + "      ,[updated_at]\n"
-                + "  FROM [SWP].[dbo].[Products]";
+        String sql = "select * from products";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();
+                c.setId(rs.getInt("id"));
                 c.setCategory_id(rs.getInt("category_id"));
                 c.setTitle(rs.getString("title"));
                 c.setGender_id(rs.getInt("gender_id"));
-                c.setPrice_in(rs.getInt("price_in"));
-                c.setPrice_out(rs.getInt("price_out"));
                 c.setDiscount_id(rs.getInt("discount_id"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setDescription(rs.getString("description"));
-                c.setSize_id(rs.getInt("size_id"));
-                c.setQuantity(rs.getInt("quantity"));
                 c.setCreated_at(rs.getDate("created_at"));
                 c.setCreated_at(rs.getDate("updated_at"));
                 list.add(c);
@@ -58,7 +44,113 @@ public class ProductDAO extends DBContext {
         }
         return list;
     }
+    
+    public Product getProductByID(int id){
+        String sql = "select * from Products where id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("id"));
+                p.setCategory_id(rs.getInt("category_id"));
+                p.setTitle(rs.getString("title"));
+                p.setGender_id(rs.getInt("gender_id"));
+                p.setDiscount_id(rs.getInt("discount_id"));
+                p.setThumbnail(rs.getString("thumbnail"));
+                p.setDescription(rs.getString("description"));
+                p.setCreated_at(rs.getDate("created_at"));
+                p.setUpdated_at(rs.getDate("updated_at"));
+                return p;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
+    
+    public List<SizeProduct> getSizeProductByPID(int id){
+        List<SizeProduct> list=new ArrayList<>();
+        String sql = "select * from SizeProduct where pid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                SizeProduct p = new SizeProduct();
+                p.setPid(rs.getInt("pid"));
+                p.setSid(rs.getInt("sid"));
+                p.setQuantity(rs.getInt("quantity"));
+                p.setPrice_in(rs.getInt("price_in"));
+                p.setPrice_out(rs.getInt("price_out"));
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public Size getSizeByID(int sid){
+        String sql = "select * from Sizes where id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, sid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Size s = new Size();
+                s.setId(rs.getInt("id"));
+                s.setName(rs.getString("name"));
+                s.setValue(rs.getInt("value"));
+                return s;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public SizeProduct getSizeProductByPidSid(int pid,int sid){
+        String sql = "select * from SizeProduct where pid=? and sid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, pid);
+            st.setInt(2,sid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                SizeProduct s = new SizeProduct();
+                s.setPid(rs.getInt("pid"));
+                s.setSid(rs.getInt("sid"));
+                s.setQuantity(rs.getInt("quantity"));
+                s.setPrice_in(rs.getInt("price_in"));
+                s.setPrice_out(rs.getInt("price_out"));
+                return s;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public Category getCategoryNameById(int cid){
+        String sql = "select * from Categories where id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, cid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Category s = new Category();
+                s.setId(rs.getInt("id"));
+                s.setName(rs.getString("name"));
+                return s;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     //get last
 //    public Product getLast() {
 //        String sql = "select top 1 * from Product\n"
@@ -146,7 +238,7 @@ public class ProductDAO extends DBContext {
                 + "      ,[discount_id]\n"
                 + "      ,[thumbnail]\n"
                 + "      ,[description]\n"
-                + "      ,[size_id]\n"
+    
                 + "      ,[quantity]\n"
                 + "      ,[created_at]\n"
                 + "      ,[updated_at]\n"
@@ -169,8 +261,8 @@ public class ProductDAO extends DBContext {
                 c.setDiscount_id(rs.getInt("discount_id"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setDescription(rs.getString("description"));
-                c.setSize_id(rs.getInt("size_id"));
-                c.setQuantity(rs.getInt("quantity"));
+             
+               
                 c.setCreated_at(rs.getDate("created_at"));
                 c.setCreated_at(rs.getDate("updated_at"));
                 return c;
@@ -181,7 +273,51 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public Product getProductBySize(String title, int sid) {
+//    public Product getProductSize(String title) {
+//        String sql = "SELECT [id]\n"
+//                + "      ,[category_id]\n"
+//                + "      ,[title]\n"
+//                + "      ,[gender_id]\n"
+//                + "      ,[price_in]\n"
+//                + "      ,[price_out]\n"
+//                + "      ,[discount_id]\n"
+//                + "      ,[thumbnail]\n"
+//                + "      ,[description]\n"
+//                + "      ,[size_id]\n"
+//                + "      ,[quantity]\n"
+//                + "      ,[created_at]\n"
+//                + "      ,[updated_at]\n"
+//                + "  FROM [SWP].[dbo].[Products]\n"
+//                + "  where title=? ";
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            st.setString(1, title);
+//            
+//            ResultSet rs = st.executeQuery();
+//            if (rs.next()) {
+//                Product c = new Product();
+//                c.setId(rs.getInt("id"));
+//                c.setCategory_id(rs.getInt("category_id"));
+//                c.setTitle(rs.getString("title"));
+//                c.setGender_id(rs.getInt("gender_id"));
+//                c.setPrice_in(rs.getInt("price_in"));
+//                c.setPrice_out(rs.getInt("price_out"));
+//                c.setDiscount_id(rs.getInt("discount_id"));
+//                c.setThumbnail(rs.getString("thumbnail"));
+//                c.setDescription(rs.getString("description"));
+//                c.setSize_id(rs.getInt("size_id"));
+//                c.setQuantity(rs.getInt("quantity"));
+//                c.setCreated_at(rs.getDate("created_at"));
+//                c.setCreated_at(rs.getDate("updated_at"));
+//                return c;
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//        return null;
+//    }
+    public List<Product> getProductSize(String title) {
+        List<Product> ls = new ArrayList<>();
         String sql = "SELECT [id]\n"
                 + "      ,[category_id]\n"
                 + "      ,[title]\n"
@@ -191,18 +327,17 @@ public class ProductDAO extends DBContext {
                 + "      ,[discount_id]\n"
                 + "      ,[thumbnail]\n"
                 + "      ,[description]\n"
-                + "      ,[size_id]\n"
+              
                 + "      ,[quantity]\n"
                 + "      ,[created_at]\n"
                 + "      ,[updated_at]\n"
                 + "  FROM [SWP].[dbo].[Products]\n"
-                + "  where title=? and size_id=?";
+                + "  where title=? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, title);
-            st.setInt(2, sid);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Product c = new Product();
                 c.setId(rs.getInt("id"));
                 c.setCategory_id(rs.getInt("category_id"));
@@ -213,49 +348,21 @@ public class ProductDAO extends DBContext {
                 c.setDiscount_id(rs.getInt("discount_id"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setDescription(rs.getString("description"));
-                c.setSize_id(rs.getInt("size_id"));
-                c.setQuantity(rs.getInt("quantity"));
+              
+             
                 c.setCreated_at(rs.getDate("created_at"));
                 c.setCreated_at(rs.getDate("updated_at"));
-                return c;
+
+                ls.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null;
+        return ls;
     }
 
-    public Product getProductValue(String thumbnail, int sid) {
-        String sql = "select * from Sizes s join Products p\n"
-                + "on s.id = p.size_id\n"
-                + "where thumbnail ='?' and s.id=?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, thumbnail);
-            st.setInt(2, sid);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                Product c = new Product();
-                c.setId(rs.getInt("id"));
-                c.setCategory_id(rs.getInt("category_id"));
-                c.setTitle(rs.getString("title"));
-                c.setGender_id(rs.getInt("gender_id"));
-                c.setPrice_in(rs.getInt("price_in"));
-                c.setPrice_out(rs.getInt("price_out"));
-                c.setDiscount_id(rs.getInt("discount_id"));
-                c.setThumbnail(rs.getString("thumbnail"));
-                c.setDescription(rs.getString("description"));
-                c.setSize_id(rs.getInt("size_id"));
-                c.setQuantity(rs.getInt("quantity"));
-                c.setCreated_at(rs.getDate("created_at"));
-                c.setCreated_at(rs.getDate("updated_at"));
-                return c;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
+
+  
 
     public Size getValue() {
         String sql = "SELECT [id]\n"
@@ -317,7 +424,7 @@ public class ProductDAO extends DBContext {
                 + "      ,[discount_id]\n"
                 + "      ,[thumbnail]\n"
                 + "      ,[description]\n"
-                + "      ,[size_id]\n"
+  
                 + "      ,[quantity]\n"
                 + "      ,[created_at]\n"
                 + "      ,[updated_at]\n"
@@ -327,7 +434,6 @@ public class ProductDAO extends DBContext {
         PreparedStatement st = connection.prepareStatement(sql);
         st.setString(1, title);
         st.setInt(2, gid);
-       
         ResultSet rs = st.executeQuery();
 
         while (rs.next()) {
@@ -341,8 +447,8 @@ public class ProductDAO extends DBContext {
             c.setDiscount_id(rs.getInt("discount_id"));
             c.setThumbnail(rs.getString("thumbnail"));
             c.setDescription(rs.getString("description"));
-            c.setSize_id(rs.getInt("size_id"));
-            c.setQuantity(rs.getInt("quantity"));
+     
+            
             c.setCreated_at(rs.getDate("created_at"));
             c.setCreated_at(rs.getDate("updated_at"));
             ls.add(c);
@@ -949,7 +1055,7 @@ public class ProductDAO extends DBContext {
 //    }
     public static void main(String[] args) throws SQLException {
         ProductDAO d = new ProductDAO();
-//        d.getProductById(1);
+        System.out.println(d.getAllProduct());
 //        System.out.println("thumbnail: " + d.getProductById(1).getThumbnail());
 //        List<Product> ls = d.getAll();
 //        System.out.println(d.mostRevenueInXDay(0));
@@ -960,6 +1066,7 @@ public class ProductDAO extends DBContext {
 //        }
 
 //        System.out.println(d.getProductByTitle("Nước hoa Morra 2AM"));
+        
     }
 
 }

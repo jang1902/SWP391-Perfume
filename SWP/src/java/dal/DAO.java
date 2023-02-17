@@ -20,25 +20,13 @@ public class DAO extends DBContext {
 
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
-        String sql = "SELECT [id]\n"
-                + "      ,[category_id]\n"
-                + "      ,[title]\n"
-                + "      ,[gender_id]\n"
-                + "      ,[price_in]\n"
-                + "      ,[price_out]\n"
-                + "      ,[discount_id]\n"
-                + "      ,[thumbnail]\n"
-                + "      ,[description]\n"
-                + "      ,[size_id]\n"
-                + "      ,[quantity]\n"
-                + "      ,[created_at]\n"
-                + "      ,[updated_at]\n"
-                + "  FROM [SWP].[dbo].[Products]";
+        String sql = "select * from Products";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();
+                c.setId(rs.getInt("id"));
                 c.setCategory_id(rs.getInt("category_id"));
                 c.setTitle(rs.getString("title"));
                 c.setGender_id(rs.getInt("gender_id"));
@@ -47,8 +35,7 @@ public class DAO extends DBContext {
                 c.setDiscount_id(rs.getInt("discount_id"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setDescription(rs.getString("description"));
-                c.setSize_id(rs.getInt("size_id"));
-                c.setQuantity(rs.getInt("quantity"));
+         
                 c.setCreated_at(rs.getDate("created_at"));
                 c.setCreated_at(rs.getDate("updated_at"));
                 list.add(c);
@@ -59,34 +46,8 @@ public class DAO extends DBContext {
         return list;
     }
 
-    void abc(){
-        System.out.println("Truong khong dep zai");
-    }
-    
-    public List<Product> getProductPresentation() {
-        List<Product> list = new ArrayList<>();
-        String sql = "SELECT top 12 \n"
-                + "      [title]\n"
-                + "      ,min(price_out) as price\n"
-                + "      ,[thumbnail]\n"
-                + "  FROM [SWP].[dbo].[Products]\n"
-                + "  group by \n"
-                + "      [title]\n"
-                + "      ,[thumbnail]";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Product c = new Product();
-                c.setTitle(rs.getString("title"));
-                c.setPrice_out(rs.getInt("price"));            
-                c.setThumbnail(rs.getString("thumbnail"));
-                list.add(c);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
+
+
+ 
 
 }

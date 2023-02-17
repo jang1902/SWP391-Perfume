@@ -172,17 +172,26 @@
         <!-- end header -->
 
         <!-- body -->
-        <c:set var="p" value="${requestScope.prod}" />
-<!--        <form action="pdetail" method="post" id="myform">
-            <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
-        </form>-->
-        
+
+
+        <!--        <form action="pdetail" method="post" id="myform">
+                    <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
+                </form>-->
+
         <div id="body">
+            <form action="pdetail" method="get">
+                <input type="hidden" value="${p.category_id}" name="cid"/>
+            </form>
+
             <div class="body_container">
-                <div class="body_container-item view_infoproducts">
-                    <div class="info_products-left">
-                        <div class="info_products-left-top">
-                            <img src="${p.thumbnail}" id="img_products_big">
+                <a href="listproduct?cid=${detail.category_id}"> 
+                     <span class="info_products-right-brand"> ${cate.name} </span>  
+                    
+                    </a>
+                    <div class="body_container-item view_infoproducts">
+                        <div class="info_products-left">
+                            <div class="info_products-left-top">
+                                <img src="${detail.thumbnail}" id="img_products_big">
                         </div>
                         <div class="info_products-left-bot">
                             <img src="./assets/img/Uchiha Madara (2).jpg" class="img_products-small" onclick="img_product1()">
@@ -195,33 +204,41 @@
                     <div class="info_products-right">
                         <div class="info_product-right-child">
                             <div class="info_products-right-item">
-                                <span class="info_products-right-title">${p.title}</span>
+                                <span class="info_products-right-title">${detail.title}</span>
                             </div>
 
                             <div class="info_products-right-item">
                                 <span>Dung tích : </span>
-                                <c:forEach items="${requestScope.size}" var="s">
-                                    <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=${s.id}"><span class="info_products-right-brand">${s.value}</span></a> 
-                                </c:forEach>
+                                <c:set var="id" value="${detail.id}"></c:set>
+                                    <form name="f" action="" method="post">
+                                    <c:forEach items="${requestScope.listS}" var="s">
+                                        <div>
+                                            <input type="radio" ${s.id==size?"checked":""} onclick="choice('${id}')" id="${s.id}" name="size" value="${s.id}">
+                                            <label for="${s.id}">${s.value}</label>
+                                        </div>
+                                    </c:forEach>
+                                </form>
                             </div>
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
-                                
-                                <c:if test="${param.gid == 1}" > <span class="info_products-right-brand"> Nam </span> </c:if> 
-                                <c:if test="${param.gid == 2}" > <span class="info_products-right-brand"> Nữ </span></c:if> 
-                                <c:if test="${param.gid == 3}" > <span class="info_products-right-brand"> Unisex </span></c:if> 
-                            </div>
-                            <div class="info_products-right-item">
-                                <span class="info_products-right-price">${p.price_out }đ</span> <br>
+
+                                <c:if test="${detail.gender_id == 1}" > <span class="info_products-right-brand"> Nam </span> </c:if> 
+                                <c:if test="${detail.gender_id == 2}" > <span class="info_products-right-brand"> Nữ </span></c:if> 
+                                <c:if test="${detail.gender_id == 3}" > <span class="info_products-right-brand"> Unisex </span></c:if> 
+                                </div>
+                                <div class="info_products-right-item">
+                                    <span class="info_products-right-price">${sp.price_out}đ</span> <br>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
                                     <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
                                     <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
                                 </div>
                             </div>
-                            <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
-                                <button type="button" id="add-to-cart" class="add-to-cartProduct button btn-addtocart addtocart-modal" name="add"><span>Thêm vào giỏ</span></button>
-                            </div>
+                            <form action="" method="post" name="fo">
+                                <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
+                                    <button  onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
+                                </div>
+                            </form>
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_productsdetails">
@@ -252,7 +269,6 @@
                         <button class="products-item" id="products-item-cmt" onclick="op_comment()">
                             Nhận xét
                         </button>
-                        
                     </div>
                     <div class="products_contents">
                         <div class="products_cmt" id="product_contentcomment">
@@ -303,7 +319,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="body_container-item user_ratingproducts">
@@ -334,10 +349,10 @@
                         Sản phẩm tương tự
                     </div>
                     <div class="products_same-child">
-                        
+
                         <c:forEach items="${requestScope.relativeproducts}" var="rp">
                             <div class="products">
-                                <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=1">
+                                <a href="pdetail?title=${rp.title}&gid=${rp.gender_id}&sid=1&cid=${rp.category_id}">
                                     <img src="${rp.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
@@ -473,6 +488,20 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+
+            function add(id, size) {
+                var m = document.fo.num.value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&num=" + m;
+                document.fo.submit();
+            }
+            function choice(id) {
+                var m = document.f.size.value;
+                document.f.action = "pdetail?id=" + id + "&sid=" + m;
+                document.f.submit();
+            }
+        </script>
         <!-- end footer -->
     </body>
 

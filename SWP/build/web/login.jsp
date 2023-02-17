@@ -4,13 +4,10 @@
     Author     : ASUS
 --%>
 
-<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,16 +32,23 @@
                 <div> 
                     <form action="login" method="post">
                         <h3 style="color:red">${requestScope.mess}</h3>
-                        <c:set var="p" value="${requestScope.resetSuccess}"></c:set>
-                        <h2 style="color: green;">${p}</h2>
-                        <input type="text" placeholder="Tên đăng nhâp  " class="body_right-inputlogin" name="user">
-                        <input type="password" placeholder="Mật Khẩu" class="body_right-inputlogin" name="pass">
+                        <h3 style="color:green">${requestScope.ms}</h3>
+                        <input type="text" placeholder="Email hoặc Số Điện Thoại" class="body_right-inputlogin" name="username">
+                        <input type="password" placeholder="Mật Khẩu" class="body_right-inputlogin" name="password">
                         <div class="body_right-login" id="login">
                             <button class="body_right-btnlogin" type="submit">Đăng Nhập</button> <br>
-                            <a href="forgot" class="body_right-forgotpass">Forgotten Password ?</a>
-                            <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/SWP1/login-google&response_type=code
-                               &client_id=845236234675-gl7te8a81vmkokgdfjcf4s71g3jkll59.apps.googleusercontent.com&approval_prompt=force">Login With Google</a> 
-                            <a href="https://www.facebook.com/dialog/oauth?client_id=2548676761950281&redirect_uri=http://localhost:9999/swp_project/home.jsp">Login Facebook</a>
+                            <a href="#" class="body_right-forgotpass">Forgotten Password ?</a>
+                            <a href="https://www.facebook.com/dialog/oauth?client_id=2548676761950281&redirect_uri=http://localhost:9999/swp_project/home.jsp">test login fb</a>
+                            <div class="col s12 m6 offset-m3 center-align">
+                                <a class="oauth-container btn darken-4 white black-text" href="https://accounts.google.com/o/oauth2/auth?scope=email&profile&redirect_uri=http://localhost:9999/SWP1/login-google&response_type=code
+                               &client_id=845236234675-gl7te8a81vmkokgdfjcf4s71g3jkll59.apps.googleusercontent.com&approval_prompt=force" style="text-transform:none">
+                                    <div class="left">
+                                        <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" 
+                                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                    </div>
+                                    Login with Google
+                                </a>
+                            </div>
                         </div>
                     </form>  
                 </div>
@@ -56,7 +60,10 @@
                 </div>
             </div>
         </div>
+        <!-- Scr login google -->           
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>    
+        <!-- end Scr login google -->
     </body>
-
     <!-- end body -->
 </html>
