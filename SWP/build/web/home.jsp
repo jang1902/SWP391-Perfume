@@ -225,7 +225,9 @@
 
                         <c:forEach items="${pBestSeller}" var="pb">
                         <div class="arrivals-info_item">
+
                             <a href="pdetail?title=${pb.title}&gid=${pb.gender_id}&sid=1">
+
                                 <img src="${pb.thumbnail}" class="img_arrivals-item">
                             </a>
                             <div class="arrivals-info_text">

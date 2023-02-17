@@ -2,9 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
-
 
 import dal.UserDAO;
 import java.io.IOException;
@@ -14,41 +12,37 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.User;
-
 
 /**
  *
  * @author Phuong-Linh
  */
-@WebServlet(name = "Register", urlPatterns = {"/register"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "changeProfileServlet", urlPatterns = {"/changeprofile"})
+public class changeProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-
-            out.println("<title>Servlet Register</title>");
+            out.println("<title>Servlet changeProfileServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet changeProfileServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +52,6 @@ public class RegisterServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -66,15 +59,16 @@ public class RegisterServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-
             throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User usernow = (User) session.getAttribute("userNow");
+        request.setAttribute("userNow", usernow);
+        request.getRequestDispatcher("change_profile.jsp").forward(request, response);
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -82,46 +76,28 @@ public class RegisterServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String re_pass = request.getParameter("repassword");
-        String email = request.getParameter("email");
-
+        HttpSession session = request.getSession();
+        User usernow = (User) session.getAttribute("userNow");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String phone_number = request.getParameter("phone_number");
+        String address = request.getParameter("address");
+        User u = new User(usernow.getId(), usernow.getLoginType(), usernow.getRole_id(),
+                firstname, lastname, usernow.getUsername(), usernow.getPassword(), usernow.getEmail(), 
+                phone_number, address, usernow.getCreated_at(), usernow.getUpdated_at(), usernow.getDeleted());
         UserDAO dao = new UserDAO();
-        User a = dao.getAccountByLoginName(username);
-        User b = dao.getAccountByEmail(email);
-        String ms = null, ms1 = null;
-        if (a != null || b != null) {
-            if (a != null) {
-
-                //day ve trang Sign up, Sign up lai
-                ms = "Tên đăng nhập đã tồn tại";
-            }
-            if (b != null) {
-                //day ve trang Sign up, Sign up lai
-                ms1 = "Email đã được dùng để đăng ký một tài khoản khác";
-            }
-
-            request.setAttribute("ms1", ms1);
-            request.setAttribute("ms", ms);
-            request.setAttribute("name", username);
-            request.setAttribute("emaill", email);
-            request.setAttribute("pass", password);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        } else {
-            //dc sign up
-            dao.addUser(new User(null, null, username, password, email, null, null, null, null, 0));
-            response.sendRedirect("login.jsp");
-        }
+        dao.updateUser(u);
+        String ms = "Lưu thành công";
+        session.setAttribute("userNow", u);
+        request.setAttribute("userNow", u);
+        request.setAttribute("message", ms);
+        request.getRequestDispatcher("change_profile.jsp").forward(request, response);
     }
-     
+
     /**
      * Returns a short description of the servlet.
      *
-
      * @return a String containing servlet description
      */
     @Override

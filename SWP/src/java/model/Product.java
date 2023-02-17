@@ -100,8 +100,10 @@ public class Product {
         this.price_in = price_in;
     }
 
-    public int getPrice_out() {      
-        return Math.round(price_out);
+
+    public int getPrice_out() {
+        return price_out;
+
     }
 
     public void setPrice_out(int price_out) {
