@@ -124,7 +124,7 @@ html{
     border: solid 1px #72af5c;
 }
 .search-item{
-    width: 12%;
+    width: 0%;
     height: 100%;
     border: solid 1px #e7e9ec;
     border-top-right-radius: 30px;
@@ -269,6 +269,7 @@ html{
     border-radius: 6px;
 }
 .menu_right{
+
     width: 400px;
     height: 40px;
     line-height: 40px;
@@ -548,6 +549,7 @@ html{
     width: 100%;
     height: auto;
     margin-top: 20px;
+
     padding: 25px;
     display: flex;
     justify-content: space-between;
