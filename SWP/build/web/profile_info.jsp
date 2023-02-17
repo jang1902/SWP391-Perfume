@@ -406,7 +406,6 @@
                                     </div>
                                 </c:otherwise>
                             </c:choose>
-
                         </div>
                         <div class="body_right-info_child">
                             <div class="body_right-info_child-title">

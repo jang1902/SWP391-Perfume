@@ -1,13 +1,16 @@
 <%-- 
     Document   : register
+
     Created on : Feb 1, 2023, 12:03:54 AM
     Author     : Phuong-Linh
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,3 +160,4 @@
         </div>
     </body>   
 </html>    
+

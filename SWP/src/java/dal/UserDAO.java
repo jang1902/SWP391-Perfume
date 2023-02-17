@@ -13,6 +13,7 @@ import model.User;
  *
  * @author ASUS
  */
+
 public class UserDAO extends DBContext {
 
     public User checkAccount(String username, String password) {
@@ -30,13 +31,16 @@ public class UserDAO extends DBContext {
                         rs.getString("email"), rs.getString("phone_number"), rs.getString("address"),
                         rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
                 );
+
             }
         } catch (SQLException e) {
         }
         return null;
     }
 
+
     public void addUser(User user) {
+
         String sql = "INSERT INTO [dbo].[Users]\n"
                 + "           ([loginType]\n"
                 + "           ,[role_id]\n"
@@ -51,6 +55,7 @@ public class UserDAO extends DBContext {
                 + "           ,[updated_at]\n"
                 + "           ,[deleted])\n"
                 + "     VALUES\n"
+
                 + "           (1, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -65,6 +70,7 @@ public class UserDAO extends DBContext {
             st.setDate(8, user.getCreated_at());
             st.setDate(9, user.getUpdated_at());
             st.setInt(10, user.getDeleted());
+
             st.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -91,6 +97,7 @@ public class UserDAO extends DBContext {
         }
         return null;
     }
+
 
     public void updateUser(User user) {
         String sql = "UPDATE [dbo].[Users]\n"
@@ -149,10 +156,13 @@ public class UserDAO extends DBContext {
         return null;
     }
 
+
     //check cai username day da ton tai chua????
     // neu ton tai roi tra ve true
     //chua ton tai tra ve false
+
     public boolean existedUser(String username) {
+
         String sql = "SELECT [Username]\n"
                 + "      ,[Password]\n"
                 + "      ,[email]\n"
@@ -162,7 +172,9 @@ public class UserDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, username);
             ResultSet rs = st.executeQuery();
+
             if (rs.next()) {
+
                 return true;
             }
         } catch (SQLException e) {
@@ -171,9 +183,11 @@ public class UserDAO extends DBContext {
         return false;
     }
 
+
     //check xem tài khoan co ton tai chua dua vao email
     //
     public boolean existedEmailUser(String email) {
+
         String sql = "SELECT [Username]\n"
                 + "      ,[Password]\n"
                 + "      ,[email]\n"
@@ -183,7 +197,9 @@ public class UserDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
+
             if (rs.next()) {
+
                 return true;
             }
         } catch (SQLException e) {
@@ -192,7 +208,9 @@ public class UserDAO extends DBContext {
         return false;
     }
 
+
     public void changePassUserByEmail(String newpass, String email) {
+
         String sql = "update [Users] set \n"
                 + "password = ?\n"
                 + "where email = ?";
@@ -206,10 +224,12 @@ public class UserDAO extends DBContext {
         }
     }
 
+
     public static void main(String[] args) {
         UserDAO d = new UserDAO();
 
         User u = d.checkAccount("maigiang", "123");
         System.out.println(u);
+
     }
 }
