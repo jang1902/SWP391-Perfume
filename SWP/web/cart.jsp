@@ -5,18 +5,19 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/header_footer.css">
+    <link rel="stylesheet" href="./assets/css/header_footer.css">
     <!-- <link rel="stylesheet" href="../assets/css/profile_info.css"> -->
-    <link rel="stylesheet" href="../assets/css/cart.css">
-    <script type="text/javascript" language="javascript" src="../main.js"></script>
-    <link rel="stylesheet" href="../assets/font/fontawesome-free-6.1.1/css/all.min.css">
-    <link rel="icon" href="../assets/img/small_logo1.png">
+    <link rel="stylesheet" href="./assets/css/cart.css">
+    <script type="text/javascript" language="javascript" src="./main.js"></script>
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
+    <link rel="icon" href="./assets/img/small_logo1.png">
     <title>BOT STORE</title>
 </head>
 <body>
@@ -150,7 +151,7 @@
                 <!-- menu right -->
                 <ul class="menu_right">
                     <li class="menu_right-item">
-                        <a class="link_decor_remover hover-link" href="../index.html">Trang chủ</a>
+                        <a class="link_decor_remover hover-link" href="./index.html">Trang chủ</a>
                     </li>
                     <li class="menu_right-item">
                         <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -159,10 +160,10 @@
                         <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
                     </li>
                     <li class="menu_right-item">
-                        <a class="link_decor_remover hover-link" href="../src/oder.html">Đơn hàng</a>
+                        <a class="link_decor_remover hover-link" href="./src/oder.html">Đơn hàng</a>
                     </li>
                     <li class="menu_right-item">
-                        <a class="link_decor_remover hover-link" href="../src/profile_info.html">Trang cá nhân</a>
+                        <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
                     </li>
                 </ul>
                 <!-- end menu right -->
@@ -249,26 +250,24 @@
                 </div>
             </div>
             <div class="body_right">
+                
+                
                 <div class="body_right-item">
                     <span class="info_order">Đơn đặt hàng của bạn</span>
                     <div class="body_right-item-buy-products">
+                        <c:forEach items="${requestScope.cart}" var="c">
                         <div class="body_right-item-products">
                             <span>
-                                <span class="amount_products">1</span> x Mô hình Batman</span>
-                            <span>99,00 $</span>
+                                <span class="amount_products">${c.quantity}x</span>  ${c.product.title}</span>
+                                <span>${c.size.name}</span>
+                            <span>${c.product.price_out}$</span>
+                            
                         </div>
-                        <div class="body_right-item-products">
-                            <span>
-                                <span class="amount_products">1</span> x Mô hình Batman</span>
-                            <span>99,00 $</span>
-                        </div>
-                        <div class="body_right-item-products">
-                            <span>
-                                <span class="amount_products">1</span> x Mô hình Batman</span>
-                            <span>99,00 $</span>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
+                
+                
                 <hr class="body_right-decoration">
                 <div class="body_right-item">
                     <div class="body_right-item-products">

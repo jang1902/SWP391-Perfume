@@ -5,25 +5,23 @@
 
 package controller;
 
-
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Calendar;
+import model.Cart;
 import model.User;
-
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(name="RegisterServlet", urlPatterns={"/register"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name="BuyServlet", urlPatterns={"/buy"})
+public class BuyServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,18 +33,40 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SignupServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SignupServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) {
+                if (o.getName().equals("cart")) {
+                    txt += o.getValue();
+                    o.setMaxAge(0);
+                    response.addCookie(o);
+                }
+            }
         }
+        String num = request.getParameter("num");
+        String pid = request.getParameter("pid");
+        String sid = request.getParameter("sid");
+        User user = (User) request.getSession().getAttribute("UserNow");
+        if (user != null) {
+            if (txt.isEmpty()) {
+                txt = user.getId() + ":" + pid + ":" + sid + ":" + num;
+            } else {
+                txt += "/" + user.getId() + ":" + pid + ":" + sid + ":" + num;
+            }
+        } else {
+            if (txt.isEmpty()) {
+                txt = 0 + ":" + pid + ":" + sid + ":" + num;
+            } else {
+                txt += "/" + 0 + ":" + pid + ":" + sid + ":" + num;
+            }
+        }
+        Cookie c = new Cookie("cart", txt);
+        c.setMaxAge(60 * 60 * 24 * 2);
+        response.addCookie(c);
+        Cart cart = new Cart(txt, user);
+        response.sendRedirect("cart");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,37 +93,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
-        String re_pass=request.getParameter("repassword");
-        String email=request.getParameter("email");
-        if(!password.equals(re_pass)){
-            response.sendRedirect("register");
-        }else if(username.equals("")||password.equals("")||re_pass.equals("")||email.equals("")){
-            
-        }
-        else{
-            UserDAO dao = new  UserDAO();
-            User u=dao.getAccountByEmail(email);
-            java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            if(u==null ){
-                dao.addUser(username, password,email,date);
-                String mess="register successfully!";
-                request.setAttribute("ms", mess);
-                 request.getRequestDispatcher("login").forward(request, response);
-            }
-            else if(u.getEmail().equals(email.toLowerCase())){
-                String mess="This email is already registered, please enter another email";
-                request.setAttribute("msMail", mess);   
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-            }else if(u.getUsername().equals(username)){
-                String mess="This Username is already taken";
-                request.setAttribute("msUsername", mess);   
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-            }
-        }
-        
+        processRequest(request, response);
     }
 
     /** 

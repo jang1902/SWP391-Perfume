@@ -419,10 +419,10 @@
                 </div>
                 <div class="body_bot-recommend">
                     
-                    <c:forEach items="${product}" var="p">
+                    <c:forEach items="${requestScope.product}" var="p">
                         
                         <div class="products products_recommend">
-                        <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=1&cid=${p.category_id}">
+                        <a href="pdetail?id=${p.id}&sid=1&gid=${p.gender_id}">
                             <img src="${p.thumbnail}" alt="" class="img_products">
                         </a>
                         <div class="describe_products">

@@ -184,14 +184,14 @@
                 <div class="body_container col-md-9">
                     <div class="body_container-products" >
 
-                        <c:forEach items="${listbycate}" var="listc">
+                        <c:forEach items="${listbycate}" var="listC">
                             <div class="products all_products">
-                                <a href="pdetail?title=${listc.title}&gid=${listc.gender_id}&sid=1&cid=${listc.category_id}">
-                                    <img src="${listc.thumbnail}" alt="" class="img_products">
+                                <a href="pdetail?id=${listC.id}&sid=1&gid=${listC.gender_id}">
+                                    <img src="${listC.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
                                     <div class="ratings_products">
-                                        <span>${listc.title}</span>
+                                        <span>${listC.title}</span>
                                         <span>
                                             <i class="fa-solid fa-star icon_star"></i>
                                             <i class="fa-solid fa-star icon_star"></i>

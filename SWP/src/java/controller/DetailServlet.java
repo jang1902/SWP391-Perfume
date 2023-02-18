@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.CartDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,9 +14,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Category;
+import model.Gender;
 import model.Product;
 import model.Size;
+import model.SizeProduct;
 
 /**
  *
@@ -62,48 +69,50 @@ public class DetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String title = request.getParameter("title");
-        String gid_raw = request.getParameter("gid");
+        String id_raw = request.getParameter("id");
         String sid_raw = request.getParameter("sid");
-        String cid_raw = request.getParameter("cid");
-        
+        String gid_raw = request.getParameter("gid");
 
-//        String cid_raw = request.getParameter("cid");
-//        String thumbnail = request.getParameter("thumbnail");
-//        String sizeid_raw = request.getParameter("sid");
-//        int sizeid = Integer.parseInt(sizeid_raw);
-//        int id = Integer.parseInt(id_raw);
-//        int cid = Integer.parseInt(cid_raw);
+        int id = Integer.parseInt(id_raw);
+        int sid = Integer.parseInt(sid_raw);
         int gid = Integer.parseInt(gid_raw);
-        int sid= Integer.parseInt(sid_raw);
-        int cid= Integer.parseInt(cid_raw);
-        ProductDAO pd = new ProductDAO();
 
-        Product p;
-//        List<Product> list;
-        p = pd.getProductByTitle(title, gid, sid);
-        request.setAttribute("prod", p);
-//        Product p2;
-//        p2 = pd.getProductValue(thumbnail, sizeid);
-//        request.setAttribute("pvalue", p2);
-    
-        List<Product> ls = pd.getProductSize(title);
-        List<Product> list, listcate, listgender;
+        ProductDAO dao = new ProductDAO();
+        Product p = dao.getProductByID(id);
 
-        request.setAttribute("size", ls);
+//        List<Size> listS = new ArrayList<Size>();
+//        if (!listSP.isEmpty()) {
+//            for (SizeProduct sizeProduct : listSP) {
+//                if (sizeProduct.getQuantity() > 0) {
+//                    listS.add(dao.getSizeByID(sizeProduct.getSid()));
+//                }
+//            }
+//        }
+        SizeProduct getP = dao.getSizeProductByPidSid(id, sid);
+
+        List<Size> ls = dao.getSizeByPID(id);
+
+        Category getC = dao.getCategoryNameById(p.getCategory_id());
+
+        Gender g = dao.getGenderByID(id);
+        List<Product> lg = null;
         try {
-            p = pd.getProductByTitle(title, gid, sid);
-            request.setAttribute("prod", p);
-            list = pd.randomRelative(title, gid);
-//            listcate = pd.getProductByCategory(cid);
-            request.setAttribute("relativeproducts", list);   
-//            request.setAttribute("listcate", listcate);
-        } catch (SQLException e) {
-        }
-//        
+            lg = dao.randomRelative(gid);
+            request.setAttribute("relativeproducts", lg);
+        } catch (SQLException ex) {
 
-//            list = pd.randomRelative(id_raw, cid);
-//            request.setAttribute("relativeproducts", list);
+        }
+//        if (sid > 0) {
+//            request.setAttribute("size", sid);
+//        }
+        request.setAttribute("cate", getC);
+        request.setAttribute("detail", getP);
+//        request.setAttribute("listS", listS);
+//        request.setAttribute("listSP", listSP);
+        request.setAttribute("product", p);
+        request.setAttribute("size", ls);
+        request.setAttribute("gender", g);
+
         request.getRequestDispatcher("productdetail.jsp").forward(request, response);
     }
 
@@ -118,40 +127,51 @@ public class DetailServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String id_raw = request.getParameter("id");
-//        String cid_raw = request.getParameter("cid");
-////        String thumbnail = request.getParameter("thumbnail");
-////        String sizeid_raw = request.getParameter("sid");
-////        int sizeid = Integer.parseInt(sizeid_raw);
-//        int id = Integer.parseInt(id_raw);
-//        int cid = Integer.parseInt(cid_raw);
-//        ProductDAO pd = new ProductDAO();
-//        
-//        Product p;
-////        List<Product> list;
-//        p = pd.getProductById(id);
-//        request.setAttribute("prod", p);
-////        Product p2;
-////        p2 = pd.getProductValue(thumbnail, sizeid);
-////        request.setAttribute("pvalue", p2);
-//        
-//        List<Size> ls = pd.getAllSize();
-//        List<Product> list;
-//        
-//        request.setAttribute("size", ls);
-//        try {
-//            p = pd.getProductById(id);
-//            request.setAttribute("prod", p);
-//            list = pd.randomRelative(id, cid);
-//            request.setAttribute("relativeproducts", list);
-//        } catch (SQLException e) {
+        String id_raw = request.getParameter("id");
+        String sid_raw = request.getParameter("sid");
+        String gid_raw = request.getParameter("gid");
+
+        int id = Integer.parseInt(id_raw);
+        int sid = Integer.parseInt(sid_raw);
+        int gid = Integer.parseInt(gid_raw);
+
+        ProductDAO dao = new ProductDAO();
+        Product p = dao.getProductByID(id);
+
+//        List<Size> listS = new ArrayList<Size>();
+//        if (!listSP.isEmpty()) {
+//            for (SizeProduct sizeProduct : listSP) {
+//                if (sizeProduct.getQuantity() > 0) {
+//                    listS.add(dao.getSizeByID(sizeProduct.getSid()));
+//                }
+//            }
 //        }
-//        
-//        
-////            list = pd.randomRelative(id_raw, cid);
-////            request.setAttribute("relativeproducts", list);
-//
-//        request.getRequestDispatcher("productdetail.jsp").forward(request, response);
+        SizeProduct getP = dao.getSizeProductByPidSid(id, sid);
+
+        List<Size> ls = dao.getSizeByPID(id);
+
+        Category getC = dao.getCategoryNameById(p.getCategory_id());
+
+        Gender g = dao.getGenderByID(id);
+        List<Product> lg = null;
+        try {
+            lg = dao.randomRelative(gid);
+            request.setAttribute("relativeproducts", lg);
+        } catch (SQLException ex) {
+
+        }
+//        if (sid > 0) {
+//            request.setAttribute("size", sid);
+//        }
+        request.setAttribute("cate", getC);
+        request.setAttribute("detail", getP);
+//        request.setAttribute("listS", listS);
+//        request.setAttribute("listSP", listSP);
+        request.setAttribute("product", p);
+        request.setAttribute("size", ls);
+        request.setAttribute("gender", g);
+
+        request.getRequestDispatcher("productdetail.jsp").forward(request, response);
     }
 
     /**

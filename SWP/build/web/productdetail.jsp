@@ -173,34 +173,26 @@
 
         <!-- body -->
 
-        <c:set var="p" value="${requestScope.prod}" />
+
         <!--        <form action="pdetail" method="post" id="myform">
                     <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
                 </form>-->
 
-        <div id="body">
-            <form action="pdetail" method="get">
-                <input type="hidden" value="${p.category_id}" name="cid"/>
-            </form>
+        <c:set value="${requestScope.detail}" var="pd"/>
+        <c:set value="${requestScope.product}" var="p"/>
 
+        <div id="body">
             <div class="body_container">
-                <a href="listproduct?cid=${p.category_id}"> 
-                    <c:if test="${param.cid==1}" > <span class="info_products-right-brand"> The mood Collection </span> </c:if> 
-                    <c:if test="${param.cid==2}" > <span class="info_products-right-brand"> Summer Collection </span></c:if> 
-                    <c:if test="${param.cid==3}" > <span class="info_products-right-brand"> Morra x JVevermind 10ml </span></c:if> 
-                    <c:if test="${param.cid==4}" > <span class="info_products-right-brand"> 1st Collection </span></c:if>
-                    <c:if test="${param.cid==5}" > <span class="info_products-right-brand"> 2nd Collection </span></c:if>
-                    <c:if test="${param.cid==6}" > <span class="info_products-right-brand"> 3rd Collection </span></c:if>
-                    <c:if test="${param.cid==7}" > <span class="info_products-right-brand"> DECEMBER COMBACK </span></c:if>
-                    <c:if test="${param.cid==8}" > <span class="info_products-right-brand"> Nến thơm Elements Collection </span></c:if>
-                    <c:if test="${param.cid==9}" > <span class="info_products-right-brand"> Nến thơm 2nd Collection </span></c:if>
-                    <c:if test="${param.cid==10}" > <span class="info_products-right-brand"> Sữa tắm hương nước hoa Lumin Collection </span></c:if>
-                    <c:if test="${param.cid==11}" > <span class="info_products-right-brand"> Dưỡng thể </span></c:if>
-                </a>
-                    <div class="body_container-item view_infoproducts">
-                        <div class="info_products-left">
-                            <div class="info_products-left-top">
-                                <img src="${p.thumbnail}" id="img_products_big">
+                <ul class="breadcrumb">
+                    <li><a href="home">Home</a></li>
+                    <li><a href="listproduct?cid=${p.category_id}">${cate.name}</a></li>
+                    <li>${p.title}</li>
+                </ul>
+
+                <div class="body_container-item view_infoproducts">
+                    <div class="info_products-left">
+                        <div class="info_products-left-top">
+                            <img src="${p.thumbnail}" id="img_products_big">
                         </div>
                         <div class="info_products-left-bot">
                             <img src="./assets/img/Uchiha Madara (2).jpg" class="img_products-small" onclick="img_product1()">
@@ -219,39 +211,35 @@
                             <div class="info_products-right-item">
                                 <span>Dung tích : </span>
                                 <c:forEach items="${requestScope.size}" var="s">
-                                    <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=${s.size_id}&cid=${p.category_id}">
-                                        <span class="info_products-right-brand">
-                                            <c:if test="${s.size_id == 1}" > <span class="info_products-right-brand"> 10 </span> </c:if> 
-                                            <c:if test="${s.size_id == 2}" > <span class="info_products-right-brand"> 50 </span></c:if> 
-                                            <c:if test="${s.size_id == 3}" > <span class="info_products-right-brand"> 100 </span></c:if> 
-                                            </span>
-                                        </a> 
+                                    <div>
+                                        <a href="pdetail?id=${param.id}&sid=${s.id}&gid=${p.gender_id}">${s.value}</a>
+                                    </div>
                                 </c:forEach>
                             </div>
+                            <c:set value="${requestScope.gender}" var="g"/>
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
+                                <span class="info_products-right-brand">${g.name}</span>
 
-                                <c:if test="${param.gid == 1}" > <span class="info_products-right-brand"> Nam </span> </c:if> 
-                                <c:if test="${param.gid == 2}" > <span class="info_products-right-brand"> Nữ </span></c:if> 
-                                <c:if test="${param.gid == 3}" > <span class="info_products-right-brand"> Unisex </span></c:if> 
-                                </div>
-                                <div class="info_products-right-item">
-                                    <span class="info_products-right-price">${p.price_out }đ</span> <br>
+                            </div>
+                            <div class="info_products-right-item">
+                                <span class="info_products-right-price">${pd.price_out}đ</span> <br>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
                                     <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
                                     <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
                                 </div>
                             </div>
-                            <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
-                                <button type="button" id="add-to-cart" class="add-to-cartProduct button btn-addtocart addtocart-modal" name="add"><span>Thêm vào giỏ</span></button>
-                            </div>
+                            <form action="" method="post" name="fo">
+                                <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
+                                    <button  onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
+                                </div>
+                            </form>
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_productsdetails">
                             <span class="info_products-right-title">Mô tả</span>
                             <span>${p.description}</span>
-
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_policy">
@@ -360,8 +348,14 @@
                     <div class="products_same-child">
 
                         <c:forEach items="${requestScope.relativeproducts}" var="rp">
+                            <form action="pdetail" method="post">
+                                <input type="hidden" value="1" name="sid"/>
+                                <input type="hidden" value="${rp.id}" name="id"/>
+                                <c:set value="${requestScope.detail}" var="lgd"/>
+                            </form>
+
                             <div class="products">
-                                <a href="pdetail?title=${rp.title}&gid=${rp.gender_id}&sid=1&cid=${rp.category_id}">
+                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender_id}">
                                     <img src="${rp.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
@@ -375,8 +369,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${rp.price_out} đ</span>
-
+                                            <span class="info_price">${lgd.price_out} đ</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -497,6 +490,16 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+
+            function add(id, size) {
+                var m = document.fo.num.value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&num=" + m;
+                document.fo.submit();
+            }
+
+        </script>
         <!-- end footer -->
     </body>
 

@@ -82,15 +82,17 @@ public class LogInServlet extends HttpServlet {
         String p = request.getParameter("password");
        // String remem = request.getParameter("remem");
 
-        //check
+        
         UserDAO d = new UserDAO();
         User user = d.checkAccount(u, p);
-        if (user == null) {
+       if (user == null) {
 
             request.setAttribute("mess", "Wrong user name or password!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("login").forward(request, response);
 
-        } else {
+        }
+        
+        else {
            
         //    Cookie cu = new Cookie("cuser", u);
          //   Cookie cp = new Cookie("cpass", p);
@@ -115,7 +117,7 @@ public class LogInServlet extends HttpServlet {
             session.setAttribute("userNow", user);
           
             
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("home");
         }
     }
 
