@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.Category;
 import model.Product;
 import model.Size;
@@ -150,6 +152,47 @@ public class ProductDAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+    
+    public Map<Product,List<SizeProduct>> getAllProductWithSizeProduct() {
+        ProductDAO dao=new ProductDAO();
+        Map<Product,List<SizeProduct>> map = new HashMap<Product,List<SizeProduct>>();
+        List<Product> listP = dao.getAllProduct();
+        List<SizeProduct> listSP = new ArrayList<>();
+        
+        
+        String sql = "select * from SizeProduct";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                SizeProduct c = new SizeProduct();
+                c.setPid(rs.getInt("pid"));
+                c.setSid(rs.getInt("sid"));
+                c.setQuantity(rs.getInt("quantity"));
+                c.setPrice_in(rs.getInt("price_in"));
+                c.setPrice_out(rs.getInt("price_out"));
+                listSP.add(c);
+            }
+            
+            
+            
+            for (Product product : listP) {
+                for (SizeProduct sizeProduct : listSP) {
+                    if(product.getId()==sizeProduct.getPid() && sizeProduct.getSid()==1){// muốn get hết size thì bỏ "&& sizeProduct.getSid()==1"
+                        List<SizeProduct> listTemp = new ArrayList<>();
+                        listTemp.add(sizeProduct);
+                        map.put(product, listTemp);
+                    }
+                }
+            }
+            
+         
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return map;
     }
     //get last
 //    public Product getLast() {
