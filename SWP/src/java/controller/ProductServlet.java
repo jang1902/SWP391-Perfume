@@ -14,8 +14,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.awt.RenderingHints;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.Product;
+import model.SizeProduct;
 
 /**
  *
@@ -61,11 +65,26 @@ public class ProductServlet extends HttpServlet {
     throws ServletException, IOException {
   
             ProductDAO d = new ProductDAO();
+            
+            Map<Product,List<SizeProduct>> map=d.getAllProductWithSizeProduct();
+            request.setAttribute("map", map);
             List<Product> p = d.getAllProduct();
             request.setAttribute("product", p);
+            
+      
          
         request.getRequestDispatcher("home.jsp").forward(request, response);
     } 
+    
+    public static void main(String[] args) {
+        ProductDAO d = new ProductDAO();
+         Map<Product,List<SizeProduct>> map=d.getAllProductWithSizeProduct();
+        for (Map.Entry<Product, List<SizeProduct>> entry : map.entrySet()) {
+            System.out.print(entry.getKey()+" ");
+            System.out.println(entry.getValue());
+            
+        }
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.

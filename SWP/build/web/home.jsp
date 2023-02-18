@@ -419,15 +419,15 @@
                 </div>
                 <div class="body_bot-recommend">
                     
-                    <c:forEach items="${requestScope.product}" var="p">
+                    <c:forEach items="${requestScope.map}" var="map">
                         
                         <div class="products products_recommend">
-                        <a href="pdetail?id=${p.id}&sid=1">
-                            <img src="${p.thumbnail}" alt="" class="img_products">
+                        <a href="pdetail?id=${map.key.id}&sid=1">
+                            <img src="${map.key.thumbnail}" alt="" class="img_products">
                         </a>
                         <div class="describe_products">
                             <div class="ratings_products">
-                                <span>${p.title}</span>
+                                <span>${map.key.title}</span>
                                 <span>
                                     <i class="fa-solid fa-star icon_star"></i>
                                     <i class="fa-solid fa-star icon_star"></i>
@@ -436,8 +436,9 @@
                                     <i class="fa-solid fa-star icon_star"></i>
                                 </span>
                                 <div>
-                                    <span class="info_price">190$</span>
-                                    <span class="oldprice">210$</span>
+                                    <c:forEach var="k" items="${map.value}"> <!-- đoạn này loop có 1 giá trị thôi, tại key là list, list ở đây lưu 1 gtri-->
+                                    <span class="info_price">${k.price_out}</span>
+                                    </c:forEach>
                                 </div>
                             </div>
                             <div class="add_like_products">
