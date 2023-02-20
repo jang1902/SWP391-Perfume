@@ -36,7 +36,7 @@ public class UserDAO extends DBContext{
     }
     
     public void addUser(String username,String password) {
-        String sql = "INSERT INTO [dbo].[Users]\n"
+        String sql = "INSERT INTO Users\n"
                 + "           ([loginType]\n"
                 + "           ,[role_id]\n"
                 + "           ,[firstname]\n"
@@ -94,7 +94,7 @@ public class UserDAO extends DBContext{
         String sql = "SELECT [Username]\n"
                 + "      ,[Password]\n"
                 + "      ,[email]\n"
-                + "  FROM [dbo].[Users]\n"
+                + "  FROM Users\n"
                 + "  where Username=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -115,7 +115,7 @@ public class UserDAO extends DBContext{
         String sql = "SELECT [Username]\n"
                 + "      ,[Password]\n"
                 + "      ,[email]\n"
-                + "  FROM [dbo].[Users]\n"
+                + "  FROM Users\n"
                 + "  where email=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);

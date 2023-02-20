@@ -99,6 +99,7 @@
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
+                    <%-- This is JSP comment 
                     <button class="menu_left">
                         <i class="fa-solid fa-bars icon_list"></i>
                         Danh mục sản phẩm
@@ -113,24 +114,26 @@
                                 </c:forEach>
                             </ul>
                         </div>                        
-                    </button>
+                    </button>--%>
                     <!-- end menu left -->
                     <!-- menu right -->
-                    <ul class="menu_right">                      
+                    <div class="menu_right">             
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Cửa hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Cửa hàng</a>
+                            <a class="link_decor_remover hover-link" href="#">Nước hoa</a>
                         </li>                        
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Đơn hàng</a>
+                            <a class="link_decor_remover hover-link" href="#">Nến thơm và tinh dầu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Trang cá nhân</a>
-
+                            <a class="link_decor_remover hover-link" href="#">Sản phẩm khác</a>
                         </li>
-                    </ul>
+                        <li class="menu_right-item">
+                            <a class="link_decor_remover hover-link" href="#">Giới thiệu</a>
+                        </li>
+                    </div> 
                     <!-- end menu right -->
                 </div>
                 <!-- end header mid bot -->
@@ -173,7 +176,7 @@
 
                         <c:forEach items="${pDiscount}" var="pd">
                         <div class="products">
-                            <a href="pdetail?title=${pd.title}&gid=${pd.gender_id}&sid=1">
+                            <a href="">
                                 <img src="${pd.thumbnail}" alt="" class="img_products">
                             </a>
                             <div class="describe_products">
@@ -189,8 +192,8 @@
                                     </span>
                                     <div>
 
-                                        <span class="info_price">${pd.price_out * ((100 - pd.discount.value) / 100)}</span>
-                                        <span class="oldprice">${pd.price_out}</span>
+                                        <span class="info_price">${pd.sizeproduct.price_out * ((100 - pd.discount.value) / 100)}</span>
+                                        <span class="oldprice">${pd.sizeproduct.price_out}</span>
 
                                     </div>
                                 </div>
@@ -225,21 +228,21 @@
 
                         <c:forEach items="${pBestSeller}" var="pb">
                         <div class="arrivals-info_item">
-                            <a href="pdetail?title=${pb.title}&gid=${pb.gender_id}&sid=1">
+                            <a href="">
                                 <img src="${pb.thumbnail}" class="img_arrivals-item">
                             </a>
                             <div class="arrivals-info_text">
                                 <span>${pb.title}</span>
                                 <c:if test="${pb.discount.id != 1}">
                                 <div>                                    
-                                    <span class="info_price">${pb.price_out * (100 - pb.discount.value) / 100}</span>
-                                    <span class="oldprice">${pb.price_out}</span>
+                                    <span class="info_price">${pb.sizeproduct.price_out * (100 - pb.discount.value) / 100}</span>
+                                    <span class="oldprice">${pb.sizeproduct.price_out}</span>
                                 </div>
                                 </c:if>
                                 
                                 <c:if test="${pb.discount.id == 1}">
                                 <div>                                    
-                                    <span class="info_price">${pb.price_out}</span>      
+                                    <span class="info_price">${pb.sizeproduct.price_out}</span>      
                                 </div>
                                 </c:if>
                             </div>
@@ -275,7 +278,7 @@
                     <c:forEach items="${pNew}" var="p">
                         
                         <div class="products products_recommend">
-                        <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=1">
+                        <a href="">
 
                             <img src="${p.thumbnail}" alt="" class="img_products">
                         </a>
@@ -292,14 +295,14 @@
 
                                 <c:if test="${p.discount.id != 1}">
                                 <div>                                    
-                                    <span class="info_price">${p.price_out * (100 - p.discount.value) / 100}</span>
-                                    <span class="oldprice">${p.price_out}</span>
+                                    <span class="info_price">${p.sizeproduct.price_out * (100 - p.discount.value) / 100}</span>
+                                    <span class="oldprice">${p.sizeproduct.price_out}</span>
                                 </div>
                                 </c:if>
                                 
                                 <c:if test="${p.discount.id == 1}">
                                 <div>                                    
-                                    <span class="info_price">${p.price_out}</span>      
+                                    <span class="info_price">${p.sizeproduct.price_out}</span>      
                                 </div>
                                 </c:if>
 
