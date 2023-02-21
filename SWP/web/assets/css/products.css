@@ -93,7 +93,7 @@
     width: 200px;
     height: 50px;
     background-color: #000000;
-    color: black;
+    color: white;
     border-radius: 6px;
     cursor: pointer;
     font-size: 18px;
@@ -432,14 +432,16 @@ ul.breadcrumb li+li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-    color: #0275d8;
+    
+    color: #000000;
     text-decoration: none;
 }
 
 /* Add a color on mouse-over */
 ul.breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
+    
+    color: #000000;
+    text-decoration: none;
 }
 
 /*.size-decor{
