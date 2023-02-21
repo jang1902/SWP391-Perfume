@@ -278,7 +278,7 @@
                     <c:forEach items="${pNew}" var="p">
                         
                         <div class="products products_recommend">
-                        <a href="">
+                        <a href="pdetail?id=${p.id}&sid=${p.sizeproduct.sid}&gid=1">
 
                             <img src="${p.thumbnail}" alt="" class="img_products">
                         </a>
