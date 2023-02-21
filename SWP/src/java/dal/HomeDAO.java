@@ -22,6 +22,32 @@ import model.SizeProduct;
  */
 public class HomeDAO extends DBContext {
 
+    public List<Product> getProductPresentation() {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT top 12 \n"
+                + "      [title]\n"
+                + "      ,min(price_out) as price\n"
+                + "      ,[thumbnail]\n"
+                + "  FROM Products\n"
+                + "  group by \n"
+                + "      [title]\n"
+                + "      ,[thumbnail]";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product c = new Product();
+                c.setTitle(rs.getString("title"));
+                // c.setPrice_out(rs.getInt("price"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public List<Product> getAllProduct() { // lay tat ca san pham 
         List<Product> list = new ArrayList<>();
         String sql = "SELECT [id]\n"
