@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.Category;
 import model.Gallery;
 import model.Gender;
@@ -221,6 +223,303 @@ public class ProductDAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+    
+    public Map<Product,List<SizeProduct>> getAllProductWithSizeProduct() {
+        ProductDAO dao=new ProductDAO();
+        Map<Product,List<SizeProduct>> map = new HashMap<Product,List<SizeProduct>>();
+        List<Product> listP = dao.getAllProduct();
+        List<SizeProduct> listSP = new ArrayList<>();
+        
+        
+        String sql = "select * from SizeProduct";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                SizeProduct c = new SizeProduct();
+                c.setPid(rs.getInt("pid"));
+                c.setSid(rs.getInt("sid"));
+                c.setQuantity(rs.getInt("quantity"));
+                c.setPrice_in(rs.getInt("price_in"));
+                c.setPrice_out(rs.getInt("price_out"));
+                listSP.add(c);
+            }
+            
+            
+            
+            for (Product product : listP) {
+                for (SizeProduct sizeProduct : listSP) {
+                    if(product.getId()==sizeProduct.getPid() && sizeProduct.getSid()==1){// muốn get hết size thì bỏ "&& sizeProduct.getSid()==1"
+                        List<SizeProduct> listTemp = new ArrayList<>();
+                        listTemp.add(sizeProduct);
+                        map.put(product, listTemp);
+                    }
+                }
+            }
+            
+         
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return map;
+    }
+    //get last
+//    public Product getLast() {
+//        String sql = "select top 1 * from Product\n"
+//                + "order by id desc";
+//        Product c = new Product();
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            ResultSet rs = st.executeQuery();
+//
+//            while (rs.next()) {
+//
+//                c.setId(rs.getString("ID"));
+//                c.setName(rs.getString("name"));
+//                c.setPrice(rs.getInt("price"));
+//                c.setCid(rs.getInt("cid"));
+//                c.setDescribe(rs.getString("describe"));
+//                c.setImage(rs.getString("image"));
+//            }
+//        } catch (Exception e) {
+//        }
+//        return c;
+//    }
+    //getminprice
+//    public Product getMinPrice() {
+//        String sql = "SELECT top (1)[ID]\n"
+//                + "      ,[name]\n"
+//                + "      ,[price]\n"
+//                + "      ,[cid]\n"
+//                + "      ,[image]\n"
+//                + "      ,[describe]\n"
+//                + "  FROM [dbo].[Product]\n"
+//                + "  order by price";
+//        Product c = new Product();
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            ResultSet rs = st.executeQuery();
+//
+//            while (rs.next()) {
+//
+//                c.setId(rs.getString("ID"));
+//                c.setName(rs.getString("name"));
+//                c.setPrice(rs.getInt("price"));
+//                c.setCid(rs.getInt("cid"));
+//                c.setDescribe(rs.getString("describe"));
+//                c.setImage(rs.getString("image"));
+//            }
+//        } catch (Exception e) {
+//        }
+//        return c;
+//    }
+//    public Product getMaxPrice() {
+//        String sql = "SELECT top (1)[ID]\n"
+//                + "      ,[name]\n"
+//                + "      ,[price]\n"
+//                + "      ,[cid]\n"
+//                + "      ,[image]\n"
+//                + "      ,[describe]\n"
+//                + "  FROM [dbo].[Product]\n"
+//                + "  order by price desc";
+//        Product c = new Product();
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            ResultSet rs = st.executeQuery();
+//
+//            while (rs.next()) {
+//
+//                c.setId(rs.getString("ID"));
+//                c.setName(rs.getString("name"));
+//                c.setPrice(rs.getInt("price"));
+//                c.setCid(rs.getInt("cid"));
+//                c.setDescribe(rs.getString("describe"));
+//                c.setImage(rs.getString("image"));
+//            }
+//        } catch (Exception e) {
+//        }
+//        return c;
+//    }
+    public Product getProductByTitle(String title, int gid, int sid) {
+        String sql = "SELECT [id]\n"
+                + "      ,[category_id]\n"
+                + "      ,[title]\n"
+                + "      ,[gender_id]\n"
+                + "      ,[price_in]\n"
+                + "      ,[price_out]\n"
+                + "      ,[discount_id]\n"
+                + "      ,[thumbnail]\n"
+                + "      ,[description]\n"
+    
+                + "      ,[quantity]\n"
+                + "      ,[created_at]\n"
+                + "      ,[updated_at]\n"
+                + "  FROM [dbo].[Products]\n"
+                + "  where title = ? and gender_id=? and size_id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, title);
+            st.setInt(2, gid);
+            st.setInt(3, sid);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Product c = new Product();
+                c.setId(rs.getInt("id"));
+                c.setCategory_id(rs.getInt("category_id"));
+                c.setTitle(rs.getString("title"));
+                c.setGender_id(rs.getInt("gender_id"));
+     
+                c.setDiscount_id(rs.getInt("discount_id"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                c.setDescription(rs.getString("description"));
+             
+               
+                c.setCreated_at(rs.getDate("created_at"));
+                c.setCreated_at(rs.getDate("updated_at"));
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+//    public Product getProductSize(String title) {
+//        String sql = "SELECT [id]\n"
+//                + "      ,[category_id]\n"
+//                + "      ,[title]\n"
+//                + "      ,[gender_id]\n"
+//                + "      ,[price_in]\n"
+//                + "      ,[price_out]\n"
+//                + "      ,[discount_id]\n"
+//                + "      ,[thumbnail]\n"
+//                + "      ,[description]\n"
+//                + "      ,[size_id]\n"
+//                + "      ,[quantity]\n"
+//                + "      ,[created_at]\n"
+//                + "      ,[updated_at]\n"
+//                + "  FROM [SWP].[dbo].[Products]\n"
+//                + "  where title=? ";
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            st.setString(1, title);
+//            
+//            ResultSet rs = st.executeQuery();
+//            if (rs.next()) {
+//                Product c = new Product();
+//                c.setId(rs.getInt("id"));
+//                c.setCategory_id(rs.getInt("category_id"));
+//                c.setTitle(rs.getString("title"));
+//                c.setGender_id(rs.getInt("gender_id"));
+//                c.setPrice_in(rs.getInt("price_in"));
+//                c.setPrice_out(rs.getInt("price_out"));
+//                c.setDiscount_id(rs.getInt("discount_id"));
+//                c.setThumbnail(rs.getString("thumbnail"));
+//                c.setDescription(rs.getString("description"));
+//                c.setSize_id(rs.getInt("size_id"));
+//                c.setQuantity(rs.getInt("quantity"));
+//                c.setCreated_at(rs.getDate("created_at"));
+//                c.setCreated_at(rs.getDate("updated_at"));
+//                return c;
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//        return null;
+//    }
+    public List<Product> getProductSize(String title) {
+        List<Product> ls = new ArrayList<>();
+        String sql = "SELECT [id]\n"
+                + "      ,[category_id]\n"
+                + "      ,[title]\n"
+                + "      ,[gender_id]\n"
+                + "      ,[price_in]\n"
+                + "      ,[price_out]\n"
+                + "      ,[discount_id]\n"
+                + "      ,[thumbnail]\n"
+                + "      ,[description]\n"
+              
+                + "      ,[quantity]\n"
+                + "      ,[created_at]\n"
+                + "      ,[updated_at]\n"
+                + "  FROM [SWP].[dbo].[Products]\n"
+                + "  where title=? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, title);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product c = new Product();
+                c.setId(rs.getInt("id"));
+                c.setCategory_id(rs.getInt("category_id"));
+                c.setTitle(rs.getString("title"));
+                c.setGender_id(rs.getInt("gender_id"));
+           
+                c.setDiscount_id(rs.getInt("discount_id"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                c.setDescription(rs.getString("description"));
+              
+             
+                c.setCreated_at(rs.getDate("created_at"));
+                c.setCreated_at(rs.getDate("updated_at"));
+
+                ls.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return ls;
+    }
+
+
+  
+
+    public Size getValue() {
+        String sql = "SELECT [id]\n"
+                + "      ,[name]\n"
+                + "      ,[value]\n"
+                + "  FROM [SWP].[dbo].[Sizes]";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+
+                Size s = new Size();
+                s.setId(rs.getInt("sid"));
+                s.setName(rs.getString("name"));
+                s.setValue(rs.getInt("value"));
+                return s;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<Size> getAllSize() {
+        List<Size> ls = new ArrayList<>();
+        String sql = "SELECT [id]\n"
+                + "      ,[name]\n"
+                + "      ,[value]\n"
+                + "  FROM [SWP].[dbo].[Sizes]";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Size s = new Size();
+                s.setId(rs.getInt("id"));
+                s.setName(rs.getString("name"));
+                s.setValue(rs.getInt("value"));
+
+                ls.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return ls;
     }
 
     //san pham lien quan
