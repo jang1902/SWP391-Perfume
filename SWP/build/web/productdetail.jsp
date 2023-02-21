@@ -26,7 +26,7 @@
                     <div class="header_top-intro-support">
                         <div class="sp-child hotline">
                             <i class="fa-solid fa-phone icon-sup"></i>
-                            <span>+84 123456789</span>
+                            <span>+84 969420123</span>
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
@@ -57,17 +57,38 @@
                         </div>
                     </div>
                     <div class="login-cart">
-                        <a href="./src/login.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                        </a>
-                        <a href="./src/cart.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </div>
-                        </a>
-                    </div>
+                    <c:if test="${sessionScope.userNow.role_id==null}">
+
+                    <a href="login" class="login_cart-item-link">
+                    <div class="login-cart_item">
+                    <i class="fa-solid fa-key"></i>
+                     </div>
+                    </a>      
+
+                    </c:if>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="#" class="login_cart-item-link" >
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                    
+                    <a href="cart.html" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                    </a>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="logout" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                </div>
                 </div>
                 <!-- end header mid top -->
                 <!-- header mid bot -->
@@ -156,19 +177,26 @@
                                 <span class="info_products-right-brand">${g.name}</span>
 
                             </div>
-                            <div class="info_products-right-item">
-                                <span class="info_products-right-price">${pd.price_out}đ</span> <br>
-                                <div class="quantity-area clearfix" style="margin-bottom: -25px" >
-                                    <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
-                                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
-                                    <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
+                            <form name="fo" action="" method="post">
+                                <div class="info_products-right-item">
+                                    <span class="info_products-right-price">${pd.price_out}đ</span> <br>
+                                    <div class="quantity-area clearfix" style="margin-bottom: -25px" >
+                                        <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
+                                        <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+                                        <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
+                                    </div>
                                 </div>
-                            </div>
-                            <form action="" method="post" name="fo">
-                                <div  style="margin-top: 70px">
-                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
+                            
+                                <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
+                                    <button  onclick="add('${p.id}', '${sizeid}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
+
+
+
+
+
+
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_productsdetails">
@@ -428,10 +456,13 @@
         <script type="text/javascript">
 
             function add(id, size) {
-                var m = document.fo.num.value;
-                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&num=" + m;
+                var quantity = document.fo.quantity.value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + quantity;
                 document.fo.submit();
             }
+
+
+
 
             var img_products = [
             <c:forEach items="${requestScope.listgallery}" var="gl">
