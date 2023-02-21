@@ -54,9 +54,10 @@ public class CartServlet extends HttpServlet {
         }
         
         request.setAttribute("listItem", listItem);
-       
+        request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     } 
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

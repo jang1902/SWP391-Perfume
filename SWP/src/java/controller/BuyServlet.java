@@ -45,21 +45,21 @@ public class BuyServlet extends HttpServlet {
                 }
             }
         }
-        String num = request.getParameter("num");
-        String id = request.getParameter("id");
+        String quantity = request.getParameter("quantity");
+        String id = request.getParameter("pid");
         String sid = request.getParameter("sid");
         User user = (User) request.getSession().getAttribute("userNow");
         if (user != null) {
             if (txt.isEmpty()) {
-                txt = user.getId() + ":" + id + ":" + sid + ":" + num;
+                txt = user.getId() + ":" + id + ":" + sid + ":" + quantity;
             } else {
-                txt += "/" + user.getId() + ":" + id + ":" + sid + ":" + num;
+                txt += "/" + user.getId() + ":" + id + ":" + sid + ":" + quantity;
             }
         } else {
             if (txt.isEmpty()) {
-                txt = 0 + ":" + id + ":" + sid + ":" + num;
+                txt = 0 + ":" + id + ":" + sid + ":" + quantity;
             } else {
-                txt += "/" + 0 + ":" + id + ":" + sid + ":" + num;
+                txt += "/" + 0 + ":" + id + ":" + sid + ":" + quantity;
             }
         }
         Cookie c = new Cookie("cart", txt);

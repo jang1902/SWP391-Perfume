@@ -24,67 +24,88 @@
     <!-- header -->
     <div id="header">
         <!-- header top -->
-        <div class="header_top">
-            <div class="header_top-intro">
-                <div class="header_top-intro-support">
-                    <div class="sp-child hotline">
-                        <i class="fa-solid fa-phone icon-sup"></i>
-                        <span>+84 969420123</span>
+       <div class="header_top">
+                <div class="header_top-intro">
+                    <div class="header_top-intro-support">
+                        <div class="sp-child hotline">
+                            <i class="fa-solid fa-phone icon-sup"></i>
+                            <span>+84 969420123</span>
+                        </div>
+                        <div class="sp-child email">
+                            <i class="fa-solid fa-at icon-sup"></i>
+                            <span>botstore.vn@gmail.com</span>
+                        </div>
+                        <div class="sp-child question">
+                            <i class="fa-solid fa-headset icon-sup"></i>
+                            <span>Hỗ trợ trực tuyến 24/7</span>
+                        </div>
                     </div>
-                    <div class="sp-child email">
-                        <i class="fa-solid fa-at icon-sup"></i>
-                        <span>botstore.vn@gmail.com</span>
+                    <div class="header_top-intro-language">
+                        Language
+                        <i class="fa-solid fa-chevron-down icon_arrowdown"></i>
+                        <ul class="language-child">
+                            <li class="language_item">
+                                <img src="./assets/img/flagVN.jpg" class="language-item_child flag">
+                                <span class="language-item_child ">VietNam</span>
+                            </li>
+                            <li class="language_item">
+                                <img src="./assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
+                                <span class="language-item_child ">English</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="sp-child question">
-                        <i class="fa-solid fa-headset icon-sup"></i>
-                        <span>Hỗ trợ trực tuyến 24/7</span>
-                    </div>
-                </div>
-                <div class="header_top-intro-language">
-                    Language
-                    <i class="fa-solid fa-chevron-down icon_arrowdown"></i>
-                    <ul class="language-child">
-                        <li class="language_item">
-                            <img src="./assets/img/flagVN.jpg" class="language-item_child flag">
-                            <span class="language-item_child ">VietNam</span>
-                        </li>
-                        <li class="language_item">
-                            <img src="./assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
-                            <span class="language-item_child ">English</span>
-                        </li>
-                    </ul>
                 </div>
             </div>
-        </div>
         <!-- end header top -->
         <!-- header mid -->
         <div class="header_mid">
             <!-- header mid top -->
             <div class="mid-top">
-                <div class="logo">
-                    <a href="../index.html">
-                    <img src="../assets/img/Logo.png" alt="Logo" id="img_logo">
-                    </a>
-                </div>
-                <div class="search">
-                    <input type="text" placeholder="Tìm Kiếm..." class="input_search">
-                    <div class="search-item">
-                        <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                    <div class="logo">
+                        <a href="home">
+                            <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
+                        </a>
                     </div>
-                </div>
-                <div class="login-cart">
-                    <a href="../src/login.html" class="login_cart-item-link">
+                    <div class="search">
+                        <input type="text" placeholder="Tìm Kiếm..." class="input_search">
+                        <div class="search-item">
+                            <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                        </div>
+                    </div>
+                    <div class="login-cart">
+                    <c:if test="${sessionScope.userNow.role_id==null}">
+
+                    <a href="login" class="login_cart-item-link">
+                    <div class="login-cart_item">
+                    <i class="fa-solid fa-key"></i>
+                     </div>
+                    </a>      
+
+                    </c:if>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="#" class="login_cart-item-link" >
                         <div class="login-cart_item">
                             <i class="fa-solid fa-user"></i>
                         </div>
-                    </a>
-                    <a href="../src/cart.html" class="login_cart-item-link">
+                    </a>    
+
+                    </c:if>
+                    
+                    <a href="cart.html" class="login_cart-item-link">
                         <div class="login-cart_item">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
                     </a>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="logout" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
                 </div>
-            </div>
+                </div>
             <!-- end header mid top -->
             <!-- header mid bot -->
             <div class="mid-bot">
@@ -255,12 +276,12 @@
                 <div class="body_right-item">
                     <span class="info_order">Đơn đặt hàng của bạn</span>
                     <div class="body_right-item-buy-products">
-                        <c:forEach items="${requestScope.listItem}" var="c">
+                        <c:forEach items="${listItem}" var="c">
                         <div class="body_right-item-products">
                             <span>
                                 <span class="amount_products">${c.quantity}x</span>  ${c.product.title}</span>
                                 <span>${c.size.name}</span>
-                            <span>${c.product.price_out}$</span>
+                            <span>  ${c.sizeproduct.price_out}</span>
                             
                         </div>
                         </c:forEach>
@@ -272,7 +293,7 @@
                 <div class="body_right-item">
                     <div class="body_right-item-products">
                         <span>Tổng tiền tạm thời</span>
-                        <b>300$</b>
+                        <b>${cart.getTotalMoney()}</b>
                     </div>
                 </div>
                 <hr class="body_right-decoration">

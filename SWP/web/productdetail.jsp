@@ -26,11 +26,11 @@
                     <div class="header_top-intro-support">
                         <div class="sp-child hotline">
                             <i class="fa-solid fa-phone icon-sup"></i>
-                            <span>+84 123456789</span>
+                            <span>+84 969420123</span>
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
-                            <span>botstore@gmail.com</span>
+                            <span>botstore.vn@gmail.com</span>
                         </div>
                         <div class="sp-child question">
                             <i class="fa-solid fa-headset icon-sup"></i>
@@ -59,7 +59,7 @@
                 <!-- header mid top -->
                 <div class="mid-top">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="home">
                             <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>
@@ -70,17 +70,38 @@
                         </div>
                     </div>
                     <div class="login-cart">
-                        <a href="./src/login.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                        </a>
-                        <a href="./src/cart.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </div>
-                        </a>
-                    </div>
+                    <c:if test="${sessionScope.userNow.role_id==null}">
+
+                    <a href="login" class="login_cart-item-link">
+                    <div class="login-cart_item">
+                    <i class="fa-solid fa-key"></i>
+                     </div>
+                    </a>      
+
+                    </c:if>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="#" class="login_cart-item-link" >
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                    
+                    <a href="cart.html" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                    </a>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="logout" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                </div>
                 </div>
                 <!-- end header mid top -->
                 <!-- header mid bot -->
@@ -178,73 +199,89 @@
                     <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
                 </form>-->
 
-        <div id="body">
-            <form action="pdetail" method="get">
-                <input type="hidden" value="${p.category_id}" name="cid"/>
-            </form>
+        <c:set value="${requestScope.detail}" var="pd"/>
+        <c:set value="${requestScope.product}" var="p"/>
 
+        <div id="body">
             <div class="body_container">
-                <a href="listproduct?cid=${detail.category_id}"> 
-                     <span class="info_products-right-brand"> ${cate.name} </span>  
-                    
-                    </a>
-                    <div class="body_container-item view_infoproducts">
-                        <div class="info_products-left">
-                            <div class="info_products-left-top">
-                                <img src="${detail.thumbnail}" id="img_products_big">
+                <ul class="breadcrumb">
+                    <li><a href="home">Home</a></li>
+                    <li><a href="listproduct?cid=${p.category_id}">${cate.name}</a></li>
+                    <li>${p.title}</li>
+                </ul>
+
+                <div class="body_container-item view_infoproducts">
+                    <div class="info_products-left">
+                        <div class="info_products-left-top">
+                            <img src="${p.thumbnail}" id="img_products_big">
                         </div>
                         <div class="info_products-left-bot">
-                            <img src="./assets/img/Uchiha Madara (2).jpg" class="img_products-small" onclick="img_product1()">
-                            <img src="./assets/img/Uchiha Madara (1).jpg" class="img_products-small" onclick="img_product2()">
-                            <img src="./assets/img/Uchiha Madara (3).jpg" class="img_products-small" onclick="img_product3()">
-                            <img src="./assets/img/Uchiha Madara (4).jpg" class="img_products-small" onclick="img_product4()">
-                            <img src="./assets/img/Uchiha Madara (5).jpg" class="img_products-small" onclick="img_product5()">
+                            <% int i =1; %>
+                            <c:forEach items="${requestScope.listgallery}" var="gl" >
+
+                                <img src="${gl.thumbnail}" class="img_products-small" onclick="img_product<%=i%>()">
+                                <%i++;%>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="info_products-right">
                         <div class="info_product-right-child">
                             <div class="info_products-right-item">
-                                <span class="info_products-right-title">${detail.title}</span>
+                                <span class="info_products-right-title">${p.title}</span>
                             </div>
 
                             <div class="info_products-right-item">
                                 <span>Dung tích : </span>
-                                <c:set var="id" value="${detail.id}"></c:set>
-                                    <form name="f" action="" method="post">
-                                    <c:forEach items="${requestScope.listS}" var="s">
-                                        <div>
-                                            <input type="radio" ${s.id==size?"checked":""} onclick="choice('${id}')" id="${s.id}" name="size" value="${s.id}">
-                                            <label for="${s.id}">${s.value}</label>
-                                        </div>
-                                    </c:forEach>
-                                </form>
+                                <c:forEach items="${requestScope.size}" var="s">
+
+                                    <div data-value="50ml" class="n-sd swatch-element 50ml  ">
+                                        <input class="variant-0" id="swatch-0-50ml" type="radio" name="option1" value="50ml" data-vhandle="50ml" checked="">
+
+                                        <label for="swatch-0-50ml" class="sd">
+                                            <span><a href="pdetail?id=${param.id}&sid=${s.id}&gid=${p.gender_id}">${s.value}</a></span>
+                                        </label>
+
+                                    </div>
+                                </c:forEach>
+
                             </div>
+                            <c:set value="${requestScope.gender}" var="g"/>
+
+
+
+
+
+
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
+                                <span class="info_products-right-brand">${g.name}</span>
 
-                                <c:if test="${detail.gender_id == 1}" > <span class="info_products-right-brand"> Nam </span> </c:if> 
-                                <c:if test="${detail.gender_id == 2}" > <span class="info_products-right-brand"> Nữ </span></c:if> 
-                                <c:if test="${detail.gender_id == 3}" > <span class="info_products-right-brand"> Unisex </span></c:if> 
-                                </div>
-                                <div class="info_products-right-item">
-                                    <span class="info_products-right-price">${sp.price_out}đ</span> <br>
-                                <div class="quantity-area clearfix" style="margin-bottom: -25px" >
-                                    <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
-                                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
-                                    <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
-                                </div>
                             </div>
-                            <form action="action" name="b" method="post" >
+                            <form name="fo" action="" method="post">
+                                <div class="info_products-right-item">
+                                    <span class="info_products-right-price">${pd.price_out}đ</span> <br>
+                                    <div class="quantity-area clearfix" style="margin-bottom: -25px" >
+                                        <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
+                                        <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+                                        <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
+                                    </div>
+                                </div>
+                            
                                 <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
-                                    <button onclick="add('${detail.id}', '${size}')" >Thêm vào giỏ</button>
+                                    <button  onclick="add('${p.id}', '${sizeid}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
+
+
+
+
+
+
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_productsdetails">
                             <span class="info_products-right-title">Mô tả</span>
                             <span>${p.description}</span>
-
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_policy">
@@ -277,7 +314,7 @@
                                 <div class="products_cmt-top">
                                     <img src="./assets/img/frog (5).png" class="img_avatar-user">
                                     <div class="user_rated">
-                                        <span class="user_rated-name">dM FPT</span>
+                                        <span class="user_rated-name">Bùi Hạ Long</span>
                                         <div>
                                             <span>
                                                 <i class="fa-solid fa-star icon_star"></i>
@@ -300,7 +337,7 @@
                                 <div class="products_cmt-top">
                                     <img src="./assets/img/frog (2).png" class="img_avatar-user">
                                     <div class="user_rated">
-                                        <span class="user_rated-name">DM trương gia pig</span>
+                                        <span class="user_rated-name">Đỗ Tú Linh</span>
                                         <div>
                                             <span>
                                                 <i class="fa-solid fa-star icon_star"></i>
@@ -353,8 +390,14 @@
                     <div class="products_same-child">
 
                         <c:forEach items="${requestScope.relativeproducts}" var="rp">
+                            <form action="pdetail" method="post">
+                                <input type="hidden" value="1" name="sid"/>
+                                <input type="hidden" value="${rp.id}" name="id"/>
+                                <c:set value="${requestScope.detail}" var="lgd"/>
+                            </form>
+
                             <div class="products">
-                                <a href="pdetail?title=${rp.title}&gid=${rp.gender_id}&sid=1&cid=${rp.category_id}">
+                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender_id}">
                                     <img src="${rp.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
@@ -368,8 +411,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${rp.price_out} đ</span>
-
+                                            <span class="info_price">${lgd.price_out} đ</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -492,15 +534,56 @@
         </div>
 
         <script type="text/javascript">
+
             function add(id, size) {
-                document.b.action="buy?id="+id+"&sid="+size;
-                document.b.submit();
+                var quantity = document.fo.quantity.value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + quantity;
+                document.fo.submit();
             }
-            function choice(id) {
-                var m = document.f.size.value;
-                document.f.action = "pdetail?id=" + id + "&sid=" + m;
-                document.f.submit();
+
+
+
+
+            var img_products = [
+            <c:forEach items="${requestScope.listgallery}" var="gl">
+                "${gl.thumbnail}",
+            </c:forEach>
+            ];
+
+            var dem = 0;
+
+            function img_product1() {
+                dem = 0;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
             }
+
+            function img_product2() {
+                dem = 1;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+            function img_product3() {
+                dem = 2;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+            function img_product4() {
+                dem = 3;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+            function img_product5() {
+                dem = 4;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+
+
         </script>
         <!-- end footer -->
     </body>

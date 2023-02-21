@@ -59,7 +59,7 @@
                 <!-- header mid top -->
                 <div class="mid-top">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="home">
                             <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>
@@ -422,7 +422,7 @@
                     <c:forEach items="${requestScope.map}" var="map">
                         
                         <div class="products products_recommend">
-                        <a href="pdetail?id=${map.key.id}&sid=1">
+                        <a href="pdetail?id=${map.key.id}&sid=1&gid=${map.key.gender_id}">
                             <img src="${map.key.thumbnail}" alt="" class="img_products">
                         </a>
                         <div class="describe_products">
@@ -436,7 +436,7 @@
                                     <i class="fa-solid fa-star icon_star"></i>
                                 </span>
                                 <div>
-                                    <c:forEach var="k" items="${map.value}"> <!-- đoạn này loop có 1 giá trị thôi, tại key là list, list ở đây lưu 1 gtri-->
+                                    <c:forEach var="k" items="${map.value}"> 
                                     <span class="info_price">${k.price_out}</span>
                                     </c:forEach>
                                 </div>
@@ -447,11 +447,8 @@
                             </div>
                         </div>
                     </div>
-                     
                     </c:forEach>
-                    
-                    
-                    
+         
                 </div>
              <div class="body_info">
                 <div class="body_info-item">
