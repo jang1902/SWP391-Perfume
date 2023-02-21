@@ -15,7 +15,7 @@
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="assets/img/small_logo1.png">
-        <title>BOT STORE</title>
+        <title>Boon Bo</title>
     </head>
     <body >
         <!-- header -->
@@ -30,27 +30,14 @@
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
-                            <span>botstore@gmail.com</span>
+                            <span>boonbo@gmail.com</span>
                         </div>
                         <div class="sp-child question">
                             <i class="fa-solid fa-headset icon-sup"></i>
                             <span>Hỗ trợ trực tuyến 24/7</span>
                         </div>
                     </div>
-                    <div class="header_top-intro-language">
-                        Language
-                        <i class="fa-solid fa-chevron-down icon_arrowdown"></i>
-                        <ul class="language-child">
-                            <li class="language_item">
-                                <img src="./assets/img/flagVN.jpg" class="language-item_child flag">
-                                <span class="language-item_child ">VietNam</span>
-                            </li>
-                            <li class="language_item">
-                                <img src="./assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
-                                <span class="language-item_child ">English</span>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
             <!-- end header top -->
@@ -59,7 +46,7 @@
                 <!-- header mid top -->
                 <div class="mid-top">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="home">
                             <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>
@@ -86,64 +73,7 @@
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    <button class="menu_left">
-                        <i class="fa-solid fa-bars icon_list"></i>
-                        Danh mục sản phẩm
-                        <div class="menu_left-child">
-                            <ul>
-                                <li class="menu_left-item">
-                                    Mô hình xe hơi
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Lego
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình phim</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Marvel</li>
-                                            <li class="menu_left-item-child">DC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Transformer
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình anime</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Naruto</li>
-                                            <li class="menu_left-item-child">One Piece</li>
-                                            <li class="menu_left-item-child">Dragon Ball</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Figger
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình khác</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Mô hình cây mini</li>
-                                            <li class="menu_left-item-child">Mô hình trang trí</li>
-                                            <li class="menu_left-item-child">Mô hình PC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </button>
+                    
                     <!-- end menu left -->
                     <!-- menu right -->
                     <ul class="menu_right">

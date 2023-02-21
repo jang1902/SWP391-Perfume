@@ -27,7 +27,7 @@
                         <div class="sp-child hotline">
                             <i class="fa-solid fa-phone icon-sup"></i>
 
-                            <span>+84 326983680</span>
+                            <span>+84 123456789</span>
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
@@ -49,7 +49,7 @@
                 <!-- header mid top -->
                 <div class="mid-top">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="home">
                             <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>
@@ -176,7 +176,7 @@
 
                         <c:forEach items="${pDiscount}" var="pd">
                         <div class="products">
-                            <a href="">
+                            <a href="pdetail?id=${pd.id}&sid=${pd.sizeproduct.sid}&gid=${pd.gender_id}">
                                 <img src="${pd.thumbnail}" alt="" class="img_products">
                             </a>
                             <div class="describe_products">
@@ -228,7 +228,7 @@
 
                         <c:forEach items="${pBestSeller}" var="pb">
                         <div class="arrivals-info_item">
-                            <a href="">
+                            <a href="pdetail?id=${pb.id}&sid=${pb.sizeproduct.sid}&gid=${pb.gender_id}">
                                 <img src="${pb.thumbnail}" class="img_arrivals-item">
                             </a>
                             <div class="arrivals-info_text">
@@ -278,7 +278,7 @@
                     <c:forEach items="${pNew}" var="p">
                         
                         <div class="products products_recommend">
-                        <a href="pdetail?id=${p.id}&sid=${p.sizeproduct.sid}&gid=1">
+                        <a href="pdetail?id=${p.id}&sid=${p.sizeproduct.sid}&gid=${p.gender_id}">
 
                             <img src="${p.thumbnail}" alt="" class="img_products">
                         </a>
