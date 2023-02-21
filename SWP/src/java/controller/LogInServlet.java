@@ -118,7 +118,7 @@ public class LogInServlet extends HttpServlet {
           
 
             //dang nhap thanh cong thi ve home, de tam la productservlet sau sua
-            response.sendRedirect("ProductServlet");
+            response.sendRedirect("home");
 
         }
     }

@@ -11,12 +11,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/header_footer.css">
-    <!-- <link rel="stylesheet" href="../assets/css/profile_info.css"> -->
-    <link rel="stylesheet" href="../assets/css/cart.css">
+    <link rel="stylesheet" href="./assets/css/header_footer.css">
+    <!-- <link rel="stylesheet" href="./assets/css/profile_info.css"> -->
+    <link rel="stylesheet" href="./assets/css/cart.css">
     <script type="text/javascript" language="javascript" src="../main.js"></script>
-    <link rel="stylesheet" href="../assets/font/fontawesome-free-6.1.1/css/all.min.css">
-    <link rel="icon" href="../assets/img/small_logo1.png">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
+    <link rel="icon" href="./assets/img/small_logo1.png">
     <title>BOT STORE</title>
 </head>
 <body>
@@ -244,21 +244,21 @@
                         Phương thức thanh toán đã lưu
                         <div class="receiver_information">
                             <div class="receiver_information-child">
-                                <img src="../assets/img/MBBANK.jpg" class="img_pay">
+                                <img src="./assets/img/MBBANK.jpg" class="img_pay">
                                 <div class="info_pay">
                                     <span>**** **** **** 1235</span> <br>
                                     <span>Bui Ha Long</span>
                                 </div>
                             </div>
                             <div class="receiver_information-child">
-                                <img src="../assets/img/Mastercard_2019_logo.svg.png" class="img_pay">
+                                <img src="./assets/img/Mastercard_2019_logo.svg.png" class="img_pay">
                                 <div class="info_pay">
                                     <span>**** **** **** 1235</span> <br>
                                     <span>Bui Ha Long</span>
                                 </div>
                             </div>
                             <div class="receiver_information-child">
-                                <img src="../assets/img/BIDV.jpg" class="img_pay">
+                                <img src="./assets/img/BIDV.jpg" class="img_pay">
                                 <div class="info_pay">
                                     <span>**** **** **** 1235</span> <br>
                                     <span>Bui Ha Long</span>
