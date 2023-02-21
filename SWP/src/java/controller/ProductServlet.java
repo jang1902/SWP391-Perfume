@@ -5,7 +5,7 @@
 
 package controller;
 
-import dal.DAO;
+import dal.HomeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -59,7 +59,7 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
   
-            DAO d = new DAO();
+            HomeDAO d = new HomeDAO();
             List<Product> p = d.getProductPresentation();
             request.setAttribute("product", p);
          
