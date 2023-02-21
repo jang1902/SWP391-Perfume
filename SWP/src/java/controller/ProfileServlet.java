@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dal.Order;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -62,7 +62,7 @@ public class ProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User usernow = (User) session.getAttribute("userNow");
-        Order od = new Order();
+        //Order od = new Order();
         //int sumMoney = od.getSumTotalMoney(usernow.getId());
         request.setAttribute("userNow", usernow);
         //request.setAttribute("sumMoney", sumMoney);

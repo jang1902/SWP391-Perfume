@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package control.home;
 
-import dal.ProductDAO;
+import dal.HomeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,16 +12,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.List;
+import model.Category;
 import model.Product;
 
 /**
  *
- * @author asus
+ * @author hp
  */
-@WebServlet(name = "RelativeServlet", urlPatterns = {"/relative"})
-public class RelativeServlet extends HttpServlet {
+@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
+public class HomeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class RelativeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RelativeServlet</title>");            
+            out.println("<title>Servlet ProductServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RelativeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProductServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,22 +61,19 @@ public class RelativeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//                String id_raw = request.getParameter("id");
-//        String cid_raw = request.getParameter("cid");
-//        int id = Integer.parseInt(id_raw);
-//        int cid = Integer.parseInt(cid_raw);
-//        ProductDAO p = new ProductDAO();
-//        List<Product> list;
-//
-//        try {
-//            list = p.randomRelative(id, cid);
-//            request.setAttribute("relativeproducts", list);
-//            
-//        } catch (SQLException ex) {
-//            System.out.println("aaaa");
-//        }
-//
-//        request.getRequestDispatcher("productdetail.jsp").forward(request, response);
+
+        HomeDAO d = new HomeDAO();
+
+        List<Product> pBestSeller = d.getProductBestSeller();
+        request.setAttribute("pBestSeller", pBestSeller);
+
+        List<Product> pDiscount = d.getProductDiscount();
+        request.setAttribute("pDiscount", pDiscount);
+
+        List<Product> pNew = d.getProductNew();
+        request.setAttribute("pNew", pNew);
+
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /**
@@ -90,22 +87,7 @@ public class RelativeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//               String id_raw = request.getParameter("id");
-//        String cid_raw = request.getParameter("cid");
-//        int id = Integer.parseInt(id_raw);
-//        int cid = Integer.parseInt(cid_raw);
-//        ProductDAO p = new ProductDAO();
-//        List<Product> list;
-//
-//        try {
-//            list = p.randomRelative(id, cid);
-//            request.setAttribute("relativeproducts", list);
-//            
-//        } catch (SQLException ex) {
-//            System.out.println("aaaa");
-//        }
-//
-//        request.getRequestDispatcher("productdetail.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

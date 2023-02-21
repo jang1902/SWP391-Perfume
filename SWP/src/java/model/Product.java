@@ -6,51 +6,96 @@ package model;
 
 import java.util.Date;
 
-/**
- *
- * @author canduykhanh
- */
+
 public class Product {
     private int id;
     private int category_id;
     private String title;
     private int gender_id;
-    private int price_in;
-    private int price_out;
     private int discount_id;
     private String thumbnail;
     private String description;
-    private int size_id;
-    private int quantity;
     private Date created_at;
     private Date updated_at;
-
     private Discount discount;
-
+    private Gender gender;
+    private Gallery gallery;
+    private Category category;
+    private SizeProduct sizeproduct;
+    private Size size;
+    private OrderDetail orderdetail;
+    
 
     public Product() {
     }
 
-
-    public Product(int id, int category_id, String title, int gender_id, int price_in, int price_out, int discount_id, String thumbnail, String description, int size_id, int quantity, Date created_at, Date updated_at, Discount discount) {
-
+    public Product(int id, int category_id, String title, int gender_id, int discount_id, String thumbnail, String description, Date created_at, Date updated_at, Discount discount, Gender gender, Gallery gallery, Category category, SizeProduct sizeproduct, Size size, OrderDetail orderdetail) {
         this.id = id;
         this.category_id = category_id;
         this.title = title;
         this.gender_id = gender_id;
-        this.price_in = price_in;
-        this.price_out = price_out;
         this.discount_id = discount_id;
         this.thumbnail = thumbnail;
         this.description = description;
-        this.size_id = size_id;
-        this.quantity = quantity;
         this.created_at = created_at;
         this.updated_at = updated_at;
-
         this.discount = discount;
+        this.gender = gender;
+        this.gallery = gallery;
+        this.category = category;
+        this.sizeproduct = sizeproduct;
+        this.size = size;
+        this.orderdetail = orderdetail;
     }
 
+    public OrderDetail getOrderdetail() {
+        return orderdetail;
+    }
+
+    public void setOrderdetail(OrderDetail orderdetail) {
+        this.orderdetail = orderdetail;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Gallery getGallery() {
+        return gallery;
+    }
+
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public SizeProduct getSizeproduct() {
+        return sizeproduct;
+    }
+
+    public void setSizeproduct(SizeProduct sizeproduct) {
+        this.sizeproduct = sizeproduct;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+    
     public Discount getDiscount() {
         return discount;
     }
@@ -92,22 +137,6 @@ public class Product {
         this.gender_id = gender_id;
     }
 
-    public int getPrice_in() {
-        return price_in;
-    }
-
-    public void setPrice_in(int price_in) {
-        this.price_in = price_in;
-    }
-
-    public int getPrice_out() {      
-        return Math.round(price_out);
-    }
-
-    public void setPrice_out(int price_out) {
-        this.price_out = price_out;
-    }
-
     public int getDiscount_id() {
         return discount_id;
     }
@@ -130,22 +159,6 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getSize_id() {
-        return size_id;
-    }
-
-    public void setSize_id(int size_id) {
-        this.size_id = size_id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public Date getCreated_at() {
