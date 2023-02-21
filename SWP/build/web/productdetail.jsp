@@ -17,7 +17,7 @@
         <link rel="icon" href="assets/img/small_logo1.png">
         <title>BOT STORE</title>
     </head>
-    <body>
+    <body >
         <!-- header -->
         <div id="header">
             <!-- header top -->
@@ -172,24 +172,35 @@
         <!-- end header -->
 
         <!-- body -->
-        <c:set var="p" value="${requestScope.prod}" />
-<!--        <form action="pdetail" method="post" id="myform">
-            <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
-        </form>-->
-        
+
+
+        <!--        <form action="pdetail" method="post" id="myform">
+                    <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
+                </form>-->
+
+        <c:set value="${requestScope.detail}" var="pd"/>
+        <c:set value="${requestScope.product}" var="p"/>
+
         <div id="body">
             <div class="body_container">
+                <ul class="breadcrumb">
+                    <li><a href="home">Home</a></li>
+                    <li><a href="listproduct?cid=${p.category_id}">${cate.name}</a></li>
+                    <li>${p.title}</li>
+                </ul>
+
                 <div class="body_container-item view_infoproducts">
                     <div class="info_products-left">
                         <div class="info_products-left-top">
                             <img src="${p.thumbnail}" id="img_products_big">
                         </div>
                         <div class="info_products-left-bot">
-                            <img src="./assets/img/Uchiha Madara (2).jpg" class="img_products-small" onclick="img_product1()">
-                            <img src="./assets/img/Uchiha Madara (1).jpg" class="img_products-small" onclick="img_product2()">
-                            <img src="./assets/img/Uchiha Madara (3).jpg" class="img_products-small" onclick="img_product3()">
-                            <img src="./assets/img/Uchiha Madara (4).jpg" class="img_products-small" onclick="img_product4()">
-                            <img src="./assets/img/Uchiha Madara (5).jpg" class="img_products-small" onclick="img_product5()">
+                            <% int i =1; %>
+                            <c:forEach items="${requestScope.listgallery}" var="gl" >
+
+                                <img src="${gl.thumbnail}" class="img_products-small" onclick="img_product<%=i%>()">
+                                <%i++;%>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="info_products-right">
@@ -201,33 +212,38 @@
                             <div class="info_products-right-item">
                                 <span>Dung tích : </span>
                                 <c:forEach items="${requestScope.size}" var="s">
-                                    <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=${s.id}"><span class="info_products-right-brand">${s.value}</span></a> 
-                                </c:forEach>
+                                    <button style="padding: 3px 6px;
+                                            list-style: none;
+                                            border-radius: 6px;
+                                            cursor: pointer;
+                                            background-color: #eeeeee;"><a style="text-decoration: none; color: #000000;" href="pdetail?id=${param.id}&sid=${s.id}&gid=${p.gender_id}">${s.value}</a></button>
+                                    </c:forEach>
+
                             </div>
+                            <c:set value="${requestScope.gender}" var="g"/>
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
-                                
-                                <c:if test="${param.gid == 1}" > <span class="info_products-right-brand"> Nam </span> </c:if> 
-                                <c:if test="${param.gid == 2}" > <span class="info_products-right-brand"> Nữ </span></c:if> 
-                                <c:if test="${param.gid == 3}" > <span class="info_products-right-brand"> Unisex </span></c:if> 
+                                <span class="info_products-right-brand">${g.name}</span>
+
                             </div>
                             <div class="info_products-right-item">
-                                <span class="info_products-right-price">${p.price_out }đ</span> <br>
+                                <span class="info_products-right-price">${pd.price_out}đ</span> <br>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
                                     <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
                                     <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
                                 </div>
                             </div>
-                            <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
-                                <button type="button" id="add-to-cart" class="add-to-cartProduct button btn-addtocart addtocart-modal" name="add"><span>Thêm vào giỏ</span></button>
-                            </div>
+                            <form action="" method="post" name="fo">
+                                <div  style="margin-top: 70px">
+                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
+                                </div>
+                            </form>
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_productsdetails">
                             <span class="info_products-right-title">Mô tả</span>
                             <span>${p.description}</span>
-
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_policy">
@@ -252,7 +268,7 @@
                         <button class="products-item" id="products-item-cmt" onclick="op_comment()">
                             Nhận xét
                         </button>
-                        
+
                     </div>
                     <div class="products_contents">
                         <div class="products_cmt" id="product_contentcomment">
@@ -303,7 +319,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="body_container-item user_ratingproducts">
@@ -334,10 +350,16 @@
                         Sản phẩm tương tự
                     </div>
                     <div class="products_same-child">
-                        
+
                         <c:forEach items="${requestScope.relativeproducts}" var="rp">
+                            <form action="pdetail" method="post">
+                                <input type="hidden" value="1" name="sid"/>
+                                <input type="hidden" value="${rp.id}" name="id"/>
+                                <c:set value="${requestScope.detail}" var="lgd"/>
+                            </form>
+
                             <div class="products">
-                                <a href="pdetail?title=${p.title}&gid=${p.gender_id}&sid=1">
+                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender_id}">
                                     <img src="${rp.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
@@ -351,8 +373,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${rp.price_out} đ</span>
-
+                                            <span class="info_price">${lgd.price_out} đ</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -473,6 +494,56 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+
+            function add(id, size) {
+                var m = document.fo.num.value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&num=" + m;
+                document.fo.submit();
+            }
+
+            var img_products = [
+            <c:forEach items="${requestScope.listgallery}" var="gl">
+                "${gl.thumbnail}",
+            </c:forEach>
+            ];
+
+            var dem = 0;
+
+            function img_product1() {
+                dem = 0;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+            function img_product2() {
+                dem = 1;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+            function img_product3() {
+                dem = 2;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+            function img_product4() {
+                dem = 3;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+            function img_product5() {
+                dem = 4;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+
+
+
+        </script>
         <!-- end footer -->
     </body>
 
