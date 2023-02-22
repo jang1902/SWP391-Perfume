@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Category;
+import model.Gallery;
 import model.Gender;
 import model.Product;
 import model.Size;
@@ -79,23 +80,17 @@ public class DetailServlet extends HttpServlet {
 
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProductByID(id);
-
-//        List<Size> listS = new ArrayList<Size>();
-//        if (!listSP.isEmpty()) {
-//            for (SizeProduct sizeProduct : listSP) {
-//                if (sizeProduct.getQuantity() > 0) {
-//                    listS.add(dao.getSizeByID(sizeProduct.getSid()));
-//                }
-//            }
-//        }
+        
         SizeProduct getP = dao.getSizeProductByPidSid(id, sid);
 
         List<Size> ls = dao.getSizeByPID(id);
+        
+        List<Gallery> listg = dao.getGalleryByPid(id) ;
 
         Category getC = dao.getCategoryNameById(p.getCategory_id());
 
         Gender g = dao.getGenderByID(id);
-        List<Product> lg = null;
+        List<Product> lg;
         try {
             lg = dao.randomRelative(gid);
             request.setAttribute("relativeproducts", lg);
@@ -112,6 +107,9 @@ public class DetailServlet extends HttpServlet {
         request.setAttribute("product", p);
         request.setAttribute("size", ls);
         request.setAttribute("gender", g);
+        request.setAttribute("listgallery", listg);
+        
+        
 
         request.getRequestDispatcher("productdetail.jsp").forward(request, response);
     }

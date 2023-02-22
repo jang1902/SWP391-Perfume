@@ -230,11 +230,12 @@
                             <div class="info_products-right-item">
                                 <span class="info_products-right-price">${pd.price_out}đ</span> <br>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
-                                    <input type="button" value="-" onclick="minusQ();" class="qty-btn minus-button ">
-                                        <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
-                                        <input type="button" value="+" onclick="plusQ();" class="qty-btn plus-button">
+                                    <input type="button" value="-" id="minus" onclick="minus()" class="qty-btn">
+                                    <input type="text" id="quantity"  name="quantity" value="1"  class="quantity-selector">
+                                    <input type="button" value="+" id="plus" onclick="plus()" class="qty-btn">
                                 </div>
                             </div>
+                            
                             <form action="" method="post" name="fo">
                                 <div  style="margin-top: 70px">
                                     <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
@@ -542,51 +543,22 @@
                 img_products_big.src = img_products[dem];
             }
 
-            function minusQuantity() {
-                var quantity = document.fo.quantity.value;
-                quantity -= 1;
-                renderUI(quantity);
-            }
-            function plusQuantity() {
-                var quantity = document.fo.quantity.value;
-                document.fo.quantity += 1;
-                document.fo.submit();
-            }
 //            function add(id, size) {
 //                var quantity = document.fo.quantity.value;
 //                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + quantity;
 //                document.fo.submit();
 //            }
-            jQuery(function () {
-                var j = jQuery; //Just a variable for using jQuery without conflicts
-                var addInput = getElementById('#quantity'); //This is the id of the input you are changing
-                var n = 1; //n is equal to 1
-
-                //Set default value to n (n = 1)
-                j(addInput).val(n);
-
-                //On click add 1 to n
-                j('.plus').on('click', function () {
-                    j(addInput).val(++n);
-                });
-
-                j('.min').on('click', function () {
-                    //If n is bigger or equal to 1 subtract 1 from n
-                    if (n >= 1) {
-                        j(addInput).val(--n);
-                    } else {
-                        //Otherwise do nothing
-                    }
-                });
-            });
-
-            function plusQ() {
-                const elem = document.getElementById("quantity");
-                elem+=1;
+            var count = 1;
+            var countEl = document.getElementById("quantity");
+            function plus() {
+                count++;
+                countEl.value = count;
             }
-            function minusQ() {
-                const elem = document.getElementById("quantity");
-                elem-=1;
+            function minus() {
+                if (count > 1) {
+                    count--;
+                    countEl.value = count;
+                }
             }
 
 
