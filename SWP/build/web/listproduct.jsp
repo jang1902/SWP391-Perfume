@@ -181,11 +181,12 @@
                 <div class="body_container-search col-md-3">
 
                 </div>
-                <div class="body_container col-md-9">
+                <div class="body_container col-md-9 ">
                     <div class="body_container-products" >
 
-                        <c:forEach items="${listbycate}" var="listC">
-                            <div class="products all_products">
+                        <c:set var="maxPage" value="${requestScope.maxPage}"/>
+                        <c:forEach items="${products}" var="listC">
+                            <div class="products all_products" >
                                 <a href="pdetail?id=${listC.id}&sid=1&gid=${listC.gender_id}">
                                     <img src="${listC.thumbnail}" alt="" class="img_products">
                                 </a>
@@ -213,22 +214,36 @@
                     </div>
                     <div class="page_button">
                         <ul class="page_button_container">
-                            <li class="page_button-child">
-                                <i class="fa-solid fa-angle-left"></i>
+                            <li class="page_button-child" >
+                                <a style="text-decoration: none; color: #72af5c"  href="listproduct?cid=${param.cid}&page=${param.page-1}">
+                                    <c:if test="${param.page !=1 &&param.page !=0}">
+                                        <i class="fa-solid fa-angle-left"></i>
+                                    </c:if>
+                                </a>
                             </li>
-                            <li class="page_button-child page_button-current"><span>1</span></li>
-                            <li class="page_button-child"><span>2</span></li>
-                            <li class="page_button-child"><span>3</span></li>
-                            <li class="page_button-child"><span>4</span></li>
-                            <li class="page_button-child"><span>5</span></li>
+                            <% int i =1; %>
+                            <c:forEach  begin="1" end="${maxPage}" >
+                                <c:set var="pageCurrent" value="<%=i%>"/>
+                                <a style="text-decoration: none; color: #000000"  href="listproduct?cid=${param.cid}&page=<%=i%>">
+                                    <c:if test="${param.page!=pageCurrent}">
+                                        <li class="page_button-child  "><span ><%=i%> </span></li>
+                                        </c:if>
+                                        <c:if test="${param.page==pageCurrent}">
+                                        <li class="page_button-child page_button-current "><span ><%=i%> </span></li>
+                                        </c:if>
+                                </a>
+                                <%i++;%>
+                            </c:forEach>
                             <li class="page_button-child">
-                                <i class="fa-solid fa-angle-right"></i>
+                                <a style="text-decoration: none; color: #72af5c" href="listproduct?cid=${param.cid}&page=${param.page+1}">
+                                    <c:if test="${param.page != maxPage}">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </c:if>
+                                </a>
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="body_container-page">
-        
-                    </div> -->
+
                 </div>
             </div>
         </div>

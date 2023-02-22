@@ -185,7 +185,7 @@
             <div class="body_container">
                 <ul class="breadcrumb">
                     <li><a href="home">Home</a></li>
-                    <li><a href="listproduct?cid=${p.category_id}">${cate.name}</a></li>
+                    <li><a href="listproduct?cid=${p.category_id}&page=1">${cate.name}</a></li>
                     <li>${p.title}</li>
                 </ul>
 
