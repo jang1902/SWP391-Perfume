@@ -185,7 +185,7 @@
             <div class="body_container">
                 <ul class="breadcrumb">
                     <li><a href="home">Home</a></li>
-                    <li><a href="listproduct?cid=${p.category_id}&page=1">${cate.name}</a></li>
+                    <li><a href="listproduct?cid=${p.category_id}">${cate.name}</a></li>
                     <li>${p.title}</li>
                 </ul>
 
@@ -224,7 +224,7 @@
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
                                 <span class="info_products-right-brand"> 
-                                    <a href="listproduct?gid=${g.id}&page=1">${g.name}</a>
+                                    <a href="listproduct?gid=${g.id}" style="text-decoration: none; color: black">${g.name}</a>
                                 </span>
 
                             </div>
