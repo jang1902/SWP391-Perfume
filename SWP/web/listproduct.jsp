@@ -176,14 +176,20 @@
         <!-- end header -->
 
         <!-- body -->
+        <c:set value="${requestScope.catename}" var="c"/>
         <div id="body">
             <div class="row">
-                <div class="body_container-search col-md-3">
+                <div class="body_container-search col-md-3" >
 
                 </div>
-                <div class="body_container col-md-9 ">
-                    <div class="body_container-products" >
 
+                <div class="body_container col-md-9 ">
+                    <ul class="breadcrumb">
+                        <li><a href="home">Home</a></li>
+                        <li>${c.name}</li>
+                    </ul>
+                    <div class="body_container-products" >
+                        
                         <c:set var="maxPage" value="${requestScope.maxPage}"/>
                         <c:forEach items="${products}" var="listC">
                             <div class="products all_products" >
@@ -200,7 +206,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${listc.price_out}</span>
+                                            <span class="info_price">${listC.sizeproduct.price_out} đ</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">

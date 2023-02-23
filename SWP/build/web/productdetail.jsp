@@ -223,7 +223,9 @@
                             <c:set value="${requestScope.gender}" var="g"/>
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
-                                <span class="info_products-right-brand">${g.name}</span>
+                                <span class="info_products-right-brand"> 
+                                    <a href="listproduct?gid=${g.id}&page=1">${g.name}</a>
+                                </span>
 
                             </div>
 
@@ -235,7 +237,7 @@
                                     <input type="button" value="+" id="plus" onclick="plus()" class="qty-btn">
                                 </div>
                             </div>
-                            
+
                             <form action="" method="post" name="fo">
                                 <div  style="margin-top: 70px">
                                     <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
@@ -352,6 +354,7 @@
                         Sản phẩm tương tự
                     </div>
                     <div class="products_same-child">
+                        <div class="products_same-child">
 
                         <c:forEach items="${requestScope.relativeproducts}" var="rp">
                             <form action="pdetail" method="post">
@@ -375,7 +378,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${lgd.price_out} đ</span>
+                                            <span class="info_price">${rp.sizeproduct.price_out} đ</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -385,6 +388,10 @@
                                 </div>
                             </div>
                         </c:forEach>
+                    </div>
+
+
+
                     </div>
                 </div>
             </div>

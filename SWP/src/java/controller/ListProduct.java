@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.List;
+import model.Category;
 import model.Product;
 
 /**
@@ -64,18 +65,18 @@ public class ListProduct extends HttpServlet {
         String cid_raw = request.getParameter("cid");
 
         int cid = Integer.parseInt(cid_raw);
-        
+
         ProductDAO dao = new ProductDAO();
         List<Product> listC;
-        
-        listC =dao.getProductsByCid(cid);
-        
-         int page = 0;
+        Category c = dao.getCategoryNameById(cid);
+        listC = dao.getProductsByCid(cid);
+
+        int page = 0;
         String pageStr = request.getParameter("page");
 
         final int PAGE_SIZE = 4;
         cid = Integer.parseInt(cid_raw);
-        
+
         List<Product> list = dao.getProductsByCid(cid);
         int maxPage = list.size() / 4;
         if (pageStr != null && !pageStr.equals("0")) {
@@ -108,11 +109,10 @@ public class ListProduct extends HttpServlet {
         }
 
         request.setAttribute("maxPage", maxPage);
-        request.setAttribute("cateid", cid_raw);
-        request.setAttribute("numPrd", list.size());
         request.setAttribute("products", list.subList(from, numOfPro));
         request.setAttribute("listbycate", listC);
-        
+        request.setAttribute("catename", c);
+
         request.getRequestDispatcher("listproduct.jsp").forward(request, response);
     }
 
