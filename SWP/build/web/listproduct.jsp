@@ -224,14 +224,16 @@
                             <% int i =1; %>
                             <c:forEach  begin="1" end="${maxPage}" >
                                 <c:set var="pageCurrent" value="<%=i%>"/>
-                                <a style="text-decoration: none; color: #000000"  href="listproduct?cid=${param.cid}&page=<%=i%>">
-                                    <c:if test="${param.page!=pageCurrent}">
-                                        <li class="page_button-child  "><span ><%=i%> </span></li>
-                                        </c:if>
-                                        <c:if test="${param.page==pageCurrent}">
-                                        <li class="page_button-child page_button-current "><span ><%=i%> </span></li>
-                                        </c:if>
-                                </a>
+                                <c:if test="${param.page!=0}">
+                                    <a style="text-decoration: none; color: #000000"  href="listproduct?cid=${param.cid}&page=<%=i%>">
+                                        <c:if test="${param.page!=pageCurrent}">
+                                            <li class="page_button-child  "><span ><%=i%> </span></li>
+                                            </c:if>
+                                            <c:if test="${param.page==pageCurrent}">
+                                            <li class="page_button-child page_button-current "><span ><%=i%> </span></li>
+                                            </c:if>
+                                    </a>
+                                </c:if>
                                 <%i++;%>
                             </c:forEach>
                             <li class="page_button-child">
