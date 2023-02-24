@@ -284,7 +284,7 @@
                         </a>
                         <div class="describe_products">
                             <div class="ratings_products">
-                                <span>${map.key.title}</span>
+                                <span>${p.title}</span>
                                 <span>
                                     <i class="fa-solid fa-star icon_star"></i>
                                     <i class="fa-solid fa-star icon_star"></i>
