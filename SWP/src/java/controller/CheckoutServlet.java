@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -16,13 +17,14 @@ import java.util.List;
 import model.Cart;
 import model.Item;
 import model.User;
+import org.apache.tomcat.jni.SSLContext;
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(name="CartServlet", urlPatterns={"/cart"})
-public class CartServlet extends HttpServlet {
+@WebServlet(name="CheckoutServlet", urlPatterns={"/checkout"})
+public class CheckoutServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,30 +36,19 @@ public class CartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Cookie[] arr=request.getCookies();
-       
-        String txt="";
-        if(arr!=null){
-            for (Cookie o:arr) {
-                if(o.getName().equals("cart"))
-                txt+=o.getValue();
-            }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CheckoutServlet</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CheckoutServlet at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-         User a= (User) request.getSession().getAttribute("userNow");
-        Cart cart=new Cart(txt,a);
-        List<Item> listItem= cart.getItems();
-        int n;
-        if(listItem!=null){
-            n=listItem.size();
-        }else{
-            n=0;
-        }
-        
-        request.setAttribute("listItem", listItem);
-        request.setAttribute("cart", cart);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
     } 
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -70,7 +61,28 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        Cookie[] arr=request.getCookies();
+       
+        String txt="";
+        if(arr!=null){
+            for (Cookie o:arr) {
+                if(o.getName().equals("cart"))
+                txt+=o.getValue();
+            }
+        }
+         User u= (User) request.getSession().getAttribute("userNow");
+        Cart cart=new Cart(txt,u);
+        List<Item> listItem= cart.getItems();
+        int n;
+        if(listItem!=null){
+            n=listItem.size();
+        }else{
+            n=0;
+        }
+        
+        request.setAttribute("listItem", listItem);
+        request.setAttribute("cart", cart);
+        request.getRequestDispatcher("checkout.jsp").forward(request, response);
     } 
 
     /** 
@@ -84,6 +96,20 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
+        Cookie arr[]=request.getCookies();
+        String txt="";
+        if(arr!=null){
+            for(Cookie c: arr){
+                if(c.getName().equals("cart")) txt=txt+c.getValue();
+                c.setMaxAge(0);
+                response.addCookie(c);
+            }
+        }
+        User u= (User)request.getSession().getAttribute("userNow");
+        
+        Cart cart=new Cart(txt,u);
+        List<Item> listItem=cart.getItems();
+        
     }
 
     /** 

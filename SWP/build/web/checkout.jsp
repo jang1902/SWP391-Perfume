@@ -197,7 +197,83 @@
         <!-- body -->
         <div id="body">
             <div class="body_container">
-                
+                <div class="body_left">
+                    <div class="body_left-item">
+                        <div class="body_left-item-title">
+                            <div class="body_left-item-title-st">1</div>
+                            <span>Chi tiết giao hàng</span>
+                        </div>
+                        <div class="body_left-item-datetime">
+                            <div class="body_left-item-datetime-child">
+                                <span>Ngày giao hàng</span> <br>
+                                <input type="text" class="input_delivery-datetime">
+                            </div>
+                            <div class="body_left-item-datetime-child">
+                                <span>Thời gian giao hàng</span> <br>
+                                <input type="text" class="input_delivery-datetime">
+                            </div>
+                        </div>
+                        <div class="body_left-item-address">
+                            Địa chỉ giao hàng
+                            <div class="receiver_information">
+                                <div class="receiver_information-child">123 Đống Đa Hà Nội</div>
+                                <div class="receiver_information-child">456 Láng Hạ Hà Nội</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body_left-item">
+                        <div class="body_left-item-title">
+                            <div class="body_left-item-title">
+                                <div class="body_left-item-title-st">2</div>
+                                <span>Thông tin cá nhân</span>
+                            </div>
+                        </div>
+                        <div class="body_left-item-phone">
+                            Thông tin liên lạc
+                            <div class="receiver_information">
+                                <div class="receiver_information-child">012346789</div>
+                                <div class="receiver_information-child">012346789</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body_left-item">
+                        <div class="body_left-item-title">
+                            <div class="body_left-item-title-st">3</div>
+                            <span>Phương thức thanh toán</span>
+                        </div>
+                        <div class="receiver_information-pay">
+                            Phương thức thanh toán đã lưu
+                            <div class="receiver_information">
+                                <div class="receiver_information-child">
+                                    <img src="./assets/img/MBBANK.jpg" class="img_pay">
+                                    <div class="info_pay">
+                                        <span>**** **** **** 1235</span> <br>
+                                        <span>Mai Ngoc Giang</span>
+                                    </div>
+                                </div>
+                                <div class="receiver_information-child">
+                                    <img src="./assets/img/Mastercard_2019_logo.svg.png" class="img_pay">
+                                    <div class="info_pay">
+                                        <span>**** **** **** 1235</span> <br>
+                                        <span>Mai Ngoc Giang</span>
+                                    </div>
+                                </div>
+                                <div class="receiver_information-child">
+                                    <img src="./assets/img/BIDV.jpg" class="img_pay">
+                                    <div class="info_pay">
+                                        <span>**** **** **** 1235</span> <br>
+                                        <span>Mai Ngoc Giang</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                            <form action="checkout" method="post">
+                            <button class="place_order">Đặt Hàng</button> 
+                            </form>
+                  
+                    </div>
+                </div>
                 <div class="body_right">
 
 
@@ -223,11 +299,6 @@
                             <span>Tổng tiền tạm thời</span>
                             <b>${cart.getTotalMoney()}</b>
                         </div>
-                        
-                       <form action="${sessionScope.userNow==null?"login":"checkout"}">
-                            <button class="place_order">Checkout</button> 
-                       </form>
-                        
                     </div>
                     <hr class="body_right-decoration">
                     <div class="body_right-item">

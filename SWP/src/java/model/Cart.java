@@ -79,7 +79,7 @@ public class Cart {
                     Size size = d.getSizeByID(sid);
                     SizeProduct sizeproduct=dao.getSizeProductByPidSid(pid, sid);
                     if (user != null) {
-                        if (uid == 0 || uid == user.getId()) {
+                        if (uid == user.getId()) {
                             addItem(new Item(sizeproduct,p, size, quantity, sizeproduct.getPrice_out()));
                         }
                     } else {

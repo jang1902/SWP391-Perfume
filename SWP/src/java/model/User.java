@@ -12,13 +12,12 @@ import java.sql.Date;
  */
 public class User {
     private int id,loginType,role_id;
-    private String firstname,lastname,username,password,email,phone_number,address;
+    private String firstname,lastname,username,password,email,phone_number;
+    private int address_id;
     private Date created_at,updated_at;
     private int deleted;
-    public User() {
-    }
 
-    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, String address, Date created_at, Date updated_at, int deleted) {
+    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, int address_id, Date created_at, Date updated_at, int deleted) {
         this.id = id;
         this.loginType = loginType;
         this.role_id = role_id;
@@ -28,10 +27,12 @@ public class User {
         this.password = password;
         this.email = email;
         this.phone_number = phone_number;
-        this.address = address;
+        this.address_id = address_id;
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.deleted = deleted;
+    }
+    public User() {
     }
 
     public int getId() {
@@ -106,12 +107,12 @@ public class User {
         this.phone_number = phone_number;
     }
 
-    public String getAddress() {
-        return address;
+    public int getAddress_id() {
+        return address_id;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress_id(int address_id) {
+        this.address_id = address_id;
     }
 
     public Date getCreated_at() {
@@ -137,8 +138,9 @@ public class User {
     public void setDeleted(int deleted) {
         this.deleted = deleted;
     }
+    
+    
 
-   
-
+    
   
 }

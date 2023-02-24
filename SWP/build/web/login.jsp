@@ -31,8 +31,8 @@
             <div class="body_right">
                 <div> 
                     <form action="login" method="post">
-                        <h3 style="color:red">${requestScope.mess}</h3>
-                        <h3 style="color:green">${requestScope.ms}</h3>
+                        <p style="color:red">${requestScope.mess}</p>
+                        <p style="color:green">${requestScope.ms}</p>
                         <input type="text" placeholder="Email hoặc Số Điện Thoại" class="body_right-inputlogin" name="username">
                         <input type="password" placeholder="Mật Khẩu" class="body_right-inputlogin" name="password">
                         <div class="body_right-login" id="login">

@@ -77,7 +77,7 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //lay user vaf pass
+      
         String u = request.getParameter("username");
         String p = request.getParameter("password");
        // String remem = request.getParameter("remem");
@@ -88,7 +88,7 @@ public class LogInServlet extends HttpServlet {
        if (user == null) {
 
             request.setAttribute("mess", "Wrong user name or password!");
-            request.getRequestDispatcher("login").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
 
         }
         
