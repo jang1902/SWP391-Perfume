@@ -59,7 +59,7 @@
                 <!-- header mid top -->
                 <div class="mid-top">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="home">
                             <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>
@@ -70,80 +70,44 @@
                         </div>
                     </div>
                     <div class="login-cart">
-                        <a href="./src/login.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                        </a>
-                        <a href="./src/cart.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </div>
-                        </a>
-                    </div>
+                    <c:if test="${sessionScope.userNow.role_id==null}">
+
+                    <a href="login" class="login_cart-item-link">
+                    <div class="login-cart_item">
+                    <i class="fa-solid fa-key"></i>
+                     </div>
+                    </a>      
+
+                    </c:if>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="#" class="login_cart-item-link" >
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                    
+                    <a href="cart.html" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                    </a>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="logout" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                </div>
                 </div>
                 <!-- end header mid top -->
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    <button class="menu_left">
-                        <i class="fa-solid fa-bars icon_list"></i>
-                        Danh mục sản phẩm
-                        <div class="menu_left-child">
-                            <ul>
-                                <li class="menu_left-item">
-                                    Mô hình xe hơi
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Lego
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình phim</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Marvel</li>
-                                            <li class="menu_left-item-child">DC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Transformer
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình anime</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Naruto</li>
-                                            <li class="menu_left-item-child">One Piece</li>
-                                            <li class="menu_left-item-child">Dragon Ball</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Figger
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình khác</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Mô hình cây mini</li>
-                                            <li class="menu_left-item-child">Mô hình trang trí</li>
-                                            <li class="menu_left-item-child">Mô hình PC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </button>
+                    
                     <!-- end menu left -->
                     <!-- menu right -->
                     <ul class="menu_right">
@@ -240,7 +204,7 @@
 
                             <form action="" method="post" name="fo">
                                 <div  style="margin-top: 70px">
-                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${size}')" >Thêm vào giỏ</button>
+                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${param.sid}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
                         </div>
@@ -506,11 +470,7 @@
 
         <script type="text/javascript">
 
-            function add(id, size) {
-                var m = document.fo.num.value;
-                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&num=" + m;
-                document.fo.submit();
-            }
+           
 
             var img_products = [
             <c:forEach items="${requestScope.listgallery}" var="gl">
@@ -550,11 +510,11 @@
                 img_products_big.src = img_products[dem];
             }
 
-//            function add(id, size) {
-//                var quantity = document.fo.quantity.value;
-//                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + quantity;
-//                document.fo.submit();
-//            }
+            function add(id, size) {
+                var q = document.getElementById("quantity").value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + q;
+                document.fo.submit();
+            }
             var count = 1;
             var countEl = document.getElementById("quantity");
             function plus() {
