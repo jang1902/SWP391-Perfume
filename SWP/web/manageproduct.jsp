@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Manage Products</title>
-        <link rel="shortcut icon" type="image/x-icon" href="images/logoapple.png">
+        <link rel="shortcut icon" type="image/x-icon" href="images/logo-no-background.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -26,7 +26,7 @@
                 color: #566787;
                 background: #f5f5f5;
                 font-family: 'Varela Round', sans-serif;
-                font-size: 13px;
+                font-size: 12px;
             }
             .table-responsive {
                 margin: 30px 0;
@@ -78,9 +78,10 @@
                 border-color: #e9e9e9;
                 padding: 12px 15px;
                 vertical-align: middle;
+                text-align: center;
             }
             table.table tr th:first-child {
-                width: 60px;
+                width: 60px;              
             }
             table.table tr th:last-child {
                 width: 100px;
@@ -214,36 +215,36 @@
                 background: #ddd;
             }
             /* Modal styles */
-            .modal .modal-dialog {
+            .product .product-dialog {
                 max-width: 400px;
             }
-            .modal .modal-header, .modal .modal-body, .modal .modal-footer {
+            .product .product-header, .product .product-body, .product .product-footer {
                 padding: 20px 30px;
             }
-            .modal .modal-content {
+            .product .product-content {
                 border-radius: 3px;
                 font-size: 14px;
             }
-            .modal .modal-footer {
+            .product .product-footer {
                 background: #ecf0f1;
                 border-radius: 0 0 3px 3px;
             }
-            .modal .modal-title {
+            .product .product-title {
                 display: inline-block;
             }
-            .modal .form-control {
+            .product .form-control {
                 border-radius: 2px;
                 box-shadow: none;
                 border-color: #dddddd;
             }
-            .modal textarea.form-control {
+            .product textarea.form-control {
                 resize: vertical;
             }
-            .modal .btn {
+            .product .btn {
                 border-radius: 2px;
                 min-width: 100px;
             }
-            .modal form label {
+            .product form label {
                 font-weight: normal;
             }
         </style>
@@ -284,8 +285,6 @@
 
     </head>
 
-
-
     <body>   
 
         <div class="container-xl">
@@ -293,14 +292,16 @@
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-5">
                                 <h2>Manage <b>Product</b></h2>
                             </div>
-                            <div class="col-sm-6">                               
-                                <a style="background-color: #bbb" href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Product</span></a> 
-                                <a style="background-color: #bbb" href="managecolor" class="btn btn-success"  <span>Color</span></a> 
-                                <a style="background-color: #bbb" href="managecapacity" class="btn btn-success" > <span>Capacity</span></a> 
+                            <div class="col-sm-7">                                                        
+                                <a style="background-color: #bbb" href="managecategory" class="btn btn-success"  <span>Category</span></a> 
+                                <a style="background-color: #bbb" href="managegallery" class="btn btn-success" > <span>Gallery</span></a> 
                                 <a style="background-color: #bbb" href="managesize" class="btn btn-success" > <span>Size</span></a> 
+                                <a style="background-color: #bbb" href="managediscount" class="btn btn-success" > <span>Discount</span></a>
+                                <a style="background-color: #bbb" href="#addProduct" class="btn btn-success" data-toggle="product"><i class="material-icons">&#xE147;</i> <span>Add Product</span></a> 
+                                <a style="background-color: #bbb" href="home" class="btn btn-success"  <span>Dashboard</span></a> 
                             </div>
 
                         </div>
@@ -319,34 +320,40 @@
                         <thead>
                             <tr>
 
-                                <th>ID</th>
-                                <th>Name</th>
+                           
                                 <th>Category</th>
-                                <th>Color</th>
-                                <th>Capacity</th>
-                                <th>Model</th>
-                                <th>Ram</th>
-                                <th>Size</th>      
-                                <th>Price</th>
-                                <th>Actions</th>
+                                <th>Title</th>
+                                <th>Thumbnail</th>
+                                <th>Gender</th>
+                                <th>Size</th>
+                                <th>Discount</th>
+                                <th>Price in</th>
+                                <th>Price out</th>
+                                <th>Quantity</th>
+                                <th>Create at</th>      
+                                <th>Update at</th> 
+                                <th>Edit</th>                              
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${list}" var="p">
                                 <tr>
 
-                                    <td>${p.id}</td>
-                                    <td>${p.title}</td>
+                              
                                     <td>${p.category.name}</td>
-                                    <td>${p.color.name}</td>
-                                    <td>${p.capacity.name}</td>
-                                    <td>${p.model.name}</td>
-                                    <td>${p.ram.name}</td>
-                                    <td>${p.size.name}</td>
-                                    <td>${p.price}</td>
+                                    <td>${p.title}</td>
+                                    <td><img style="width: 150px; height: 150px" src="${p.thumbnail}" alt="alt"/></td>
+                                    <td>${p.gender.name}</td>
+                                    <td>${p.size.value}ml</td>
+                                    <td>${p.discount.value}%</td>
+                                    <td>${p.sizeproduct.price_in}</td>
+                                    <td>${p.sizeproduct.price_out}</td>
+                                    <td>${p.sizeproduct.quantity}</td>
+                                    <td>${p.created_at}</td>
+                                    <td>${p.updated_at}</td>
                                     <td>
                                         <a href="load?pid=${p.id}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="#" onclick="doDelete('${p.id}')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="#" onclick="doDelete('${p.id}')" class="delete" data-toggle="product"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 
                                     </td>
                                 </tr>
@@ -360,7 +367,7 @@
                         <div class="hint-text">Showing <b>${list.size()}</b> out of <b>${list1.size()}</b> entries</div>
                         <ul class="pagination">                               
                             <c:forEach begin="${1}" end="${requestScope.num}" var="i">
-                                <li class="page-item"><a href="manageproduct?page=${i}" class="page-link">${i}</a></li>
+                                <li class="page-item"><a href="crudp?page=${i}" class="page-link">${i}</a></li>
                                 </c:forEach>
                         </ul>
                     </div>
@@ -370,16 +377,16 @@
 
 
         <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <div id="addProduct" class="product fade">
+            <div class="product-dialog">
+                <div class="product-content">
 
-                    <div class="modal-header">						
-                        <h4 class="modal-title">Add Product</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="product-header">						
+                        <h4 class="product-title">Add Product</h4>
+                        <button type="button" class="close" data-dismiss="product" aria-hidden="true">&times;</button>
                     </div>
                     <form action="addcategory">
-                        <div class="modal-body">	
+                        <div class="product-body">	
 
                             <div class="form-group" required>
                                 <label>Category ID</label>
@@ -395,15 +402,15 @@
             </div>
         </div>
         <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <div id="editProduct" class="product fade">
+            <div class="product-dialog">
+                <div class="product-content">
                     <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Employee</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="product-header">						
+                            <h4 class="product-title">Edit Employee</h4>
+                            <button type="button" class="close" data-dismiss="product" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
+                        <div class="product-body">					
                             <div class="form-group" required>
                                 <label>Category ID</label>
                                 <select name="category" class="form-control" >
@@ -453,8 +460,8 @@
                                 <textarea name="description" class="form-control" required></textarea>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <div class="product-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="product" value="Cancel">
                             <input type="submit" class="btn btn-info" value="Save">
                         </div>
                     </form>
