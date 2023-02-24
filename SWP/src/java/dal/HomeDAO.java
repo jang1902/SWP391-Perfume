@@ -89,17 +89,18 @@ public class HomeDAO extends DBContext {
 
     public List<Product> getProductNew() { // lay 12 san pham khac nhau cua moi loai
         List<Product> list = new ArrayList<>();
-        String sql = "select top 12 p.title, p.id, p.thumbnail, p.updated_at, p.discount_id, d.value, min(sp.price_out) as price, min(sp.sid) as sid from Products p\n"
+        String sql = "select top 12 p.gender_id, p.title, p.id, p.thumbnail, p.updated_at, p.discount_id, d.value, min(sp.price_out) as price, min(sp.sid) as sid from Products p\n"
                 + "join SizeProduct sp on p.id = sp.pid\n"
                 + "join Sizes s on s.id = sp.sid\n"
                 + "join Discounts d on d.id = p.discount_id\n"
-                + "group by p.title, p.id, p.thumbnail, p.updated_at , p.discount_id, d.value\n"
+                + "group by p.title, p.id, p.thumbnail, p.updated_at, p.gender_id, p.discount_id, d.value\n"
                 + "order by p.updated_at desc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();
+                c.setGender_id(rs.getInt("gender_id"));
                 c.setTitle(rs.getString("title"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setUpdated_at(rs.getDate("updated_at"));
@@ -123,18 +124,19 @@ public class HomeDAO extends DBContext {
 
     public List<Product> getProductDiscount() { // lay san pham giam gia
         List<Product> list = new ArrayList<>();
-        String sql = "select top 4  p.title, p.id, p.thumbnail, min(sp.price_out) as price, p.discount_id, d.value , min(sp.sid) as sid from Products p\n"
+        String sql = "select top 4 p.gender_id, p.title, p.id, p.thumbnail, min(sp.price_out) as price, p.discount_id, d.value , min(sp.sid) as sid from Products p\n"
                 + "join SizeProduct sp on p.id = sp.pid\n"
                 + "join Sizes s on s.id = sp.sid\n"
                 + "join Discounts d on p.discount_id = d.id\n"
                 + "where p.discount_id != 0\n"
-                + "group by p.title, p.id, p.thumbnail, d.value, p.discount_id\n"
+                + "group by p.title, p.id, p.thumbnail, d.value, p.gender_id, p.discount_id\n"
                 + "order by p.discount_id desc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();
+                c.setGender_id(rs.getInt("gender_id"));
                 c.setTitle(rs.getString("title"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setId(rs.getInt("id"));
@@ -157,18 +159,19 @@ public class HomeDAO extends DBContext {
 
     public List<Product> getProductBestSeller() { // lay 6 san pham ban chay nhat
         List<Product> list = new ArrayList<>();
-        String sql = "select top 6 p.title, p.id, p.thumbnail, od.num, p.discount_id, d.value, min(sp.price_out) as price, min(sp.sid) as sid from Products p\n"
+        String sql = "select top 6 p.gender_id, p.title, p.id, p.thumbnail, od.num, p.discount_id, d.value, min(sp.price_out) as price, min(sp.sid) as sid from Products p\n"
                 + "join SizeProduct sp on p.id = sp.pid\n"
                 + "join Sizes s on s.id = sp.sid\n"
                 + "join Order_Details od on od.product_id = p.id\n"
                 + "join Discounts d on d.id = p.discount_id\n"
-                + "group by p.title, p.id, p.thumbnail, od.num , p.discount_id, d.value\n"
+                + "group by p.title, p.id, p.thumbnail, od.num , p.discount_id, p.gender_id, d.value\n"
                 + "order by num desc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();
+                c.setGender_id(rs.getInt("gender_id"));
                 c.setTitle(rs.getString("title"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setId(rs.getInt("id"));

@@ -4,16 +4,13 @@
  */
 package model;
 
-/**
- *
- * @author ASUS
- */
-public class SizeProduct {
-    int pid,sid,quantity;
-    int price_in,price_out;
 
-    public SizeProduct() {
-    }
+public class SizeProduct {
+    int pid;
+    int sid;
+    int quantity;
+    int price_in;
+    int price_out;
 
     public SizeProduct(int pid, int sid, int quantity, int price_in, int price_out) {
         this.pid = pid;
@@ -21,6 +18,9 @@ public class SizeProduct {
         this.quantity = quantity;
         this.price_in = price_in;
         this.price_out = price_out;
+    }
+
+    public SizeProduct() {
     }
 
     public int getPid() {
@@ -62,5 +62,6 @@ public class SizeProduct {
     public void setPrice_out(int price_out) {
         this.price_out = price_out;
     }
+    
     
 }
