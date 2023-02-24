@@ -124,15 +124,12 @@ html{
     border: solid 1px #72af5c;
 }
 .search-item{
-    width: 12%;
+    width: 0%;
     height: 100%;
     border: solid 1px #e7e9ec;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    padding-bottom: 7px;
-    padding-top: 7px;
-    padding-left: 11px;
-    padding-right: 22px;
+    padding: 7px 22px 7px 11px; 
     box-sizing: border-box;
     font-size: 20px;
     background-color: white;
@@ -168,7 +165,7 @@ html{
     padding-top: 10px;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 .menu_left{
     width: 200px;
@@ -269,7 +266,7 @@ html{
     border-radius: 6px;
 }
 .menu_right{
-    width: 400px;
+    width: 600px;
     height: 40px;
     line-height: 40px;
     color: rgb(0, 0, 0);
@@ -283,6 +280,7 @@ html{
     height: 100%;
     font-size: 15px;
     cursor: pointer;
+   
 }
 .menu_right-item:hover {
     color: #72af5c;
@@ -548,6 +546,7 @@ html{
     width: 100%;
     height: auto;
     margin-top: 20px;
+
     padding: 25px;
     display: flex;
     justify-content: space-between;
@@ -935,7 +934,7 @@ html{
 #img_logo{
     width: 15%;
     height: auto;
-    margin-top: -10px;
+    margin-top: -5px;
     margin-left: 40px;
 }
 .search{
@@ -963,7 +962,7 @@ html{
     border: solid 1px #e7e9ec;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    padding: 7px 22px;
+    padding: 7px 22px 7px 11px;
     box-sizing: border-box;
     font-size: 20px;
     background-color: white;
@@ -1000,7 +999,7 @@ html{
     padding-top: 10px;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 .menu_left{
     width: 200px;
@@ -1100,7 +1099,7 @@ html{
     border-radius: 6px;
 }
 .menu_right{
-    width: 500px;
+    width: 600px;
     height: 40px;
     line-height: 40px;
     color: rgb(0, 0, 0);
@@ -1114,6 +1113,7 @@ html{
     height: 100%;
     font-size: 15px;
     cursor: pointer;
+    
 }
 .menu_right-item:hover {
     color: #72af5c;

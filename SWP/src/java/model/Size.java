@@ -8,7 +8,7 @@ package model;
  *
  * @author canduykhanh
  */
-public class Size {
+public class Size { 
     private int id;
     private String name;
     private int value;

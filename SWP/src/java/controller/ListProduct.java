@@ -20,8 +20,8 @@ import model.Product;
  *
  * @author asus
  */
-@WebServlet(name = "RelativeServlet", urlPatterns = {"/relative"})
-public class RelativeServlet extends HttpServlet {
+@WebServlet(name = "ListProduct", urlPatterns = {"/listproduct"})
+public class ListProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class RelativeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RelativeServlet</title>");            
+            out.println("<title>Servlet ListProduct</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RelativeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ListProduct at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,22 +61,17 @@ public class RelativeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//                String id_raw = request.getParameter("id");
-//        String cid_raw = request.getParameter("cid");
-//        int id = Integer.parseInt(id_raw);
-//        int cid = Integer.parseInt(cid_raw);
-//        ProductDAO p = new ProductDAO();
-//        List<Product> list;
-//
-//        try {
-//            list = p.randomRelative(id, cid);
-//            request.setAttribute("relativeproducts", list);
-//            
-//        } catch (SQLException ex) {
-//            System.out.println("aaaa");
-//        }
-//
-//        request.getRequestDispatcher("productdetail.jsp").forward(request, response);
+        String cid_raw = request.getParameter("cid");
+
+        int cid = Integer.parseInt(cid_raw);
+        
+        ProductDAO dao = new ProductDAO();
+        List<Product> listC;
+        
+        listC =dao.getProductsByCid(cid);
+        request.setAttribute("listbycate", listC);
+        
+        request.getRequestDispatcher("listproduct.jsp").forward(request, response);
     }
 
     /**
@@ -90,22 +85,7 @@ public class RelativeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//               String id_raw = request.getParameter("id");
-//        String cid_raw = request.getParameter("cid");
-//        int id = Integer.parseInt(id_raw);
-//        int cid = Integer.parseInt(cid_raw);
-//        ProductDAO p = new ProductDAO();
-//        List<Product> list;
-//
-//        try {
-//            list = p.randomRelative(id, cid);
-//            request.setAttribute("relativeproducts", list);
-//            
-//        } catch (SQLException ex) {
-//            System.out.println("aaaa");
-//        }
-//
-//        request.getRequestDispatcher("productdetail.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

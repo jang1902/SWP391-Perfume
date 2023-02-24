@@ -1,7 +1,7 @@
 #body{
     width: 100%;
     height: auto;
-    background-color: #dbe4d8;
+    background-color: #e2e2e2;
     padding: 50px 0;
     box-shadow: inset 0 10px 20px -20px black;
 }
@@ -93,7 +93,7 @@
     width: 200px;
     height: 50px;
     background-color: #000000;
-    color: white;
+    color: black;
     border-radius: 6px;
     cursor: pointer;
     font-size: 18px;
@@ -126,21 +126,21 @@
     margin-top: 60px;
 }
 .products_tab{
-display: flex;
-position: relative;
+    display: flex;
+    position: relative;
 }
 .products-item{
-/* width: auto;
-height: auto; */
-cursor: pointer;
-margin-right: 16px;
-padding: 10px 22px;
-font-size: 20px;
-font-weight: 500;
-text-align: center;
-border-radius: 10px;
-background-color: white;
-border: solid 2px rgba(255, 255, 255, 0);
+    /* width: auto;
+    height: auto; */
+    cursor: pointer;
+    margin-right: 16px;
+    padding: 10px 22px;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    border: solid 2px rgba(255, 255, 255, 0);
 }
 #products-item-cmt{
     border: solid 1px #72af5c;
@@ -178,7 +178,7 @@ border: solid 2px rgba(255, 255, 255, 0);
     margin-top: 10px;
     border-radius: 10px;
     background-color: white;
-    }
+}
 .products_detai-item{
     margin-bottom: 10px;
 }
@@ -279,82 +279,89 @@ border: solid 2px rgba(255, 255, 255, 0);
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
-
 }
 
 
-/*.quantity-area {margin-bottom:15px;}
+.quantity-area {
+    margin-bottom:15px;
+}
 .quantity-area input#quantity {
-	background: #fff;
-	font-weight: 600;
-	height: 32px;
-	padding: 0;
-	text-align: center;
-	width: 70px;
-	border: 1px solid #f3f4f4;
-	border-left: none;
-	border-right: none;
-	border-radius: 1px;
-	float: left;
-	-webkit-appearance: none;
+    background: #fff;
+    font-weight: 600;
+    height: 32px;
+    padding: 0;
+    text-align: center;
+    width: 70px;
+    border: 1px solid #f3f4f4;
+    border-left: none;
+    border-right: none;
+    border-radius: 1px;
+    float: left;
+    -webkit-appearance: none;
 }
 .quantity-area input.qty-btn {
-	float: left;
-	background: #f3f4f4;
-	border: solid 1px #f3f4f4;
-	cursor: pointer;
-	font-weight: 600;
-	font-size: 16px;
-	outline: none;
-	height: 32px;
-	width: 32px;
-	text-align: center;
-	border-radius: 0;
+    float: left;
+    background: #f3f4f4;
+    border: solid 1px #f3f4f4;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    outline: none;
+    height: 32px;
+    width: 32px;
+    text-align: center;
+    border-radius: 0;
 }
-.table-cart .item .right .item-quan .qty-click button.qty-btn:focus {outline: none;}
+.table-cart .item .right .item-quan .qty-click button.qty-btn:focus {
+    outline: none;
+}
 #cartformpage .table-cart .item .right .item-quan .qty-click button.qty-btn {
-	background: #fff;
-	font-weight: 500;
-	font-size: 14px;
-	height: 25px;
-	padding: 0;
-	text-align: center;
-	width: 25px;
-	border: 1px solid #f3f4f4;
-	border-radius: 0;
-	float: left;
-	-webkit-appearance: none;
-	background: #f3f4f4;
+    background: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    height: 25px;
+    padding: 0;
+    text-align: center;
+    width: 25px;
+    border: 1px solid #f3f4f4;
+    border-radius: 0;
+    float: left;
+    -webkit-appearance: none;
+    background: #f3f4f4;
 }
 .quantity-area input.qty-btn {
-	float: left;
-	background: #f3f4f4;
-	border: solid 1px #f3f4f4;
-	cursor: pointer;
-	font-weight: 600;
-	font-size: 16px;
-	outline: none;
-	height: 32px;
-	width: 32px;
-	text-align: center;
-	border-radius: 0;
+    float: left;
+    background: #f3f4f4;
+    border: solid 1px #f3f4f4;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    outline: none;
+    height: 32px;
+    width: 32px;
+    text-align: center;
+    border-radius: 0;
 }
 #cartformpage .table-cart .item .right .item-quan .qty-click button.qty-btn {
-	background: #fff;
-	font-weight: 500;
-	font-size: 14px;
-	height: 25px;
-	padding: 0;
-	text-align: center;
-	width: 25px;
-	border: 1px solid #f3f4f4;
-	border-radius: 0;
-	float: left;
-	-webkit-appearance: none;
-	background: #f3f4f4;
+    background: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    height: 25px;
+    padding: 0;
+    text-align: center;
+    width: 25px;
+    border: 1px solid #f3f4f4;
+    border-radius: 0;
+    float: left;
+    -webkit-appearance: none;
+    background: #f3f4f4;
 }
-#cartformpage .table-cart .item .right .item-quan .qty-click button.qtyplus.qty-btn{border-left: none;}
-#cartformpage .table-cart .item .right .item-quan .qty-click button.qtyminus.qty-btn{border-right: none;}
+#cartformpage .table-cart .item .right .item-quan .qty-click button.qtyplus.qty-btn{
+    border-left: none;
+}
+#cartformpage .table-cart .item .right .item-quan .qty-click button.qtyminus.qty-btn{
+    border-right: none;
+}
 
 
 button.btn-addtocart:before {
@@ -366,30 +373,32 @@ button.btn-addtocart {
     border: 1px solid #000000;
 }
 .button:before {
-	position: absolute;
-	content: '';
-	display: block;
-	left: -2px;
-	top: 0;
-	right: -2px;
-	bottom: 0;
-	-webkit-transform: scale(1, 1);
-	transform: scale(1, 1);
-	-webkit-transform-origin: left center;
-	transform-origin: left center;
-	z-index: -1;
-	background-color: #323232;
-	-webkit-transition: -webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-	transition: -webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-	transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-	transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),-webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    position: absolute;
+    content: '';
+    display: block;
+    left: -2px;
+    top: 0;
+    right: -2px;
+    bottom: 0;
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+    z-index: -1;
+    background-color: #323232;
+    -webkit-transition: -webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: -webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),-webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
-.button:hover {color:#252a2b;}
+.button:hover {
+    color:#252a2b;
+}
 .button:hover:before {
-	-webkit-transform-origin: right center;
-	transform-origin: right center;
-	-webkit-transform: scale(0, 1);
-	transform: scale(0, 1);
+    -webkit-transform-origin: right center;
+    transform-origin: right center;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
 }
 a.btn-check, button.buy-now, button.btn-addtocart {
     font-size: 12px;
@@ -400,7 +409,70 @@ a.btn-check, button.buy-now, button.btn-addtocart {
     line-height: 22px;
     width: 100%;
     margin-bottom: 15px;
+}
+/* Style the list */
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #e2e2e2;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+
+/*.size-decor{
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+}
+.size-decor li a:hover{
+    color: #0275d8;
+    text-decoration: none;
 }*/
 
-
-
+.swatch .swatch-element {
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    vertical-align: bottom;
+}
+.swatch .swatch-element label {
+    display: block;
+    margin: 0;
+    background: #fff;
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border: 1px solid #e5e5e5;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 6px;
+    margin: 0 0 10px;
+}

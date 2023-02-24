@@ -29,37 +29,7 @@ var img_products = [
     "../assets/img/Uchiha Madara (5).jpg",
 ]
 
-var dem = 0;
 
-function img_product1() {
-    dem = 0;
-    var img_products_big = document.getElementById("img_products_big");
-    img_products_big.src = img_products[dem];
-}
-
-function img_product2() {
-    dem = 1;
-    var img_products_big = document.getElementById("img_products_big");
-    img_products_big.src = img_products[dem];
-}
-
-function img_product3() {
-    dem = 2;
-    var img_products_big = document.getElementById("img_products_big");
-    img_products_big.src = img_products[dem];
-}
-
-function img_product4() {
-    dem = 3;
-    var img_products_big = document.getElementById("img_products_big");
-    img_products_big.src = img_products[dem];
-}
-
-function img_product5() {
-    dem = 4;
-    var img_products_big = document.getElementById("img_products_big");
-    img_products_big.src = img_products[dem];
-}
 
 // Nextimg_products = function next_img_products()
 // {
