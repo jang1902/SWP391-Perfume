@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/web/src/allproducts.html</file>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/src/java/controller/LogInServlet.java</file>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/src/java/dal/UserDAO.java</file>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/web/forgot.jsp</file>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/nbproject/build-impl.xml</file>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/src/java/dal/DBContext.java</file>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/src/java/dal/DAO.java</file>
-            <file>file:/D:/FPT%20University/Ki5_Spring2023/Project-SWP/SWP/web/home.jsp</file>
+            <file>file:/D:/SWP_Boon_Bo/SWP/web/assets/css/allproducts.css</file>
+            <file>file:/D:/SWP_Boon_Bo/SWP/web/allproducts.jsp</file>
+            <file>file:/D:/SWP_Boon_Bo/SWP/web/src/allproducts.html</file>
         </group>
     </open-files>
 </project-private>
