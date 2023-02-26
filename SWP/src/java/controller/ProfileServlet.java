@@ -4,7 +4,6 @@
  */
 package controller;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import dal.OrderDAO;
 import model.User;
 
 /**
@@ -39,7 +39,7 @@ public class ProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfileServlet</title>");            
+            out.println("<title>Servlet ProfileServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ProfileServlet at " + request.getContextPath() + "</h1>");
@@ -62,10 +62,10 @@ public class ProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User usernow = (User) session.getAttribute("userNow");
-        //Order od = new Order();
-        //int sumMoney = od.getSumTotalMoney(usernow.getId());
+        OrderDAO od = new OrderDAO();
+        int sumMoney = od.getSumTotalMoney(usernow.getId());
         request.setAttribute("userNow", usernow);
-        //request.setAttribute("sumMoney", sumMoney);
+        request.setAttribute("sumMoney", sumMoney);
         request.getRequestDispatcher("profile_info.jsp").forward(request, response);
     }
 

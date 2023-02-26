@@ -72,7 +72,7 @@
 
                     </c:if>
                     <c:if test="${sessionScope.userNow.role_id!=null}">
-                    <a href="#" class="login_cart-item-link" >
+                    <a href="profile" class="login_cart-item-link" >
                         <div class="login-cart_item">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -284,7 +284,7 @@
                         </a>
                         <div class="describe_products">
                             <div class="ratings_products">
-                                <span>${map.key.title}</span>
+                                <span>${p.title}</span>
                                 <span>
                                     <i class="fa-solid fa-star icon_star"></i>
                                     <i class="fa-solid fa-star icon_star"></i>
