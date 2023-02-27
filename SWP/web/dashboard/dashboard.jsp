@@ -1,3 +1,12 @@
+<%-- 
+    Document   : dashboard
+    Created on : Feb 24, 2023, 11:19:14 PM
+    Author     : asus
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <!doctype html>
 <html lang="en">
 
@@ -167,10 +176,10 @@
                                         <div class="collapse menu-collapse" id="sellers">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-cards.html">Staff's information card</a>
+                                                    <a class="sidebar-link lh-1" href="staffcards">Staff's information card</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-list.html">User's information list</a>
+                                                    <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="sellers-profile.html">Sellers Profile</a>
