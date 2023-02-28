@@ -14,14 +14,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Category;
+import model.Gender;
 import model.Product;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name="CRUDProductServlet", urlPatterns={"/crudp"})
-public class CRUDProductServlet extends HttpServlet {
+@WebServlet(name="DeleteProductServlet", urlPatterns={"/deleteproduct"})
+public class DeleteProductServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +40,10 @@ public class CRUDProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CRUDProductServlet</title>");  
+            out.println("<title>Servlet DeleteProductServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CRUDProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,42 +60,25 @@ public class CRUDProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try{
-        CrudDAO d = new CrudDAO();
-            
-            List<Product> list = d.getAllProduct();
-            request.setAttribute("list1", list);
-            
-            int page, numperpage = 15;
-            int size = list.size();
-            int num = (size%6==0?(size/15):((size/15)+1));
-            
-            String xpage = request.getParameter("page");
-            if (xpage == null) {
-                page = 1;
-            } else {
-                page = Integer.parseInt(xpage);
-            }
+        
+        String pid_raw = request.getParameter("pid");
+        String sid_raw = request.getParameter("sid");
+        
+        int pid,sid;
+        
+        pid = Integer.parseInt(pid_raw);
+        sid = Integer.parseInt(sid_raw);
+        
+        CrudDAO crud = new CrudDAO();
 
-            int start, end;
-
-            start = (page - 1) * numperpage;
-            end = Math.min(page * numperpage, size);
-            
-            request.setAttribute("page", page);
-            
-            request.setAttribute("num", num);
-            
-            List<Product> title = d.getListByPage(list, start, end);
-            request.setAttribute("list", title);
-            
-
-            
-            request.getRequestDispatcher("manageproduct.jsp").forward(request, response);
-            
-        }catch(IOException e){
-            System.out.println(e);
-        }
+        crud.deleteProduct(pid);
+        
+        crud.deleteSizeProduct(pid, sid);
+        
+        request.getRequestDispatcher("dashboardp").forward(request, response);
+        
+        
+        
     } 
 
     /** 
@@ -106,11 +91,8 @@ public class CRUDProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       
         processRequest(request, response);
-
     }
-    
 
     /** 
      * Returns a short description of the servlet.
