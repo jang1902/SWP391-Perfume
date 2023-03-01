@@ -1,13 +1,10 @@
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <!doctype html>
 <html lang="en">
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:46:39 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/sellers-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <meta charset="utf-8">
@@ -15,10 +12,9 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Dashboard</title>
+        <title>Profile</title>
 
-        <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+        <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
         <link rel="stylesheet" href="./vendors/bootstrap-select/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="./vendors/slick/slick.min.css">
@@ -33,17 +29,17 @@
 
         <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="./assets/img/small_logo1.png">
+        <link rel="icon" href="./img/favicon.jpg">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Dashboard">
+        <meta name="twitter:title" content="Sellers profile">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="dashboard.html">
-        <meta property="og:title" content="Dashboard">
+        <meta property="og:url" content="sellers-profile.html">
+        <meta property="og:title" content="Sellers profile">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
@@ -58,13 +54,13 @@
                     <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
                         <div class="sticky-area border-right">
                             <div class="d-flex px-3 px-xl-6 w-100 border-bottom py-2">
-                                <a class="navbar-brand" href="home">
-                                    <img src="./assets/img/Logo.png" alt="Glowing">
+                                <a class="navbar-brand" href="./index.html">
+                                    <img src="./img/logo-black.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
                                     <div class="d-flex align-items-center d-xl-none">
                                         <div class="dropdown px-3">
-                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
+                                            <a href="#" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
                                                 <div class="w-48px">
                                                     <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
                                                 </div>
@@ -108,7 +104,7 @@
                                 </form>
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                        <a href="dashboard.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-home-lg-alt"></i>
                                             </span>
@@ -126,10 +122,16 @@
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-product-grid.html">Update Product</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-categories.html">Categoried</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -145,10 +147,13 @@
                                         <div class="collapse menu-collapse" id="order">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
+                                                    <a class="sidebar-link lh-1" href="order-list.html">Order List 1</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
+                                                    <a class="sidebar-link lh-1" href="order-list-2.html">Order List 2</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="order-detail.html">Order detail</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -158,19 +163,19 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-users"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Manage account</span>
+                                            <span class="sidebar-item-text">Sellers</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="sellers">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="staffcards">Staff's information card</a>
+                                                    <a class="sidebar-link lh-1" href="sellers-cards.html">Sellers Cards</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="userlist">User's information list</a>
+                                                    <a class="sidebar-link lh-1" href="sellers-list.html">Sellers List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="showprofile">Check Profile</a>
+                                                    <a class="sidebar-link lh-1" href="sellers-profile.html">Sellers Profile</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -200,7 +205,25 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#transaction" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-usd-circle"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Transactions</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="transaction">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="transactions-1.html">Transactions 1</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="transactions-2.html">Transactions 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#account" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
@@ -228,7 +251,14 @@
                                             <span class="sidebar-item-text">Reivews</span>
                                         </a>
                                     </li>
-                                    
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                        <a href="brand.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-certificate"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Brand</span>
+                                        </a>
+                                    </li>
                                     <li class="list-group-item separate p-0 my-3 mx-n3"></li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
@@ -241,13 +271,22 @@
                                         <div class="collapse menu-collapse" id="setting">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting sample 1</a>
                                                 </li>
-                                                
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="setting-sample-2.html">Setting sample 2</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>
-                                    
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                        <a href="starter-page.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-tag"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Starter page</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -306,167 +345,75 @@
                             </nav>
                         </div>
                     </header>
+                    <c:set value="${requestScope.userP}" var="u"/>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
                         <div class="dashboard-page-content">
-                            <div class="row mb-6 align-items-center">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Dashboard</h2>
-                                    <p class="mb-0">Whole data about your business here</p>
-                                </div>
-                                <div class="col-sm-6 text-sm-right">
-                                    <a href="#" class="btn btn-primary"><i class="fal fa-file-plus"></i><span class="d-inline-block ml-1">Create report</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-green bg-green-light">
-                                                        <i class="fas fa-usd-circle"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Revenue</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">$13,456.5</span>
-                                                    <span class="fs-14">Shipping fees are not included.</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-success bg-success-light">
-                                                        <i class="fas fa-truck"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Orders</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">53.668</span>
-                                                    <span class="fs-14">Excluding orders in transit</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-warning bg-warning-light">
-                                                        <i class="fas fa-qrcode"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Products</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">9.856</span>
-                                                    <span class="fs-14">In 19 Categories</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-info bg-info-light">
-                                                        <i class="fas fa-shopping-bag"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Monthly Earning</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">$6,982</span>
-                                                    <span class="fs-14">Based in your local time.</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-8">
-                                    <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Sale statistics</h5>
-                                        <div class="card-body p-0">
-                                            <canvas id="mychart" class="chartjs" data-chart-type="line" data-chart-labels='["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]' data-chart-options='{"elements":{"line":{"tension":0.3}},"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' data-chart-datasets='[{"label":"Sales","data":[18,17,4,3,2,20,25,31,25,22,20,9],"backgroundColor":"#2C78DC33","hoverBackgroundColor":"#2C78DC33","borderColor":"#2C78DC","hoverBorderColor":"#2C78DC","borderWidth":1,"fill":true},{"label":"Visitors","data":[40,20,17,9,23,35,39,30,34,25,27,17],"backgroundColor":"#04D18233","hoverBackgroundColor":"#04D18233","borderColor":"#04D182","hoverBorderColor":"#04D182","borderWidth":1,"fill":true},{"label":"Products","data":[30,10,27,19,33,15,19,20,24,15,37,6],"backgroundColor":"#EF287830","hoverBackgroundColor":"#EF287830","borderColor":"#EF287391","hoverBorderColor":"#EF287391","borderWidth":1,"fill":true}]' data-chart-additional-options='{"chatId":"mychart"}' height="265"></canvas>
-                                        </div>
-                                    </div>
+                            <div class="card mb-5 rounded-xl card-brand">
+                                <div class="card-header bg-accent p-4" style="height: 150px"></div>
+                                <div class="card-body p-4">
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="card mb-4 rounded-xl">
-                                                <div class="card-body">
-                                                    <h5 class="card-title fs-16 mb-3">New Members</h5>
-                                                    <div class="new-member-list">
-                                                        <div class="d-flex align-items-center justify-content-between mb-6">
-                                                            <div class="media">
-                                                                <div class="w-40px mr-2">
-                                                                    <img src="./img/avatar-4.png" alt="" class="rounded-circle ">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h6 class="fs-14 mb-0 lh-1">Patric Adams</h6>
-                                                                    <p class="text-muted fs-12 mb-0">Sanfrancisco</p>
-                                                                </div>
-                                                            </div>
-                                                            <a href="#" class="btn btn-xs btn-primary"> View Profile </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="col-xl col-lg flex-grow-0" style="flex-basis: 230px">
+                                            <div class="img-thumbnail shadow w-100 bg-white position-relative text-center" style="height: 190px; width: 200px; margin-top: -120px">
+                                                <img class="img-fluid" src="./img/seller-profile.jpg" alt="Logo Brand">
                                             </div>
                                         </div>
+
+                                        <div class="col-xl col-lg">
+                                            <h3 class="fs-24 mb-0">${u.firstname} ${u.lastname}</h3>
+                                            <p>${u.address}</p>
+                                        </div>
+
+                                        <div class="col-xl-4 text-xl-right">
+                                            <select class="form-control w-auto d-inline-block my-1">
+                                                <option>Actions</option>
+                                                <option>Update</option>
+                                                <option>Delete</option>
+                                            </select>
+
+                                        </div>
+
                                     </div>
+
+                                    <hr class="my-4">
+                                    <div class="row g-4">
+
+
+                                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                                            <h6 class="f-18 mb-1">Contacts</h6>
+                                            <p class="mb-0">
+
+                                                Email: ${u.email} <br>
+                                                Phone number: ${u.phone_number}
+                                            </p>
+                                        </div>
+
+                                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                                            <h6 class="f-18 mb-1">Role</h6>
+                                            <p class="mb-0">
+                                                Role: ${u.role.name} <br>
+                                                Address: ${u.address} <br>
+                                                User status: 
+                                                <c:if test="${u.deleted == 1}"> 
+                                                    Deleted
+                                                </c:if>
+                                                <c:if test="${u.deleted == 0}"> 
+                                                    Active
+                                                </c:if>
+                                            </p>
+                                        </div>
+
+                                        <div class="col-sm-6 col-xl-4 text-xl-right d-flex align-items-center justify-content-xl-end">
+                                            <div class="mapbox position-relative d-inline-block">
+                                                <img src="./img/map.jpg" class="rounded" height="120" alt="map">
+                                                <span class="map-pin" style="top: 50px; left: 100px"></span>
+                                                <button class="btn btn-sm btn-primary position-absolute pos-fixed-bottom-right mb-3 mr-3 fs-12">Large</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="col-xl-4">
-                                    <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Revenue Base on Area</h5>
-                                        <div class="card-body p-0">
-                                            <canvas id="mychart01" class="chartjs" data-chart-type="bar" data-chart-labels='["900","1200","1400","1600"]' data-chart-options='{"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' data-chart-datasets='[{"label":"US","data":[233,321,783,900],"backgroundColor":"#5897FB","hoverBackgroundColor":"#5897FB","borderColor":"#5897FB","hoverBorderColor":"#5897FB","borderWidth":1,"fill":true},{"label":"Europe","data":[408,547,675,734],"backgroundColor":"#7BCF86","hoverBackgroundColor":"#7BCF86","borderColor":"#7BCF86","hoverBorderColor":"#7BCF86","borderWidth":1,"fill":true},{"label":"Asian","data":[208,447,575,634],"backgroundColor":"#FF9076","hoverBackgroundColor":"#FF9076","borderColor":"#FF9076","hoverBorderColor":"#FF9076","borderWidth":1,"fill":true},{"label":"Africa","data":[123,345,122,302],"backgroundColor":"#D595E5","hoverBackgroundColor":"#D595E5","borderColor":"#D595E5","hoverBorderColor":"#D595E5","borderWidth":"1","fill":true}]' data-chart-additional-options='{"chatId":"mychart01"}' height="222"></canvas>
-                                        </div>
-                                    </div>
-                                    <div class="card mb-4 p-4 rounded-xl">
-                                        <div class="card-body p-0">
-                                            <h5 class="card-title fs-16 mb-2">Marketing Chanel</h5>
-                                            <span class="text-muted fs-12">Facebook</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 15%">
-                                                    15%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Instagram</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 65%">
-                                                    65%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Google</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 51%">
-                                                    51%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Twitter</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
-                                                    80%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Other</span>
-                                            <div class="progress ">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
-                                                    80%
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
 
 
@@ -942,5 +889,5 @@
     </svg>
 </body>
 
-<!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:47:07 GMT -->
+<!-- Mirrored from templates.g5plus.net/glowing/dashboard/sellers-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
 </html>

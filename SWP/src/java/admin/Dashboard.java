@@ -4,7 +4,6 @@
  */
 package admin;
 
-import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,15 +11,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "StaffCards", urlPatterns = {"/staffcards"})
-public class StaffCards extends HttpServlet {
+@WebServlet(name = "Dashboard", urlPatterns = {"/dashboard"})
+public class Dashboard extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +36,10 @@ public class StaffCards extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet StaffCards</title>");            
+            out.println("<title>Servlet Dashboard</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet StaffCards at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Dashboard at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,12 +57,7 @@ public class StaffCards extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        DashboardDAO d = new DashboardDAO();
-        List<User> lsS = d.getAllStaff();
-        request.setAttribute("listStaff", lsS);
-
-        request.getRequestDispatcher("dashboard/staffcards.jsp").forward(request, response);
+        request.getRequestDispatcher("dashboard/dashboard.jsp").forward(request, response);
     }
 
     /**

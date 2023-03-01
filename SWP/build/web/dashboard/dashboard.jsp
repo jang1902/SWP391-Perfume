@@ -1,12 +1,9 @@
-<%-- 
-    Document   : dashboard
-    Created on : Feb 24, 2023, 11:19:14 PM
-    Author     : asus
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -18,38 +15,38 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Dashboard - Glowing</title>
+        <title>Dashboard</title>
 
-        <script src="../cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script>
+        <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../vendors/fontawesome-pro-5/css/all.css">
-        <link rel="stylesheet" href="../vendors/bootstrap-select/css/bootstrap-select.min.css">
-        <link rel="stylesheet" href="../vendors/slick/slick.min.css">
-        <link rel="stylesheet" href="../vendors/magnific-popup/magnific-popup.min.css">
-        <link rel="stylesheet" href="../vendors/jquery-ui/jquery-ui.min.css">
-        <link rel="stylesheet" href="../vendors/animate.css">
-        <link rel="stylesheet" href="../vendors/mapbox-gl/mapbox-gl.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/font-phosphor/css/phosphor.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/tuesday-night/stylesheet.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/butler/stylesheet.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/a-antara-distance/stylesheet.min.css">
+        <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
+        <link rel="stylesheet" href="./vendors/bootstrap-select/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="./vendors/slick/slick.min.css">
+        <link rel="stylesheet" href="./vendors/magnific-popup/magnific-popup.min.css">
+        <link rel="stylesheet" href="./vendors/jquery-ui/jquery-ui.min.css">
+        <link rel="stylesheet" href="./vendors/animate.css">
+        <link rel="stylesheet" href="./vendors/mapbox-gl/mapbox-gl.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/font-phosphor/css/phosphor.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/tuesday-night/stylesheet.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/butler/stylesheet.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/a-antara-distance/stylesheet.min.css">
 
-        <link rel="stylesheet" href="../css/themes.css">
+        <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="../img/favicon.jpg">
+        <link rel="icon" href="./assets/img/small_logo1.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
         <meta name="twitter:title" content="Dashboard">
         <meta name="twitter:description" content="Glowing Shop Html Template">
-        <meta name="twitter:image" content="../img/logo_01.png">
+        <meta name="twitter:image" content="./img/logo_01.png">
 
         <meta property="og:url" content="dashboard.html">
         <meta property="og:title" content="Dashboard">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="../img/logo_01.png">
+        <meta property="og:image" content="./img/logo_01.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
@@ -61,15 +58,15 @@
                     <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
                         <div class="sticky-area border-right">
                             <div class="d-flex px-3 px-xl-6 w-100 border-bottom py-2">
-                                <a class="navbar-brand" href="../index.html">
-                                    <img src="../img/logo-black.png" alt="Glowing">
+                                <a class="navbar-brand" href="home">
+                                    <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
                                     <div class="d-flex align-items-center d-xl-none">
                                         <div class="dropdown px-3">
-                                            <a href="#" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
+                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
                                                 <div class="w-48px">
-                                                    <img src="../img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                    <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
                                                 </div>
                                                 <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
                                                     Ronald Hunter
@@ -111,7 +108,7 @@
                                 </form>
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-home-lg-alt"></i>
                                             </span>
@@ -129,16 +126,10 @@
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-product-grid.html">Update Product</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-categories.html">Categoried</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -154,13 +145,10 @@
                                         <div class="collapse menu-collapse" id="order">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-list.html">Order List 1</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-list-2.html">Order List 2</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-detail.html">Order detail</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -182,7 +170,7 @@
                                                     <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-profile.html">Sellers Profile</a>
+                                                    <a class="sidebar-link lh-1" href="showprofile">Check Profile</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -212,25 +200,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#transaction" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-usd-circle"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Transactions</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="transaction">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="transactions-1.html">Transactions 1</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="transactions-2.html">Transactions 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#account" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
@@ -242,10 +212,10 @@
                                         <div class="collapse menu-collapse" id="account">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="../user-login.html">User login</a>
+                                                    <a class="sidebar-link lh-1" href="./user-login.html">User login</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="../user-registration.html">User registration</a>
+                                                    <a class="sidebar-link lh-1" href="./user-registration.html">User registration</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -258,14 +228,7 @@
                                             <span class="sidebar-item-text">Reivews</span>
                                         </a>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="brand.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-certificate"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Brand</span>
-                                        </a>
-                                    </li>
+                                    
                                     <li class="list-group-item separate p-0 my-3 mx-n3"></li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
@@ -278,22 +241,13 @@
                                         <div class="collapse menu-collapse" id="setting">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting sample 1</a>
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-2.html">Setting sample 2</a>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="starter-page.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-tag"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Starter page</span>
-                                        </a>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -331,16 +285,16 @@
                                     <div class="dropdown px-2 py-2 dropdown-language">
                                         <a class="dropdown-toggle fs-20" data-toggle="dropdown"><i class="far fa-globe-americas"></i></a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item text-brand" href="#"><img src="../img/flag-us.png" alt="English">English</a>
-                                            <a class="dropdown-item" href="#"><img src="../img/flag-fr.png" alt="Français">Français</a>
-                                            <a class="dropdown-item" href="#"><img src="../img/flag-jp.png" alt="Japan">日本語</a>
-                                            <a class="dropdown-item" href="#"><img src="../img/flag-cn.png" alt="China">中国人</a>
+                                            <a class="dropdown-item text-brand" href="#"><img src="./img/flag-us.png" alt="English">English</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-fr.png" alt="Français">Français</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-jp.png" alt="Japan">日本語</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-cn.png" alt="China">中国人</a>
                                         </div>
                                     </div>
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
-                                                <img src="../img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right w-100">
@@ -447,7 +401,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-12">
                                             <div class="card mb-4 rounded-xl">
                                                 <div class="card-body">
                                                     <h5 class="card-title fs-16 mb-3">New Members</h5>
@@ -455,124 +409,16 @@
                                                         <div class="d-flex align-items-center justify-content-between mb-6">
                                                             <div class="media">
                                                                 <div class="w-40px mr-2">
-                                                                    <img src="../img/avatar-4.png" alt="" class="rounded-circle ">
+                                                                    <img src="./img/avatar-4.png" alt="" class="rounded-circle ">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h6 class="fs-14 mb-0 lh-1">Patric Adams</h6>
                                                                     <p class="text-muted fs-12 mb-0">Sanfrancisco</p>
                                                                 </div>
                                                             </div>
-                                                            <a href="#" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i> Add</a>
-                                                        </div>
-                                                        <div class="d-flex align-items-center justify-content-between mb-6">
-                                                            <div class="media">
-                                                                <div class="w-40px mr-2">
-                                                                    <img src="../img/avatar-2.png" alt="" class="rounded-circle ">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h6 class="fs-14 mb-0 lh-1">Patric Adams</h6>
-                                                                    <p class="text-muted fs-12 mb-0">Sanfrancisco</p>
-                                                                </div>
-                                                            </div>
-                                                            <a href="#" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i> Add</a>
-                                                        </div>
-                                                        <div class="d-flex align-items-center justify-content-between mb-6">
-                                                            <div class="media">
-                                                                <div class="w-40px mr-2">
-                                                                    <img src="../img/avatar-3.png" alt="" class="rounded-circle ">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h6 class="fs-14 mb-0 lh-1">Patric Adams</h6>
-                                                                    <p class="text-muted fs-12 mb-0">Sanfrancisco</p>
-                                                                </div>
-                                                            </div>
-                                                            <a href="#" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i> Add</a>
+                                                            <a href="#" class="btn btn-xs btn-primary"> View Profile </a>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <div class="card mb-4 rounded-xl p-4">
-                                                <div class="card-body p-0">
-                                                    <h5 class="card-title fs-16 mb-3">Recent activities</h5>
-                                                    <ul class="verti-timeline list-unstyled fs-13 mx-2">
-                                                        <li class="event-list d-flex align-items-center position-relative ">
-                                                            <div class="event-timeline-dot">
-                                                                <i class="fal fa-play-circle"></i>
-                                                            </div>
-                                                            <div class="media">
-                                                                <div class="mr-3">
-                                                                    <h6 class="fs-13 mb-0"><span class="d-inline-block mr-3 w-50px">Today</span>
-                                                                        <i class="fal fa-long-arrow-right text-secondary"></i>
-                                                                    </h6>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="mb-0 fs-13">Lorem ipsum dolor sit amet consectetur</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="event-list d-flex align-items-center position-relative active">
-                                                            <div class="event-timeline-dot">
-                                                                <i class="fal fa-play-circle"></i>
-                                                            </div>
-                                                            <div class="media">
-                                                                <div class="mr-3">
-                                                                    <h6 class="fs-13 mb-0"><span class="d-inline-block mr-3 w-50px">17 May</span>
-                                                                        <i class="fal fa-long-arrow-right text-secondary"></i>
-                                                                    </h6>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="mb-0 fs-13">Debitis nesciunt voluptatum dicta reprehenderit</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="event-list d-flex align-items-center position-relative ">
-                                                            <div class="event-timeline-dot">
-                                                                <i class="fal fa-play-circle"></i>
-                                                            </div>
-                                                            <div class="media">
-                                                                <div class="mr-3">
-                                                                    <h6 class="fs-13 mb-0"><span class="d-inline-block mr-3 w-50px">13 May</span>
-                                                                        <i class="fal fa-long-arrow-right text-secondary"></i>
-                                                                    </h6>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="mb-0 fs-13">Accusamus voluptatibus voluptas.</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="event-list d-flex align-items-center position-relative ">
-                                                            <div class="event-timeline-dot">
-                                                                <i class="fal fa-play-circle"></i>
-                                                            </div>
-                                                            <div class="media">
-                                                                <div class="mr-3">
-                                                                    <h6 class="fs-13 mb-0"><span class="d-inline-block mr-3 w-50px">05 April</span>
-                                                                        <i class="fal fa-long-arrow-right text-secondary"></i>
-                                                                    </h6>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="mb-0 fs-13">At vero eos et accusamus et iusto odio dignissi</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="event-list d-flex align-items-center position-relative ">
-                                                            <div class="event-timeline-dot">
-                                                                <i class="fal fa-play-circle"></i>
-                                                            </div>
-                                                            <div class="media">
-                                                                <div class="mr-3">
-                                                                    <h6 class="fs-13 mb-0"><span class="d-inline-block mr-3 w-50px">26 Mar</span>
-                                                                        <i class="fal fa-long-arrow-right text-secondary"></i>
-                                                                    </h6>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="mb-0 fs-13">Responded to need “Volunteer Activities</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -622,193 +468,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card mb-4 rounded-xl p-4">
-                                <div class="card-header bg-transparent px-0 pt-0 pb-4">
-                                    <h4 class="card-title fs-18 mb-3">Latest orders</h4>
-                                    <div class="row align-items-center">
-                                        <div class="col-md-3 col-12 mr-auto mb-md-0 mb-3">
-                                            <select class="form-control bg-input border-0">
-                                                <option selected="" data-select2-id="3">All Categories</option>
-                                                <option>Women's Clothing</option>
-                                                <option>Men's Clothing</option>
-                                                <option>Cellphones</option>
-                                                <option>Computer &amp; Office</option>
-                                                <option>Consumer Electronics</option>
-                                                <option>Jewelry &amp; Accessories</option>
-                                                <option>Home &amp; Garden</option>
-                                                <option>Luggage &amp; Bags</option>
-                                                <option>Shoes</option>
-                                                <option>Mother &amp; Kids</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2 col-6">
-                                            <input type="date" class="form-control bg-input border-0">
-                                        </div>
-                                        <div class="col-md-2 col-6">
-                                            <select class="form-control bg-input border-0">
-                                                <option>Status</option>
-                                                <option>All</option>
-                                                <option>Paid</option>
-                                                <option>Chargeback</option>
-                                                <option>Refund</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body px-0 pt-4 pb-0">
-                                    <div class="table-responsive">
-                                        <div class="table-responsive">
-                                            <table class="table align-middle table-nowrap mb-0 table-borderless">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th scope="col" class="text-center">
-                                                            <div class="form-check align-middle">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck01">
-                                                                <label class="form-check-label" for="transactionCheck01"></label>
-                                                            </div>
-                                                        </th>
-                                                        <th class="align-middle" scope="col">Order ID</th>
-                                                        <th class="align-middle" scope="col">Billing Name</th>
-                                                        <th class="align-middle" scope="col">Date</th>
-                                                        <th class="align-middle" scope="col">Total</th>
-                                                        <th class="align-middle" scope="col">Payment Status</th>
-                                                        <th class="align-middle" scope="col">Payment Method</th>
-                                                        <th class="align-middle" scope="col">View Details</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck1">
-                                                                <label class="form-check-label" for="transactionCheck1"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="#" class="fw-bold">#SK2540</a></td>
-                                                        <td class="text-secondary">Neal Matthews</td>
-                                                        <td>07 Oct, 2021</td>
-                                                        <td>$400</td>
-                                                        <td>
-                                                            <span class="badge rounded-lg badge-soft-success text-capitalize fs-12">paid</span>
-                                                        </td>
-                                                        <td><i class="fal fa-credit-card mr-2 fs-14"></i> Mastercard</td>
-                                                        <td>
-                                                            <a href="order-detail.html" class="btn btn-primary btn-xs"> View details</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck2">
-                                                                <label class="form-check-label" for="transactionCheck2"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="#" class="fw-bold">#SK2541</a></td>
-                                                        <td class="text-secondary">Jamal Burnett</td>
-                                                        <td>07 Oct, 2021</td>
-                                                        <td>$380</td>
-                                                        <td>
-                                                            <span class="badge rounded-lg badge-soft-danger text-capitalize fs-12">Chargeback</span>
-                                                        </td>
-                                                        <td><i class="fal fa-credit-card mr-2 fs-14"></i> Visa</td>
-                                                        <td>
-                                                            <a href="order-detail.html" class="btn btn-primary btn-xs"> View details</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck3">
-                                                                <label class="form-check-label" for="transactionCheck3"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="#" class="fw-bold">#SK2542</a></td>
-                                                        <td class="text-secondary">Juan Mitchell</td>
-                                                        <td>06 Oct, 2021</td>
-                                                        <td>$384</td>
-                                                        <td>
-                                                            <span class="badge rounded-lg badge-soft-success text-capitalize fs-12">Paid</span>
-                                                        </td>
-                                                        <td><i class="fal fa-credit-card mr-2 fs-14"></i> Paypal</td>
-                                                        <td>
-                                                            <a href="order-detail.html" class="btn btn-primary btn-xs"> View details</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck4">
-                                                                <label class="form-check-label" for="transactionCheck4"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="#" class="fw-bold">#SK2543</a></td>
-                                                        <td class="text-secondary">Barry Dick</td>
-                                                        <td>05 Oct, 2021</td>
-                                                        <td>$412</td>
-                                                        <td>
-                                                            <span class="badge rounded-lg badge-soft-success text-capitalize fs-12">Paid</span>
-                                                        </td>
-                                                        <td><i class="fal fa-credit-card mr-2 fs-14"></i> Mastercard</td>
-                                                        <td>
-                                                            <a href="order-detail.html" class="btn btn-primary btn-xs"> View details</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck5">
-                                                                <label class="form-check-label" for="transactionCheck5"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="#" class="fw-bold">#SK2544</a></td>
-                                                        <td class="text-secondary">Ronald Taylor</td>
-                                                        <td>04 Oct, 2021</td>
-                                                        <td>$404</td>
-                                                        <td>
-                                                            <span class="badge rounded-lg badge-soft-warning text-capitalize fs-12">Refund</span>
-                                                        </td>
-                                                        <td><i class="fal fa-credit-card mr-2 fs-14"></i> Visa</td>
-                                                        <td>
-                                                            <a href="order-detail.html" class="btn btn-primary btn-xs"> View details</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck6">
-                                                                <label class="form-check-label" for="transactionCheck6"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="#" class="fw-bold">#SK2545</a></td>
-                                                        <td class="text-secondary">Jacob Hunter</td>
-                                                        <td>04 Oct, 2021</td>
-                                                        <td>$392</td>
-                                                        <td>
-                                                            <span class="badge rounded-lg badge-soft-success text-capitalize fs-12">Paid</span>
-                                                        </td>
-                                                        <td><i class="fal fa-credit-card mr-2 fs-14"></i> Paypal</td>
-                                                        <td>
-                                                            <a href="order-detail.html" class="btn btn-primary btn-xs"> View details</a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <nav aria-label="Page navigation example" class="mt-6 mb-4">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item mx-1">
-                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
+
+
                         </div>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
                             <div class="row">
@@ -828,21 +489,21 @@
             </div>
         </div>
 
-        <script src="../vendors/jquery.min.js"></script>
-        <script src="../vendors/jquery-ui/jquery-ui.min.js"></script>
-        <script src="../vendors/bootstrap/bootstrap.bundle.js"></script>
-        <script src="../vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
-        <script src="../vendors/slick/slick.min.js"></script>
-        <script src="../vendors/waypoints/jquery.waypoints.min.js"></script>
-        <script src="../vendors/counter/countUp.js"></script>
-        <script src="../vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
-        <script src="../vendors/hc-sticky/hc-sticky.min.js"></script>
-        <script src="../vendors/jparallax/TweenMax.min.js"></script>
-        <script src="../vendors/mapbox-gl/mapbox-gl.js"></script>
-        <script src="../vendors/isotope/isotope.js"></script>
-        <script src="../vendors/chartjs/chart.min.js"></script>
+        <script src="./vendors/jquery.min.js"></script>
+        <script src="./vendors/jquery-ui/jquery-ui.min.js"></script>
+        <script src="./vendors/bootstrap/bootstrap.bundle.js"></script>
+        <script src="./vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
+        <script src="./vendors/slick/slick.min.js"></script>
+        <script src="./vendors/waypoints/jquery.waypoints.min.js"></script>
+        <script src="./vendors/counter/countUp.js"></script>
+        <script src="./vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
+        <script src="./vendors/hc-sticky/hc-sticky.min.js"></script>
+        <script src="./vendors/jparallax/TweenMax.min.js"></script>
+        <script src="./vendors/mapbox-gl/mapbox-gl.js"></script>
+        <script src="./vendors/isotope/isotope.js"></script>
+        <script src="./vendors/chartjs/chart.min.js"></script>
 
-        <script src="../js/theme.js"></script>
+        <script src="./js/theme.js"></script>
         <div class="modal sign-in" id="sign-in" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

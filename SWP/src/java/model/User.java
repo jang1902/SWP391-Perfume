@@ -15,6 +15,7 @@ public class User {
     private String firstname,lastname,username,password,email,phone_number,address;
     private Date created_at,updated_at;
     private int deleted;
+    private Role role;
     public User() {
     }
 
@@ -32,6 +33,31 @@ public class User {
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.deleted = deleted;
+    }
+
+    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, String address, Date created_at, Date updated_at, int deleted, Role role) {
+        this.id = id;
+        this.loginType = loginType;
+        this.role_id = role_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.address = address;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.deleted = deleted;
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public int getId() {

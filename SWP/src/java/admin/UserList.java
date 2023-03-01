@@ -4,6 +4,7 @@
  */
 package admin;
 
+import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.User;
 
 /**
  *
@@ -36,7 +39,7 @@ public class UserList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserList</title>");            
+            out.println("<title>Servlet UserList</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UserList at " + request.getContextPath() + "</h1>");
@@ -57,7 +60,11 @@ public class UserList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        DashboardDAO d = new DashboardDAO();
+        List<User> lsU = d.getAllUser();
+        request.setAttribute("listUser", lsU);
+
+        request.getRequestDispatcher("dashboard/userlist.jsp").forward(request, response);
     }
 
     /**
