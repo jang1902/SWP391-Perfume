@@ -88,7 +88,7 @@
 
                     </c:if>
                     
-                    <a href="cart.html" class="login_cart-item-link">
+                    <a href="cart" class="login_cart-item-link">
                         <div class="login-cart_item">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>

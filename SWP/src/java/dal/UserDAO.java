@@ -28,7 +28,7 @@ public class UserDAO extends DBContext{
                 return new User(rs.getInt("id"),rs.getInt("loginType"),rs.getInt("role_id"),
                         rs.getString("firstname"),
                         rs.getString("lastname"),username,password,
-                        rs.getString("email"),rs.getString("phone_number"),rs.getInt("address_id"),
+                        rs.getString("email"),rs.getString("phone_number"),
                         rs.getDate("created_at"),rs.getDate("updated_at"),rs.getInt("deleted")
                         );
             }
@@ -47,12 +47,11 @@ public class UserDAO extends DBContext{
                 + "           ,[password]\n"
                 + "           ,[email]\n"
                 + "           ,[phone_number]\n"
-                + "           ,[address_id]\n"
                 + "           ,[created_at]\n"
                 + "           ,[updated_at]\n"
                 + "           ,[deleted])\n"
                 + "     VALUES\n"
-                + "           (1, 1, null, null, ?, ?, ?, null, null,? , null, null)";
+                + "           (1, 1, null, null, ?, ?, ?, null,? , null, null)";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -79,12 +78,11 @@ public class UserDAO extends DBContext{
                 + "           ,[password]\n"
                 + "           ,[email]\n"
                 + "           ,[phone_number]\n"
-                + "           ,[address_id]\n"
                 + "           ,[created_at]\n"
                 + "           ,[updated_at]\n"
                 + "           ,[deleted])\n"
                 + "     VALUES\n"
-                + "           (2, 1, null, null, null, null, ?, null, null, ?, null, null)";
+                + "           (2, 1, null, null, null, null, ?, null, ?, null, null)";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -106,7 +104,7 @@ public class UserDAO extends DBContext{
                 User c = new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
                         rs.getString("firstname"),
                         rs.getString("lastname"), name, rs.getString("password"),
-                        rs.getString("email"), rs.getString("phone_number"),rs.getInt("address_id"),
+                        rs.getString("email"), rs.getString("phone_number"),
                         rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
                 );
                 return c;
@@ -128,7 +126,7 @@ public class UserDAO extends DBContext{
                 User c = new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
                         rs.getString("firstname"),
                         rs.getString("lastname"), rs.getString("username"), rs.getString("password"),
-                        email, rs.getString("phone_number"), rs.getInt("address_id"),
+                        email, rs.getString("phone_number"), 
                         rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
                 );
                 return c;

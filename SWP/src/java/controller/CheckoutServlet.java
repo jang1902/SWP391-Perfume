@@ -5,6 +5,8 @@
 
 package controller;
 
+import dal.AddressDAO;
+import dal.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Address_Detail;
 import model.Cart;
 import model.Item;
 import model.User;
@@ -73,17 +76,30 @@ public class CheckoutServlet extends HttpServlet {
          User u= (User) request.getSession().getAttribute("userNow");
         Cart cart=new Cart(txt,u);
         List<Item> listItem= cart.getItems();
-        int n;
+        int totalQuantity;
         if(listItem!=null){
-            n=listItem.size();
+            totalQuantity=listItem.size();
         }else{
-            n=0;
+            totalQuantity=0;
         }
+        AddressDAO adao=new AddressDAO();
+        List<Address_Detail> listad=adao.getAddressByUserID(u.getId());
         
+        Address_Detail ad=adao.getDefaultAddress(u.getId());
+        
+        request.setAttribute("ad", ad);
+        request.setAttribute("listad", listad);
+        request.setAttribute("totalQuan", totalQuantity);
         request.setAttribute("listItem", listItem);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("checkout.jsp").forward(request, response);
     } 
+    public static void main(String[] args) {
+        
+         AddressDAO adao=new AddressDAO();
+        List<Address_Detail> lista=adao.getAddressByUserID(10);
+           System.out.println(lista);
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -95,7 +111,7 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+      
         Cookie arr[]=request.getCookies();
         String txt="";
         if(arr!=null){
@@ -105,11 +121,13 @@ public class CheckoutServlet extends HttpServlet {
                 response.addCookie(c);
             }
         }
+        int address_id=Integer.parseInt(request.getParameter("address_id"));
         User u= (User)request.getSession().getAttribute("userNow");
-        
         Cart cart=new Cart(txt,u);
         List<Item> listItem=cart.getItems();
-        
+        CartDAO dao=new CartDAO();
+        dao.addOrder(u,address_id, cart);
+        response.sendRedirect("home");
     }
 
     /** 

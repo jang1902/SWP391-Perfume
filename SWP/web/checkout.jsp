@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,8 +18,11 @@
         <link rel="stylesheet" href="./assets/css/cart.css">
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="./assets/css/address.css">
         <link rel="icon" href="./assets/img/small_logo1.png">
-        <title>BOT STORE</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/dialog.js"></script>
+        <title>BOT STORE1</title>
     </head>
     <body>
         <!-- header -->
@@ -197,118 +201,194 @@
         <!-- body -->
         <div id="body">
             <div class="body_container">
-                <div class="body_left">
-                    <div class="body_left-item">
-                        <div class="body_left-item-title">
-                            <div class="body_left-item-title-st">1</div>
-                            <span>Chi tiết giao hàng</span>
-                        </div>
-                        <div class="body_left-item-datetime">
-                            <div class="body_left-item-datetime-child">
-                                <span>Ngày giao hàng</span> <br>
-                                <input type="text" class="input_delivery-datetime">
-                            </div>
-                            <div class="body_left-item-datetime-child">
-                                <span>Thời gian giao hàng</span> <br>
-                                <input type="text" class="input_delivery-datetime">
-                            </div>
-                        </div>
-                        <div class="body_left-item-address">
-                            Địa chỉ giao hàng
-                            <div class="receiver_information">
-                                <div class="receiver_information-child">123 Đống Đa Hà Nội</div>
-                                <div class="receiver_information-child">456 Láng Hạ Hà Nội</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="body_left-item">
-                        <div class="body_left-item-title">
+                <div class="body_left" >
+                    <form action="checkout" method="post">
+                        <div class="body_left-item">
                             <div class="body_left-item-title">
-                                <div class="body_left-item-title-st">2</div>
-                                <span>Thông tin cá nhân</span>
+                                <div class="body_left-item-title-st">1</div>
+                                <span>Địa chỉ nhận hàng</span>
                             </div>
-                        </div>
-                        <div class="body_left-item-phone">
-                            Thông tin liên lạc
-                            <div class="receiver_information">
-                                <div class="receiver_information-child">012346789</div>
-                                <div class="receiver_information-child">012346789</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="body_left-item">
-                        <div class="body_left-item-title">
-                            <div class="body_left-item-title-st">3</div>
-                            <span>Phương thức thanh toán</span>
-                        </div>
-                        <div class="receiver_information-pay">
-                            Phương thức thanh toán đã lưu
-                            <div class="receiver_information">
-                                <div class="receiver_information-child">
-                                    <img src="./assets/img/MBBANK.jpg" class="img_pay">
-                                    <div class="info_pay">
-                                        <span>**** **** **** 1235</span> <br>
-                                        <span>Mai Ngoc Giang</span>
-                                    </div>
-                                </div>
-                                <div class="receiver_information-child">
-                                    <img src="./assets/img/Mastercard_2019_logo.svg.png" class="img_pay">
-                                    <div class="info_pay">
-                                        <span>**** **** **** 1235</span> <br>
-                                        <span>Mai Ngoc Giang</span>
-                                    </div>
-                                </div>
-                                <div class="receiver_information-child">
-                                    <img src="./assets/img/BIDV.jpg" class="img_pay">
-                                    <div class="info_pay">
-                                        <span>**** **** **** 1235</span> <br>
-                                        <span>Mai Ngoc Giang</span>
-                                    </div>
+
+                            <div class="body_left-item-address">
+                                <div class="item-address-font">${sessionScope.userNow.getFirstname()} ${sessionScope.userNow.getLastname()} | ${sessionScope.userNow.getPhone_number()} </div>
+                                <div class="item-address-font2">${ad.detail}, ${ad.ward}, ${ad.district}, ${ad.city}</div>
+                                <c:if test="${ad.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
+                                    <div class="change_address_style"><a class="address_button" href="#login-box">Thay đổi</a></div>
                                 </div>
                             </div>
+
+
+                            <div class="body_left-item">
+                                <div class="body_left-item-title">
+                                    <div class="body_left-item-title">
+                                        <div class="body_left-item-title-st">2</div>
+                                        <span>Sản Phẩm</span>
+                                    </div>
+                                </div>
+
+                                <span class="info_order" ><div style="margin-top: 15px">Đơn đặt hàng của bạn</div></span>
+                                <div class="body_right-item-buy-products">
+                                    <table border="0px">
+                                        <thead>
+                                            <tr class="amount_products">
+                                                <th style="width: 600px">Sản phẩm</th>
+                                                <th style="width: 200px">Đơn Giá</th>
+                                                <th>Số Lượng</th>
+                                                <th>Thành Tiền</th>
+                                            </tr>
+                                        </thead>
+                                    <c:forEach items="${listItem}" var="c">
+                                        <tr class="amount_products">
+                                            <td ><img src="${c.product.thumbnail}" style="width: 40px;height: 40px"/>${c.product.title}${c.size.name}</td>
+                                            <td >₫${c.sizeproduct.price_out}</td>
+                                            <td >${c.quantity}</td>
+                                            <td >₫${c.sizeproduct.price_out*c.quantity}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr class="amount_products">
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <c:if test="${totalQuan!=0}"><th>Tổng tiền(${totalQuan} sản phẩm): ₫${cart.getTotalMoney()}</th></c:if> 
+                                    </tr>
+                                </table>
+
+
+                            </div>
                         </div>
-                       
-                            <form action="checkout" method="post">
-                            <button class="place_order">Đặt Hàng</button> 
-                            </form>
-                  
+
+                        <!-- Hidden Dialog Box-->
+                        <div id="login-box" class="login">
+                            <p class="login_title"> Danh sách địa chỉ</p>
+                            <hr/>
+                            
+                            <a href="#" class="close"><img src="close.png" class="img-close" title="Close Window" alt="Close" /></a>
+                            <div class="login_detail">
+                            <c:forEach items="${listad}" var="l">
+                            <div class="radio_input">
+                                <input class="radioBtnInput" type="radio" name="radio_address" value="${l.id}" />${l.detail}<br/> ${l.ward}, ${l.district}, ${l.city}<br/><c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if><br/><hr/>
+                            </div>
+                            </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hidden Dialog Box-->
+
+                        <button class="place_order">Đặt Hàng</button> 
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <!-- container footer -->
+            <div class="container_footer">
+                <!-- footer logo / online shop -->
+                <div class="footer_contact-logo">
+                    <a href="#">
+                        <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+                    </a>
+                    <p class="footer_contact-logo-text">
+                        Mua các mô hình, lego, trang trí tại của hàng Bot Store.
+                    </p>
+                    <div class="footer_contact-logo-onlineshop">
+                        <a href="#" id="onlineshop">
+                            <div class="online-shop">
+                                <!-- logo shopee -->
+                                <div class="shopee-tiki">
+                                    <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
+                                </div>
+                                <!-- chữ bên cạnh logo -->
+                                <div>
+                                    <span class="online-shop-text-top">Shopping on</span>
+                                    <p class="online-shop-text-bot">Shopee</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" id="onlineshop">
+                            <div class="online-shop">
+                                <!-- logo tiki -->
+                                <div class="shopee-tiki">
+                                    <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
+                                </div>
+                                <!-- chữ bên cạnh logo -->
+                                <div>
+                                    <span class="online-shop-text-top">Shopping on</span>
+                                    <p class="online-shop-text-bot">Tiki</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="body_right">
-
-
-                    <div class="body_right-item">
-                        <span class="info_order">Đơn đặt hàng của bạn</span>
-                        <div class="body_right-item-buy-products">
-                            <c:forEach items="${listItem}" var="c">
-                                <div class="body_right-item-products">
-                                    <span>
-                                        <span class="amount_products">${c.quantity}x</span>  ${c.product.title}</span>
-                                    <span>${c.size.name}</span>
-                                    <span>  ${c.sizeproduct.price_out}</span>
-
-                                </div>
-                            </c:forEach>
-                        </div>
+                <!-- về chúng tôi -->
+                <div class="footer_contact-about">
+                    <!-- title -->
+                    <div class="footer_contact-title">Về chúng tôi</div>
+                    <!-- about us link -->
+                    <div class="footer_contact-about-link">
+                        <a class="about-link" href="#">Careers</a>
+                        <a class="about-link" href="#">Của hàng của chúng tôi</a>
+                        <a class="about-link" href="#">Chính sách giao hàng</a>
+                        <a class="about-link" href="#">Điều khoản dịch vụ</a>
+                        <a class="about-link" href="#">Chính sách quyền riêng tư</a>
                     </div>
-
-
-                    <hr class="body_right-decoration">
-                    <div class="body_right-item">
-                        <div class="body_right-item-products">
-                            <span>Tổng tiền tạm thời</span>
-                            <b>${cart.getTotalMoney()}</b>
-                        </div>
+                </div>
+                <!-- dịch vụ chăm sóc khách hàng -->
+                <div class="footer_contact-customer">
+                    <!-- title -->
+                    <div class="footer_contact-title">Hỗ trợ khách hàng</div>
+                    <!-- customer care link -->
+                    <div class="footer_contact-about-link">
+                        <a class="about-link" href="#">Trung tâm hỗ trợ</a>
+                        <a class="about-link" href="#">Cách để mua hàng</a>
+                        <a class="about-link" href="#">Truy cứu đơn hàng</a>
+                        <a class="about-link" href="#">Hợp tác</a>
+                        <a class="about-link" href="#">Hoàn trả và hoàn tiền</a>
                     </div>
-                    <hr class="body_right-decoration">
-                    <div class="body_right-item">
-                        <div class="body_right-item-products">
-
-                        </div>
+                </div>
+                <!-- liên hệ -->
+                <div class="footer_contact-contact">
+                    <!-- title -->
+                    <div class="footer_contact-title">Liên hệ chúng tôi</div>
+                    <!-- địa chỉ -->
+                    <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
+                    <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
+                    <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
+                    <div class="footer_contact-icon">
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-twitter"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function Address_Choice() {
+                var x = document.getElementById("btn_address").value;
+                document.getElementById("input_address_id").value = x;
+            }
+        </script>
         <!-- end body -->
     </body>
 </html>
