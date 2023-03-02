@@ -72,7 +72,7 @@
 
                     </c:if>
                     <c:if test="${sessionScope.userNow.role_id!=null}">
-                    <a href="#" class="login_cart-item-link" >
+                    <a href="profile" class="login_cart-item-link" >
                         <div class="login-cart_item">
                             <i class="fa-solid fa-user"></i>
                         </div>
