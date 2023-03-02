@@ -1,15 +1,9 @@
-<%-- 
-    Document   : userlist
-    Created on : Feb 24, 2023, 11:23:43 PM
-    Author     : asus
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/userlist by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:52 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/add-product-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <meta charset="utf-8">
@@ -17,9 +11,9 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>User List</title>
+        <title>Add account</title>
 
-        <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+        <script src="././cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
         <link rel="stylesheet" href="./vendors/bootstrap-select/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="./vendors/slick/slick.min.css">
@@ -39,15 +33,15 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="User list">
+        <meta name="twitter:title" content="Add product">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="userlist">
-        <meta property="og:title" content="User list">
+        <meta property="og:url" content="add-product-3.html">
+        <meta property="og:title" content="Add product">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="./img/logo_01.png">
+        <meta property="og:image" content="./img/Logo_01.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
@@ -59,8 +53,8 @@
                     <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
                         <div class="sticky-area border-right">
                             <div class="d-flex px-3 px-xl-6 w-100 border-bottom py-2">
-                                <a class="navbar-brand" href="./index.html">
-                                    <img src="./img/logo-black.png" alt="Glowing">
+                                <a class="navbar-brand" href="home">
+                                    <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
                                     <div class="d-flex align-items-center d-xl-none">
@@ -127,16 +121,10 @@
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-product-grid.html">Update Product</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-categories.html">Categoried</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -152,10 +140,10 @@
                                         <div class="collapse menu-collapse" id="order">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-list.html">Order List 1</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-detail.html">Order detail</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -165,7 +153,7 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-users"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Manage Account</span>
+                                            <span class="sidebar-item-text">Manage account</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="sellers">
@@ -176,7 +164,7 @@
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </div>
                                     </li>
@@ -201,25 +189,6 @@
                                                 </li>
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="add-product-4.html">Add Product 4</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#transaction" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-usd-circle"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Transactions</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="transaction">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="transactions-1.html">Transactions 1</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="transactions-2.html">Transactions 2</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -251,14 +220,7 @@
                                             <span class="sidebar-item-text">Reivews</span>
                                         </a>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="brand.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-certificate"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Brand</span>
-                                        </a>
-                                    </li>
+
                                     <li class="list-group-item separate p-0 my-3 mx-n3"></li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
@@ -271,22 +233,13 @@
                                         <div class="collapse menu-collapse" id="setting">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting sample 1</a>
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-2.html">Setting sample 2</a>
-                                                </li>
+
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="starter-page.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-tag"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Starter page</span>
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -346,106 +299,83 @@
                         </div>
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
-                        <div class="dashboard-page-content">
-                            <div class="row mb-6 align-items-center">
-                                <div class="col-sm-9 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">User list</h2>
-                                </div>
-                                <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
-                                    <a href="addaccount" class="btn btn-primary">
-                                        <i class="fal fa-plus"></i>
-                                        <span class="d-inline-block ml-2">Create new</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card mb-4 rounded-xl">
-                                <div class="card-header bg-transparent p-4">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
-                                            <input type="text" placeholder="Search..." class="form-control bg-input border-0">
+                        <form action="addaccount" method="POST">
+
+                            <div class="dashboard-page-content">
+                                <div class="row">
+                                    <div class="col-xxl-9">
+                                        <div class="row mb-6">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <h2 class="fs-24 mb-0">Add New Account</h2>
+                                            </div>
+                                            <div class="col-sm-6 text-sm-right">
+                                                <button class="btn btn-primary">Create</button>
+                                            </div>
                                         </div>
-                                        <div class="col-md-2 col-6">
-                                            <select class="form-control bg-input border-0">
-                                                <option>Show 20</option>
-                                                <option>Show 30</option>
-                                                <option>Show 40</option>
-                                            </select>
+                                    </div>
+                                    <div class="col-xxl-6 form-control-01">
+                                        <div class="card mb-5 rounded-xl">
+                                            <div class="card-body p-4">
+                                                <div class="mb-5">
+                                                    <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">${requestScope.msg}</label>
+                                                    
+                                                </div>
+                                                <div class="mb-5">
+                                                    <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Account email</label>
+                                                    <input type="email" placeholder="Type here" name="email" class="form-control bg-input border-0" id="product_title">
+                                                </div>
+                                                <div class="mb-5">
+                                                    <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Phone Number</label>
+                                                    <input type="number" placeholder="Type here" name="phonenum" class="form-control bg-input border-0" id="product_title">
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-4 mb-3">
+                                                        <label for="product_sku" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Username</label>
+                                                        <input type="text" placeholder="Type here" name="username" class="form-control bg-input border-0" id="product_sku">
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Password</label>
+                                                        <input type="text" placeholder="Type here" name="password" class="form-control bg-input border-0" id="product_color">
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <small class="text-muted fs-14 mb-2">Select Role</small>
+                                                        <select multiple="" size="4" class="form-control bg-input border-0 select-multiple"
+                                                                id="brand" data-style="form-control w-100 border rounded">
+                                                            <option>Adidas</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <label for="product_sku" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">First name</label>
+                                                        <input type="text" placeholder="Type here" name="firstname" class="form-control bg-input border-0" id="product_sku">
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Last name</label>
+                                                        <input type="text" placeholder="Type here" name="lastname" class="form-control bg-input border-0" id="product_color">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-5">
+                                                    <label for="product_brand" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Address</label>
+                                                    <input type="text" placeholder="Type here"name="address" class="form-control bg-input border-0" id="product_brand">
+                                                </div>
+
+                                                <% String created_date ="<script> document.write(new Date().getFullYear()) </script>"; %>
+                                                <input type="hidden" placeholder="Type here"name="created_date" value="<%=created_date%>" class="form-control bg-input border-0" id="product_brand">
+
+                                            </div>
                                         </div>
-                                        <div class="col-md-2 col-6">
-                                            <select class="form-control bg-input border-0">
-                                                <option>Status:all</option>
-                                                <option>Active</option>
-                                                <option>Disabled</option>
-                                                <option>Show all</option>
-                                            </select>
+                                        <div class="card mb-5 rounded-xl">
+                                            <div class="card-body p-4">
+                                                <div>
+                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Images</label>
+                                                    <input class="form-control bg-input border-0" name="image" type="file">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body p-4">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th scope="col">Staff</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Registered</th>
-                                                    <th scope="col" class="text-right">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${requestScope.listUser}" var="lu">
-                                                    <tr>
-                                                        <td>
-                                                            <div class="media">
-                                                                <div class="w-60px height-60 mr-3">
-                                                                    <img class="rounded-circle" src="./img/avatar-1.png" alt="Eleanor Pena">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <a href="./showprofile?id=${lu.id}">${lu.username}</a>
-                                                                    <p class="text-muted mb-0 fs-14">User ID#${lu.id}</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>${lu.email}</td>
-                                                        <td>
-                                                            <c:if test="${lu.deleted ==0}">
-                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Active
-                                                                </span>
-                                                            </c:if>
-                                                            <c:if test="${lu.deleted ==1}">
-                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Inactive
-                                                                </span>
-                                                            </c:if>
-                                                        </td>
-                                                        <td>a}</td>
-                                                        <td class="text-right">
-                                                            <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">View details</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
                             </div>
-                            <nav aria-label="Page navigation example" class="mt-5 mb-4">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item mx-1">
-                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                        </form>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -917,5 +847,5 @@
     </svg>
 </body>
 
-<!-- Mirrored from templates.g5plus.net/glowing/dashboard/userlist by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:52 GMT -->
+<!-- Mirrored from templates.g5plus.net/glowing/dashboard/add-product-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
 </html>

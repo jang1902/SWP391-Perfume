@@ -169,9 +169,7 @@
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="showprofile">Check Profile</a>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </li>

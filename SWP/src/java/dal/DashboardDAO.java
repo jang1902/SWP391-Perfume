@@ -108,7 +108,7 @@ public class DashboardDAO extends DBContext {
                 u.setDeleted(rs.getByte("deleted"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
-                r.setName(rs.getString("name"));
+                r.setName(rs.getString("name").toUpperCase());
                 u.setRole(r);
                 return u;
             }
@@ -118,8 +118,45 @@ public class DashboardDAO extends DBContext {
         return null;
     }
 
+    public void addAccount(User u) {
+        String sql = "INSERT INTO [dbo].[Users]\n"
+                + "           ([loginType]\n"
+                + "           ,[role_id]\n"
+                + "           ,[firstname]\n"
+                + "           ,[lastname]\n"
+                + "           ,[username]\n"
+                + "           ,[password]\n"
+                + "           ,[email]\n"
+                + "           ,[phone_number]\n"
+                + "           ,[address]\n"
+                + "           ,[created_at]\n"
+                + "           ,[updated_at]\n"
+                + "           ,[deleted])\n"
+                + "     VALUES\n"
+                + "           (1,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            
+            st.setInt(1, u.getRole_id());
+            st.setString(2, u.getFirstname());
+            st.setString(3, u.getLastname());
+            st.setString(4, u.getUsername());
+            st.setString(5, u.getPassword());
+            st.setString(6, u.getEmail());
+            st.setString(7, u.getPhone_number());
+            st.setString(8, u.getAddress());
+            st.setDate(9, u.getCreated_at());
+            st.setDate(10, u.getUpdated_at());
+            st.setInt(11, u.getDeleted());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
         DashboardDAO d = new DashboardDAO();
-        System.out.println(d.getAllUser());
+        User u = new User( 2, "hehe", "huhu", "abccc", "123123123", "asdasd@gmail.com", "123123123", "123123123", null, null,0 );
+        d.addAccount(u);
     }
 }

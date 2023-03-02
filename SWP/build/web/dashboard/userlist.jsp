@@ -109,7 +109,7 @@
                                 </form>
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-home-lg-alt"></i>
                                             </span>
@@ -165,7 +165,7 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-users"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Sellers</span>
+                                            <span class="sidebar-item-text">Manage Account</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="sellers">
@@ -176,9 +176,7 @@
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="showprofile">Check Profile</a>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </li>
@@ -354,7 +352,7 @@
                                     <h2 class="fs-24 mb-0">User list</h2>
                                 </div>
                                 <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="addaccount" class="btn btn-primary">
                                         <i class="fal fa-plus"></i>
                                         <span class="d-inline-block ml-2">Create new</span>
                                     </a>
@@ -388,7 +386,7 @@
                                         <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th scope="col">Seller</th>
+                                                    <th scope="col">Staff</th>
                                                     <th scope="col">Email</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Registered</th>
@@ -404,7 +402,7 @@
                                                                     <img class="rounded-circle" src="./img/avatar-1.png" alt="Eleanor Pena">
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <a href="./sellers-profile.html">${lu.username}</a>
+                                                                    <a href="./showprofile?id=${lu.id}">${lu.username}</a>
                                                                     <p class="text-muted mb-0 fs-14">User ID#${lu.id}</p>
                                                                 </div>
                                                             </div>
@@ -425,7 +423,7 @@
                                                         <td>a}</td>
                                                         <td class="text-right">
                                                             <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="sellers-profile.html" class="btn btn-primary btn-xs py-2">View details</a>
+                                                                <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">View details</a>
                                                             </div>
                                                         </td>
                                                     </tr>

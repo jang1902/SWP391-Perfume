@@ -19,6 +19,22 @@ public class User {
     public User() {
     }
 
+    public User(int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, String address, Date created_at, Date updated_at, int deleted) {
+        this.role_id = role_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.address = address;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.deleted = deleted;
+    }
+
+    
+
     public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, String address, Date created_at, Date updated_at, int deleted) {
         this.id = id;
         this.loginType = loginType;

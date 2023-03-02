@@ -14,7 +14,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Sellers cards - Glowing</title>
+        <title>Staff List</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -36,12 +36,12 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Sellers cards">
+        <meta name="twitter:title" content="Staffs cards">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
         <meta property="og:url" content="staffcards">
-        <meta property="og:title" content="Sellers cards">
+        <meta property="og:title" content="Staffs cards">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
@@ -106,7 +106,7 @@
                                 </form>
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-home-lg-alt"></i>
                                             </span>
@@ -165,7 +165,7 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-users"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Sellers</span>
+                                            <span class="sidebar-item-text">Manage Account</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="sellers">
@@ -176,9 +176,7 @@
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="showprofile">Check Profile</a>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </li>
@@ -317,10 +315,10 @@
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
                                 <div class="col-sm-9 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Sellers cards</h2>
+                                    <h2 class="fs-24 mb-0">Staffs cards</h2>
                                 </div>
                                 <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="addaccount" class="btn btn-primary">
                                         <i class="fal fa-plus"></i>
                                         <span class="d-inline-block ml-2">Create new</span>
                                     </a>
@@ -357,7 +355,7 @@
                                                             <p class="m-0">Staff ID: #${ls.id}</p>
                                                             <p class="mb-0">${ls.email}</p>
                                                         </div>
-                                                        <a href="showprofile" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
+                                                        <a href="showprofile?id=${ls.id}" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
                                                     </div>
                                                 </div>
                                             </div>
