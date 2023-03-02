@@ -138,16 +138,19 @@
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
+                                                    <a class="sidebar-link lh-1" href="">Category List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
+                                                    <a class="sidebar-link lh-1" href="">Gallery List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
+                                                    <a class="sidebar-link lh-1" href="">Size List</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="">Discount List</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -365,7 +368,7 @@
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Products List</h2>
+                                    <h2 class="fs-24 mb-0">Bảng danh sách sản phẩm</h2>
                                     <p class="mb-0"></p>
                                 </div>
                                 <div class="col-sm-6 d-flex flex-wrap justify-content-sm-end">
