@@ -1,0 +1,21 @@
+0000000000000000000000000000000000000000 2fe8cd4b9e2e465b01c89d8427e304464459fe06 KaviorSalandez <caankhwh1303@gmail.com> 1676012499 +0700	clone: from https://github.com/kraemsocola/SWP_Boon_Bo.git
+2fe8cd4b9e2e465b01c89d8427e304464459fe06 84c2ed4c621302ba9c60b1712b52ac591327f7f6 KaviorSalandez <caankhwh1303@gmail.com> 1676012799 +0700	commit: OTP_RESET
+84c2ed4c621302ba9c60b1712b52ac591327f7f6 2fe8cd4b9e2e465b01c89d8427e304464459fe06 KaviorSalandez <caankhwh1303@gmail.com> 1676013616 +0700	checkout: moving from main to Khanh
+2fe8cd4b9e2e465b01c89d8427e304464459fe06 84c2ed4c621302ba9c60b1712b52ac591327f7f6 KaviorSalandez <caankhwh1303@gmail.com> 1676013671 +0700	checkout: moving from Khanh to main
+84c2ed4c621302ba9c60b1712b52ac591327f7f6 2fe8cd4b9e2e465b01c89d8427e304464459fe06 KaviorSalandez <caankhwh1303@gmail.com> 1676014264 +0700	checkout: moving from main to Khanh
+2fe8cd4b9e2e465b01c89d8427e304464459fe06 7837966d31db703cfee363002cac54fd8e4b2547 KaviorSalandez <caankhwh1303@gmail.com> 1676015207 +0700	pull: Fast-forward
+7837966d31db703cfee363002cac54fd8e4b2547 84c2ed4c621302ba9c60b1712b52ac591327f7f6 KaviorSalandez <caankhwh1303@gmail.com> 1676015665 +0700	checkout: moving from Khanh to main
+84c2ed4c621302ba9c60b1712b52ac591327f7f6 22dcb40e890da3a6f89fcc172fc0854f2a2fbaa2 KaviorSalandez <caankhwh1303@gmail.com> 1676015672 +0700	pull --ff --recurse-submodules --progress origin: Fast-forward
+22dcb40e890da3a6f89fcc172fc0854f2a2fbaa2 89ae8ff32987951b89408a6c4c099ed93abdb852 KaviorSalandez <caankhwh1303@gmail.com> 1676015732 +0700	commit: Add lib and image
+89ae8ff32987951b89408a6c4c099ed93abdb852 2fcbdc0f2a9ac16261062fe79e657e6b111012fa KaviorSalandez <caankhwh1303@gmail.com> 1676017229 +0700	pull: Fast-forward
+2fcbdc0f2a9ac16261062fe79e657e6b111012fa 61cba9502a089fb9ebb63c233ad41351704ca4f8 KaviorSalandez <caankhwh1303@gmail.com> 1676020095 +0700	pull --ff --recurse-submodules --progress origin: Fast-forward
+61cba9502a089fb9ebb63c233ad41351704ca4f8 91f9731b5fba413f2fc4fcdd0a68d93eccfcf189 KaviorSalandez <caankhwh1303@gmail.com> 1676629660 +0700	checkout: moving from main to Tlinh
+91f9731b5fba413f2fc4fcdd0a68d93eccfcf189 91f9731b5fba413f2fc4fcdd0a68d93eccfcf189 KaviorSalandez <caankhwh1303@gmail.com> 1677416053 +0700	reset: moving to HEAD
+91f9731b5fba413f2fc4fcdd0a68d93eccfcf189 7837966d31db703cfee363002cac54fd8e4b2547 KaviorSalandez <caankhwh1303@gmail.com> 1677416054 +0700	checkout: moving from Tlinh to Khanh
+7837966d31db703cfee363002cac54fd8e4b2547 c40b003ebb2a880dc2739e599d6eb825e8aea56d KaviorSalandez <caankhwh1303@gmail.com> 1677416323 +0700	commit: Update private.xml
+c40b003ebb2a880dc2739e599d6eb825e8aea56d 7837966d31db703cfee363002cac54fd8e4b2547 KaviorSalandez <caankhwh1303@gmail.com> 1677416328 +0700	reset: moving to 7837966d31db703cfee363002cac54fd8e4b2547
+7837966d31db703cfee363002cac54fd8e4b2547 99c3a26f8d77037f45312eb706bc96a4b25f4f7b KaviorSalandez <caankhwh1303@gmail.com> 1677416331 +0700	commit: Update private.xml
+99c3a26f8d77037f45312eb706bc96a4b25f4f7b 3145b2b57e5e2d389fe92ece68bbe420fabddf10 KaviorSalandez <caankhwh1303@gmail.com> 1677416366 +0700	checkout: moving from Khanh to main
+3145b2b57e5e2d389fe92ece68bbe420fabddf10 3145b2b57e5e2d389fe92ece68bbe420fabddf10 KaviorSalandez <caankhwh1303@gmail.com> 1677416547 +0700	reset: moving to HEAD
+3145b2b57e5e2d389fe92ece68bbe420fabddf10 99c3a26f8d77037f45312eb706bc96a4b25f4f7b KaviorSalandez <caankhwh1303@gmail.com> 1677416548 +0700	checkout: moving from main to Khanh
+99c3a26f8d77037f45312eb706bc96a4b25f4f7b 3145b2b57e5e2d389fe92ece68bbe420fabddf10 KaviorSalandez <caankhwh1303@gmail.com> 1677416562 +0700	checkout: moving from Khanh to main
