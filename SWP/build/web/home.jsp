@@ -119,7 +119,7 @@
                     <!-- menu right -->
                     <div class="menu_right">             
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="home">Cửa hàng</a>
+                            <a class="link_decor_remover hover-link" href="shop">Cửa hàng</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Nước hoa</a>
