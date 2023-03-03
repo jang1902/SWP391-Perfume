@@ -1,8 +1,0 @@
-0000000000000000000000000000000000000000 2fe8cd4b9e2e465b01c89d8427e304464459fe06 KaviorSalandez <caankhwh1303@gmail.com> 1676012499 +0700	clone: from https://github.com/kraemsocola/SWP_Boon_Bo.git
-2fe8cd4b9e2e465b01c89d8427e304464459fe06 84c2ed4c621302ba9c60b1712b52ac591327f7f6 KaviorSalandez <caankhwh1303@gmail.com> 1676012799 +0700	commit: OTP_RESET
-84c2ed4c621302ba9c60b1712b52ac591327f7f6 22dcb40e890da3a6f89fcc172fc0854f2a2fbaa2 KaviorSalandez <caankhwh1303@gmail.com> 1676015672 +0700	pull --ff --recurse-submodules --progress origin: Fast-forward
-22dcb40e890da3a6f89fcc172fc0854f2a2fbaa2 89ae8ff32987951b89408a6c4c099ed93abdb852 KaviorSalandez <caankhwh1303@gmail.com> 1676015732 +0700	commit: Add lib and image
-89ae8ff32987951b89408a6c4c099ed93abdb852 2fcbdc0f2a9ac16261062fe79e657e6b111012fa KaviorSalandez <caankhwh1303@gmail.com> 1676017229 +0700	pull: Fast-forward
-2fcbdc0f2a9ac16261062fe79e657e6b111012fa 61cba9502a089fb9ebb63c233ad41351704ca4f8 KaviorSalandez <caankhwh1303@gmail.com> 1676020095 +0700	pull --ff --recurse-submodules --progress origin: Fast-forward
-61cba9502a089fb9ebb63c233ad41351704ca4f8 68aefe094906bb6ceb61bcf7d4a8caf550d489e9 KaviorSalandez <caankhwh1303@gmail.com> 1676629663 +0700	pull: fast-forward
-68aefe094906bb6ceb61bcf7d4a8caf550d489e9 3145b2b57e5e2d389fe92ece68bbe420fabddf10 KaviorSalandez <caankhwh1303@gmail.com> 1677416071 +0700	pull: fast-forward
