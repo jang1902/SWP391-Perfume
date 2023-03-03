@@ -211,10 +211,21 @@
 
                             <div class="body_left-item-address">
                                 <div class="item-address-font">${sessionScope.userNow.getFirstname()} ${sessionScope.userNow.getLastname()} | ${sessionScope.userNow.getPhone_number()} </div>
-                                <div class="item-address-font2">${ad.detail}, ${ad.ward}, ${ad.district}, ${ad.city}</div>
+                                <div class="address_list">
+                                    
+                                    <c:forEach items="${listad}" var="l">
+                                    <input ${l.is_default==1?"checked":""} type="radio" name="radio_address" value="${l.id}" />${l.detail}, ${l.ward}, ${l.district}, ${l.city}
+                                    <c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
+                                <!--     <div class="item-address-font2">${l.detail}, ${l.ward}, ${l.district}, ${l.city}</div>
+                                <c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
+                                    -->
+                                </c:forEach>
+                                </div>
+                         <!--      <div class="item-address-font2">${ad.detail}, ${ad.ward}, ${ad.district}, ${ad.city}</div>
                                 <c:if test="${ad.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
                                     <div class="change_address_style"><a class="address_button" href="#login-box">Thay đổi</a></div>
-                                </div>
+                         --> 
+                            </div>
                             </div>
 
 
@@ -250,145 +261,145 @@
                                         <th></th>
                                         <th></th>
                                         <c:if test="${totalQuan!=0}"><th>Tổng tiền(${totalQuan} sản phẩm): ₫${cart.getTotalMoney()}</th></c:if> 
-                                    </tr>
-                                </table>
+                                        </tr>
+                                    </table>
 
 
-                            </div>
-                        </div>
-
-                        <!-- Hidden Dialog Box-->
-                        <div id="login-box" class="login">
-                            <p class="login_title"> Danh sách địa chỉ</p>
-                            <hr/>
-                            
-                            <a href="#" class="close"><img src="close.png" class="img-close" title="Close Window" alt="Close" /></a>
-                            <div class="login_detail">
-                            <c:forEach items="${listad}" var="l">
-                            <div class="radio_input">
-                                <input class="radioBtnInput" type="radio" name="radio_address" value="${l.id}" />${l.detail}<br/> ${l.ward}, ${l.district}, ${l.city}<br/><c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if><br/><hr/>
-                            </div>
-                            </c:forEach>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Hidden Dialog Box-->
 
-                        <button class="place_order">Đặt Hàng</button> 
-                    </form>
+                            <!-- Hidden Dialog Box-->
+                            <div id="login-box" class="login">
+                                <p class="login_title"> Danh sách địa chỉ</p>
+                                <hr/>
+
+                                <a href="#" class="close"><img src="close.png" class="img-close" title="Close Window" alt="Close" /></a>
+                                <div class="login_detail">
+                                <c:forEach items="${listad}" var="l">
+                                    <div class="radio_input">
+                                        <input class="radioBtnInput" type="radio" name="radio_address" value="${l.id}" />${l.detail}<br/> ${l.ward}, ${l.district}, ${l.city}<br/><c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if><br/><hr/>
+                                        </div>
+                                </c:forEach>
+                            </div>
+                        </div>
                 </div>
+                <!-- Hidden Dialog Box-->
+
+                <button class="place_order">Đặt Hàng</button> 
+                </form>
             </div>
         </div>
-        <div id="footer">
-            <!-- container footer -->
-            <div class="container_footer">
-                <!-- footer logo / online shop -->
-                <div class="footer_contact-logo">
-                    <a href="#">
-                        <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+    </div>
+    <div id="footer">
+        <!-- container footer -->
+        <div class="container_footer">
+            <!-- footer logo / online shop -->
+            <div class="footer_contact-logo">
+                <a href="#">
+                    <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+                </a>
+                <p class="footer_contact-logo-text">
+                    Mua các mô hình, lego, trang trí tại của hàng Bot Store.
+                </p>
+                <div class="footer_contact-logo-onlineshop">
+                    <a href="#" id="onlineshop">
+                        <div class="online-shop">
+                            <!-- logo shopee -->
+                            <div class="shopee-tiki">
+                                <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
+                            </div>
+                            <!-- chữ bên cạnh logo -->
+                            <div>
+                                <span class="online-shop-text-top">Shopping on</span>
+                                <p class="online-shop-text-bot">Shopee</p>
+                            </div>
+                        </div>
                     </a>
-                    <p class="footer_contact-logo-text">
-                        Mua các mô hình, lego, trang trí tại của hàng Bot Store.
-                    </p>
-                    <div class="footer_contact-logo-onlineshop">
-                        <a href="#" id="onlineshop">
-                            <div class="online-shop">
-                                <!-- logo shopee -->
-                                <div class="shopee-tiki">
-                                    <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
-                                </div>
-                                <!-- chữ bên cạnh logo -->
-                                <div>
-                                    <span class="online-shop-text-top">Shopping on</span>
-                                    <p class="online-shop-text-bot">Shopee</p>
-                                </div>
+                    <a href="#" id="onlineshop">
+                        <div class="online-shop">
+                            <!-- logo tiki -->
+                            <div class="shopee-tiki">
+                                <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
                             </div>
-                        </a>
-                        <a href="#" id="onlineshop">
-                            <div class="online-shop">
-                                <!-- logo tiki -->
-                                <div class="shopee-tiki">
-                                    <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
-                                </div>
-                                <!-- chữ bên cạnh logo -->
-                                <div>
-                                    <span class="online-shop-text-top">Shopping on</span>
-                                    <p class="online-shop-text-bot">Tiki</p>
-                                </div>
+                            <!-- chữ bên cạnh logo -->
+                            <div>
+                                <span class="online-shop-text-top">Shopping on</span>
+                                <p class="online-shop-text-bot">Tiki</p>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
-                <!-- về chúng tôi -->
-                <div class="footer_contact-about">
-                    <!-- title -->
-                    <div class="footer_contact-title">Về chúng tôi</div>
-                    <!-- about us link -->
-                    <div class="footer_contact-about-link">
-                        <a class="about-link" href="#">Careers</a>
-                        <a class="about-link" href="#">Của hàng của chúng tôi</a>
-                        <a class="about-link" href="#">Chính sách giao hàng</a>
-                        <a class="about-link" href="#">Điều khoản dịch vụ</a>
-                        <a class="about-link" href="#">Chính sách quyền riêng tư</a>
-                    </div>
+            </div>
+            <!-- về chúng tôi -->
+            <div class="footer_contact-about">
+                <!-- title -->
+                <div class="footer_contact-title">Về chúng tôi</div>
+                <!-- about us link -->
+                <div class="footer_contact-about-link">
+                    <a class="about-link" href="#">Careers</a>
+                    <a class="about-link" href="#">Của hàng của chúng tôi</a>
+                    <a class="about-link" href="#">Chính sách giao hàng</a>
+                    <a class="about-link" href="#">Điều khoản dịch vụ</a>
+                    <a class="about-link" href="#">Chính sách quyền riêng tư</a>
                 </div>
-                <!-- dịch vụ chăm sóc khách hàng -->
-                <div class="footer_contact-customer">
-                    <!-- title -->
-                    <div class="footer_contact-title">Hỗ trợ khách hàng</div>
-                    <!-- customer care link -->
-                    <div class="footer_contact-about-link">
-                        <a class="about-link" href="#">Trung tâm hỗ trợ</a>
-                        <a class="about-link" href="#">Cách để mua hàng</a>
-                        <a class="about-link" href="#">Truy cứu đơn hàng</a>
-                        <a class="about-link" href="#">Hợp tác</a>
-                        <a class="about-link" href="#">Hoàn trả và hoàn tiền</a>
-                    </div>
+            </div>
+            <!-- dịch vụ chăm sóc khách hàng -->
+            <div class="footer_contact-customer">
+                <!-- title -->
+                <div class="footer_contact-title">Hỗ trợ khách hàng</div>
+                <!-- customer care link -->
+                <div class="footer_contact-about-link">
+                    <a class="about-link" href="#">Trung tâm hỗ trợ</a>
+                    <a class="about-link" href="#">Cách để mua hàng</a>
+                    <a class="about-link" href="#">Truy cứu đơn hàng</a>
+                    <a class="about-link" href="#">Hợp tác</a>
+                    <a class="about-link" href="#">Hoàn trả và hoàn tiền</a>
                 </div>
-                <!-- liên hệ -->
-                <div class="footer_contact-contact">
-                    <!-- title -->
-                    <div class="footer_contact-title">Liên hệ chúng tôi</div>
-                    <!-- địa chỉ -->
-                    <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
-                    <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
-                    <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
-                    <div class="footer_contact-icon">
-                        <a class="about-link" href="#">
-                            <div class="footer_contact-icon-child">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </div>
-                        </a>
-                        <a class="about-link" href="#">
-                            <div class="footer_contact-icon-child">
-                                <i class="fa-brands fa-instagram"></i>
-                            </div>
-                        </a>
-                        <a class="about-link" href="#">
-                            <div class="footer_contact-icon-child">
-                                <i class="fa-brands fa-twitter"></i>
-                            </div>
-                        </a>
-                        <a class="about-link" href="#">
-                            <div class="footer_contact-icon-child">
-                                <i class="fa-brands fa-youtube"></i>
-                            </div>
-                        </a>
-                        <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
-                            <div class="footer_contact-icon-child">
-                                <i class="fa-brands fa-github"></i>
-                            </div>
-                        </a>
-                    </div>
+            </div>
+            <!-- liên hệ -->
+            <div class="footer_contact-contact">
+                <!-- title -->
+                <div class="footer_contact-title">Liên hệ chúng tôi</div>
+                <!-- địa chỉ -->
+                <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
+                <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
+                <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
+                <div class="footer_contact-icon">
+                    <a class="about-link" href="#">
+                        <div class="footer_contact-icon-child">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </div>
+                    </a>
+                    <a class="about-link" href="#">
+                        <div class="footer_contact-icon-child">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                    </a>
+                    <a class="about-link" href="#">
+                        <div class="footer_contact-icon-child">
+                            <i class="fa-brands fa-twitter"></i>
+                        </div>
+                    </a>
+                    <a class="about-link" href="#">
+                        <div class="footer_contact-icon-child">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                    </a>
+                    <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
+                        <div class="footer_contact-icon-child">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            function Address_Choice() {
-                var x = document.getElementById("btn_address").value;
-                document.getElementById("input_address_id").value = x;
-            }
-        </script>
-        <!-- end body -->
-    </body>
+    </div>
+    <script type="text/javascript">
+        function Address_Choice() {
+            var x = document.getElementById("btn_address").value;
+            document.getElementById("input_address_id").value = x;
+        }
+    </script>
+    <!-- end body -->
+</body>
 </html>

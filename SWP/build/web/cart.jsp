@@ -225,7 +225,8 @@
                         </div>
                         
                        <form action="${sessionScope.userNow==null?"login":"checkout"}">
-                            <button class="place_order">Checkout</button> 
+                           
+                            <button ${totalQuan==0?"disabled":""} class="place_order">Checkout</button> 
                        </form>
                         
                     </div>

@@ -7,6 +7,7 @@ package dal;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import model.Cart;
 import model.Item;
@@ -19,8 +20,9 @@ import model.User;
 public class OrderDAO extends DBContext{
     public void addOrder(User u,int address_id,Cart cart){
     java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        String sql="insert into Orders values (?,?,?,?,?,?,null,?,null,?)";
+        
         try {
+            String sql="insert into [orders] values(?,?,?,?,?,?,null,?,null,?)";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, u.getId());
             st.setString(2, u.getFirstname());
@@ -30,6 +32,8 @@ public class OrderDAO extends DBContext{
             st.setInt(6, address_id);
             st.setDate(7, (Date)curDate);
             st.setDouble(8, cart.getTotalMoney());
+            st.executeUpdate();
+            
             String sql2="select top 1 id from orders order by id  desc";
             st = connection.prepareStatement(sql2);
             ResultSet rs = st.executeQuery();
@@ -58,6 +62,25 @@ public class OrderDAO extends DBContext{
                 
             }
         } catch (Exception e) {
+        }
+    }
+    
+    public void addOrder1(User u,int address_id,Cart cart){
+        java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        try {
+             String sql="insert into [orders] values(?,?,?,?,?,?,null,?,null,?)";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, u.getId());
+            st.setString(2, u.getFirstname());
+            st.setString(3, u.getLastname());
+            st.setString(4, u.getEmail());
+            st.setString(5, u.getPhone_number());
+            st.setInt(6, address_id);
+            st.setDate(7, (Date)curDate);
+            st.setDouble(8, cart.getTotalMoney());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 }

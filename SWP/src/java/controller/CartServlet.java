@@ -53,6 +53,7 @@ public class CartServlet extends HttpServlet {
             n=0;
         }
         
+        request.setAttribute("totalQuan", n);
         request.setAttribute("listItem", listItem);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);

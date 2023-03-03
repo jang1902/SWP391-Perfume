@@ -69,12 +69,15 @@
     border: solid 2px #72af5c;
 }
 /*  css địa chỉ */
+.address_list{
+    display: flex;
+}
 .body_left-item-address{
     width: 100%;
     height: auto;
     margin-top: 20px;
     font-size: 14px;
-    display: flex;
+   
 }
 .item-address-font{
     color:#222222;

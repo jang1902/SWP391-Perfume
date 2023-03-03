@@ -63,48 +63,5 @@ public class CartDAO extends DBContext{
         }
         return null;
     }
-    
-    public void addOrder(User u,int address_id,Cart cart){
-    java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        String sql="insert into Orders values (?,?,?,?,?,?,null,?,null,?)";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, u.getId());
-            st.setString(2, u.getFirstname());
-            st.setString(3, u.getLastname());
-            st.setString(4, u.getEmail());
-            st.setString(5, u.getPhone_number());
-            st.setInt(6, address_id);
-            st.setDate(7, (Date)curDate);
-            st.setDouble(8, cart.getTotalMoney());
-            String sql2="select top 1 id from orders order by id  desc";
-            st = connection.prepareStatement(sql2);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                int order_id=rs.getInt("id");
-                for (Item i : cart.getItems()) {
-                    String sql3="insert into Order_Details values(?,?,?,?,?,?,?)";
-                    st=connection.prepareStatement(sql3);
-                    st.setInt(1, order_id);
-                    st.setInt(2, i.getProduct().getId());
-                    st.setInt(3, i.getSizeproduct().getSid());
-                    st.setInt(4,i.getSizeproduct().getPrice_out());
-                    st.setInt(5,i.getQuantity());
-                    st.setDouble(6, cart.getTotalMoney());
-                    st.setDouble(7, cart.getTotalMoney());
-                    st.executeUpdate(); 
-                }
-                String sql4="update SizeProduct set quantity=quantity-? where pid=? AND sid=?";
-                st=connection.prepareStatement(sql4);
-                for(Item i : cart.getItems()){
-                    st.setInt(1 , i.getQuantity());
-                    st.setInt(2, i.getProduct().getId());
-                    st.setInt(3, i.getSizeproduct().getSid());
-                    st.executeUpdate();
-                }
-                
-            }
-        } catch (Exception e) {
-        }
-    }
+
 }

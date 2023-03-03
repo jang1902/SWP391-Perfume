@@ -7,6 +7,7 @@ package controller;
 
 import dal.AddressDAO;
 import dal.CartDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -121,12 +122,12 @@ public class CheckoutServlet extends HttpServlet {
                 response.addCookie(c);
             }
         }
-        int address_id=Integer.parseInt(request.getParameter("address_id"));
+        int address_id=Integer.parseInt(request.getParameter("radio_address"));
         User u= (User)request.getSession().getAttribute("userNow");
         Cart cart=new Cart(txt,u);
         List<Item> listItem=cart.getItems();
-        CartDAO dao=new CartDAO();
-        dao.addOrder(u,address_id, cart);
+        OrderDAO dao=new OrderDAO();
+        dao.addOrder1(u,address_id, cart);
         response.sendRedirect("home");
     }
 
