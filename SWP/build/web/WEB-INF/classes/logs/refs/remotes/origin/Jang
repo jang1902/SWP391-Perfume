@@ -1,3 +1,0 @@
-0000000000000000000000000000000000000000 2fe8cd4b9e2e465b01c89d8427e304464459fe06 KaviorSalandez <caankhwh1303@gmail.com> 1676013568 +0700	fetch --progress --prune --recurse-submodules=on-demand origin: storing head
-2fe8cd4b9e2e465b01c89d8427e304464459fe06 a91c200af8d7ccfc275f0e92e47d9612038bc5d6 KaviorSalandez <caankhwh1303@gmail.com> 1676629661 +0700	fetch --progress --prune --recurse-submodules=on-demand origin: fast-forward
-a91c200af8d7ccfc275f0e92e47d9612038bc5d6 cf7fd0f449dd5e0e07b1b6423cd4d49902675cb7 KaviorSalandez <caankhwh1303@gmail.com> 1677416070 +0700	pull --ff --recurse-submodules --progress origin: fast-forward

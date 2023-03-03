@@ -29,7 +29,7 @@
                 width: 100%;
             }
             .category_block li:hover {
-                background-color: #007bff;
+                background-color: #696969;
             }
             .category_block li:hover a {
                 color: #ffffff;
@@ -290,9 +290,12 @@
             <div class="container">
                 <div class="row justify-content-end">
                     <div class=" row col-sm-9 justify-content-end">
+                        <c:if test="${listP.size()>0}"><button type="button" class="btn btn-secondary mg-16">Hiển thị ${listP.size()}/${total} sản phẩm</button></c:if>
+                        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;    &nbsp;  &nbsp;  &nbsp;  &nbsp;     
                         <button type="button" class="btn btn-secondary mg-16">Bán chạy</button>
                         <button type="button" class="btn btn-secondary mg-16">Mới nhất</button>
                     </div>
+                    
                     <div class="input-group col-sm-3">
                         <form id="selectSort" action="sort" method="get">
 
@@ -313,19 +316,19 @@
 
 
                         <div class="card bg-light mb-3">
-                            <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Danh mục </div>
+                            <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-list"></i> Danh mục </div>
                             <ul class="list-group category_block">
                                 <c:forEach items="${categoryDAO.allCategory}" var="c">
-                                    <li class="list-group-item text-white ${cateId==c.id?"active":""}"><a href="filter-product?cateId=${c.id}">${c.name}</a></li>
+                                    <li class="list-group-item text-white ${cateId==c.id?"active":""}"><a style="text-decoration: none" href="filter-product?cateId=${c.id}">${c.name}</a></li>
                                     </c:forEach>
                             </ul>
                         </div>
                         <hr/>
                         <div class="card bg-light mb-3">
-                            <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Giới tính</div>
+                            <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-list"></i> Giới tính</div>
                             <ul class="list-group category_block">
                                 <c:forEach items="${genderDAO.allGender}" var="g">
-                                    <li class="list-group-item text-white ${genderId==g.id?"active":""} "><a href="filter-product?genderId=${g.id}">${g.name}</a></li>
+                                    <li class="list-group-item text-white  ${genderId==g.id?"active":""} "><a style="text-decoration: none" href="filter-product?genderId=${g.id}">${g.name}</a></li>
                                     </c:forEach>
                             </ul>
                         </div>
@@ -342,7 +345,8 @@
                                 </li>
                                 <li class="list-group-item"><button type="submit" class="btn btn-outline-success btn-1">OK</button></li>
                             </ul>  
-                        </form>    
+                        </form> 
+                        <hr/>        
                     </div>
                     <div class="col-sm-9 row align-content-start">
                         <h3>${message}</h3>
@@ -362,8 +366,14 @@
                                                 <i class="fa-solid fa-star icon_star"></i>
                                             </span>
                                             <div>
-                                                <span class="info_price">${o.sizeproduct.price_out}</span>
-                                                <!--                                                <span class="oldprice">89$</span>-->
+                                                <c:if test="${o.discount.value!=0}">
+                                                    <span class="info_price">${o.sizeproduct.price_out- o.sizeproduct.price_out*o.discount.value/100}₫</span>
+                                                    <span class="oldprice">${o.sizeproduct.price_out}₫
+					</span>
+                                                </c:if>
+                                                <c:if test="${o.discount.value==0}">
+                                                    <span class="info_price">${o.sizeproduct.price_out}₫</span>
+                                                </c:if>
                                             </div>
                                         </div>
                                         <div class="add_like_products">

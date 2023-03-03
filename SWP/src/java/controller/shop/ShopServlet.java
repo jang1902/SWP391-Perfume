@@ -74,7 +74,7 @@ public class ShopServlet extends HttpServlet {
         int totalRow = shopDAO.countAllProduct();
         int maxPage=0;
         if(totalRow==0){
-            request.setAttribute("message", "Hien tai chua co san pham nao");
+            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
         }
         else{
             //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
@@ -87,6 +87,7 @@ public class ShopServlet extends HttpServlet {
             request.setAttribute("nextPage", nextPage);
             request.setAttribute("backPage", backPage);
             request.setAttribute("pageIndex", pageIndex);
+            request.setAttribute("total", totalRow);
         }
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     } 

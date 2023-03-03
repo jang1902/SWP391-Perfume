@@ -80,8 +80,8 @@ public class ForgotPassServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
        
-        final String usernameMail = "cankhanh343@gmail.com";
-        final String passwordMail = "bzwddgbcqxjvbngf";
+        final String usernameMail = "hoclaptrinhfullhouse@gmail.com";
+        final String passwordMail = "rtmupxtqyfnalvvb";
         String email = request.getParameter("email");
         UserDAO ud = new UserDAO();
         int otpValue = 0;

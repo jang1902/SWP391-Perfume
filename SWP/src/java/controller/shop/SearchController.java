@@ -82,7 +82,7 @@ public class SearchController extends HttpServlet {
         int totalRow = shopDAO.countAllProductBySearchTitle(txtSearch);
         int maxPage = 0;
         if (totalRow == 0) {
-            request.setAttribute("message", "Hien tai chua co san pham nao");
+            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
         } else {
             //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
             maxPage = totalRow / pageSize + (totalRow % pageSize > 0 ? 1 : 0);
@@ -94,6 +94,7 @@ public class SearchController extends HttpServlet {
             request.setAttribute("nextPage", nextPage);
             request.setAttribute("backPage", backPage);
             request.setAttribute("pageIndex", pageIndex);
+            request.setAttribute("total", totalRow);
         }
         request.setAttribute("isSearch", isSearch);
         request.setAttribute("txtSearch", txtSearch);
