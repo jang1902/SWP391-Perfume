@@ -12,7 +12,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
 import model.Address_Detail;
 import model.User;
 
@@ -20,8 +19,8 @@ import model.User;
  *
  * @author asus
  */
-@WebServlet(name = "AddAccount", urlPatterns = {"/addaccount"})
-public class AddAccount extends HttpServlet {
+@WebServlet(name = "AddAddress", urlPatterns = {"/addaddress"})
+public class AddAddress extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class AddAccount extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddAccount</title>");
+            out.println("<title>Servlet AddAddress</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddAccount at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddAddress at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,16 +60,7 @@ public class AddAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String check = request.getParameter("email");
-//        String msg ;
-//        if (check!=null) {
-//            msg ="Create account successful!";
-//        }
-//        else{
-//            msg="Create account sai sai!";
-//        }
-//        request.setAttribute("msg", msg);
-        request.getRequestDispatcher("dashboard/addaccount.jsp").forward(request, response);
+        request.getRequestDispatcher("dashboard/addaddress.jsp").forward(request, response);
     }
 
     /**
@@ -84,26 +74,21 @@ public class AddAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String phonenum = request.getParameter("phonenum");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-//        String role_id_raw = request.getParameter("role");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        int role_id = Integer.parseInt(request.getParameter("roleid"));
-
-//        String created_date = request.getParameter("created_date");
-
-//        int price = Integer.parseInt(price_raw);
-//        int cid = Integer.parseInt(cid_raw);
+                String city = request.getParameter("city");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        String detail = request.getParameter("detail");
         DashboardDAO d = new DashboardDAO();
-//        String msg ="Create account successful!";
+        User lastest = new User();
+            d.getLastestUser();
         try {
             // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
-            User u = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
-            d.addAccount(u);
-            response.sendRedirect("addaddress");
+//            response.sendRedirect("addaccount");
+            
+            //uid, city, district, ward, detail, status
+            Address_Detail ad = new Address_Detail(lastest.getId(), city, district, ward, detail, 1);
+            d.addAddress(ad);
+            response.sendRedirect("home");
 
         } catch (NumberFormatException e) {
             System.out.println(e);

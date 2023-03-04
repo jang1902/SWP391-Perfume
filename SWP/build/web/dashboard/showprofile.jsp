@@ -360,7 +360,8 @@
 
                                         <div class="col-xl col-lg">
                                             <h3 class="fs-24 mb-0">${u.firstname} ${u.lastname}</h3>
-                                            <p>${u.address}</p>
+                                            <p>${u.role.name}</p>
+                                            
                                         </div>
 
                                         <div class="col-xl-4 text-xl-right">
@@ -388,10 +389,13 @@
                                         </div>
 
                                         <div class="col-sm-6 col-lg-4 col-xl-3">
-                                            <h6 class="f-18 mb-1">Role</h6>
+                                            <h6 class="f-18 mb-1">Address</h6>
                                             <p class="mb-0">
-                                                Role: ${u.role.name} <br>
-                                                Address: ${u.address} <br>
+                                               
+                                                City: ${u.address_detail.city} <br>
+                                                District: ${u.address_detail.district} <br>
+                                                Ward: ${u.address_detail.ward} <br>
+                                                Detail: ${u.address_detail.detail} <br>
                                                 User status: 
                                                 <c:if test="${u.deleted == 1}"> 
                                                     Deleted

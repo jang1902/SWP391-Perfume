@@ -309,7 +309,7 @@
                                                 <h2 class="fs-24 mb-0">Add New Account</h2>
                                             </div>
                                             <div class="col-sm-6 text-sm-right">
-                                                <button class="btn btn-primary">Create</button>
+                                                <button class="btn btn-primary">Add address</button>
                                             </div>
                                         </div>
                                     </div>
@@ -318,46 +318,46 @@
                                             <div class="card-body p-4">
                                                 <div class="mb-5">
                                                     <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">${requestScope.msg}</label>
-                                                    
+
                                                 </div>
                                                 <div class="mb-5">
                                                     <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Account email</label>
-                                                    <input type="email" placeholder="Type here" name="email" class="form-control bg-input border-0" id="product_title">
+                                                    <input type="email" required="" placeholder="Type here" name="email" class="form-control bg-input border-0" id="product_title">
                                                 </div>
                                                 <div class="mb-5">
                                                     <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Phone Number</label>
-                                                    <input type="number" placeholder="Type here" name="phonenum" class="form-control bg-input border-0" id="product_title">
+                                                    <input type="number" required="" placeholder="Type here" name="phonenum" class="form-control bg-input border-0" id="product_title">
                                                 </div>
                                                 <div class="row">
 
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_sku" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Username</label>
-                                                        <input type="text" placeholder="Type here" name="username" class="form-control bg-input border-0" id="product_sku">
+                                                        <input type="text" required="" placeholder="Type here" name="username" class="form-control bg-input border-0" id="product_sku">
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Password</label>
-                                                        <input type="text" placeholder="Type here" name="password" class="form-control bg-input border-0" id="product_color">
+                                                        <input type="text" required="" placeholder="Type here" name="password" class="form-control bg-input border-0" id="product_color">
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <small class="text-muted fs-14 mb-2">Select Role</small>
-                                                        <select multiple="" size="4" class="form-control bg-input border-0 select-multiple"
-                                                                id="brand" data-style="form-control w-100 border rounded">
-                                                            <option>Adidas</option>
+                                                        <select required="" size="3" class="form-control bg-input border-0 select-multiple" name="roleid"
+                                                                id="brand"  data-style="form-control w-100 border rounded">
+                                                            <option  value="2">User</option>
+                                                            <option value="3">Order Staff</option>
+                                                            <option value="4">Stock Manager</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_sku" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">First name</label>
-                                                        <input type="text" placeholder="Type here" name="firstname" class="form-control bg-input border-0" id="product_sku">
+                                                        <input type="text" required="" placeholder="Type here" name="firstname" class="form-control bg-input border-0" id="product_sku">
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Last name</label>
-                                                        <input type="text" placeholder="Type here" name="lastname" class="form-control bg-input border-0" id="product_color">
+                                                        <input type="text" required="" placeholder="Type here" name="lastname" class="form-control bg-input border-0" id="product_color">
                                                     </div>
                                                 </div>
-                                                <div class="mb-5">
-                                                    <label for="product_brand" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Address</label>
-                                                    <input type="text" placeholder="Type here"name="address" class="form-control bg-input border-0" id="product_brand">
-                                                </div>
+                                                
+                                                
 
                                                 <% String created_date ="<script> document.write(new Date().getFullYear()) </script>"; %>
                                                 <input type="hidden" placeholder="Type here"name="created_date" value="<%=created_date%>" class="form-control bg-input border-0" id="product_brand">
