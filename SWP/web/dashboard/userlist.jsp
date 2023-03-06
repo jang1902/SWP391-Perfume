@@ -1,7 +1,15 @@
+<%-- 
+    Document   : userlist
+    Created on : Feb 24, 2023, 11:23:43 PM
+    Author     : asus
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:46:39 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/userlist by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:52 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <meta charset="utf-8">
@@ -9,38 +17,37 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Dashboard</title>
+        <title>User List</title>
 
-        <script src="../cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../vendors/fontawesome-pro-5/css/all.css">
-        <link rel="stylesheet" href="../vendors/bootstrap-select/css/bootstrap-select.min.css">
-        <link rel="stylesheet" href="../vendors/slick/slick.min.css">
-        <link rel="stylesheet" href="../vendors/magnific-popup/magnific-popup.min.css">
-        <link rel="stylesheet" href="../vendors/jquery-ui/jquery-ui.min.css">
-        <link rel="stylesheet" href="../vendors/animate.css">
-        <link rel="stylesheet" href="../vendors/mapbox-gl/mapbox-gl.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/font-phosphor/css/phosphor.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/tuesday-night/stylesheet.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/butler/stylesheet.min.css">
-        <link rel="stylesheet" href="../vendors/fonts/a-antara-distance/stylesheet.min.css">
+        <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
+        <link rel="stylesheet" href="./vendors/bootstrap-select/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="./vendors/slick/slick.min.css">
+        <link rel="stylesheet" href="./vendors/magnific-popup/magnific-popup.min.css">
+        <link rel="stylesheet" href="./vendors/jquery-ui/jquery-ui.min.css">
+        <link rel="stylesheet" href="./vendors/animate.css">
+        <link rel="stylesheet" href="./vendors/mapbox-gl/mapbox-gl.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/font-phosphor/css/phosphor.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/tuesday-night/stylesheet.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/butler/stylesheet.min.css">
+        <link rel="stylesheet" href="./vendors/fonts/a-antara-distance/stylesheet.min.css">
 
-        <link rel="stylesheet" href="../css/themes.css">
+        <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="../img/favicon.jpg">
+        <link rel="icon" href="./img/favicon.jpg">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Dashboard">
+        <meta name="twitter:title" content="User list">
         <meta name="twitter:description" content="Glowing Shop Html Template">
-        <meta name="twitter:image" content="../img/logo_01.png">
+        <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="dashboard.html">
-        <meta property="og:title" content="Dashboard">
+        <meta property="og:url" content="userlist">
+        <meta property="og:title" content="User list">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="../img/logo_01.png">
+        <meta property="og:image" content="./img/logo_01.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
@@ -52,15 +59,15 @@
                     <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
                         <div class="sticky-area border-right">
                             <div class="d-flex px-3 px-xl-6 w-100 border-bottom py-2">
-                                <a class="navbar-brand" href="../index.html">
-                                    <img src="../img/logo-black.png" alt="Glowing">
+                                <a class="navbar-brand" href="./index.html">
+                                    <img src="./img/logo-black.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
                                     <div class="d-flex align-items-center d-xl-none">
                                         <div class="dropdown px-3">
                                             <a href="#" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
                                                 <div class="w-48px">
-                                                    <img src="../img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                    <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
                                                 </div>
                                                 <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
                                                     Ronald Hunter
@@ -102,7 +109,7 @@
                                 </form>
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-home-lg-alt"></i>
                                             </span>
@@ -148,9 +155,6 @@
                                                     <a class="sidebar-link lh-1" href="order-list.html">Order List 1</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-list-2.html">Order List 2</a>
-                                                </li>
-                                                <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="order-detail.html">Order detail</a>
                                                 </li>
                                             </ul>
@@ -161,20 +165,18 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-users"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Manage account</span>
+                                            <span class="sidebar-item-text">Manage Account</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="sellers">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-cards.html">Staff's information card</a>
+                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-list.html">User's information list</a>
+                                                    <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-profile.html">Sellers Profile</a>
-                                                </li>
+
                                             </ul>
                                         </div>
                                     </li>
@@ -233,10 +235,10 @@
                                         <div class="collapse menu-collapse" id="account">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="../user-login.html">User login</a>
+                                                    <a class="sidebar-link lh-1" href="./user-login.html">User login</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="../user-registration.html">User registration</a>
+                                                    <a class="sidebar-link lh-1" href="./user-registration.html">User registration</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -322,16 +324,16 @@
                                     <div class="dropdown px-2 py-2 dropdown-language">
                                         <a class="dropdown-toggle fs-20" data-toggle="dropdown"><i class="far fa-globe-americas"></i></a>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item text-brand" href="#"><img src="../img/flag-us.png" alt="English">English</a>
-                                            <a class="dropdown-item" href="#"><img src="../img/flag-fr.png" alt="Français">Français</a>
-                                            <a class="dropdown-item" href="#"><img src="../img/flag-jp.png" alt="Japan">日本語</a>
-                                            <a class="dropdown-item" href="#"><img src="../img/flag-cn.png" alt="China">中国人</a>
+                                            <a class="dropdown-item text-brand" href="#"><img src="./img/flag-us.png" alt="English">English</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-fr.png" alt="Français">Français</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-jp.png" alt="Japan">日本語</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-cn.png" alt="China">中国人</a>
                                         </div>
                                     </div>
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
-                                                <img src="../img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right w-100">
@@ -346,167 +348,187 @@
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Dashboard</h2>
-                                    <p class="mb-0">Whole data about your business here</p>
+                                <div class="col-sm-9 mb-3 mb-sm-0">
+                                    <h2 class="fs-24 mb-0">User list</h2>
                                 </div>
-                                <div class="col-sm-6 text-sm-right">
-                                    <a href="#" class="btn btn-primary"><i class="fal fa-file-plus"></i><span class="d-inline-block ml-1">Create report</span>
+                                <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
+                                    <a href="addaccount" class="btn btn-primary">
+                                        <i class="fal fa-plus"></i>
+                                        <span class="d-inline-block ml-2">Create new</span>
                                     </a>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-green bg-green-light">
-                                                        <i class="fas fa-usd-circle"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Revenue</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">$13,456.5</span>
-                                                    <span class="fs-14">Shipping fees are not included.</span>
-                                                </div>
+                            <div class="card mb-4 rounded-xl">
+                                <div class="card-header bg-transparent p-4">
+                                    <div class="card-header bg-transparent p-4">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-2 col-6">
+                                                <select  class="form-control bg-input border-0" id="selectStatus">
+                                                    <option value="1">Status</option>
+                                                    <option value="2">Active</option>
+                                                    <option value="3">Inactive</option>
+                                                </select>
                                             </div>
+                                            <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
+                                                <button onclick="getval()" class="btn btn-primary">Find</button>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                function getval() {
+                                                    var sel = document.getElementById('selectStatus');
+                                                    if (sel.value == "1") {
+                                                        window.location.href = "userlist";
+                                                    }
+                                                    if (sel.value == "2") {
+                                                        window.location.href = "activeuser";
+                                                    }
+                                                    if (sel.value == "3") {
+                                                        window.location.href = "inactiveuser";
+                                                    }
+                                                }
+                                            </script>
                                         </div>
+
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-success bg-success-light">
-                                                        <i class="fas fa-truck"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Orders</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">53.668</span>
-                                                    <span class="fs-14">Excluding orders in transit</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-warning bg-warning-light">
-                                                        <i class="fas fa-qrcode"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Products</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">9.856</span>
-                                                    <span class="fs-14">In 19 Categories</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-info bg-info-light">
-                                                        <i class="fas fa-shopping-bag"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Monthly Earning</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">$6,982</span>
-                                                    <span class="fs-14">Based in your local time.</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-8">
-                                    <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Sale statistics</h5>
-                                        <div class="card-body p-0">
-                                            <canvas id="mychart" class="chartjs" data-chart-type="line" data-chart-labels='["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]' data-chart-options='{"elements":{"line":{"tension":0.3}},"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' data-chart-datasets='[{"label":"Sales","data":[18,17,4,3,2,20,25,31,25,22,20,9],"backgroundColor":"#2C78DC33","hoverBackgroundColor":"#2C78DC33","borderColor":"#2C78DC","hoverBorderColor":"#2C78DC","borderWidth":1,"fill":true},{"label":"Visitors","data":[40,20,17,9,23,35,39,30,34,25,27,17],"backgroundColor":"#04D18233","hoverBackgroundColor":"#04D18233","borderColor":"#04D182","hoverBorderColor":"#04D182","borderWidth":1,"fill":true},{"label":"Products","data":[30,10,27,19,33,15,19,20,24,15,37,6],"backgroundColor":"#EF287830","hoverBackgroundColor":"#EF287830","borderColor":"#EF287391","hoverBorderColor":"#EF287391","borderWidth":1,"fill":true}]' data-chart-additional-options='{"chatId":"mychart"}' height="265"></canvas>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="card mb-4 rounded-xl">
-                                                <div class="card-body">
-                                                    <h5 class="card-title fs-16 mb-3">New Members</h5>
-                                                    <div class="new-member-list">
-                                                        <div class="d-flex align-items-center justify-content-between mb-6">
+                                <div class="card-body p-4">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th scope="col">Staff</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Registered</th>
+                                                    <th scope="col" class="text-right">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <!-- all user -->
+                                                <c:forEach items="${requestScope.listUser}" var="lu">
+                                                    <tr>
+                                                        <td>
                                                             <div class="media">
-                                                                <div class="w-40px mr-2">
-                                                                    <img src="../img/avatar-4.png" alt="" class="rounded-circle ">
+                                                                <div class="w-60px height-60 mr-3">
+                                                                    <img class="rounded-circle" src="./img/avatar-1.png" alt="Eleanor Pena">
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <h6 class="fs-14 mb-0 lh-1">Patric Adams</h6>
-                                                                    <p class="text-muted fs-12 mb-0">Sanfrancisco</p>
+                                                                    <a href="./showprofile?id=${lu.id}">${lu.username}</a>
+                                                                    <p class="text-muted mb-0 fs-14">User ID#${lu.id}</p>
                                                                 </div>
                                                             </div>
-                                                            <a href="#" class="btn btn-xs btn-primary"> View Profile </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4">
-                                    <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Revenue Base on Area</h5>
-                                        <div class="card-body p-0">
-                                            <canvas id="mychart01" class="chartjs" data-chart-type="bar" data-chart-labels='["900","1200","1400","1600"]' data-chart-options='{"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' data-chart-datasets='[{"label":"US","data":[233,321,783,900],"backgroundColor":"#5897FB","hoverBackgroundColor":"#5897FB","borderColor":"#5897FB","hoverBorderColor":"#5897FB","borderWidth":1,"fill":true},{"label":"Europe","data":[408,547,675,734],"backgroundColor":"#7BCF86","hoverBackgroundColor":"#7BCF86","borderColor":"#7BCF86","hoverBorderColor":"#7BCF86","borderWidth":1,"fill":true},{"label":"Asian","data":[208,447,575,634],"backgroundColor":"#FF9076","hoverBackgroundColor":"#FF9076","borderColor":"#FF9076","hoverBorderColor":"#FF9076","borderWidth":1,"fill":true},{"label":"Africa","data":[123,345,122,302],"backgroundColor":"#D595E5","hoverBackgroundColor":"#D595E5","borderColor":"#D595E5","hoverBorderColor":"#D595E5","borderWidth":"1","fill":true}]' data-chart-additional-options='{"chatId":"mychart01"}' height="222"></canvas>
-                                        </div>
-                                    </div>
-                                    <div class="card mb-4 p-4 rounded-xl">
-                                        <div class="card-body p-0">
-                                            <h5 class="card-title fs-16 mb-2">Marketing Chanel</h5>
-                                            <span class="text-muted fs-12">Facebook</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 15%">
-                                                    15%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Instagram</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 65%">
-                                                    65%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Google</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 51%">
-                                                    51%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Twitter</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
-                                                    80%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Other</span>
-                                            <div class="progress ">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
-                                                    80%
-                                                </div>
-                                            </div>
-                                        </div>
+                                                        </td>
+                                                        <td>${lu.email}</td>
+                                                        <td>
+                                                            <c:if test="${lu.deleted ==0}">
+                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                    Active
+                                                                </span>
+                                                            </c:if>
+                                                            <c:if test="${lu.deleted ==1}">
+                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                    Inactive
+                                                                </span>
+                                                            </c:if>
+                                                        </td>
+                                                        <td>a}</td>
+                                                        <td class="text-right">
+                                                            <div class="d-flex flex-wrap justify-content-end">
+                                                                <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                                <!-- active -->
+                                                <c:forEach items="${requestScope.listUserA}" var="lA">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media">
+                                                                <div class="w-60px height-60 mr-3">
+                                                                    <img class="rounded-circle" src="./img/avatar-1.png" alt="Eleanor Pena">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <a href="./showprofile?id=${lA.id}">${lA.username}</a>
+                                                                    <p class="text-muted mb-0 fs-14">User ID#${lA.id}</p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>${lA.email}</td>
+                                                        <td>
+                                                            <c:if test="${lA.deleted ==0}">
+                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                    Active
+                                                                </span>
+                                                            </c:if>
+                                                            <c:if test="${lA.deleted ==1}">
+                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                    Inactive
+                                                                </span>
+                                                            </c:if>
+                                                        </td>
+                                                        <td>a}</td>
+                                                        <td class="text-right">
+                                                            <div class="d-flex flex-wrap justify-content-end">
+                                                                <a href="showprofile?id=${lA.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                                <!-- inactive -->
+                                                <c:forEach items="${requestScope.listUserI}" var="lI">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media">
+                                                                <div class="w-60px height-60 mr-3">
+                                                                    <img class="rounded-circle" src="./img/avatar-1.png" alt="Eleanor Pena">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <a href="./showprofile?id=${lI.id}">${lI.username}</a>
+                                                                    <p class="text-muted mb-0 fs-14">User ID#${lI.id}</p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>${lI.email}</td>
+                                                        <td>
+                                                            <c:if test="${lI.deleted ==0}">
+                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                    Active
+                                                                </span>
+                                                            </c:if>
+                                                            <c:if test="${lI.deleted ==1}">
+                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                    Inactive
+                                                                </span>
+                                                            </c:if>
+                                                        </td>
+                                                        <td>a}</td>
+                                                        <td class="text-right">
+                                                            <div class="d-flex flex-wrap justify-content-end">
+                                                                <a href="showprofile?id=${lI.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-
-
+                            <nav aria-label="Page navigation example" class="mt-5 mb-4">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
+                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
+                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
+                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
+                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
+                                    <li class="page-item mx-1">
+                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
                             <div class="row">
@@ -526,21 +548,21 @@
             </div>
         </div>
 
-        <script src="../vendors/jquery.min.js"></script>
-        <script src="../vendors/jquery-ui/jquery-ui.min.js"></script>
-        <script src="../vendors/bootstrap/bootstrap.bundle.js"></script>
-        <script src="../vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
-        <script src="../vendors/slick/slick.min.js"></script>
-        <script src="../vendors/waypoints/jquery.waypoints.min.js"></script>
-        <script src="../vendors/counter/countUp.js"></script>
-        <script src="../vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
-        <script src="../vendors/hc-sticky/hc-sticky.min.js"></script>
-        <script src="../vendors/jparallax/TweenMax.min.js"></script>
-        <script src="../vendors/mapbox-gl/mapbox-gl.js"></script>
-        <script src="../vendors/isotope/isotope.js"></script>
-        <script src="../vendors/chartjs/chart.min.js"></script>
+        <script src="./vendors/jquery.min.js"></script>
+        <script src="./vendors/jquery-ui/jquery-ui.min.js"></script>
+        <script src="./vendors/bootstrap/bootstrap.bundle.js"></script>
+        <script src="./vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
+        <script src="./vendors/slick/slick.min.js"></script>
+        <script src="./vendors/waypoints/jquery.waypoints.min.js"></script>
+        <script src="./vendors/counter/countUp.js"></script>
+        <script src="./vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
+        <script src="./vendors/hc-sticky/hc-sticky.min.js"></script>
+        <script src="./vendors/jparallax/TweenMax.min.js"></script>
+        <script src="./vendors/mapbox-gl/mapbox-gl.js"></script>
+        <script src="./vendors/isotope/isotope.js"></script>
+        <script src="./vendors/chartjs/chart.min.js"></script>
 
-        <script src="../js/theme.js"></script>
+        <script src="./js/theme.js"></script>
         <div class="modal sign-in" id="sign-in" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -979,5 +1001,5 @@
     </svg>
 </body>
 
-<!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:47:07 GMT -->
+<!-- Mirrored from templates.g5plus.net/glowing/dashboard/userlist by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:52 GMT -->
 </html>
