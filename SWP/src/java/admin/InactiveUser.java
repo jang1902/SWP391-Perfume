@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package admin;
 
-import dal.ProductDAO;
+import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,18 +12,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.List;
-import model.Category;
-import model.Gender;
-import model.Product;
+import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "ListProduct", urlPatterns = {"/listproduct"})
-public class ListProduct extends HttpServlet {
+@WebServlet(name = "InactiveUser", urlPatterns = {"/inactiveuser"})
+public class InactiveUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +39,10 @@ public class ListProduct extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ListProduct</title>");
+            out.println("<title>Servlet InactiveUser</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ListProduct at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet InactiveUser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,70 +60,11 @@ public class ListProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cid_raw = request.getParameter("cid");
-        String gid_raw = request.getParameter("gid");
-        int cid = 0, gid = 0;
-        if (cid_raw != null && gid_raw == null) {
-            cid = Integer.parseInt(cid_raw);
-        }
-        if (cid_raw == null && gid_raw != null) {
-            gid = Integer.parseInt(gid_raw);
-        }
+        DashboardDAO d = new DashboardDAO();
+        List<User> lsI = d.getAllInactiveUser();
+        request.setAttribute("listUserI", lsI);
 
-        ProductDAO dao = new ProductDAO();
-        List<Product> listC, listG = null;
-        Category c = dao.getCategoryNameById(cid);
-        Gender g = dao.getGender(gid);
-        listC = dao.getProductsByCid(cid);
-        if (cid_raw == null) {
-            listG = dao.getProductsByGid(gid);
-        }
-
-//        int page = 0;
-//        String pageStr = request.getParameter("page");
-//
-//        final int PAGE_SIZE = 4;
-//
-//        List<Product> list = dao.getProductsByCid(cid);
-//        int maxPage = list.size() / 4;
-//        if (pageStr != null && !pageStr.equals("0")) {
-//            page = Integer.parseInt(pageStr);
-//        }
-//
-//        double max = (double) list.size() / (double) 4;
-//        if (list.size() % 4 != 0) {
-//            maxPage += 1;
-//        }
-//        int numOfPro = page * PAGE_SIZE;
-//        String str = String.valueOf(max - (maxPage - 1));
-//        String[] split = str.split("\\.");
-//        if (page == maxPage) {
-//            if (split[1].equals("25")) {
-//                numOfPro = numOfPro - 3;
-//            }
-//            if (split[1].equals("5")) {
-//                numOfPro = numOfPro - 2;
-//            }
-//            if (split[1].equals("75")) {
-//                numOfPro = numOfPro - 1;
-//            }
-//        }
-//        int from = (page - 1) * PAGE_SIZE;
-//        if (!(pageStr != null && !pageStr.equals("0"))) {
-//            maxPage = 0;
-//            from = 0;
-//            numOfPro = 0;
-//        }
-//
-//        request.setAttribute("maxPage", maxPage);
-//        request.setAttribute("products", list.subList(from, numOfPro));
-        request.setAttribute("listbycate", listC);
-        request.setAttribute("catename", c);
-        request.setAttribute("gendername", g);
-        request.setAttribute("listG", listG);
-        request.setAttribute("listC", listC);
-
-        request.getRequestDispatcher("listproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("userlist").forward(request, response);
     }
 
     /**

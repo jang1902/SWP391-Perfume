@@ -174,21 +174,24 @@
                             <c:set value="${requestScope.gender}" var="g"/>
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
-                                <span class="info_products-right-brand">${g.name}</span>
+                                <span class="info_products-right-brand"> 
+                                    <a href="listproduct?gid=${g.id}" style="text-decoration: none; color: black">${g.name}</a>
+                                </span>
 
                             </div>
-                            <form name="fo" action="" method="post">
-                                <div class="info_products-right-item">
-                                    <span class="info_products-right-price">${pd.price_out}đ</span> <br>
-                                    <div class="quantity-area clearfix" style="margin-bottom: -25px" >
-                                        <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
-                                        <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
-                                        <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
-                                    </div>
+
+                            <div class="info_products-right-item">
+                                <span class="info_products-right-price">${pd.price_out}đ</span> <br>
+                                <div class="quantity-area clearfix" style="margin-bottom: -25px" >
+                                    <input type="button" value="-" id="minus" onclick="minus()" class="qty-btn">
+                                    <input type="text" id="quantity"  name="quantity" value="1"  class="quantity-selector">
+                                    <input type="button" value="+" id="plus" onclick="plus()" class="qty-btn">
                                 </div>
-                            
-                                <div class="info_producst-right-add info_products-right-item" style="margin-top: 70px">
-                                    <button  onclick="add('${p.id}', '${sizeid}')" >Thêm vào giỏ</button>
+                            </div>
+
+                            <form action="" method="post" name="fo">
+                                <div  style="margin-top: 70px">
+                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${param.sid}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
 
@@ -308,6 +311,7 @@
                         Sản phẩm tương tự
                     </div>
                     <div class="products_same-child">
+                        <div class="products_same-child">
 
                         <c:forEach items="${requestScope.relativeproducts}" var="rp">
                             <form action="pdetail" method="post">
@@ -331,7 +335,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${lgd.price_out} đ</span>
+                                            <span class="info_price">${rp.sizeproduct.price_out} đ</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -341,6 +345,10 @@
                                 </div>
                             </div>
                         </c:forEach>
+                    </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -500,6 +508,24 @@
                 dem = 4;
                 var img_products_big = document.getElementById("img_products_big");
                 img_products_big.src = img_products[dem];
+            }
+
+            function add(id, size) {
+                var q = document.getElementById("quantity").value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + q;
+                document.fo.submit();
+            }
+            var count = 1;
+            var countEl = document.getElementById("quantity");
+            function plus() {
+                count++;
+                countEl.value = count;
+            }
+            function minus() {
+                if (count > 1) {
+                    count--;
+                    countEl.value = count;
+                }
             }
 
 

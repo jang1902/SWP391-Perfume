@@ -2,15 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-<<<<<<<< HEAD:SWP/src/java/control/crud/AddProductServlet.java
-package control.crud;
-
-import dal.CrudDAO;
-========
 package admin;
 
 import dal.DashboardDAO;
->>>>>>>> TruongBQ:SWP/src/java/admin/UpdateAccount.java
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,27 +12,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-<<<<<<<< HEAD:SWP/src/java/control/crud/AddProductServlet.java
-import java.util.List;
-import model.Category;
-import model.Discount;
-import model.Gender;
-import model.Size;
-========
+import java.sql.Date;
+import model.Address_Detail;
 import model.User;
->>>>>>>> TruongBQ:SWP/src/java/admin/UpdateAccount.java
 
 /**
  *
- * @author hp
+ * @author asus
  */
-<<<<<<<< HEAD:SWP/src/java/control/crud/AddProductServlet.java
-@WebServlet(name = "CrudProductServlet", urlPatterns = {"/addproduct"})
-public class AddProductServlet extends HttpServlet {
-========
-@WebServlet(name = "UpdateAccount", urlPatterns = {"/updateaccount"})
-public class UpdateAccount extends HttpServlet {
->>>>>>>> TruongBQ:SWP/src/java/admin/UpdateAccount.java
+@WebServlet(name = "AddAccount", urlPatterns = {"/addaccount"})
+public class AddAccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,17 +40,10 @@ public class UpdateAccount extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-<<<<<<<< HEAD:SWP/src/java/control/crud/AddProductServlet.java
-            out.println("<title>Servlet CrudProductServlet</title>");
+            out.println("<title>Servlet AddAccount</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CrudProductServlet at " + request.getContextPath() + "</h1>");
-========
-            out.println("<title>Servlet UpdateAccount</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateAccount at " + request.getContextPath() + "</h1>");
->>>>>>>> TruongBQ:SWP/src/java/admin/UpdateAccount.java
+            out.println("<h1>Servlet AddAccount at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -85,31 +61,16 @@ public class UpdateAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<<< HEAD:SWP/src/java/control/crud/AddProductServlet.java
-
-        CrudDAO crud = new CrudDAO();
-
-        List<Category> allc = crud.getAllCategory();
-        request.setAttribute("allc", allc);
-        
-        List<Discount> alld = crud.getAllDiscount();
-        request.setAttribute("alld", alld);
-        
-        List<Gender> allg = crud.getAllGender();
-        request.setAttribute("allg", allg);
-        
-        List<Size> alls = crud.getAllSize();
-        request.setAttribute("alls", alls);
-
-        request.getRequestDispatcher("addproduct.jsp").forward(request, response);
-========
-        DashboardDAO d = new DashboardDAO();
-        String id_raw = request.getParameter("id");
-        int id = Integer.parseInt(id_raw);
-        request.setAttribute("userInfo", d.getUserById(id));
-        
-        request.getRequestDispatcher("dashboard/updateaccount.jsp").forward(request, response);
->>>>>>>> TruongBQ:SWP/src/java/admin/UpdateAccount.java
+//        String check = request.getParameter("email");
+//        String msg ;
+//        if (check!=null) {
+//            msg ="Create account successful!";
+//        }
+//        else{
+//            msg="Create account sai sai!";
+//        }
+//        request.setAttribute("msg", msg);
+        request.getRequestDispatcher("dashboard/addaccount.jsp").forward(request, response);
     }
 
     /**
@@ -123,10 +84,7 @@ public class UpdateAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<<< HEAD:SWP/src/java/control/crud/AddProductServlet.java
-        processRequest(request, response);
-========
-                String email = request.getParameter("email");
+        String email = request.getParameter("email");
         String phonenum = request.getParameter("phonenum");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -134,19 +92,22 @@ public class UpdateAccount extends HttpServlet {
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         int role_id = Integer.parseInt(request.getParameter("roleid"));
-        String id_raw = request.getParameter("id");
-//        int id = Integer.parseInt(id_raw);
-       
+
+//        String created_date = request.getParameter("created_date");
+
+//        int price = Integer.parseInt(price_raw);
+//        int cid = Integer.parseInt(cid_raw);
         DashboardDAO d = new DashboardDAO();
+//        String msg ="Create account successful!";
         try {
-            
-            User a = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
-            d.updateAccount(a);
+            // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
+            User u = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
+            d.addAccount(u);
+            response.sendRedirect("addaddress");
+
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-         response.sendRedirect("dashboard");
->>>>>>>> TruongBQ:SWP/src/java/admin/UpdateAccount.java
     }
 
     /**
