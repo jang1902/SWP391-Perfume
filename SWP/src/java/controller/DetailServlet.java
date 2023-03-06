@@ -93,7 +93,7 @@ public class DetailServlet extends HttpServlet {
         Gender g = dao.getGenderByID(id);
         List<Product> lg;
         try {
-            lg = dao.randomRelative(gid, id);
+            lg = dao.randomRelative(gid);
             request.setAttribute("relativeproducts", lg);
         } catch (SQLException ex) {
 
@@ -143,7 +143,7 @@ public class DetailServlet extends HttpServlet {
         Gender g = dao.getGenderByID(id);
         List<Product> lg = null;
         try {
-            lg = dao.randomRelative(gid,id);
+            lg = dao.randomRelative(gid);
             request.setAttribute("relativeproducts", lg);
         } catch (SQLException ex) {
 

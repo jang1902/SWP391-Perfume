@@ -176,33 +176,16 @@
         <!-- end header -->
 
         <!-- body -->
-        <c:set value="${requestScope.catename}" var="c"/>
-        <c:set value="${requestScope.gendername}" var="g"/>
         <div id="body">
             <div class="row">
-                <div class="body_container-search col-md-3" >
+                <div class="body_container-search col-md-3">
 
                 </div>
-
-                <div class="body_container col-md-9 ">
-                    <c:if test="${param.cid!=null}" >
-                        <ul class="breadcrumb">
-                            <li><a href="home">Home</a></li>
-                            <li>${c.name}</li>
-                        </ul>
-                    </c:if>
-                    <c:if test="${param.gid!=null}" >
-                        <ul class="breadcrumb">
-                            <li><a href="home">Home</a></li>
-                            <li>Nước hoa ${g.name}</li>
-                        </ul>
-                    </c:if>
-
+                <div class="body_container col-md-9">
                     <div class="body_container-products" >
 
-                        <%--<c:set var="maxPage" value="${requestScope.maxPage}"/>--%>
-                        <c:forEach items="${listC}" var="listC">
-                            <div class="products all_products" >
+                        <c:forEach items="${listbycate}" var="listC">
+                            <div class="products all_products">
                                 <a href="pdetail?id=${listC.id}&sid=1&gid=${listC.gender_id}">
                                     <img src="${listC.thumbnail}" alt="" class="img_products">
                                 </a>
@@ -216,33 +199,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${listC.sizeproduct.price_out} đ</span>
-                                        </div>
-                                    </div>
-                                    <div class="add_like_products">
-                                        <i class="fa-regular fa-heart icon_heart"></i>
-                                        <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
-
-                        <c:forEach items="${requestScope.listG}" var="listG">
-                            <div class="products all_products" >
-                                <a href="pdetail?id=${listG.id}&sid=1&gid=${listG.gender_id}">
-                                    <img src="${listG.thumbnail}" alt="" class="img_products">
-                                </a>
-                                <div class="describe_products">
-                                    <div class="ratings_products">
-                                        <span>${listG.title}</span>
-                                        <span>
-                                            <i class="fa-solid fa-star icon_star"></i>
-                                            <i class="fa-solid fa-star icon_star"></i>
-                                            <i class="fa-solid fa-star icon_star"></i>
-                                            <i class="fa-solid fa-star icon_star"></i>
-                                        </span>
-                                        <div>
-                                            <span class="info_price">${listG.sizeproduct.price_out} đ</span>
+                                            <span class="info_price">${listc.price_out}</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -254,40 +211,24 @@
                         </c:forEach>
 
                     </div>
-                    <!--                    <div class="page_button">
-                                            <ul class="page_button_container">
-                                                <li class="page_button-child" >
-                                                    <a style="text-decoration: none; color: #72af5c"  href="listproduct?cid=${param.cid}&page=${param.page-1}">
-                    <%--<c:if test="${param.page !=1 &&param.page !=0}">--%>
-                        <i class="fa-solid fa-angle-left"></i>
-                    <%--</c:if>--%>
-                </a>
-            </li>
-                    <% int i =1; %>
-                    <%--<c:forEach  begin="1" end="${maxPage}" >--%>
-                    <%--<c:set var="pageCurrent" value="<%=i%>"/>--%>
-                    <%--<c:if test="${param.page!=0}">--%>
-                        <a style="text-decoration: none; color: #000000"  href="listproduct?cid=${param.cid}&page=<%=i%>">
-                    <%--<c:if test="${param.page!=pageCurrent}">--%>
-                        <li class="page_button-child  "><span ><%=i%> </span></li>
-                    <%--</c:if>--%>
-                    <%--<c:if test="${param.page==pageCurrent}">--%>
-                    <li class="page_button-child page_button-current "><span ><%=i%> </span></li>
-                    <%--</c:if>--%>
-            </a>
-                    <%--</c:if>--%>
-                    <%i++;%>
-                    <%--</c:forEach>--%>
-                    <li class="page_button-child">
-                        <a style="text-decoration: none; color: #72af5c" href="listproduct?cid=${param.cid}&page=${param.page+1}">
-                    <%--<c:if test="${param.page != maxPage}">--%>
-                        <i class="fa-solid fa-angle-right"></i>
-                    <%--</c:if>--%>
-                </a>
-            </li>
-        </ul>
-    </div>-->
-
+                    <div class="page_button">
+                        <ul class="page_button_container">
+                            <li class="page_button-child">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </li>
+                            <li class="page_button-child page_button-current"><span>1</span></li>
+                            <li class="page_button-child"><span>2</span></li>
+                            <li class="page_button-child"><span>3</span></li>
+                            <li class="page_button-child"><span>4</span></li>
+                            <li class="page_button-child"><span>5</span></li>
+                            <li class="page_button-child">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div class="body_container-page">
+        
+                    </div> -->
                 </div>
             </div>
         </div>

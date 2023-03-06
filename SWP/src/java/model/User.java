@@ -12,88 +12,26 @@ import java.sql.Date;
  */
 public class User {
     private int id,loginType,role_id;
-    private String firstname,lastname,username,password,email,phone_number;
+    private String firstname,lastname,username,password,email,phone_number,address;
     private Date created_at,updated_at;
     private int deleted;
-    private Role role;
-    private Address_Detail address_detail;
-
-    public User(int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, Date created_at, Date updated_at, int deleted) {
-        this.role_id = role_id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone_number = phone_number;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted = deleted;
-    }
-
-    public User(int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, Date created_at, Date updated_at, int deleted, Role role, Address_Detail address_detail) {
-        this.role_id = role_id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone_number = phone_number;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted = deleted;
-        this.role = role;
-        this.address_detail = address_detail;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Address_Detail getAddress_detail() {
-        return address_detail;
-    }
-
-    public void setAddress_detail(Address_Detail address_detail) {
-        this.address_detail = address_detail;
-    }
-
-    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, Date created_at, Date updated_at, int deleted, Role role, Address_Detail address_detail) {
-        this.id = id;
-        this.loginType = loginType;
-        this.role_id = role_id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone_number = phone_number;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted = deleted;
-        this.role = role;
-        this.address_detail = address_detail;
-    }
-
-    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, Date created_at, Date updated_at, int deleted) {
-        this.id = id;
-        this.loginType = loginType;
-        this.role_id = role_id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone_number = phone_number;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted = deleted;
-    }
     public User() {
+    }
+
+    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, String address, Date created_at, Date updated_at, int deleted) {
+        this.id = id;
+        this.loginType = loginType;
+        this.role_id = role_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.address = address;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.deleted = deleted;
     }
 
     public int getId() {
@@ -168,6 +106,14 @@ public class User {
         this.phone_number = phone_number;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public Date getCreated_at() {
         return created_at;
     }
@@ -191,9 +137,8 @@ public class User {
     public void setDeleted(int deleted) {
         this.deleted = deleted;
     }
-    
-    
 
-    
+   
+
   
 }

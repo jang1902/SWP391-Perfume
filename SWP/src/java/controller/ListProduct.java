@@ -14,8 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.List;
-import model.Category;
-import model.Gender;
 import model.Product;
 
 /**
@@ -64,68 +62,15 @@ public class ListProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cid_raw = request.getParameter("cid");
-        String gid_raw = request.getParameter("gid");
-        int cid = 0, gid = 0;
-        if (cid_raw != null && gid_raw == null) {
-            cid = Integer.parseInt(cid_raw);
-        }
-        if (cid_raw == null && gid_raw != null) {
-            gid = Integer.parseInt(gid_raw);
-        }
 
+        int cid = Integer.parseInt(cid_raw);
+        
         ProductDAO dao = new ProductDAO();
-        List<Product> listC, listG = null;
-        Category c = dao.getCategoryNameById(cid);
-        Gender g = dao.getGender(gid);
-        listC = dao.getProductsByCid(cid);
-        if (cid_raw == null) {
-            listG = dao.getProductsByGid(gid);
-        }
-
-//        int page = 0;
-//        String pageStr = request.getParameter("page");
-//
-//        final int PAGE_SIZE = 4;
-//
-//        List<Product> list = dao.getProductsByCid(cid);
-//        int maxPage = list.size() / 4;
-//        if (pageStr != null && !pageStr.equals("0")) {
-//            page = Integer.parseInt(pageStr);
-//        }
-//
-//        double max = (double) list.size() / (double) 4;
-//        if (list.size() % 4 != 0) {
-//            maxPage += 1;
-//        }
-//        int numOfPro = page * PAGE_SIZE;
-//        String str = String.valueOf(max - (maxPage - 1));
-//        String[] split = str.split("\\.");
-//        if (page == maxPage) {
-//            if (split[1].equals("25")) {
-//                numOfPro = numOfPro - 3;
-//            }
-//            if (split[1].equals("5")) {
-//                numOfPro = numOfPro - 2;
-//            }
-//            if (split[1].equals("75")) {
-//                numOfPro = numOfPro - 1;
-//            }
-//        }
-//        int from = (page - 1) * PAGE_SIZE;
-//        if (!(pageStr != null && !pageStr.equals("0"))) {
-//            maxPage = 0;
-//            from = 0;
-//            numOfPro = 0;
-//        }
-//
-//        request.setAttribute("maxPage", maxPage);
-//        request.setAttribute("products", list.subList(from, numOfPro));
+        List<Product> listC;
+        
+        listC =dao.getProductsByCid(cid);
         request.setAttribute("listbycate", listC);
-        request.setAttribute("catename", c);
-        request.setAttribute("gendername", g);
-        request.setAttribute("listG", listG);
-        request.setAttribute("listC", listC);
-
+        
         request.getRequestDispatcher("listproduct.jsp").forward(request, response);
     }
 

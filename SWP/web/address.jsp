@@ -17,7 +17,7 @@
     <script type="text/javascript" language="javascript" src="../main.js"></script>
     <link rel="stylesheet" href="../assets/font/fontawesome-free-6.1.1/css/all.min.css">
     <link rel="icon" href="../assets/img/small_logo1.png">
-    <title>Boon Bo</title>
+    <title>BOT STORE</title>
 </head>
 <body>
     <!-- header -->

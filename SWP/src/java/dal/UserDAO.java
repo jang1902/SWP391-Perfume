@@ -13,30 +13,29 @@ import model.User;
  *
  * @author ASUS
  */
-public class UserDAO extends DBContext {
-
-    public User checkAccount(String username, String password) {
-        String sql = "select * from Users where username=? and password=?";
+public class UserDAO extends DBContext{
+    public User checkAccount(String username, String password){
+        String sql="select * from Users where username=? and password=?";
         try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, username);
-            st.setString(2, password);
-            ResultSet rs = st.executeQuery();
-
-            if (rs.next()) {
-                return new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
+            PreparedStatement st=connection.prepareStatement(sql);
+            st.setString(1,username);
+            st.setString(2,password);
+            ResultSet rs=st.executeQuery();
+                       
+            if(rs.next()){
+                return new User(rs.getInt("id"),rs.getInt("loginType"),rs.getInt("role_id"),
                         rs.getString("firstname"),
-                        rs.getString("lastname"), username, password,
-                        rs.getString("email"), rs.getString("phone_number"),
-                        rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
-                );
+                        rs.getString("lastname"),username,password,
+                        rs.getString("email"),rs.getString("phone_number"),rs.getString("address"),
+                        rs.getDate("created_at"),rs.getDate("updated_at"),rs.getInt("deleted")
+                        );
             }
         } catch (SQLException e) {
         }
         return null;
     }
-
-    public void addUser(String username, String password) {
+    
+    public void addUser(String username,String password) {
         String sql = "INSERT INTO Users\n"
                 + "           ([loginType]\n"
                 + "           ,[role_id]\n"
@@ -55,10 +54,10 @@ public class UserDAO extends DBContext {
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-
+ 
             st.setString(1, username);
             st.setString(2, password);
-
+     
             st.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -75,7 +74,7 @@ public class UserDAO extends DBContext {
                 User c = new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
                         rs.getString("firstname"),
                         rs.getString("lastname"), name, rs.getString("password"),
-                        rs.getString("email"), rs.getString("phone_number"), 
+                        rs.getString("email"), rs.getString("phone_number"), rs.getString("address"),
                         rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
                 );
                 return c;
@@ -85,11 +84,13 @@ public class UserDAO extends DBContext {
         }
         return null;
     }
+    
 
     //check cai username day da ton tai chua????
     // neu ton tai roi tra ve true
     //chua ton tai tra ve false
-    public boolean existedUser(String username) {
+    
+     public boolean existedUser(String username) {
         String sql = "SELECT [Username]\n"
                 + "      ,[Password]\n"
                 + "      ,[email]\n"
@@ -99,7 +100,7 @@ public class UserDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, username);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
+            if(rs.next()){
                 return true;
             }
         } catch (SQLException e) {
@@ -107,10 +108,10 @@ public class UserDAO extends DBContext {
         }
         return false;
     }
-
-    //check xem tài khoan co ton tai chua dua vao email
-    //
-    public boolean existedEmailUser(String email) {
+     
+     //check xem tài khoan co ton tai chua dua vao email
+     //
+     public boolean existedEmailUser(String email) {
         String sql = "SELECT [Username]\n"
                 + "      ,[Password]\n"
                 + "      ,[email]\n"
@@ -120,7 +121,7 @@ public class UserDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
+            if(rs.next()){
                 return true;
             }
         } catch (SQLException e) {
@@ -128,8 +129,9 @@ public class UserDAO extends DBContext {
         }
         return false;
     }
-
-    public void changePassUserByEmail(String newpass, String email) {
+     
+     
+      public void changePassUserByEmail(String newpass, String email) {
         String sql = "update [Users] set \n"
                 + "password = ?\n"
                 + "where email = ?";
@@ -142,11 +144,13 @@ public class UserDAO extends DBContext {
             System.out.println(e);
         }
     }
+     
+    
 
     public static void main(String[] args) {
-        UserDAO d = new UserDAO();
-
-        User u = d.checkAccount("maigiang", "123");
-        System.out.println(u);
+        UserDAO d=new UserDAO();
+        
+        User u=d.checkAccount("maigiang", "123");
+         System.out.println(u);
     }
 }
