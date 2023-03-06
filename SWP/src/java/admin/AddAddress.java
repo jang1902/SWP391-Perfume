@@ -83,8 +83,8 @@ public class AddAddress extends HttpServlet {
         String ward = request.getParameter("ward");
         String detail = request.getParameter("detail");
         DashboardDAO d = new DashboardDAO();
-        User lastest = new User();
-            d.getLastestUser();
+        User lastest = d.getLastestUser();
+            
         try {
             // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
 //            response.sendRedirect("addaccount");
