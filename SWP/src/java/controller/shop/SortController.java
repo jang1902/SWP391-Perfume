@@ -91,7 +91,11 @@ public class SortController extends HttpServlet {
                 request.setAttribute("nextPage", nextPage);
                 request.setAttribute("backPage", backPage);
                 request.setAttribute("pageIndex", pageIndex);
+<<<<<<< Updated upstream
                 request.setAttribute("total", totalRow);
+=======
+                 request.setAttribute("total", totalRow);
+>>>>>>> Stashed changes
 
             }
             request.setAttribute("typeSort", typeSort);
@@ -113,7 +117,11 @@ public class SortController extends HttpServlet {
                 request.setAttribute("nextPage", nextPage);
                 request.setAttribute("backPage", backPage);
                 request.setAttribute("pageIndex", pageIndex);
+<<<<<<< Updated upstream
                 request.setAttribute("total", totalRow);
+=======
+                 request.setAttribute("total", totalRow);
+>>>>>>> Stashed changes
 
             }
             request.setAttribute("typeSort", typeSort);
@@ -134,7 +142,11 @@ public class SortController extends HttpServlet {
                 request.setAttribute("nextPage", nextPage);
                 request.setAttribute("backPage", backPage);
                 request.setAttribute("pageIndex", pageIndex);
+<<<<<<< Updated upstream
                 request.setAttribute("total", totalRow);
+=======
+                 request.setAttribute("total", totalRow);
+>>>>>>> Stashed changes
 
             }
             request.setAttribute("typeSort", typeSort);
@@ -155,7 +167,11 @@ public class SortController extends HttpServlet {
                 request.setAttribute("nextPage", nextPage);
                 request.setAttribute("backPage", backPage);
                 request.setAttribute("pageIndex", pageIndex);
+<<<<<<< Updated upstream
                 request.setAttribute("total", totalRow);
+=======
+                 request.setAttribute("total", totalRow);
+>>>>>>> Stashed changes
 
             }
 

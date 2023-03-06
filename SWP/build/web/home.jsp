@@ -80,7 +80,7 @@
 
                     </c:if>
                     <c:if test="${sessionScope.userNow.role_id!=null}">
-                    <a href="#" class="login_cart-item-link" >
+                    <a href="profile" class="login_cart-item-link" >
                         <div class="login-cart_item">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -217,7 +217,7 @@
                             Ưu đãi 
                         </div>
                         <div class="body_top-title-right">
-                            <a href="./src/allproducts.html" class="body_top-title-right-item">Xem tất cả
+                            <a href="shop" class="body_top-title-right-item">Xem tất cả
                                 <i class="fa-solid fa-caret-right icon_arrow-viewall"></i>
                             </a>
                         </div>
@@ -334,7 +334,7 @@
                             Sản phẩm hàng đầu 
                         </div>
                         <div class="body_top-title-right">
-                            <a href="./src/allproducts.html" class="body_top-title-right-item">Xem tất cả
+                            <a href="shop" class="body_top-title-right-item">Xem tất cả
                                 <i class="fa-solid fa-caret-right icon_arrow-viewall"></i>
                             </a>
                         </div>
@@ -412,7 +412,7 @@
                         Sản phẩm mới
                     </div>
                     <div class="body_top-title-right">
-                        <a href="./src/allproducts.html" class="body_top-title-right-item">Xem tất cả
+                        <a href="shop" class="body_top-title-right-item">Xem tất cả
                             <i class="fa-solid fa-caret-right icon_arrow-viewall"></i>
                         </a>
                     </div>

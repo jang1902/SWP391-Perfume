@@ -184,12 +184,12 @@
 
 
                     <div class="login-cart">
-                        <a href="./src/login.html" class="login_cart-item-link">
+                        <a href="login" class="login_cart-item-link">
                             <div class="login-cart_item">
                                 <i class="fa-solid fa-user"></i>
                             </div>
                         </a>
-                        <a href="./src/cart.html" class="login_cart-item-link">
+                        <a href="cart" class="login_cart-item-link">
                             <div class="login-cart_item">
                                 <i class="fa-solid fa-bag-shopping"></i>
                             </div>
@@ -262,7 +262,7 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -345,7 +345,11 @@
                                 </li>
                                 <li class="list-group-item"><button type="submit" class="btn btn-outline-success btn-1">OK</button></li>
                             </ul>  
+<<<<<<< Updated upstream
                         </form> 
+=======
+                        </form>   
+>>>>>>> Stashed changes
                         <hr/>        
                     </div>
                     <div class="col-sm-9 row align-content-start">
@@ -353,7 +357,7 @@
                         <c:if test="${listP.size() != 0}">
                             <c:forEach items="${listP}" var="o">
                                 <div class=" col-12  decor products ">
-                                    <a href="#">
+                                    <a href="pdetail?id=${o.id}&sid=${o.sizeproduct.sid}&gid=${o.gender.id}">
                                         <img src="${o.thumbnail}" alt="" class="img_products">
                                     </a>
                                     <div class="describe_products">
@@ -366,7 +370,11 @@
                                                 <i class="fa-solid fa-star icon_star"></i>
                                             </span>
                                             <div>
+<<<<<<< Updated upstream
                                                 <c:if test="${o.discount.value!=0}">
+=======
+                                             <c:if test="${o.discount.value!=0}">
+>>>>>>> Stashed changes
                                                     <span class="info_price">${o.sizeproduct.price_out- o.sizeproduct.price_out*o.discount.value/100}₫</span>
                                                     <span class="oldprice">${o.sizeproduct.price_out}₫
 					</span>
