@@ -22,7 +22,7 @@ import model.Product;
  *
  * @author hp
  */
-@WebServlet(name="CRUDProductServlet", urlPatterns={"/dashboardp"})
+@WebServlet(name="DashbroadProductServlet", urlPatterns={"/dashboardp"})
 public class DashbroadProductServlet extends HttpServlet {
    
     /** 

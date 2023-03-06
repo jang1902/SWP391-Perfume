@@ -22,7 +22,7 @@ import model.Size;
  *
  * @author hp
  */
-@WebServlet(name = "CrudProductServlet", urlPatterns = {"/addproduct"})
+@WebServlet(name = "AddProductServlet", urlPatterns = {"/addproduct"})
 public class AddProductServlet extends HttpServlet {
 
     /**
