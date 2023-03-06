@@ -15,7 +15,7 @@
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="assets/img/small_logo1.png">
-        <title>BOT STORE</title>
+        <title>Boon Bo</title>
     </head>
     <body >
         <!-- header -->
@@ -26,31 +26,18 @@
                     <div class="header_top-intro-support">
                         <div class="sp-child hotline">
                             <i class="fa-solid fa-phone icon-sup"></i>
-                            <span>+84 123456789</span>
+                            <span>+84 969420123</span>
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
-                            <span>botstore@gmail.com</span>
+                            <span>boonbo@gmail.com</span>
                         </div>
                         <div class="sp-child question">
                             <i class="fa-solid fa-headset icon-sup"></i>
                             <span>Hỗ trợ trực tuyến 24/7</span>
                         </div>
                     </div>
-                    <div class="header_top-intro-language">
-                        Language
-                        <i class="fa-solid fa-chevron-down icon_arrowdown"></i>
-                        <ul class="language-child">
-                            <li class="language_item">
-                                <img src="./assets/img/flagVN.jpg" class="language-item_child flag">
-                                <span class="language-item_child ">VietNam</span>
-                            </li>
-                            <li class="language_item">
-                                <img src="./assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
-                                <span class="language-item_child ">English</span>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
             <!-- end header top -->
@@ -207,6 +194,12 @@
                                     <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${param.sid}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
+
+
+
+
+
+
                         </div>
                         <hr class="decoration_top-right-products">
                         <div class="info_products-right-item view_productsdetails">
@@ -470,7 +463,14 @@
 
         <script type="text/javascript">
 
-           
+            function add(id, size) {
+                var quantity = document.fo.quantity.value;
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + quantity;
+                document.fo.submit();
+            }
+
+
+
 
             var img_products = [
             <c:forEach items="${requestScope.listgallery}" var="gl">

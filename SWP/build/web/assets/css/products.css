@@ -415,7 +415,9 @@ a.btn-check, button.buy-now, button.btn-addtocart {
 ul.breadcrumb {
     padding: 10px 16px;
     list-style: none;
-    background-color: #eee;
+    background-color: #e2e2e2;
+    margin-bottom: 20px;
+    margin-top: -10px;
 }
 
 /* Display list items side by side */

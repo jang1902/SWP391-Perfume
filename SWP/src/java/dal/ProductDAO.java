@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.Category;
 import model.Discount;
 import model.Gallery;
@@ -266,6 +268,93 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
+    
+    public Map<Product,List<SizeProduct>> getAllProductWithSizeProduct() {
+        ProductDAO dao=new ProductDAO();
+        Map<Product,List<SizeProduct>> map = new HashMap<Product,List<SizeProduct>>();
+        List<Product> listP = dao.getAllProduct();
+        List<SizeProduct> listSP = new ArrayList<>();
+        
+        
+        String sql = "select * from SizeProduct";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                SizeProduct c = new SizeProduct();
+                c.setPid(rs.getInt("pid"));
+                c.setSid(rs.getInt("sid"));
+                c.setQuantity(rs.getInt("quantity"));
+                c.setPrice_in(rs.getInt("price_in"));
+                c.setPrice_out(rs.getInt("price_out"));
+                listSP.add(c);
+            }
+            
+            
+            
+            for (Product product : listP) {
+                for (SizeProduct sizeProduct : listSP) {
+                    if(product.getId()==sizeProduct.getPid() && sizeProduct.getSid()==1){// muốn get hết size thì bỏ "&& sizeProduct.getSid()==1"
+                        List<SizeProduct> listTemp = new ArrayList<>();
+                        listTemp.add(sizeProduct);
+                        map.put(product, listTemp);
+                    }
+                }
+            }
+            
+         
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return map;
+    }
+
+    public Size getValue() {
+        String sql = "SELECT [id]\n"
+                + "      ,[name]\n"
+                + "      ,[value]\n"
+                + "  FROM [SWP].[dbo].[Sizes]";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+
+                Size s = new Size();
+                s.setId(rs.getInt("sid"));
+                s.setName(rs.getString("name"));
+                s.setValue(rs.getInt("value"));
+                return s;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<Size> getAllSize() {
+        List<Size> ls = new ArrayList<>();
+        String sql = "SELECT [id]\n"
+                + "      ,[name]\n"
+                + "      ,[value]\n"
+                + "  FROM [SWP].[dbo].[Sizes]";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Size s = new Size();
+                s.setId(rs.getInt("id"));
+                s.setName(rs.getString("name"));
+                s.setValue(rs.getInt("value"));
+
+                ls.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return ls;
+    }
 
     //san pham lien quan
     public List<Product> randomRelative(int gid, int pid) throws SQLException {
@@ -305,9 +394,4 @@ public class ProductDAO extends DBContext {
         }
         return ls;
     }
-
-    public static void main(String[] args) throws SQLException {
-
-    }
-
 }

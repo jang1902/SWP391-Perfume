@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package control.crud;
 
-import dal.HomeDAO;
+import dal.CrudDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,14 +14,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Category;
+import model.Gender;
 import model.Product;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name="ProductServlet", urlPatterns={"/ProductServlet"})
-public class ProductServlet extends HttpServlet {
+@WebServlet(name="DeleteProductServlet", urlPatterns={"/deleteproduct"})
+public class DeleteProductServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +40,10 @@ public class ProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductServlet</title>");  
+            out.println("<title>Servlet DeleteProductServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,12 +60,25 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-  
-            HomeDAO d = new HomeDAO();
-            List<Product> p = d.getProductPresentation();
-            request.setAttribute("product", p);
-         
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        
+        String pid_raw = request.getParameter("pid");
+        String sid_raw = request.getParameter("sid");
+        
+        int pid,sid;
+        
+        pid = Integer.parseInt(pid_raw);
+        sid = Integer.parseInt(sid_raw);
+        
+        CrudDAO crud = new CrudDAO();
+
+        crud.deleteProduct(pid);
+        
+        crud.deleteSizeProduct(pid, sid);
+        
+        request.getRequestDispatcher("dashboardp").forward(request, response);
+        
+        
+        
     } 
 
     /** 

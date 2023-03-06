@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Category;
+import model.Gallery;
 import model.Gender;
 import model.Product;
 import model.Size;
@@ -76,31 +77,38 @@ public class DetailServlet extends HttpServlet {
         int id = Integer.parseInt(id_raw);
         int sid = Integer.parseInt(sid_raw);
         int gid = Integer.parseInt(gid_raw);
-
+        request.setAttribute("sizeid",sid);
+        
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProductByID(id);
-
-
+        
         SizeProduct getP = dao.getSizeProductByPidSid(id, sid);
 
         List<Size> ls = dao.getSizeByPID(id);
+        
+        List<Gallery> listg = dao.getGalleryByPid(id) ;
 
         Category getC = dao.getCategoryNameById(p.getCategory_id());
 
         Gender g = dao.getGenderByID(id);
-        List<Product> lg = null;
+        List<Product> lg;
         try {
             lg = dao.randomRelative(gid, id);
             request.setAttribute("relativeproducts", lg);
         } catch (SQLException ex) {
 
         }
-
         request.setAttribute("cate", getC);
         request.setAttribute("detail", getP);
         request.setAttribute("product", p);
         request.setAttribute("size", ls);
         request.setAttribute("gender", g);
+        request.setAttribute("listgallery", listg);
+        int i=1;
+        
+        request.setAttribute("count", ++i);
+        
+  
 
         request.getRequestDispatcher("productdetail.jsp").forward(request, response);
     }
@@ -123,18 +131,9 @@ public class DetailServlet extends HttpServlet {
         int id = Integer.parseInt(id_raw);
         int sid = Integer.parseInt(sid_raw);
         int gid = Integer.parseInt(gid_raw);
-
+        request.setAttribute("sizeid",sid);
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProductByID(id);
-
-//        List<Size> listS = new ArrayList<Size>();
-//        if (!listSP.isEmpty()) {
-//            for (SizeProduct sizeProduct : listSP) {
-//                if (sizeProduct.getQuantity() > 0) {
-//                    listS.add(dao.getSizeByID(sizeProduct.getSid()));
-//                }
-//            }
-//        }
         SizeProduct getP = dao.getSizeProductByPidSid(id, sid);
 
         List<Size> ls = dao.getSizeByPID(id);
@@ -149,13 +148,8 @@ public class DetailServlet extends HttpServlet {
         } catch (SQLException ex) {
 
         }
-//        if (sid > 0) {
-//            request.setAttribute("size", sid);
-//        }
         request.setAttribute("cate", getC);
         request.setAttribute("detail", getP);
-//        request.setAttribute("listS", listS);
-//        request.setAttribute("listSP", listSP);
         request.setAttribute("product", p);
         request.setAttribute("size", ls);
         request.setAttribute("gender", g);
