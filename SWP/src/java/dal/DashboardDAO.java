@@ -161,7 +161,7 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
-    
+
     public List<User> getAllActiveUser() {
         List<User> list = new ArrayList<>();
         String sql = "  select * from Users u \n"
@@ -198,7 +198,7 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
-    
+
     public List<User> getAllInactiveUser() {
         List<User> list = new ArrayList<>();
         String sql = "  select * from Users u \n"
@@ -400,13 +400,42 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
-                
+
                 return u;
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
         return null;
+    }
+
+    public void updateAccount(User a) {
+
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET \n"
+                + "      [role_id] = ?\n"
+                + "      ,[firstname] = ?\n"
+                + "      ,[lastname] = ?\n"
+                + "      ,[username] = ?\n"
+                + "      ,[password] = ?\n"
+                + "      ,[email] = ?\n"
+                + "      ,[phone_number] = ?\n"
+                + "      ,[created_at] = ?\n"
+                + "      ,[updated_at] = ?\n"
+                + "      ,[deleted] = ?\n"
+                + " WHERE id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, a.getRole_id());
+            st.setString(1, a.getFirstname());
+            st.setString(2, a.getLastname());
+            st.setDate(3, a.getUpdated_at());
+            st.setInt(4, a.getDeleted());
+            st.setInt(5, a.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     public static void main(String[] args) {
@@ -416,7 +445,7 @@ public class DashboardDAO extends DBContext {
         Address_Detail ad = new Address_Detail(lastest.getId(), "city", "district", "ward", "detail", 1);
         d.addAddress(ad);
         System.out.println(lastest.getId());
-        
+
         System.out.println("====");
         System.out.println(d.getAllUser());
     }

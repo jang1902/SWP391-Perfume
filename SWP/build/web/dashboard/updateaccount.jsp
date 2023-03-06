@@ -299,7 +299,7 @@
                         </div>
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
-                        <form action="addaccount" method="POST">
+                        <form action="updateaccount" method="POST">
 
                             <div class="dashboard-page-content">
                                 <div class="row">
@@ -320,40 +320,41 @@
                                                     <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">${requestScope.msg}</label>
 
                                                 </div>
+                                                    <c:set value="${requestScope.userInfo}" var="ui"/>   
                                                 <div class="mb-5">
                                                     <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Account email</label>
-                                                    <input type="email" required="" placeholder="Type here" name="email" class="form-control bg-input border-0" id="product_title">
+                                                    <input type="email" readonly="" required="" placeholder="${ui.email}" name="email" class="form-control bg-input border-0" id="product_title">
                                                 </div>
                                                 <div class="mb-5">
                                                     <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Phone Number</label>
-                                                    <input type="number" required="" placeholder="Type here" name="phonenum" class="form-control bg-input border-0" id="product_title">
+                                                    <input type="number" readonly="" required="" placeholder="${ui.phone_number}" name="phonenum" class="form-control bg-input border-0" id="product_title">
                                                 </div>
                                                 <div class="row">
 
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_sku" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Username</label>
-                                                        <input type="text" required="" placeholder="Type here" name="username" class="form-control bg-input border-0" id="product_sku">
+                                                        <input type="text" readonly="" required="" placeholder="${ui.username}" name="username" class="form-control bg-input border-0" id="product_sku">
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Password</label>
-                                                        <input type="text" required="" placeholder="Type here" name="password" class="form-control bg-input border-0" id="product_color">
+                                                        <input type="text" readonly="" required="" placeholder="${ui.password}" name="password" class="form-control bg-input border-0" id="product_color">
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <small class="text-muted fs-14 mb-2">Select Role</small>
-                                                        <select required="" size="3" class="form-control bg-input border-0 select-multiple" name="roleid"
-                                                                id="brand"  data-style="form-control w-100 border rounded">
-                                                            <option  value="2">User</option>
+                                                        <select required="" size="3" class="form-control bg-input border-0 select-multiple" name="roleid" 
+                                                                id="brand" data-style="form-control w-100 border rounded">
+                                                            <option value="2">User</option>
                                                             <option value="3">Order Staff</option>
                                                             <option value="4">Stock Manager</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_sku" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">First name</label>
-                                                        <input type="text" required="" placeholder="Type here" name="firstname" class="form-control bg-input border-0" id="product_sku">
+                                                        <input type="text" required="" value="${ui.firstname}" placeholder="${ui.firstname}" name="firstname" class="form-control bg-input border-0" id="product_sku">
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Last name</label>
-                                                        <input type="text" required="" placeholder="Type here" name="lastname" class="form-control bg-input border-0" id="product_color">
+                                                        <input type="text" required="" value="${ui.lastname}" placeholder="${ui.lastname}" name="lastname" class="form-control bg-input border-0" id="product_color">
                                                     </div>
                                                 </div>
                                                 

@@ -387,7 +387,7 @@
                                                     window.location.href = "showprofile?id=${param.id}";
                                                 }
                                                 if (sel.value == "2") {
-                                                    window.location.href = "updateaccount";
+                                                    window.location.href = "updateaccount?id="+${param.id};
                                                 }
                                                 if (sel.value == "3") {
                                                     if (confirm("Are you sure to delete this account!?")) {

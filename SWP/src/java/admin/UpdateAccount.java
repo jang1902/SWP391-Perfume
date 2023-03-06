@@ -4,6 +4,7 @@
  */
 package admin;
 
+import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.User;
 
 /**
  *
@@ -57,6 +59,11 @@ public class UpdateAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DashboardDAO d = new DashboardDAO();
+        String id_raw = request.getParameter("id");
+        int id = Integer.parseInt(id_raw);
+        request.setAttribute("userInfo", d.getUserById(id));
+        
         request.getRequestDispatcher("dashboard/updateaccount.jsp").forward(request, response);
     }
 
@@ -71,7 +78,26 @@ public class UpdateAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                String email = request.getParameter("email");
+        String phonenum = request.getParameter("phonenum");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+//        String role_id_raw = request.getParameter("role");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        int role_id = Integer.parseInt(request.getParameter("roleid"));
+        String id_raw = request.getParameter("id");
+//        int id = Integer.parseInt(id_raw);
+       
+        DashboardDAO d = new DashboardDAO();
+        try {
+            
+            User a = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
+            d.updateAccount(a);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+         response.sendRedirect("dashboard");
     }
 
     /**

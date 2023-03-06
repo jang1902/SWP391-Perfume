@@ -60,6 +60,10 @@ public class AddAddress extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DashboardDAO d = new DashboardDAO();
+        User lastest = new User();
+            
+            request.setAttribute("lastedU", d.getLastestUser());
         request.getRequestDispatcher("dashboard/addaddress.jsp").forward(request, response);
     }
 
