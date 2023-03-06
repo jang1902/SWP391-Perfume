@@ -87,7 +87,11 @@ public class ShopServlet extends HttpServlet {
             request.setAttribute("nextPage", nextPage);
             request.setAttribute("backPage", backPage);
             request.setAttribute("pageIndex", pageIndex);
+<<<<<<< Updated upstream
             request.setAttribute("total", totalRow);
+=======
+             request.setAttribute("total", totalRow);
+>>>>>>> Stashed changes
         }
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     } 

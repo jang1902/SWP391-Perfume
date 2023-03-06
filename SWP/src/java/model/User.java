@@ -12,13 +12,15 @@ import java.sql.Date;
  */
 public class User {
     private int id,loginType,role_id;
-    private String firstname,lastname,username,password,email,phone_number,address;
+    private String firstname,lastname,username,password,email,phone_number;
     private Date created_at,updated_at;
     private int deleted;
+    private String avatar;
+
     public User() {
     }
 
-    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, String address, Date created_at, Date updated_at, int deleted) {
+    public User(int id, int loginType, int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, Date created_at, Date updated_at, int deleted, String avatar) {
         this.id = id;
         this.loginType = loginType;
         this.role_id = role_id;
@@ -28,10 +30,10 @@ public class User {
         this.password = password;
         this.email = email;
         this.phone_number = phone_number;
-        this.address = address;
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.deleted = deleted;
+        this.avatar = avatar;
     }
 
     public int getId() {
@@ -106,14 +108,6 @@ public class User {
         this.phone_number = phone_number;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Date getCreated_at() {
         return created_at;
     }
@@ -138,7 +132,16 @@ public class User {
         this.deleted = deleted;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
    
 
+    
   
 }

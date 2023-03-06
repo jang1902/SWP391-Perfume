@@ -77,20 +77,26 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< Updated upstream
         //lay user vaf pass
+=======
+      
+>>>>>>> Stashed changes
         String u = request.getParameter("user");
         String p = request.getParameter("pass");
        // String remem = request.getParameter("remem");
 
-        //check
+        
         UserDAO d = new UserDAO();
         User user = d.checkAccount(u, p);
-        if (user == null) {
+       if (user == null) {
 
             request.setAttribute("mess", "Wrong user name or password!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
-        } else {
+        }
+        
+        else {
            
         //    Cookie cu = new Cookie("cuser", u);
          //   Cookie cp = new Cookie("cpass", p);
@@ -114,8 +120,13 @@ public class LogInServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("userNow", user);
           
+<<<<<<< Updated upstream
             //dang nhap thanh cong thi ve home, de tam la productservlet sau sua
             response.sendRedirect("ProductServlet");
+=======
+            
+            response.sendRedirect("home");
+>>>>>>> Stashed changes
         }
     }
 
