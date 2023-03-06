@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package control.crud;
 
-import dal.UserDAO;
+import dal.SizeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,14 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
 
 /**
  *
- * @author Phuong-Linh
+ * @author dell
  */
-@WebServlet(name = "Register", urlPatterns = {"/register"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "DeleteSizeServlet", urlPatterns = {"/deletesize"})
+public class DeleteSizeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Register</title>");
+            out.println("<title>Servlet DeleteSizeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteSizeServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +58,15 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+             SizeDAO dao = new SizeDAO();
+             String id = request.getParameter("id");
+             try{
+                 int deleId = Integer.parseInt(id);
+                 dao.deleteSize(deleId);
+             }catch(Exception e){
+                 System.out.println(e);
+             }
+             response.sendRedirect("managesize");
     }
 
     /**
@@ -73,38 +80,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String re_pass = request.getParameter("repassword");
-        String email = request.getParameter("email");
-
-        UserDAO dao = new UserDAO();
-        User a = dao.getAccountByLoginName(username);
-        User b = dao.getAccountByEmail(email);
-        String ms = null, ms1 = null;
-        if (a != null || b != null) {
-            if (a != null) {
-
-                //day ve trang Sign up, Sign up lai
-                ms = "Tên đăng nhập đã tồn tại";
-            }
-            if (b != null) {
-                //day ve trang Sign up, Sign up lai
-                ms1 = "Email đã được dùng để đăng ký một tài khoản khác";
-            }
-
-            request.setAttribute("ms1", ms1);
-            request.setAttribute("ms", ms);
-            request.setAttribute("name", username);
-            request.setAttribute("emaill", email);
-            request.setAttribute("pass", password);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        } else {
-            //dc sign up
-            dao.addUser(new User(null, null, username, password, email, null, null, null, null, 0));
-            response.sendRedirect("login.jsp");
-        }
+        processRequest(request, response);
     }
 
     /**

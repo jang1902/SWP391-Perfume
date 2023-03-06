@@ -1,6 +1,6 @@
 <%-- 
-    Document   : dashboard
-    Created on : Feb 24, 2023, 5:24:11 PM
+    Document   : crudproduct
+    Created on : Feb 26, 2023, 2:27:15 PM
     Author     : hp
 --%>
 
@@ -10,7 +10,7 @@
 <!doctype html>
 <html lang="en">
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard-product-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:51 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/add-product-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <meta charset="utf-8">
@@ -18,7 +18,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Bảng danh sách sản phẩm - Boon Bo</title>
+        <title>Thêm sản phẩm - Boon Bo</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -40,29 +40,18 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Dashboard product list">
+        <meta name="twitter:title" content="Add product">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="dashboard-product-list.html">
-        <meta property="og:title" content="Dashboard product list">
+        <meta property="og:url" content="add-product-2.html">
+        <meta property="og:title" content="Add product">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
-
-        <script type="text/javascript">
-            function doDelete(id) {
-                if (confirm("Are you sure to delete size with id=" + id)) {
-                    window.location = "deletesize?id=" + id;
-                }
-            }
-            
-        </script>
-
-
     </head>
     <body>
         <div class="wrapper dashboard-wrapper">
@@ -139,19 +128,16 @@
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Category List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Gallery List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Size List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Discount List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -366,183 +352,137 @@
                         </div>
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
-                        <div class="dashboard-page-content">
-                            <div class="row mb-6 align-items-center">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Bảng danh sách size</h2>
-                                    <p class="mb-0"></p>
-                                </div>
-                                <div class="col-sm-6 d-flex flex-wrap justify-content-sm-end">
 
-                                    <a href="addsize" class="btn btn-primary">Create new
-                                    </a>
+                        <form action="addsize" method="post">
+                            <div class="dashboard-page-content">
+                                <div class="row">
+                                    <div class="col-xxl-6">
+                                        <div class="row mb-6">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <h2 class="fs-24 mb-0">Thêm size</h2>
+                                            </div>
+                                            <div class="col-sm-6 text-sm-right">
+                                                <input type="submit" class="btn btn-primary" value="Lưu">                                      
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card mb-4 rounded-xl p-4">
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <div class="table-responsive">
-                                            <table class="table align-middle table-nowrap mb-0">
-                                                <tbody>
+                                <div class="row">
+                                    <div class="col-xxl-6 form-control-01">
+                                        <div class="card mb-4">
+                                            <div class="card-body">
+                                                <div class="row">
                                                     
-                                                    <tr>
-                                                        <td class="text-center align-middle  pt-4 ">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck1">
-                                                                <label class="form-check-label" for="transactionCheck1"></label>
+                                                    <div class="col-md-9">
+                                                        <div class="mb-4">
+                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Tên size</label>
+                                                            <input type="text" name="namesize" placeholder="Type here" class="form-control bg-input border-0" id="product-title">
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="description">Giá tri</label>
+                                                            <input type="text" name="value" placeholder="Type here" class="form-control bg-input border-0" id="product-title">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
+
+                                    <footer class="pt-3 pb-6 footer-dashboard mt-auto">
+
+                                    </footer>
+                                    </main>
+                                </div>
+                            </div>
+                            </div>
+
+                            <script src="./vendors/jquery.min.js"></script>
+                            <script src="./vendors/jquery-ui/jquery-ui.min.js"></script>
+                            <script src="./vendors/bootstrap/bootstrap.bundle.js"></script>
+                            <script src="./vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
+                            <script src="./vendors/slick/slick.min.js"></script>
+                            <script src="./vendors/waypoints/jquery.waypoints.min.js"></script>
+                            <script src="./vendors/counter/countUp.js"></script>
+                            <script src="./vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
+                            <script src="./vendors/hc-sticky/hc-sticky.min.js"></script>
+                            <script src="./vendors/jparallax/TweenMax.min.js"></script>
+                            <script src="./vendors/mapbox-gl/mapbox-gl.js"></script>
+                            <script src="./vendors/isotope/isotope.js"></script>
+                            <script src="./vendors/chartjs/chart.min.js"></script>
+
+                            <script src="./js/theme.js"></script>
+                            <div class="modal sign-in" id="sign-in" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0 p-6">
+                                            <nav class="w-100">
+                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <a class="nav-link active" id="nav-log-in-tab" data-toggle="tab" href="#nav-log-in" role="tab" aria-controls="nav-log-in" aria-selected="true">Log in</a>
+                                                    <a class="nav-link" id="nav-register-tab" data-toggle="tab" href="#nav-register" role="tab" aria-controls="nav-register" aria-selected="false">Register</a>
+                                                </div>
+                                            </nav>
+                                            <button type="button" class="close opacity-10 fs-32 pt-1 position-absolute" data-dismiss="modal" aria-label="Close" style="right: 30px">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body px-9 pb-8">
+                                            <div class="tab-content" id="nav-tabContent">
+                                                <div class="tab-pane fade show active" id="nav-log-in" role="tabpanel" aria-labelledby="nav-log-in-tab">
+                                                    <h4 class="fs-34 text-center mb-6">Sign In</h4>
+                                                    <p class="text-center fs-16 mb-7">Don’t have an account yet? <a href="#" class="text-secondary border-bottom text-decoration-none">Sign up</a> for free</p>
+                                                    <form>
+                                                        <input name="email" type="email" class="form-control border-0 mb-3" placeholder="Your email" required>
+                                                        <input name="password" type="password" class="form-control border-0" placeholder="Password" required>
+                                                        <div class="d-flex align-items-center justify-content-between mt-5 mb-4">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input name="stay-signed-in" type="checkbox" class="custom-control-input" id="staySignedIn">
+                                                                <label class="custom-control-label text-body" for="staySignedIn">Stay signed in</label>
                                                             </div>
-                                                        </td>
-                                                        <td class="text-secondary align-middle font-weight-bold">ID</td>
-                                                        <td class="text-secondary align-middle font-weight-bold">Name</td>
-                                                    </tr>
-                                                    <c:forEach items="${requestScope.listsize}" var="s">
-                                                        <tr>
-                                                            <td class="text-center align-middle  pt-4 ">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" id="transactionCheck1">
-                                                                    <label class="form-check-label" for="transactionCheck1"></label>
-                                                                </div>
-                                                            </td>
-
-
-                                                            <td class="text-secondary align-middle font-weight-bold">${s.id}</td>
-                                                            <td class="text-secondary align-middle font-weight-bold">${s.name}</td>
-                                                            <td class="align-middle">
-                                                                <div class="d-flex flex-wrap justify-content-end">
-                                                                    <a href="editsize?id=${s.id}" class="btn btn-primary btn-sm mr-1 my-1"><i class="fal fa-pen"></i><span class="d-inline-block ml-1">Edit</span></a>
-                                                                    <a href="#" onclick="doDelete('${s.id}')" class="btn btn-sm border hover-white bg-hover-primary mr-1 border-primary my-1 text-secondary font-weight-400"><i class="fas fa-trash-alt"></i><span class="d-inline-block ml-1">Delete</span></a>
-
-                                                                </div>
-                                                            </td>
-
-                                                        </tr> 
-                                                    </c:forEach>
-
-                                                </tbody>
-                                            </table>
+                                                            <a href="#" class="text-secondary">Forgot your password?</a>
+                                                        </div>
+                                                        <button type="submit" value="Login" class="btn btn-secondary btn-block bg-hover-primary border-hover-primary">Log In</button>
+                                                        <div class="border-bottom mt-6"></div>
+                                                        <div class="text-center mt-n2 lh-1 mb-4">
+                                                            <span class="fs-14 bg-white lh-1 mt-n2 px-4">or Log-in with</span>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <a href="#" class="btn btn-outline-secondary btn-block border-2x border mr-5 border-hover-secondary"><i class="fab fa-facebook-f mr-2" style="color: #2E58B2"></i>Facebook</a>
+                                                            <a href="#" class="btn btn-outline-secondary btn-block border-2x border mt-0 border-hover-secondary"><i class="fab fa-google mr-2" style="color: #DD4B39"></i>Google</a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
+                                                    <h4 class="fs-34 text-center mb-6">Sign Up</h4>
+                                                    <p class="text-center fs-16 mb-7">Already have an account? <a href="#" class="text-secondary border-bottom text-decoration-none">Log in</a></p>
+                                                    <form>
+                                                        <input name="first-name" type="text" class="form-control border-0 mb-3" placeholder="First name" required>
+                                                        <input name="last-name" type="text" class="form-control border-0 mb-3" placeholder="Last name" required>
+                                                        <input name="email" type="email" class="form-control border-0 mb-3" placeholder="Your email" required>
+                                                        <input name="password" type="password" class="form-control border-0" placeholder="Password" required>
+                                                        <div class="custom-control custom-checkbox mt-4 mb-5 mr-xl-6">
+                                                            <input name="agree" type="checkbox" class="custom-control-input" id="termsOfUse">
+                                                            <label class="custom-control-label text-body" for="termsOfUse">
+                                                                Yes, I agree with Grace <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>
+                                                            </label>
+                                                        </div>
+                                                        <button type="submit" value="Login" class="btn btn-secondary btn-block bg-hover-primary border-hover-primary">Sign Up</button>
+                                                        <div class="border-bottom mt-6"></div>
+                                                        <div class="text-center mt-n2 lh-1 mb-4">
+                                                            <span class="fs-14 bg-white lh-1 mt-n2 px-4">or Sign Up with</span>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <a href="#" class="btn btn-outline-secondary btn-block border-2x border mr-5 border-hover-secondary"><i class="fab fa-facebook-f mr-2" style="color: #2E58B2"></i>Facebook</a>
+                                                            <a href="#" class="btn btn-outline-secondary btn-block border-2x border mt-0 border-hover-secondary"><i class="fab fa-google mr-2" style="color: #DD4B39"></i>Google</a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <nav aria-label="Page navigation example" class="mt-6 mb-4">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item mx-1">
-                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <footer class="pt-3 pb-6 footer-dashboard mt-auto">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script>
-                                    © Glowing - Beauty & Cosmetics Shop HTML Template .
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="text-sm-right">All rights reserved</div>
-                                </div>
-                            </div>
-                        </footer>
-                    </main>
-                </div>
-            </div>
-        </div>
 
-        <script src="./vendors/jquery.min.js"></script>
-        <script src="./vendors/jquery-ui/jquery-ui.min.js"></script>
-        <script src="./vendors/bootstrap/bootstrap.bundle.js"></script>
-        <script src="./vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
-        <script src="./vendors/slick/slick.min.js"></script>
-        <script src="./vendors/waypoints/jquery.waypoints.min.js"></script>
-        <script src="./vendors/counter/countUp.js"></script>
-        <script src="./vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
-        <script src="./vendors/hc-sticky/hc-sticky.min.js"></script>
-        <script src="./vendors/jparallax/TweenMax.min.js"></script>
-        <script src="./vendors/mapbox-gl/mapbox-gl.js"></script>
-        <script src="./vendors/isotope/isotope.js"></script>
-        <script src="./vendors/chartjs/chart.min.js"></script>
+                            </body>
 
-        <script src="./js/theme.js"></script>
-        <div class="modal sign-in" id="sign-in" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header border-0 p-6">
-                        <nav class="w-100">
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-link active" id="nav-log-in-tab" data-toggle="tab" href="#nav-log-in" role="tab" aria-controls="nav-log-in" aria-selected="true">Log in</a>
-                                <a class="nav-link" id="nav-register-tab" data-toggle="tab" href="#nav-register" role="tab" aria-controls="nav-register" aria-selected="false">Register</a>
-                            </div>
-                        </nav>
-                        <button type="button" class="close opacity-10 fs-32 pt-1 position-absolute" data-dismiss="modal" aria-label="Close" style="right: 30px">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body px-9 pb-8">
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-log-in" role="tabpanel" aria-labelledby="nav-log-in-tab">
-                                <h4 class="fs-34 text-center mb-6">Sign In</h4>
-                                <p class="text-center fs-16 mb-7">Don’t have an account yet? <a href="#" class="text-secondary border-bottom text-decoration-none">Sign up</a> for free</p>
-                                <form>
-                                    <input name="email" type="email" class="form-control border-0 mb-3" placeholder="Your email" required>
-                                    <input name="password" type="password" class="form-control border-0" placeholder="Password" required>
-                                    <div class="d-flex align-items-center justify-content-between mt-5 mb-4">
-                                        <div class="custom-control custom-checkbox">
-                                            <input name="stay-signed-in" type="checkbox" class="custom-control-input" id="staySignedIn">
-                                            <label class="custom-control-label text-body" for="staySignedIn">Stay signed in</label>
-                                        </div>
-                                        <a href="#" class="text-secondary">Forgot your password?</a>
-                                    </div>
-                                    <button type="submit" value="Login" class="btn btn-secondary btn-block bg-hover-primary border-hover-primary">Log In</button>
-                                    <div class="border-bottom mt-6"></div>
-                                    <div class="text-center mt-n2 lh-1 mb-4">
-                                        <span class="fs-14 bg-white lh-1 mt-n2 px-4">or Log-in with</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <a href="#" class="btn btn-outline-secondary btn-block border-2x border mr-5 border-hover-secondary"><i class="fab fa-facebook-f mr-2" style="color: #2E58B2"></i>Facebook</a>
-                                        <a href="#" class="btn btn-outline-secondary btn-block border-2x border mt-0 border-hover-secondary"><i class="fab fa-google mr-2" style="color: #DD4B39"></i>Google</a>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
-                                <h4 class="fs-34 text-center mb-6">Sign Up</h4>
-                                <p class="text-center fs-16 mb-7">Already have an account? <a href="#" class="text-secondary border-bottom text-decoration-none">Log in</a></p>
-                                <form>
-                                    <input name="first-name" type="text" class="form-control border-0 mb-3" placeholder="First name" required>
-                                    <input name="last-name" type="text" class="form-control border-0 mb-3" placeholder="Last name" required>
-                                    <input name="email" type="email" class="form-control border-0 mb-3" placeholder="Your email" required>
-                                    <input name="password" type="password" class="form-control border-0" placeholder="Password" required>
-                                    <div class="custom-control custom-checkbox mt-4 mb-5 mr-xl-6">
-                                        <input name="agree" type="checkbox" class="custom-control-input" id="termsOfUse">
-                                        <label class="custom-control-label text-body" for="termsOfUse">
-                                            Yes, I agree with Grace <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>
-                                        </label>
-                                    </div>
-                                    <button type="submit" value="Login" class="btn btn-secondary btn-block bg-hover-primary border-hover-primary">Sign Up</button>
-                                    <div class="border-bottom mt-6"></div>
-                                    <div class="text-center mt-n2 lh-1 mb-4">
-                                        <span class="fs-14 bg-white lh-1 mt-n2 px-4">or Sign Up with</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <a href="#" class="btn btn-outline-secondary btn-block border-2x border mr-5 border-hover-secondary"><i class="fab fa-facebook-f mr-2" style="color: #2E58B2"></i>Facebook</a>
-                                        <a href="#" class="btn btn-outline-secondary btn-block border-2x border mt-0 border-hover-secondary"><i class="fab fa-google mr-2" style="color: #DD4B39"></i>Google</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">       
-        </svg>
-    </body>
-
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard-product-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:51 GMT -->
-</html>
+                            </html>
