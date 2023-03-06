@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package control.crud;
+package admin;
 
-import dal.CrudDAO;
+import dal.DashboardDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,11 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.util.List;
-import model.Category;
-import model.Discount;
-import model.Gender;
-import model.Size;
+import model.User;
 
 
 /**
@@ -27,9 +23,8 @@ import model.Size;
  * @author hp
  */
 
-@WebServlet(name = "CrudProductServlet", urlPatterns = {"/addproduct"})
-public class AddProductServlet extends HttpServlet {
-
+@WebServlet(name = "UpdateAccount", urlPatterns = {"/updateaccount"})
+public class UpdateAccount extends HttpServlet {
 
 
     /**
@@ -50,10 +45,10 @@ public class AddProductServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
 
-            out.println("<title>Servlet CrudProductServlet</title>");
+            out.println("<title>Servlet UpdateAccount</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CrudProductServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateAccount at " + request.getContextPath() + "</h1>");
 
             out.println("</body>");
             out.println("</html>");
@@ -73,22 +68,12 @@ public class AddProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-        CrudDAO crud = new CrudDAO();
-
-        List<Category> allc = crud.getAllCategory();
-        request.setAttribute("allc", allc);
+        DashboardDAO d = new DashboardDAO();
+        String id_raw = request.getParameter("id");
+        int id = Integer.parseInt(id_raw);
+        request.setAttribute("userInfo", d.getUserById(id));
         
-        List<Discount> alld = crud.getAllDiscount();
-        request.setAttribute("alld", alld);
-        
-        List<Gender> allg = crud.getAllGender();
-        request.setAttribute("allg", allg);
-        
-        List<Size> alls = crud.getAllSize();
-        request.setAttribute("alls", alls);
-
-        request.getRequestDispatcher("addproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("dashboard/updateaccount.jsp").forward(request, response);
 
     }
 
@@ -104,7 +89,26 @@ public class AddProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        processRequest(request, response);
+                String email = request.getParameter("email");
+        String phonenum = request.getParameter("phonenum");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+//        String role_id_raw = request.getParameter("role");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        int role_id = Integer.parseInt(request.getParameter("roleid"));
+        String id_raw = request.getParameter("id");
+//        int id = Integer.parseInt(id_raw);
+       
+        DashboardDAO d = new DashboardDAO();
+        try {
+            
+            User a = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
+            d.updateAccount(a);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+         response.sendRedirect("dashboard");
 
     }
 
