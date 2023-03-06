@@ -12,15 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "UserList", urlPatterns = {"/userlist"})
-public class UserList extends HttpServlet {
+@WebServlet(name = "DeleteAccount", urlPatterns = {"/deleteaccount"})
+public class DeleteAccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class UserList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserList</title>");
+            out.println("<title>Servlet DeleteAccount</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserList at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteAccount at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +58,16 @@ public class UserList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-
-        request.getRequestDispatcher("dashboard/userlist.jsp").forward(request, response);
+        DashboardDAO d = new DashboardDAO();
+        String id_raw = request.getParameter("id");
+        int id = Integer.parseInt(id_raw);
+        try {
+                
+                d.delete(id);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+        request.getRequestDispatcher("dashboard").forward(request, response);
     }
 
     /**

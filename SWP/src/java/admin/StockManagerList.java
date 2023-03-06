@@ -19,8 +19,8 @@ import model.User;
  *
  * @author asus
  */
-@WebServlet(name = "UserList", urlPatterns = {"/userlist"})
-public class UserList extends HttpServlet {
+@WebServlet(name = "StockManagerList", urlPatterns = {"/stockmanagerlist"})
+public class StockManagerList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class UserList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserList</title>");
+            out.println("<title>Servlet StockManagerList</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserList at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet StockManagerList at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +60,10 @@ public class UserList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-
-        request.getRequestDispatcher("dashboard/userlist.jsp").forward(request, response);
+        DashboardDAO d = new DashboardDAO();
+        List<User> sm = d.getAllStockManager();
+        request.setAttribute("listSM", sm);
+        request.getRequestDispatcher("staffcards").forward(request, response);
     }
 
     /**
@@ -76,7 +77,7 @@ public class UserList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

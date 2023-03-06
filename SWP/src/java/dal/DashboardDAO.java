@@ -23,7 +23,7 @@ public class DashboardDAO extends DBContext {
         List<User> list = new ArrayList<>();
         String sql = "SELECT *\n"
                 + "  FROM [SWP391].[dbo].[Users]\n"
-                + "  where role_id=2";
+                + "  where role_id=2  ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -53,9 +53,10 @@ public class DashboardDAO extends DBContext {
 
     public List<User> getAllStaff() {
         List<User> list = new ArrayList<>();
-        String sql = "SELECT *\n"
-                + "  FROM [SWP391].[dbo].[Users]\n"
-                + "  where role_id!=2 and role_id !=1";
+        String sql = "  select * from Users u \n"
+                + "  join Roles r \n"
+                + "  on u.role_id = r.id\n"
+                + "  where u.role_id!=2 and u.role_id!=1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -74,6 +75,158 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                Role r = new Role();
+                r.setId(rs.getInt("role_id"));
+                r.setName(rs.getString("name").toUpperCase());
+                u.setRole(r);
+
+                list.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<User> getAllStockManager() {
+        List<User> list = new ArrayList<>();
+        String sql = "  select * from Users u \n"
+                + "  join Roles r \n"
+                + "  on u.role_id = r.id\n"
+                + "  where u.role_id!=2 and u.role_id!=1 and u.role_id!=3";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setLoginType(rs.getInt("loginType"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone_number(rs.getString("phone_number"));
+
+                u.setCreated_at(rs.getDate("created_at"));
+                u.setUpdated_at(rs.getDate("updated_at"));
+                u.setDeleted(rs.getByte("deleted"));
+                Role r = new Role();
+                r.setId(rs.getInt("role_id"));
+                r.setName(rs.getString("name").toUpperCase());
+                u.setRole(r);
+
+                list.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<User> getAllOrderStaff() {
+        List<User> list = new ArrayList<>();
+        String sql = "  select * from Users u \n"
+                + "  join Roles r \n"
+                + "  on u.role_id = r.id\n"
+                + "  where u.role_id!=2 and u.role_id!=1 and u.role_id!=4";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setLoginType(rs.getInt("loginType"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone_number(rs.getString("phone_number"));
+
+                u.setCreated_at(rs.getDate("created_at"));
+                u.setUpdated_at(rs.getDate("updated_at"));
+                u.setDeleted(rs.getByte("deleted"));
+                Role r = new Role();
+                r.setId(rs.getInt("role_id"));
+                r.setName(rs.getString("name").toUpperCase());
+                u.setRole(r);
+
+                list.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public List<User> getAllActiveUser() {
+        List<User> list = new ArrayList<>();
+        String sql = "  select * from Users u \n"
+                + "  join Roles r \n"
+                + "  on u.role_id = r.id\n"
+                + "  where u.role_id=2 and deleted=0";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setLoginType(rs.getInt("loginType"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone_number(rs.getString("phone_number"));
+
+                u.setCreated_at(rs.getDate("created_at"));
+                u.setUpdated_at(rs.getDate("updated_at"));
+                u.setDeleted(rs.getByte("deleted"));
+                Role r = new Role();
+                r.setId(rs.getInt("role_id"));
+                r.setName(rs.getString("name").toUpperCase());
+                u.setRole(r);
+
+                list.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public List<User> getAllInactiveUser() {
+        List<User> list = new ArrayList<>();
+        String sql = "  select * from Users u \n"
+                + "  join Roles r \n"
+                + "  on u.role_id = r.id\n"
+                + "  where u.role_id=2 and deleted = 1";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setLoginType(rs.getInt("loginType"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone_number(rs.getString("phone_number"));
+
+                u.setCreated_at(rs.getDate("created_at"));
+                u.setUpdated_at(rs.getDate("updated_at"));
+                u.setDeleted(rs.getByte("deleted"));
+                Role r = new Role();
+                r.setId(rs.getInt("role_id"));
+                r.setName(rs.getString("name").toUpperCase());
+                u.setRole(r);
 
                 list.add(u);
             }
@@ -151,7 +304,7 @@ public class DashboardDAO extends DBContext {
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name"));
                 u.setRole(r);
-                
+
                 return u;
             }
         } catch (SQLException e) {
@@ -224,6 +377,38 @@ public class DashboardDAO extends DBContext {
         }
     }
 
+    public User delete(int id) {
+        String sql = "update Users \n"
+                + "set deleted = 1\n"
+                + "where id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setLoginType(rs.getInt("loginType"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone_number(rs.getString("phone_number"));
+
+                u.setCreated_at(rs.getDate("created_at"));
+                u.setUpdated_at(rs.getDate("updated_at"));
+                u.setDeleted(rs.getByte("deleted"));
+                
+                return u;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         DashboardDAO d = new DashboardDAO();
         System.out.println(d.getUserById(10));
@@ -231,5 +416,8 @@ public class DashboardDAO extends DBContext {
         Address_Detail ad = new Address_Detail(lastest.getId(), "city", "district", "ward", "detail", 1);
         d.addAddress(ad);
         System.out.println(lastest.getId());
+        
+        System.out.println("====");
+        System.out.println(d.getAllUser());
     }
 }

@@ -171,12 +171,12 @@
                                         <div class="collapse menu-collapse" id="sellers">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="staffcards">Staff's information card</a>
+                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
                                                 </li>
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="userlist">User's information list</a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </div>
                                     </li>
@@ -360,25 +360,35 @@
                             </div>
                             <div class="card mb-4 rounded-xl">
                                 <div class="card-header bg-transparent p-4">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
-                                            <input type="text" placeholder="Search..." class="form-control bg-input border-0">
+                                    <div class="card-header bg-transparent p-4">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-2 col-6">
+                                                <select  class="form-control bg-input border-0" id="selectStatus">
+                                                    <option value="1">Status</option>
+                                                    <option value="2">Active</option>
+                                                    <option value="3">Inactive</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
+                                                <button onclick="getval()" class="btn btn-primary">Find</button>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                function getval() {
+                                                    var sel = document.getElementById('selectStatus');
+                                                    if (sel.value == "1") {
+                                                        window.location.href = "userlist";
+                                                    }
+                                                    if (sel.value == "2") {
+                                                        window.location.href = "activeuser";
+                                                    }
+                                                    if (sel.value == "3") {
+                                                        window.location.href = "inactiveuser";
+                                                    }
+                                                }
+                                            </script>
                                         </div>
-                                        <div class="col-md-2 col-6">
-                                            <select class="form-control bg-input border-0">
-                                                <option>Show 20</option>
-                                                <option>Show 30</option>
-                                                <option>Show 40</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2 col-6">
-                                            <select class="form-control bg-input border-0">
-                                                <option>Status:all</option>
-                                                <option>Active</option>
-                                                <option>Disabled</option>
-                                                <option>Show all</option>
-                                            </select>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="card-body p-4">
@@ -394,6 +404,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+
+                                                <!-- all user -->
                                                 <c:forEach items="${requestScope.listUser}" var="lu">
                                                     <tr>
                                                         <td>
@@ -424,6 +436,78 @@
                                                         <td class="text-right">
                                                             <div class="d-flex flex-wrap justify-content-end">
                                                                 <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                                <!-- active -->
+                                                <c:forEach items="${requestScope.listUserA}" var="lA">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media">
+                                                                <div class="w-60px height-60 mr-3">
+                                                                    <img class="rounded-circle" src="./img/avatar-1.png" alt="Eleanor Pena">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <a href="./showprofile?id=${lA.id}">${lA.username}</a>
+                                                                    <p class="text-muted mb-0 fs-14">User ID#${lA.id}</p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>${lA.email}</td>
+                                                        <td>
+                                                            <c:if test="${lA.deleted ==0}">
+                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                    Active
+                                                                </span>
+                                                            </c:if>
+                                                            <c:if test="${lA.deleted ==1}">
+                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                    Inactive
+                                                                </span>
+                                                            </c:if>
+                                                        </td>
+                                                        <td>a}</td>
+                                                        <td class="text-right">
+                                                            <div class="d-flex flex-wrap justify-content-end">
+                                                                <a href="showprofile?id=${lA.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                                <!-- inactive -->
+                                                <c:forEach items="${requestScope.listUserI}" var="lI">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media">
+                                                                <div class="w-60px height-60 mr-3">
+                                                                    <img class="rounded-circle" src="./img/avatar-1.png" alt="Eleanor Pena">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <a href="./showprofile?id=${lI.id}">${lI.username}</a>
+                                                                    <p class="text-muted mb-0 fs-14">User ID#${lI.id}</p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>${lI.email}</td>
+                                                        <td>
+                                                            <c:if test="${lI.deleted ==0}">
+                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                    Active
+                                                                </span>
+                                                            </c:if>
+                                                            <c:if test="${lI.deleted ==1}">
+                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                    Inactive
+                                                                </span>
+                                                            </c:if>
+                                                        </td>
+                                                        <td>a}</td>
+                                                        <td class="text-right">
+                                                            <div class="d-flex flex-wrap justify-content-end">
+                                                                <a href="showprofile?id=${lI.id}" class="btn btn-primary btn-xs py-2">View details</a>
                                                             </div>
                                                         </td>
                                                     </tr>

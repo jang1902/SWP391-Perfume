@@ -6,16 +6,27 @@
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/dashboard.jsp</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/productdetail.jsp</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/UserList.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/ActiveUser.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/ShowAllStaff.java</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/dal/ProductDAO.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/OrderStaffList.java</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/dal/DashboardDAO.java</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/addaccount.jsp</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/InactiveUser.java</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/staffcards.jsp</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/userlist.jsp</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/AddAddress.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/StockManagerList.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/UpdateAccount.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/DeleteAccount.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/dal/UserDAO.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/updateaccount.jsp</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/StaffCards.java</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/AddAccount.java</file>
-            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/showprofile.jsp</file>
             <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/ShowProfile.java</file>
-            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/model/User.java</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/addaddress.jsp</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/web/dashboard/showprofile.jsp</file>
+            <file>file:/D:/SEM3/SWP_Boon_Bo/SWP/src/java/admin/ShowAllUser.java</file>
         </group>
     </open-files>
 </project-private>

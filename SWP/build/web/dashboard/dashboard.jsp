@@ -164,10 +164,10 @@
                                         <div class="collapse menu-collapse" id="sellers">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="staffcards">Staff's information card</a>
+                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="userlist">User's information list</a>
+                                                    <a class="sidebar-link lh-1" href="alluser">User's information list</a>
                                                 </li>
                                                 
                                             </ul>

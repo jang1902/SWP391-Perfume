@@ -61,9 +61,7 @@ public class StaffCards extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        DashboardDAO d = new DashboardDAO();
-        List<User> lsS = d.getAllStaff();
-        request.setAttribute("listStaff", lsS);
+        
 
         request.getRequestDispatcher("dashboard/staffcards.jsp").forward(request, response);
     }

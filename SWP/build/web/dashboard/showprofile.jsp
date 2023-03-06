@@ -361,17 +361,46 @@
                                         <div class="col-xl col-lg">
                                             <h3 class="fs-24 mb-0">${u.firstname} ${u.lastname}</h3>
                                             <p>${u.role.name}</p>
-                                            
+
                                         </div>
 
                                         <div class="col-xl-4 text-xl-right">
-                                            <select class="form-control w-auto d-inline-block my-1">
-                                                <option>Actions</option>
-                                                <option>Update</option>
-                                                <option>Delete</option>
+                                            <select class="form-control w-auto d-inline-block my-1" id="selectAction">
+                                                <option value="1">Actions</option>
+                                                <option value="2">Update</option>
+                                                <option value="3">Delete</option>
                                             </select>
 
                                         </div>
+                                        <div class="">
+                                            <button onclick="getval()" class="btn btn-primary">Select</button>
+                                        </div>
+
+
+
+
+
+                                        <script type="text/javascript">
+                                            function getval() {
+                                                var sel = document.getElementById('selectAction');
+                                                if (sel.value == "1") {
+                                                    window.location.href = "showprofile?id=${param.id}";
+                                                }
+                                                if (sel.value == "2") {
+                                                    window.location.href = "updateaccount";
+                                                }
+                                                if (sel.value == "3") {
+                                                    if (confirm("Are you sure to delete this account!?")) {
+                                                        window.location = "deleteaccount?id=" + ${param.id};
+                                                    }
+                                                }
+                                            }
+
+
+                                        </script>
+
+
+
 
                                     </div>
 
@@ -391,7 +420,7 @@
                                         <div class="col-sm-6 col-lg-4 col-xl-3">
                                             <h6 class="f-18 mb-1">Address</h6>
                                             <p class="mb-0">
-                                               
+
                                                 City: ${u.address_detail.city} <br>
                                                 District: ${u.address_detail.district} <br>
                                                 Ward: ${u.address_detail.ward} <br>

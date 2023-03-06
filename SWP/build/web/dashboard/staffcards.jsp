@@ -171,12 +171,12 @@
                                         <div class="collapse menu-collapse" id="sellers">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="staffcards">Staff's information card</a>
+                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="userlist">User's information list</a>
+                                                    <a class="sidebar-link lh-1" href="alluser">User's information list</a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </div>
                                     </li>
@@ -205,7 +205,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    
+
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#account" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
@@ -233,7 +233,7 @@
                                             <span class="sidebar-item-text">Reivews</span>
                                         </a>
                                     </li>
-                                    
+
                                     <li class="list-group-item separate p-0 my-3 mx-n3"></li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
@@ -248,11 +248,11 @@
                                                 <li class="sidebar-item">
                                                     <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -325,22 +325,38 @@
                                 </div>
                             </div>
                             <div class="card mb-4 rounded-xl">
+
                                 <div class="card-header bg-transparent p-4">
                                     <div class="row align-items-center">
-                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
-                                            <input type="text" placeholder="Search..." class="form-control bg-input border-0">
-                                        </div>
-                                        
                                         <div class="col-md-2 col-6">
-                                            <select class="form-control bg-input border-0">
-                                                <option>Status:all</option>
-                                                <option>Active</option>
-                                                <option>Deleted</option>
-                                                <option>Show all</option>
+                                            <select  class="form-control bg-input border-0" id="selectPosition">
+                                                <option value="1">Position</option>
+                                                <option value="2">Stock Manager</option>
+                                                <option value="3">Order Staff</option>
                                             </select>
                                         </div>
+                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
+                                            <button onclick="getval()" class="btn btn-primary">Find</button>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                            function getval() {
+                                                var sel = document.getElementById('selectPosition');
+                                                if (sel.value == "1") {
+                                                    window.location.href = "showallstaff";
+                                                }
+                                                if (sel.value == "2") {
+                                                    window.location.href = "stockmanagerlist";
+                                                }
+                                                if (sel.value == "3") {
+                                                    window.location.href = "orderstafflist";
+                                                }
+                                            }
+                                        </script>
                                     </div>
+
                                 </div>
+                                <!-- all staff -->
                                 <div class="card-body p-4">
                                     <div class="row">
                                         <c:forEach items="${requestScope.listStaff}" var="ls">
@@ -353,7 +369,7 @@
                                                         <h5 class="card-title mt-8 fs-16 mb-3">${ls.username}</h5>
                                                         <div class="card-text text-muted">
                                                             <p class="m-0">Staff ID: #${ls.id}</p>
-                                                            <p class="mb-0">${ls.email}</p>
+                                                            <p class="mb-0">${ls.role.name}</p>
                                                         </div>
                                                         <a href="showprofile?id=${ls.id}" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
                                                     </div>
@@ -362,6 +378,52 @@
                                         </c:forEach>
                                     </div>
                                 </div>
+                                <!-- stock manager -->
+                                <div class="card-body p-4">
+                                    <div class="row">
+                                        <c:forEach items="${requestScope.listSM}" var="sm">
+                                            <div class="col-sm-6 col-lg-3 mb-6">
+                                                <div class="card card-user rounded-xl">
+                                                    <div class="card-header text-center">
+                                                        <img class="img-avatar" src="./img/avatar-1.png" alt="Mary Sandra">
+                                                    </div>
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title mt-8 fs-16 mb-3">${sm.username}</h5>
+                                                        <div class="card-text text-muted">
+                                                            <p class="m-0">Staff ID: #${sm.id}</p>
+                                                            <p class="mb-0">${sm.role.name}</p>
+                                                        </div>
+                                                        <a href="showprofile?id=${sm.id}" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                                <!-- order staff -->
+                                <div class="card-body p-4">
+                                    <div class="row">
+                                        <c:forEach items="${requestScope.listOS}" var="os">
+                                            <div class="col-sm-6 col-lg-3 mb-6">
+                                                <div class="card card-user rounded-xl">
+                                                    <div class="card-header text-center">
+                                                        <img class="img-avatar" src="./img/avatar-1.png" alt="Mary Sandra">
+                                                    </div>
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title mt-8 fs-16 mb-3">${os.username}</h5>
+                                                        <div class="card-text text-muted">
+                                                            <p class="m-0">Staff ID: #${os.id}</p>
+                                                            <p class="mb-0">${os.role.name}</p>
+                                                        </div>
+                                                        <a href="showprofile?id=${os.id}" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                                
+                                
                             </div>
                             <nav aria-label="Page navigation example" class="mt-5 mb-4">
                                 <ul class="pagination justify-content-start">
