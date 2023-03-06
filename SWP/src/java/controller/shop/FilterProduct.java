@@ -106,11 +106,7 @@ public class FilterProduct extends HttpServlet {
                 request.setAttribute("nextPage", nextPage);
                 request.setAttribute("backPage", backPage);
                 request.setAttribute("pageIndex", pageIndex);
-<<<<<<< Updated upstream
                 request.setAttribute("total", totalRow);
-=======
-                 request.setAttribute("total", totalRow);
->>>>>>> Stashed changes
 
             }
             request.setAttribute("cateId", cateId);
@@ -133,11 +129,7 @@ public class FilterProduct extends HttpServlet {
                 request.setAttribute("nextPage", nextPage);
                 request.setAttribute("backPage", backPage);
                 request.setAttribute("pageIndex", pageIndex);
-<<<<<<< Updated upstream
                 request.setAttribute("total", totalRowByGender);
-=======
-                 request.setAttribute("total", totalRowByGender);
->>>>>>> Stashed changes
 
             }
             request.setAttribute("genderId", genderId);

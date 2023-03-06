@@ -83,7 +83,7 @@ public class RegisterServlet extends HttpServlet {
             User a=dao.getAccountByLoginName(username);
             if(a==null){
                 //dc sign up
-              //  dao.addUser(username, password);
+                dao.addUser(username, password);
                 response.sendRedirect("login.jsp");
             }else{
                 //day ve trang Sign up, Sign up lai

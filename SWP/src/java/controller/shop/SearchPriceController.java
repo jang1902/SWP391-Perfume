@@ -87,7 +87,7 @@ public class SearchPriceController extends HttpServlet {
         }
         int pageSize = 9;
         int totalRow = shopDAO.countAllProductBySearchPrice(from, to);
-        String msg = from >= to ? "Gia tri ko hop le":"";
+        String msg = from >= to ? "Gia tri ko hop le":"Gia tri hop le";
         int maxPage = 0;
         if (totalRow == 0) {
             request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");

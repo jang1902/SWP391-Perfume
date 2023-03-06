@@ -24,8 +24,8 @@ public class Feedback {
     [updated_at] datetime
     */
     private int id;
-    private User user;
-    private Product product;
+    private int user_id;
+    private int product_id;
     private String firstname;
     private String lastname;
     private String email;
@@ -33,15 +33,14 @@ public class Feedback {
     private String note;
     private Date created_at;
     private Date updated_at;
-    private int rating;
 
     public Feedback() {
     }
 
-    public Feedback(int id, User user, Product product, String firstname, String lastname, String email, String phone_number, String note, Date created_at, Date updated_at, int rating) {
+    public Feedback(int id, int user_id, int product_id, String firstname, String lastname, String email, String phone_number, String note, Date created_at, Date updated_at) {
         this.id = id;
-        this.user = user;
-        this.product = product;
+        this.user_id = user_id;
+        this.product_id = product_id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -49,7 +48,6 @@ public class Feedback {
         this.note = note;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.rating = rating;
     }
 
     public int getId() {
@@ -60,20 +58,20 @@ public class Feedback {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public String getFirstname() {
@@ -131,17 +129,6 @@ public class Feedback {
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    
-
     
     
     
