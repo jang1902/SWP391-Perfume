@@ -103,8 +103,8 @@ public class UpdateAccount extends HttpServlet {
         DashboardDAO d = new DashboardDAO();
         try {
             
-            User a = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
-            d.updateAccount(a);
+      //      User a = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
+      //      d.updateAccount(a);
         } catch (NumberFormatException e) {
             System.out.println(e);
         }

@@ -75,7 +75,7 @@ public class UserDAO extends DBContext {
                 User c = new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
                         rs.getString("firstname"),
                         rs.getString("lastname"), name, rs.getString("password"),
-                        rs.getString("email"), rs.getString("phone_number"), 
+                        rs.getString("email"), rs.getString("phone_number"), rs.getString("address"),
                         rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
                 );
                 return c;

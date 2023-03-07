@@ -101,8 +101,8 @@ public class AddAccount extends HttpServlet {
 //        String msg ="Create account successful!";
         try {
             // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
-            User u = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
-            d.addAccount(u);
+       //     User u = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
+       //     d.addAccount(u);
             response.sendRedirect("addaddress");
 
         } catch (NumberFormatException e) {

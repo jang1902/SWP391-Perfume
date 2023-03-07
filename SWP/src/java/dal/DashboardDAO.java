@@ -78,7 +78,7 @@ public class DashboardDAO extends DBContext {
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
-                u.setRole(r);
+//                u.setRole(r);
 
                 list.add(u);
             }
@@ -115,7 +115,7 @@ public class DashboardDAO extends DBContext {
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
-                u.setRole(r);
+              //  u.setRole(r);
 
                 list.add(u);
             }
@@ -152,7 +152,7 @@ public class DashboardDAO extends DBContext {
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
-                u.setRole(r);
+//                u.setRole(r);
 
                 list.add(u);
             }
@@ -189,7 +189,7 @@ public class DashboardDAO extends DBContext {
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
-                u.setRole(r);
+//                u.setRole(r);
 
                 list.add(u);
             }
@@ -226,7 +226,7 @@ public class DashboardDAO extends DBContext {
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
-                u.setRole(r);
+//                u.setRole(r);
 
                 list.add(u);
             }
@@ -263,13 +263,13 @@ public class DashboardDAO extends DBContext {
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
-                u.setRole(r);
+//                u.setRole(r);
                 Address_Detail ad = new Address_Detail();
                 ad.setCity(rs.getString("city"));
                 ad.setDetail(rs.getString("detail"));
                 ad.setDistrict(rs.getString("district"));
                 ad.setWard(rs.getString("ward"));
-                u.setAddress_detail(ad);
+//                u.setAddress_detail(ad);
                 return u;
             }
         } catch (SQLException e) {
@@ -303,7 +303,7 @@ public class DashboardDAO extends DBContext {
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name"));
-                u.setRole(r);
+//                u.setRole(r);
 
                 return u;
             }
