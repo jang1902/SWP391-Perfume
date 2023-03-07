@@ -27,7 +27,7 @@ public class UserDAO extends DBContext {
                 return new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
                         rs.getString("firstname"),
                         rs.getString("lastname"), username, password,
-                        rs.getString("email"), rs.getString("phone_number"),
+                        rs.getString("email"), rs.getString("phone_number"), rs.getString("address"),
                         rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
                 );
             }
@@ -76,6 +76,99 @@ public class UserDAO extends DBContext {
                         rs.getString("firstname"),
                         rs.getString("lastname"), name, rs.getString("password"),
                         rs.getString("email"), rs.getString("phone_number"), 
+                        rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
+                );
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void updateUser(User user) {
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET [firstname] = ?\n"
+                + "      ,[lastname] = ?\n"
+                + "      ,[phone_number] = ?\n"
+                + "      ,[address] = ?\n"
+                + " WHERE username = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, user.getFirstname());
+            st.setString(2, user.getLastname());
+            st.setString(3, user.getPhone_number());
+            st.setString(4, user.getAddress());
+            st.setString(5, user.getUsername());
+            st.executeUpdate();
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void updatePass(User user) {
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET [password] = ?\n"
+                + " WHERE username = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, user.getPassword());
+            st.setString(2, user.getUsername());
+
+            st.executeUpdate();
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void addUser(User user) {
+        String sql = "INSERT INTO [dbo].[Users]\n"
+                + "           ([loginType]\n"
+                + "           ,[role_id]\n"
+                + "           ,[firstname]\n"
+                + "           ,[lastname]\n"
+                + "           ,[username]\n"
+                + "           ,[password]\n"
+                + "           ,[email]\n"
+                + "           ,[phone_number]\n"
+                + "           ,[address]\n"
+                + "           ,[created_at]\n"
+                + "           ,[updated_at]\n"
+                + "           ,[deleted])\n"
+                + "     VALUES\n"
+                + "           (1, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, user.getFirstname());
+            st.setString(2, user.getLastname());
+            st.setString(3, user.getUsername());
+            st.setString(4, user.getPassword());
+            st.setString(5, user.getEmail());
+            st.setString(6, user.getPhone_number());
+            st.setString(7, user.getAddress());
+            st.setDate(8, user.getCreated_at());
+            st.setDate(9, user.getUpdated_at());
+            st.setInt(10, user.getDeleted());
+            st.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public User getAccountByEmail(String email) {
+        String sql = "Select * from Users where email = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                User c = new User(rs.getInt("id"), rs.getInt("loginType"), rs.getInt("role_id"),
+                        rs.getString("firstname"),
+                        rs.getString("lastname"), rs.getString("username"), rs.getString("password"),
+                        email, rs.getString("phone_number"), rs.getString("address"),
                         rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted")
                 );
                 return c;

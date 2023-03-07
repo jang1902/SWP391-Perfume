@@ -13,3 +13,6 @@
 .all_products{
     margin: 10px 0;
 }
+.row{
+    display:flex;
+}

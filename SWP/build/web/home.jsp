@@ -72,7 +72,7 @@
 
                     </c:if>
                     <c:if test="${sessionScope.userNow.role_id!=null}">
-                    <a href="#" class="login_cart-item-link" >
+                    <a href="profile" class="login_cart-item-link" >
                         <div class="login-cart_item">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -119,7 +119,7 @@
                     <!-- menu right -->
                     <div class="menu_right">             
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="home">Cửa hàng</a>
+                            <a class="link_decor_remover hover-link" href="shop">Cửa hàng</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Nước hoa</a>
