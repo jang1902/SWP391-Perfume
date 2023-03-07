@@ -72,7 +72,7 @@
 
                     </c:if>
                     <c:if test="${sessionScope.userNow.role_id!=null}">
-                    <a href="#" class="login_cart-item-link" >
+                    <a href="profile" class="login_cart-item-link" >
                         <div class="login-cart_item">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -80,7 +80,7 @@
 
                     </c:if>
                     
-                    <a href="cart.html" class="login_cart-item-link">
+                    <a href="cart" class="login_cart-item-link">
                         <div class="login-cart_item">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
@@ -119,7 +119,7 @@
                     <!-- menu right -->
                     <div class="menu_right">             
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="home">Cửa hàng</a>
+                            <a class="link_decor_remover hover-link" href="shop">Cửa hàng</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Nước hoa</a>
@@ -192,8 +192,8 @@
                                     </span>
                                     <div>
 
-                                        <span class="info_price">${pd.sizeproduct.price_out * ((100 - pd.discount.value) / 100)}</span>
-                                        <span class="oldprice">${pd.sizeproduct.price_out}</span>
+                                        <span class="info_price">${pd.sizeproduct.price_out * ((100 - pd.discount.value) / 100)}₫</span>
+                                        <span class="oldprice">${pd.sizeproduct.price_out}₫</span>
 
                                     </div>
                                 </div>
@@ -235,14 +235,14 @@
                                 <span>${pb.title}</span>
                                 <c:if test="${pb.discount.id != 1}">
                                 <div>                                    
-                                    <span class="info_price">${pb.sizeproduct.price_out * (100 - pb.discount.value) / 100}</span>
-                                    <span class="oldprice">${pb.sizeproduct.price_out}</span>
+                                    <span class="info_price">${pb.sizeproduct.price_out * (100 - pb.discount.value) / 100}₫</span>
+                                    <span class="oldprice">${pb.sizeproduct.price_out}₫</span>
                                 </div>
                                 </c:if>
                                 
                                 <c:if test="${pb.discount.id == 1}">
                                 <div>                                    
-                                    <span class="info_price">${pb.sizeproduct.price_out}</span>      
+                                    <span class="info_price">${pb.sizeproduct.price_out}₫</span>      
                                 </div>
                                 </c:if>
                             </div>
@@ -295,14 +295,14 @@
 
                                 <c:if test="${p.discount.id != 1}">
                                 <div>                                    
-                                    <span class="info_price">${p.sizeproduct.price_out * (100 - p.discount.value) / 100}</span>
-                                    <span class="oldprice">${p.sizeproduct.price_out}</span>
+                                    <span class="info_price">${p.sizeproduct.price_out * (100 - p.discount.value) / 100}₫</span>
+                                    <span class="oldprice">${p.sizeproduct.price_out}₫</span>
                                 </div>
                                 </c:if>
                                 
                                 <c:if test="${p.discount.id == 1}">
                                 <div>                                    
-                                    <span class="info_price">${p.sizeproduct.price_out}</span>      
+                                    <span class="info_price">${p.sizeproduct.price_out}₫</span>      
                                 </div>
                                 </c:if>
 

@@ -447,7 +447,7 @@ ul.breadcrumb li a:hover {
     text-decoration: none;
 }
 
-/*.size-decor{
+.size-decor{
     padding: 10px 16px;
     list-style: none;
     background-color: #eee;
@@ -455,7 +455,7 @@ ul.breadcrumb li a:hover {
 .size-decor li a:hover{
     color: #0275d8;
     text-decoration: none;
-}*/
+}
 
 .swatch .swatch-element {
     display: inline-block;

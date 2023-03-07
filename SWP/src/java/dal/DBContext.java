@@ -11,7 +11,7 @@ public class DBContext {
     public DBContext() {
         try {
             // Edit URL , username, password to authenticate with your MS SQL Server
-            String url = "jdbc:sqlserver://localhost:1433;databaseName= SWP391";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName= SWP391_1";
             String username = "sa";
             String password = "linh3092";
 

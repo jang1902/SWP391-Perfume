@@ -19,7 +19,7 @@
             }
 
             input[type=password], select, textarea {
-                width: 100%;
+                width: 400px;
                 padding: 12px;
                 border: 1px solid #ccc;
                 border-radius: 4px;
@@ -43,32 +43,94 @@
             }
 
             .container {
+                width: 520px;
+                height: auto;
                 border-radius: 5px;
-                background-color: #f2f2f2;
-                padding: 70px;
-                  margin: 100px;
+                background-color: #f3f3f3;
+                padding: 20px 60px;
+                margin-left: 480px;
+                margin-top: 60px;
+            }
 
+            #fname-error{
+                color: red;
+                font-family: serif;
+            }
+            #lname-error{
+                color: red;
+                font-family: serif;
+            }
+
+            label{
+                margin-left: 5px;
+                color: #999;
+            }
+
+            h2{
+                margin-left: 100px;
+                color: #28a745;
             }
         </style>
     </head>
     <body>
 
-        <h3>Reset Pass Form</h3>
-         <c:set var="f" value="${requestScope.resetFail}"></c:set>
+
+        <c:set var="f" value="${requestScope.resetFail}"></c:set>
             <div>
                 <h2 style="color:red;">${f}</h2>
-            </div>
+        </div>
 
         <div class="container">
-            <form action="reset" method="post">
-                <label for="newpass">New password</label>
-                <input type="password" id="fname" name="newpass" placeholder="">
+            <h2>Reset Password</h2>
+            <form action="reset" method="post" id="form_reset">
+                <label for="newpass">New password</label> <br>
+                <input type="password" id="fname" name="newpass" placeholder="" class="body_right-inputlogin"> <br><br>
 
-                <label for="confpass">Confirm password</label>
-                <input type="password" id="lname" name="confpass" placeholder="">
+                <label for="confpass">Confirm password</label> <br>
+                <input type="password" id="lname" name="confpass" placeholder=""><br><br>
                 <input type="submit" value="Reset">
             </form>
         </div>
 
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+
+        <script>
+            $(function () {
+                $("#form_reset").validate({
+                    rules: {
+
+                        "newpass": {
+                            required: true,
+                            minlength: 6,
+                            maxlength: 20
+                        },
+                        "confpass": {
+                            required: true,
+                            minlength: 6,
+                            maxlength: 20,
+                            equalTo: fname
+                        }
+                    },
+                    messages: {
+
+                        "newpass": {
+                            required: "Vui lòng điền mật khẩu",
+                            minlength: "Vui lòng nhập ít nhất {0} ký tự",
+                            maxlength: "Vui lòng nhập tối đa {0} ký tự"
+                        },
+                        "confpass": {
+                            required: "Vui lòng điền xác nhận mật khẩu",
+                            minlength: "Vui lòng nhập ít nhất {0} ký tự",
+                            maxlength: "Vui lòng nhập tối đa {0} ký tự",
+                            equalTo: "Mật khẩu xác nhận phải trùng khớp với mật khẩu"
+                        }
+                    }
+
+                });
+            });
+
+        </script>
     </body>
 </html>

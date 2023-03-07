@@ -15,8 +15,90 @@
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="assets/img/small_logo1.png">
-        <title>Boon Bo</title>
+        <title>BOT STORE</title>
     </head>
+    <style>
+        /*css ratting review form*/
+        .review_box .input-rating {
+            margin-bottom: 15px;
+        }
+
+        .review_box .input-rating .stars {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .review_box .input-rating .stars input[type="radio"] {
+            display: none;
+        }
+
+        .review_box .input-rating .stars>label {
+            float: right;
+            cursor: pointer;
+            padding: 0px 3px;
+            margin: 0px;
+        }
+
+        .review_box .input-rating .stars>label:before {
+            content: "\f006";
+            font-family: FontAwesome;
+            color: #E4E7ED;
+            -webkit-transition: 0.2s all;
+            transition: 0.2s all;
+        }
+
+        .review_box .input-rating .stars>label:hover:before,
+        .review_box .input-rating .stars>label:hover~label:before {
+            color: #fbd600;
+        }
+
+        .review_box .input-rating .stars>input:checked label:before,
+        .review_box .input-rating .stars>input:checked~label:before {
+            content: "\f005";
+            color: #fbd600;
+        }
+        /*css review display*/
+        .reviews li {
+            position: relative;
+            padding-left: 145px;
+            margin-bottom: 30px;
+        }
+
+        .reviews .review-heading {
+            position: absolute;
+            width: 130px;
+            left: 0;
+            top: 0;
+            height: 70px;
+        }
+
+        .reviews .review-body {
+            min-height: 70px;
+        }
+
+        .reviews .review-heading .name {
+            margin-bottom: 5px;
+            margin-top: 0px;
+        }
+
+        .reviews .review-heading .date {
+            color: #8D99AE;
+            font-size: 10px;
+            margin: 0;
+        }
+
+        .reviews .review-heading .review-rating {
+            margin-top: 5px;
+        }
+
+        .reviews .review-heading .review-rating>i {
+            color: #E4E7ED;
+        }
+
+        .reviews .review-heading .review-rating>i.fa-star {
+            color: #D10024;
+        }
+    </style>
     <body >
         <!-- header -->
         <div id="header">
@@ -30,14 +112,27 @@
                         </div>
                         <div class="sp-child email">
                             <i class="fa-solid fa-at icon-sup"></i>
-                            <span>boonbo@gmail.com</span>
+                            <span>botstore.vn@gmail.com</span>
                         </div>
                         <div class="sp-child question">
                             <i class="fa-solid fa-headset icon-sup"></i>
                             <span>Hỗ trợ trực tuyến 24/7</span>
                         </div>
                     </div>
-                    
+                    <div class="header_top-intro-language">
+                        Language
+                        <i class="fa-solid fa-chevron-down icon_arrowdown"></i>
+                        <ul class="language-child">
+                            <li class="language_item">
+                                <img src="./assets/img/flagVN.jpg" class="language-item_child flag">
+                                <span class="language-item_child ">VietNam</span>
+                            </li>
+                            <li class="language_item">
+                                <img src="./assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
+                                <span class="language-item_child ">English</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- end header top -->
@@ -57,44 +152,101 @@
                         </div>
                     </div>
                     <div class="login-cart">
-                    <c:if test="${sessionScope.userNow.role_id==null}">
+                        <c:if test="${sessionScope.userNow.role_id==null}">
 
-                    <a href="login" class="login_cart-item-link">
-                    <div class="login-cart_item">
-                    <i class="fa-solid fa-key"></i>
-                     </div>
-                    </a>      
+                            <a href="login" class="login_cart-item-link">
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-key"></i>
+                                </div>
+                            </a>      
 
-                    </c:if>
-                    <c:if test="${sessionScope.userNow.role_id!=null}">
-                    <a href="#" class="login_cart-item-link" >
-                        <div class="login-cart_item">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                    </a>    
+                        </c:if>
+                        <c:if test="${sessionScope.userNow.role_id!=null}">
+                            <a href="#" class="login_cart-item-link" >
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            </a>    
 
-                    </c:if>
-                    
-                    <a href="cart.html" class="login_cart-item-link">
-                        <div class="login-cart_item">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </a>
-                    <c:if test="${sessionScope.userNow.role_id!=null}">
-                    <a href="logout" class="login_cart-item-link">
-                        <div class="login-cart_item">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                        </div>
-                    </a>    
+                        </c:if>
 
-                    </c:if>
-                </div>
+                        <a href="cart.html" class="login_cart-item-link">
+                            <div class="login-cart_item">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                        </a>
+                        <c:if test="${sessionScope.userNow.role_id!=null}">
+                            <a href="logout" class="login_cart-item-link">
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </div>
+                            </a>    
+
+                        </c:if>
+                    </div>
                 </div>
                 <!-- end header mid top -->
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    
+                    <button class="menu_left">
+                        <i class="fa-solid fa-bars icon_list"></i>
+                        Danh mục sản phẩm
+                        <div class="menu_left-child">
+                            <ul>
+                                <li class="menu_left-item">
+                                    Mô hình xe hơi
+                                </li>
+                                <li class="menu_left-item">
+                                    Mô hình Lego
+                                </li>
+                                <li class="menu_left-item">
+                                    <div class="menu_left-item-title">
+                                        <div class="menu_left-item-title-child">Mô hình phim</div>
+                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
+                                    </div>
+                                    <div class="menu_left-item-lv2">
+                                        <ul>
+                                            <li class="menu_left-item-child">Marvel</li>
+                                            <li class="menu_left-item-child">DC</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu_left-item">
+                                    Mô hình Transformer
+                                </li>
+                                <li class="menu_left-item">
+                                    <div class="menu_left-item-title">
+                                        <div class="menu_left-item-title-child">Mô hình anime</div>
+                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
+                                    </div>
+                                    <div class="menu_left-item-lv2">
+                                        <ul>
+                                            <li class="menu_left-item-child">Naruto</li>
+                                            <li class="menu_left-item-child">One Piece</li>
+                                            <li class="menu_left-item-child">Dragon Ball</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu_left-item">
+                                    Mô hình Figger
+                                </li>
+                                <li class="menu_left-item">
+                                    <div class="menu_left-item-title">
+                                        <div class="menu_left-item-title-child">Mô hình khác</div>
+                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
+                                    </div>
+                                    <div class="menu_left-item-lv2">
+                                        <ul>
+                                            <li class="menu_left-item-child">Mô hình cây mini</li>
+                                            <li class="menu_left-item-child">Mô hình trang trí</li>
+                                            <li class="menu_left-item-child">Mô hình PC</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </button>
                     <!-- end menu left -->
                     <!-- menu right -->
                     <ul class="menu_right">
@@ -172,14 +324,17 @@
 
                             </div>
                             <c:set value="${requestScope.gender}" var="g"/>
+
+
+
+
+
+
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
-                                <span class="info_products-right-brand"> 
-                                    <a href="listproduct?gid=${g.id}" style="text-decoration: none; color: black">${g.name}</a>
-                                </span>
+                                <span class="info_products-right-brand">${g.name}</span>
 
                             </div>
-
                             <div class="info_products-right-item">
                                 <span class="info_products-right-price">${pd.price_out}đ</span> <br>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
@@ -224,94 +379,86 @@
                         </div>
                     </div>
                 </div>
-                <div class="body_container-item products_cmt-detail">
-                    <div class="products_tab">
-                        <button class="products-item" id="products-item-cmt" onclick="op_comment()">
-                            Nhận xét
-                        </button>
-
+                <!--display  comment-->
+                <c:if test="${listF.size()>0}">
+                    <div class="body_container-item products_cmt-detail">
+                        <div class="products_tab">
+                            <button class="products-item" id="products-item-cmt" onclick="op_comment()">
+                                Nhận xét
+                            </button>
+                        </div>
+                        <div class="products_contents">
+                            <div class="products_cmt" id="product_contentcomment">
+                                <c:forEach items="${listF}" var="f">
+                                    <div class="products_cmt-item">
+                                        <div class="products_cmt-top">
+                                            <img src="./assets/img/frog (5).png" class="img_avatar-user">
+                                            <div class="user_rated">
+                                                <span class="user_rated-name">${f.user.username}</span>
+                                                <div>
+                                                    <span>
+                                                        <c:forEach  begin="1" end="${f.rating}">
+                                                            <i class="fa-solid fa-star icon_star"></i>
+                                                        </c:forEach>
+                                                    </span>
+                                                    <span class="user_rated-cmttime">${f.created_at}</span>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                        <div class="products_cmt-bot">
+                                            <p>${f.note}
+                                            </p>
+                                        </div>
+                                    </div> 
+                                </c:forEach> 
+                            </div>
+                        </div>
                     </div>
-                    <div class="products_contents">
-                        <div class="products_cmt" id="product_contentcomment">
-                            <div class="products_cmt-item">
-                                <div class="products_cmt-top">
-                                    <img src="./assets/img/frog (5).png" class="img_avatar-user">
-                                    <div class="user_rated">
-                                        <span class="user_rated-name">Bùi Hạ Long</span>
-                                        <div>
-                                            <span>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                            </span>
-                                            <span class="user_rated-cmttime">1 tuần trước</span>
+                </c:if>
+
+                <!--end display comment-->
+                <div>
+                    <div class="body_container-item user_ratingproducts">
+                        <div class="user_ratingproducts-title">
+                            Đánh giá của bạn cho sản phẩm này
+                        </div>
+                        <form action="pdetail" method="post">
+                            <c:set value="${product}" var="p"></c:set>
+                            <input type="hidden" name="id" value="${p.id}">
+                            <input type="hidden" name="sid" value="${sid}">
+                            <input type="hidden" name="gid" value="${gid}">
+                            <div class="user_ratingproducts-content">
+                                <div class="review_box">
+                                    <div class="input-rating">
+                                        <span>Xếp hạng sản phẩm: </span>
+                                        <div class="stars">
+                                            <input id="star5" name="rating" required="" value="5" type="radio"><label
+                                                for="star5"></label>
+                                            <input id="star4" name="rating" required="" value="4" type="radio"><label
+                                                for="star4"></label>
+                                            <input id="star3" name="rating" required="" value="3" type="radio"><label
+                                                for="star3"></label>
+                                            <input id="star2" name="rating" required="" value="2" type="radio"><label
+                                                for="star2"></label>
+                                            <input id="star1" name="rating" required="" value="1" type="radio"><label
+                                                for="star1"></label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="products_cmt-bot">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi enim, voluptatum magni rem reprehenderit natus sit repellat amet aspernatur omnis culpa voluptate tempora. 
-                                        Consequuntur distinctio, labore reprehenderit inventore assumenda aliquam?
-                                    </p>
+                                <div class="user_ratingproducts-cmt">
+                                    <span>Nhận xét của bạn</span> <br>
+                                    <textarea name="review" id="editor2" rows="4" cols="50" class="user_ratingproducts-cmt-child input"></textarea>
                                 </div>
+                                <button class="btn_submit">Gửi</button>
                             </div>
-                            <div class="products_cmt-item">
-                                <div class="products_cmt-top">
-                                    <img src="./assets/img/frog (2).png" class="img_avatar-user">
-                                    <div class="user_rated">
-                                        <span class="user_rated-name">Đỗ Tú Linh</span>
-                                        <div>
-                                            <span>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-regular fa-star icon_star"></i>
-                                                <i class="fa-regular fa-star icon_star"></i>
-                                                <i class="fa-regular fa-star icon_star"></i>
-                                                <i class="fa-regular fa-star icon_star"></i>
-                                            </span>
-                                            <span class="user_rated-cmttime">2 ngày trước</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="products_cmt-bot">
-                                    <p>
-                                        Mô hình chất lượng kém quá rate 1 sao.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
+                        </form>    
                     </div>
-                </div>
-                <div class="body_container-item user_ratingproducts">
-                    <div class="user_ratingproducts-title">
-                        Đánh giá của bạn cho sản phẩm này
-                    </div>
-                    <div class="user_ratingproducts-content">
-                        <div class="user_ratingproducts-star">
-                            <span class="user_ratingproducts-star-title">Xếp hạng sản phẩm</span>
-                            <span>
-                                <i class="fa-regular fa-star icon_star"></i>
-                                <i class="fa-regular fa-star icon_star"></i>
-                                <i class="fa-regular fa-star icon_star"></i>
-                                <i class="fa-regular fa-star icon_star"></i>
-                                <i class="fa-regular fa-star icon_star"></i>
-                            </span>
-                        </div>
-                        <div class="user_ratingproducts-cmt">
-                            <span>Nhận xét của bạn</span> <br>
-                            <textarea rows="4" cols="50" class="user_ratingproducts-cmt-child">
-                            </textarea>
-                        </div>
-                        <button class="btn_submit">Gửi</button>
-                    </div>
-                </div>
+                </div>     
                 <div class="body_container-item products_same">
                     <div class="products_same-title">
                         Sản phẩm tương tự
                     </div>
                     <div class="products_same-child">
-                        <div class="products_same-child">
 
                         <c:forEach items="${requestScope.relativeproducts}" var="rp">
                             <form action="pdetail" method="post">
@@ -335,7 +482,7 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${rp.sizeproduct.price_out} đ</span>
+                                            <span class="info_price">${lgd.price_out} đ</span>
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -345,10 +492,6 @@
                                 </div>
                             </div>
                         </c:forEach>
-                    </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -451,7 +594,7 @@
                                 <i class="fa-brands fa-youtube"></i>
                             </div>
                         </a>
-                        <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
+                        <a class="about-link" href="">
                             <div class="footer_contact-icon-child">
                                 <i class="fa-brands fa-github"></i>
                             </div>
@@ -463,12 +606,7 @@
 
         <script type="text/javascript">
 
-            function add(id, size) {
-                var quantity = document.fo.quantity.value;
-                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + quantity;
-                document.fo.submit();
-            }
-
+           
 
 
 
@@ -509,7 +647,6 @@
                 var img_products_big = document.getElementById("img_products_big");
                 img_products_big.src = img_products[dem];
             }
-
             function add(id, size) {
                 var q = document.getElementById("quantity").value;
                 document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + q;
@@ -528,13 +665,9 @@
                 }
             }
 
-
+            CKEDITOR.replace('editor2');
 
         </script>
         <!-- end footer -->
     </body>
-
-    <!--     <script type="text/javascript">
-                importScripts('https://www.gstatic.com/recaptcha/releases/gEr-ODersURoIfof1hiDm7R5/recaptcha__en.js');
-            </script>-->
 </html>
