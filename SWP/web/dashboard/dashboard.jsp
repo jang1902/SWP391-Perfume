@@ -126,11 +126,25 @@
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-product-grid.html">Update Product</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-categories.html">Categoried</a>
+                                                    <a class="sidebar-link lh-1" href="">Category List</a>
                                                 </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="">Gallery List</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="">Size List</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="">Discount List</a>
+                                                </li>
+                                                
+                                                
+                                                
+                                                
+                                                
                                             </ul>
                                         </div>
                                     </li>

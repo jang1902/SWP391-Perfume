@@ -176,7 +176,7 @@
 
                         <c:forEach items="${pDiscount}" var="pd">
                         <div class="products">
-                            <a href="pdetail?id=${pd.id}&sid=${pd.sizeproduct.sid}&gid=${pd.gender_id}">
+                            <a href="pdetail?id=${pd.id}&sid=${pd.sizeproduct.sid}&gid=${pd.gender.id}">
                                 <img src="${pd.thumbnail}" alt="" class="img_products">
                             </a>
                             <div class="describe_products">
@@ -228,7 +228,7 @@
 
                         <c:forEach items="${pBestSeller}" var="pb">
                         <div class="arrivals-info_item">
-                            <a href="pdetail?id=${pb.id}&sid=${pb.sizeproduct.sid}&gid=${pb.gender_id}">
+                            <a href="pdetail?id=${pb.id}&sid=${pb.sizeproduct.sid}&gid=${pb.gender.id}">
                                 <img src="${pb.thumbnail}" class="img_arrivals-item">
                             </a>
                             <div class="arrivals-info_text">
@@ -278,7 +278,7 @@
                     <c:forEach items="${pNew}" var="p">
                         
                         <div class="products products_recommend">
-                        <a href="pdetail?id=${p.id}&sid=${p.sizeproduct.sid}&gid=${p.gender_id}">
+                        <a href="pdetail?id=${p.id}&sid=${p.sizeproduct.sid}&gid=${p.gender.id}">
 
                             <img src="${p.thumbnail}" alt="" class="img_products">
                         </a>

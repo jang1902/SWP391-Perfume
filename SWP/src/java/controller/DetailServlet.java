@@ -92,15 +92,15 @@ public class DetailServlet extends HttpServlet {
 
         List<Gallery> listg = dao.getGalleryByPid(id);
 
-        Category getC = dao.getCategoryNameById(p.getCategory_id());
+        Category getC = dao.getCategoryNameById(p.getCategory().getId());
 
         Gender g = dao.getGenderByID(id);
         List<Product> lg;
-        
+
         FeedBackDAO fb = new FeedBackDAO();
         List<Feedback> listF = fb.getFeedbackByPid(id);
         try {
-            lg = dao.randomRelative(gid,id);
+            lg = dao.randomRelative(gid, id);
             request.setAttribute("relativeproducts", lg);
         } catch (SQLException ex) {
         }
@@ -113,9 +113,7 @@ public class DetailServlet extends HttpServlet {
         request.setAttribute("listF", listF);
         request.setAttribute("sid", sid);
         request.setAttribute("gid", gid);
-        int i = 1;
 
-        request.setAttribute("count", ++i);
 
         request.getRequestDispatcher("productdetail.jsp").forward(request, response);
     }
@@ -139,24 +137,25 @@ public class DetailServlet extends HttpServlet {
         String rating_raw = request.getParameter("rating");
         User userNow = (User) session.getAttribute("userNow");
         int rating;
+        int id = Integer.parseInt(id_raw);
+        int sid = Integer.parseInt(sid_raw);
+        int gid = Integer.parseInt(gid_raw);
         if (userNow != null) {
             try {
-                int id = Integer.parseInt(id_raw);
-                int sid = Integer.parseInt(sid_raw);
-                int gid = Integer.parseInt(gid_raw);
+
                 ProductDAO dao = new ProductDAO();
                 Product p = dao.getProductByID(id);
                 rating = Integer.parseInt(rating_raw);
                 FeedBackDAO fb = new FeedBackDAO();
                 fb.insertFeedback(userNow, p, note, rating);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println(e);
             }
-            response.sendRedirect("pdetail?id=" + id_raw + "&sid=" + sid_raw +"&gid=" +gid_raw);
-        }else{
+            response.sendRedirect("pdetail?id=" + id + "&sid=" + sid + "&gid=" + gid);
+        } else {
             response.sendRedirect("login");
         }
-        
+
     }
 
     /**
@@ -168,5 +167,8 @@ public class DetailServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    public static void main(String[] args) {
+        ProductDAO d = new ProductDAO();
+        System.out.println(d.getCategoryNameById(1));
+    }
 }

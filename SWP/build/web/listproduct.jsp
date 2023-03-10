@@ -152,7 +152,7 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -203,7 +203,7 @@
                         <%--<c:set var="maxPage" value="${requestScope.maxPage}"/>--%>
                         <c:forEach items="${listC}" var="listC">
                             <div class="products all_products" >
-                                <a href="pdetail?id=${listC.id}&sid=1&gid=${listC.gender_id}">
+                                <a href="pdetail?id=${listC.id}&sid=1&gid=${listC.gender.id}">
                                     <img src="${listC.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
@@ -229,7 +229,7 @@
 
                         <c:forEach items="${requestScope.listG}" var="listG">
                             <div class="products all_products" >
-                                <a href="pdetail?id=${listG.id}&sid=1&gid=${listG.gender_id}">
+                                <a href="pdetail?id=${listG.id}&sid=1&gid=${listG.gender.id}">
                                     <img src="${listG.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">

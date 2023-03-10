@@ -251,7 +251,7 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -277,9 +277,7 @@
         <!-- body -->
 
 
-        <!--        <form action="pdetail" method="post" id="myform">
-                    <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
-                </form>-->
+
 
         <c:set value="${requestScope.detail}" var="pd"/>
         <c:set value="${requestScope.product}" var="p"/>
@@ -288,7 +286,7 @@
             <div class="body_container">
                 <ul class="breadcrumb">
                     <li><a href="home">Home</a></li>
-                    <li><a href="listproduct?cid=${p.category_id}">${cate.name}</a></li>
+                    <li><a href="listproduct?cid=${p.category.id}">${requestScope.cate.name}</a></li>
                     <li>${p.title}</li>
                 </ul>
 
@@ -319,7 +317,7 @@
                                             list-style: none;
                                             border-radius: 6px;
                                             cursor: pointer;
-                                            background-color: #eeeeee;"><a style="text-decoration: none; color: #000000;" href="pdetail?id=${param.id}&sid=${s.id}&gid=${p.gender_id}">${s.value}</a></button>
+                                            background-color: #eeeeee;"><a style="text-decoration: none; color: #000000;" href="pdetail?id=${param.id}&sid=${s.id}&gid=${p.gender.id}">${s.value}</a></button>
                                     </c:forEach>
 
                             </div>
@@ -336,7 +334,13 @@
 
                             </div>
                             <div class="info_products-right-item">
-                                <span class="info_products-right-price">${pd.price_out}đ</span> <br>
+                                <c:if test="${p.discount.value == 0}">
+                                    <span class="info_products-right-price">${pd.price_out}đ</span> <br>
+                                </c:if> 
+                                <c:if test="${p.discount.value != 0}">
+                                    <span class="info_price">${pd.price_out * ((100 - p.discount.value) / 100)}₫</span>
+                                    <span class="oldprice">${pd.price_out}₫</span>
+                                </c:if>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" id="minus" onclick="minus()" class="qty-btn">
                                     <input type="text" id="quantity"  name="quantity" value="1"  class="quantity-selector">
@@ -346,7 +350,7 @@
 
                             <form action="" method="post" name="fo">
                                 <div  style="margin-top: 70px">
-                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${param.sid}')" >Thêm vào giỏ</button>
+                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${param.id}', '${param.sid}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
 
@@ -423,7 +427,7 @@
                             Đánh giá của bạn cho sản phẩm này
                         </div>
                         <form action="pdetail" method="post">
-                            <c:set value="${product}" var="p"></c:set>
+                            <c:set value="${requestScope.product}" var="p"></c:set>
                             <input type="hidden" name="id" value="${p.id}">
                             <input type="hidden" name="sid" value="${sid}">
                             <input type="hidden" name="gid" value="${gid}">
@@ -460,15 +464,10 @@
                     </div>
                     <div class="products_same-child">
 
-                        <c:forEach items="${requestScope.relativeproducts}" var="rp">
-                            <form action="pdetail" method="post">
-                                <input type="hidden" value="1" name="sid"/>
-                                <input type="hidden" value="${rp.id}" name="id"/>
-                                <c:set value="${requestScope.detail}" var="lgd"/>
-                            </form>
+                        <c:forEach items="${requestScope.relativeproducts}" var="rp">         
 
                             <div class="products">
-                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender_id}">
+                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender.id}">
                                     <img src="${rp.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
@@ -482,7 +481,15 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${lgd.price_out} đ</span>
+                                            <c:if test="${rp.discount.value == 0}">
+                                                <span class="info_price">${rp.sizeproduct.price_out} đ</span>
+                                            </c:if> 
+                                            <c:if test="${rp.discount.value != 0}">
+                                                <span class="info_price">${rp.sizeproduct.price_out * ((100 - rp.discount.value) / 100)}₫</span>
+                                                <span class="oldprice">${rp.sizeproduct.price_out}₫</span>
+                                            </c:if>
+
+                                            
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -606,7 +613,7 @@
 
         <script type="text/javascript">
 
-           
+
 
 
 

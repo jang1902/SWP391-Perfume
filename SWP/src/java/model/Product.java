@@ -6,13 +6,13 @@ package model;
 
 import java.util.Date;
 
-
 public class Product {
+
     private int id;
-    private int category_id;
+//    private int category_id;
     private String title;
-    private int gender_id;
-    private int discount_id;
+//    private int gender_id;
+//    private int discount_id;
     private String thumbnail;
     private String description;
     private Date created_at;
@@ -24,17 +24,13 @@ public class Product {
     private SizeProduct sizeproduct;
     private Size size;
     private OrderDetail orderdetail;
-    
 
     public Product() {
     }
 
-    public Product(int id, int category_id, String title, int gender_id, int discount_id, String thumbnail, String description, Date created_at, Date updated_at, Discount discount, Gender gender, Gallery gallery, Category category, SizeProduct sizeproduct, Size size, OrderDetail orderdetail) {
+    public Product(int id, String title, String thumbnail, String description, Date created_at, Date updated_at, Discount discount, Gender gender, Gallery gallery, Category category, SizeProduct sizeproduct, Size size, OrderDetail orderdetail) {
         this.id = id;
-        this.category_id = category_id;
         this.title = title;
-        this.gender_id = gender_id;
-        this.discount_id = discount_id;
         this.thumbnail = thumbnail;
         this.description = description;
         this.created_at = created_at;
@@ -95,7 +91,7 @@ public class Product {
     public void setSize(Size size) {
         this.size = size;
     }
-    
+
     public Discount getDiscount() {
         return discount;
     }
@@ -113,36 +109,12 @@ public class Product {
         this.id = id;
     }
 
-    public int getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getGender_id() {
-        return gender_id;
-    }
-
-    public void setGender_id(int gender_id) {
-        this.gender_id = gender_id;
-    }
-
-    public int getDiscount_id() {
-        return discount_id;
-    }
-
-    public void setDiscount_id(int discount_id) {
-        this.discount_id = discount_id;
     }
 
     public String getThumbnail() {
@@ -176,6 +148,5 @@ public class Product {
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
-    
-    
+
 }
