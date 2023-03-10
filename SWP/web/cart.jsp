@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -196,11 +197,12 @@
         <!-- end header -->
         <!-- body -->
         <div id="body">
-            <div class="body_container">
+            
+            <div class="body_container_cart">
                 
-                <div class="body_right">
+                <div class="body_right_cart">
 
-
+                    
                     <div class="body_right-item">
                         <span class="info_order">Đơn đặt hàng của bạn</span>
                         <div class="body_right-item-buy-products">
@@ -209,7 +211,7 @@
                                     <span>
                                         <span class="amount_products">${c.quantity}x</span>  ${c.product.title}</span>
                                     <span>${c.size.name}</span>
-                                    <span>  ${c.sizeproduct.price_out}</span>
+                                    <span>₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out*c.quantity}"></fmt:formatNumber></span>
 
                                 </div>
                             </c:forEach>
@@ -221,7 +223,7 @@
                     <div class="body_right-item">
                         <div class="body_right-item-products">
                             <span>Tổng tiền tạm thời</span>
-                            <b>${cart.getTotalMoney()}</b>
+                            <b>₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney()}"></fmt:formatNumber></b>
                         </div>
                         
                        <form action="${sessionScope.userNow==null?"login":"checkout"}">

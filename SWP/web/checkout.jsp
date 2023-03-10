@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -201,8 +201,9 @@
         <!-- body -->
         <div id="body">
             <div class="body_container">
+                <form action="checkout" method="post">
                 <div class="body_left" >
-                    <form action="checkout" method="post">
+                    
                         <div class="body_left-item">
                             <div class="body_left-item-title">
                                 <div class="body_left-item-title-st">1</div>
@@ -251,16 +252,16 @@
                                     <c:forEach items="${listItem}" var="c">
                                         <tr class="amount_products">
                                             <td ><img src="${c.product.thumbnail}" style="width: 40px;height: 40px"/>${c.product.title}${c.size.name}</td>
-                                            <td >₫${c.sizeproduct.price_out}</td>
+                                            <td >₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out}"></fmt:formatNumber></td>
                                             <td >${c.quantity}</td>
-                                            <td >₫${c.sizeproduct.price_out*c.quantity}</td>
+                                            <td >₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out*c.quantity}"></fmt:formatNumber></td>
                                         </tr>
                                     </c:forEach>
                                     <tr class="amount_products">
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <c:if test="${totalQuan!=0}"><th>Tổng tiền(${totalQuan} sản phẩm): ₫${cart.getTotalMoney()}</th></c:if> 
+                                        <c:if test="${totalQuan!=0}"><th>Tổng tiền(${totalQuan} sản phẩm): ₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney()}"></fmt:formatNumber></th></c:if> 
                                         </tr>
                                     </table>
 
@@ -285,11 +286,12 @@
                 </div>
                 <!-- Hidden Dialog Box-->
 
-                <button class="place_order">Đặt Hàng</button> 
+                <button type="submit" class="place_order">Đặt Hàng</button> 
                 </form>
             </div>
+                                        
         </div>
-    </div>
+    
     <div id="footer">
         <!-- container footer -->
         <div class="container_footer">
