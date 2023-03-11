@@ -329,29 +329,30 @@
                                 <div class="card-header bg-transparent p-4">
                                     <div class="row align-items-center">
                                         <div class="col-md-2 col-6">
-                                            <select  class="form-control bg-input border-0" id="selectPosition">
-                                                <option value="1">Position</option>
-                                                <option value="2">Stock Manager</option>
-                                                <option value="3">Order Staff</option>
+                                            <select  class="form-control bg-input border-0" onchange="location = this.value">
+                                                <option value="showallstaff">Position</option>
+                                                <option value="showallstaff">All posiotion</option>
+                                                <option value="stockmanagerlist">Stock Manager</option>
+                                                <option value="orderstafflist">Order Staff</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
+<!--                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
                                             <button onclick="getval()" class="btn btn-primary">Find</button>
-                                        </div>
+                                        </div>-->
 
                                         <script type="text/javascript">
-                                            function getval() {
-                                                var sel = document.getElementById('selectPosition');
-                                                if (sel.value == "1") {
-                                                    window.location.href = "showallstaff";
-                                                }
-                                                if (sel.value == "2") {
-                                                    window.location.href = "stockmanagerlist";
-                                                }
-                                                if (sel.value == "3") {
-                                                    window.location.href = "orderstafflist";
-                                                }
-                                            }
+//                                            function getval() {
+//                                                var sel = document.getElementById('selectPosition');
+//                                                if (sel.value == "1") {
+//                                                    window.location.href = "showallstaff";
+//                                                }
+//                                                if (sel.value == "2") {
+//                                                    window.location.href = "stockmanagerlist";
+//                                                }
+//                                                if (sel.value == "3") {
+//                                                    window.location.href = "orderstafflist";
+//                                                }
+//                                            }
                                         </script>
                                     </div>
 

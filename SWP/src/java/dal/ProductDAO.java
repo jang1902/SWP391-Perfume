@@ -78,7 +78,7 @@ public class ProductDAO extends DBContext {
                 Discount d = new Discount();
                 d.setId(rs.getInt("discount_id"));
                 d.setValue(rs.getInt("value"));
-                p.setDiscount(d);
+                p.setDiscount(d);   
                 p.setThumbnail(rs.getString("thumbnail"));
                 p.setDescription(rs.getString("description"));
                 p.setCreated_at(rs.getDate("created_at"));

@@ -4,16 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/dal/ProductDAO.java</file>
-            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/model/Product.java</file>
-            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/dashboard/dashboard.html</file>
-            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/admin/AddAddress.java</file>
-            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/dashboardproduct.jsp</file>
-            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/dal/HomeDAO.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/dashboard/showprofile.jsp</file>
             <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/productdetail.jsp</file>
-            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/dashboard/dashboard.jsp</file>
             <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/controller/DetailServlet.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/dal/CrudDAO.java</file>
             <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/home.jsp</file>
-            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/dal/DBContext.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/dashboard/staffcards.jsp</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/control/crud/EditProductServlet.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/dal/UserDAO.java</file>
         </group>
     </open-files>
 </project-private>
