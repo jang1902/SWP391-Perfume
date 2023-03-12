@@ -48,30 +48,31 @@
         <meta property="og:image:height" content="630">
     </head>
     <body>
+        <c:set var="a" value="${sessionScope.userNow}"/>
         <div class="wrapper dashboard-wrapper">
             <div class="d-flex flex-wrap flex-xl-nowrap">
                 <div class="db-sidebar bg-white">
                     <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
                         <div class="sticky-area border-right">
                             <div class="d-flex px-3 px-xl-6 w-100 border-bottom py-2">
-                                <a class="navbar-brand" href="./index.html">
-                                    <img src="./img/logo-black.png" alt="Glowing">
+                                <a class="navbar-brand" href="home">
+                                    <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
                                     <div class="d-flex align-items-center d-xl-none">
                                         <div class="dropdown px-3">
-                                            <a href="#" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
+                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
                                                 <div class="w-48px">
-                                                    <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                    <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
                                                 </div>
                                                 <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
                                                     Ronald Hunter
                                                 </span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">My Profile</a>
-                                                <a class="dropdown-item" href="#">My Profile</a>
-                                                <a class="dropdown-item" href="#">Logout</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
+                                                <a class="dropdown-item" href="logout">Logout</a>
                                             </div>
                                         </div>
                                         <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
@@ -102,15 +103,19 @@
                                         </div>
                                     </div>
                                 </form>
+                                
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
+                                    <c:if test="${a.role_id==1}">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-home-lg-alt"></i>
                                             </span>
                                             <span class="sidebar-item-text">Dashboard</span>
                                         </a>
                                     </li>
+                                    </c:if>
+                                    <c:if test="${a.role_id==1 || a.role_id==4}">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
@@ -122,20 +127,30 @@
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
+                                                    <a class="sidebar-link lh-1" href="">Category List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
+                                                    <a class="sidebar-link lh-1" href="">Gallery List</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
+                                                    <a class="sidebar-link lh-1" href="">Size List</a>
                                                 </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="">Discount List</a>
+                                                </li>
+
+
+
+
+
                                             </ul>
                                         </div>
                                     </li>
+                                    </c:if>
+                                    <c:if test="${a.role_id==1 || a.role_id==3}">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
@@ -147,102 +162,38 @@
                                         <div class="collapse menu-collapse" id="order">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-list.html">Order List 1</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-list-2.html">Order List 2</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="order-detail.html">Order detail</a>
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
+                                    </c:if>
+                                    <c:if test="${a.role_id==1}">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-users"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Sellers</span>
+                                            <span class="sidebar-item-text">Manage account</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="sellers">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-cards.html">Sellers Cards</a>
+                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-list.html">Sellers List</a>
+                                                    <a class="sidebar-link lh-1" href="alluser">User's information list</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="sellers-profile.html">Sellers Profile</a>
-                                                </li>
+
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#add_product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-plus-square"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Add Product</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="add_product">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="add-product-1.html">Add Product 1</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="add-product-2.html">Add Product 2</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="add-product-3.html">Add Product 3</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="add-product-4.html">Add Product 4</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#transaction" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-usd-circle"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Transactions</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="transaction">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="transactions-1.html">Transactions 1</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="transactions-2.html">Transactions 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#account" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-user"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Account</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="account">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="./user-login.html">User login</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="./user-registration.html">User registration</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    </c:if>
+                                    <c:if test="${a.role_id==1}">
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1">
                                         <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
@@ -251,14 +202,7 @@
                                             <span class="sidebar-item-text">Reivews</span>
                                         </a>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="brand.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-certificate"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Brand</span>
-                                        </a>
-                                    </li>
+                                    </c:if>
                                     <li class="list-group-item separate p-0 my-3 mx-n3"></li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
                                         <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
@@ -271,22 +215,13 @@
                                         <div class="collapse menu-collapse" id="setting">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting sample 1</a>
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
                                                 </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-2.html">Setting sample 2</a>
-                                                </li>
+
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="starter-page.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-tag"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Starter page</span>
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -296,56 +231,27 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
-                                <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
-                                    <form>
-                                        <div class="input-group position-relative bg-input rounded">
-                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
-                                            <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
-                                                <button class="bg-transparent border-0 outline-none">
-                                                    <i class="fal fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                
                                 <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-                                    <div class="dropdown no-caret px-2 py-2">
-                                        <a href="#" class="dropdown-toggle fs-20 font-weight-500 lh-1 animation-shake position-relative" data-toggle="dropdown">
-                                            <i class="far fa-bell"></i>
-                                            <span class="badge badge-secondary rounded-circle">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="request-full-screen d-block px-2 fs-20" title="Full screen"><i class="far fa-rss-square"></i></a>
-                                    <div class="dropdown px-2 py-2 dropdown-language">
-                                        <a class="dropdown-toggle fs-20" data-toggle="dropdown"><i class="far fa-globe-americas"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item text-brand" href="#"><img src="./img/flag-us.png" alt="English">English</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-fr.png" alt="Français">Français</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-jp.png" alt="Japan">日本語</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-cn.png" alt="China">中国人</a>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
-                                                <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right w-100">
-                                            <a class="dropdown-item" href="#">My Profile</a>
-                                            <a class="dropdown-item" href="#">Logout</a>
+                                            <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
+                                            <a class="dropdown-item" href="logout">Logout</a>
                                         </div>
                                     </div>
                                 </div>
                             </nav>
                         </div>
                     </header>
+                                        
                     <c:set value="${requestScope.userP}" var="u"/>
+                   
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
                         <div class="dashboard-page-content">
                             <div class="card mb-5 rounded-xl card-brand">
@@ -354,7 +260,7 @@
                                     <div class="row">
                                         <div class="col-xl col-lg flex-grow-0" style="flex-basis: 230px">
                                             <div class="img-thumbnail shadow w-100 bg-white position-relative text-center" style="height: 190px; width: 200px; margin-top: -120px">
-                                                <img class="img-fluid" src="./img/seller-profile.jpg" alt="Logo Brand">
+                                                <img class="img-fluid" src="./avt/${u.avatar}" alt="Logo Brand">
                                             </div>
                                         </div>
 
@@ -363,19 +269,21 @@
                                             <p>${u.role.name}</p>
 
                                         </div>
-
+                                            <c:if test="${a.role_id==1 && u.role_id!=1}">
                                         <div class="col-xl-4 text-xl-right">
                                             <select class="form-control w-auto d-inline-block my-1" id="selectAction">
                                                 <option value="1">Actions</option>
-                                                <option value="2">Update</option>
+                                                
                                                 <option value="3">Delete</option>
+                                               
                                             </select>
 
                                         </div>
+                                        
                                         <div class="">
                                             <button onclick="getval()" class="btn btn-primary">Select</button>
                                         </div>
-
+                                            </c:if>
 
 
 
@@ -385,9 +293,6 @@
                                                 var sel = document.getElementById('selectAction');
                                                 if (sel.value == "1") {
                                                     window.location.href = "showprofile?id=${param.id}";
-                                                }
-                                                if (sel.value == "2") {
-                                                    window.location.href = "updateaccount?id="+${param.id};
                                                 }
                                                 if (sel.value == "3") {
                                                     if (confirm("Are you sure to delete this account!?")) {

@@ -4,6 +4,7 @@
  */
 package admin;
 
+import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Order;
+import model.User;
 
 /**
  *
@@ -57,6 +61,15 @@ public class Dashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DashboardDAO d = new DashboardDAO();
+        List<User> u = d.getNewestUser();
+        List<Order> o = d.getAllOrder();
+        int total = 0;
+        for (Order order : o) {
+            total+=order.getTotal_money();
+        }
+        request.setAttribute("total", total);
+        request.setAttribute("newestUser", u);
         request.getRequestDispatcher("dashboard/dashboard.jsp").forward(request, response);
     }
 

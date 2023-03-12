@@ -39,7 +39,7 @@ public class AddAddress extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddAddress</title>");            
+            out.println("<title>Servlet AddAddress</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AddAddress at " + request.getContextPath() + "</h1>");
@@ -62,8 +62,8 @@ public class AddAddress extends HttpServlet {
             throws ServletException, IOException {
         DashboardDAO d = new DashboardDAO();
         User lastest = new User();
-            
-            request.setAttribute("lastedU", d.getLastestUser());
+
+        request.setAttribute("lastedU", d.getLastestUser());
         request.getRequestDispatcher("dashboard/addaddress.jsp").forward(request, response);
     }
 
@@ -78,7 +78,7 @@ public class AddAddress extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String city = request.getParameter("city");
+        String city = request.getParameter("city");
         String district = request.getParameter("district");
         String ward = request.getParameter("ward");
         String detail = request.getParameter("detail");
@@ -87,11 +87,11 @@ public class AddAddress extends HttpServlet {
         try {
             // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
 //            response.sendRedirect("addaccount");
-            
+
             //uid, city, district, ward, detail, status
             Address_Detail ad = new Address_Detail(lastest.getId(), city, district, ward, detail, 1);
             d.addAddress(ad);
-            response.sendRedirect("home");
+            response.sendRedirect("dashboard");
 
         } catch (NumberFormatException e) {
             System.out.println(e);

@@ -8,8 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import model.Address_Detail;
+import model.Order;
 import model.Role;
 import model.User;
 
@@ -18,6 +20,8 @@ import model.User;
  * @author asus
  */
 public class DashboardDAO extends DBContext {
+
+    java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
     public List<User> getAllUser() {
         List<User> list = new ArrayList<>();
@@ -42,6 +46,39 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
+
+                list.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<User> getNewestUser() {
+        List<User> list = new ArrayList<>();
+        String sql = "select top 4 * from Users \n"
+                + "where role_id = 2\n"
+                + "order by id desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setLoginType(rs.getInt("loginType"));
+                u.setRole_id(rs.getInt("role_id"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone_number(rs.getString("phone_number"));
+                u.setCreated_at(rs.getDate("created_at"));
+                u.setUpdated_at(rs.getDate("updated_at"));
+                u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
 
                 list.add(u);
             }
@@ -75,6 +112,7 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
@@ -112,6 +150,7 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
@@ -149,6 +188,7 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
@@ -186,6 +226,7 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
@@ -223,6 +264,7 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
@@ -260,6 +302,7 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name").toUpperCase());
@@ -300,6 +343,7 @@ public class DashboardDAO extends DBContext {
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
+                u.setAvatar(rs.getString("avatar"));
                 Role r = new Role();
                 r.setId(rs.getInt("role_id"));
                 r.setName(rs.getString("name"));
@@ -327,9 +371,9 @@ public class DashboardDAO extends DBContext {
                 + "           ,[phone_number]\n"
                 + "           ,[created_at]\n"
                 + "           ,[updated_at]\n"
-                + "           ,[deleted])\n"
+                + "           ,[deleted], [avatar])\n"
                 + "     VALUES\n"
-                + "           (1,?,?,?,?,?,?,?,?,?,?)";
+                + "           (1,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
 
@@ -340,10 +384,10 @@ public class DashboardDAO extends DBContext {
             st.setString(5, u.getPassword());
             st.setString(6, u.getEmail());
             st.setString(7, u.getPhone_number());
-            st.setDate(8, u.getCreated_at());
+            st.setDate(8, curDate);
             st.setDate(9, u.getUpdated_at());
             st.setInt(10, u.getDeleted());
-
+            st.setString(11, u.getAvatar());
             st.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -396,7 +440,6 @@ public class DashboardDAO extends DBContext {
                 u.setPassword(rs.getString("password"));
                 u.setEmail(rs.getString("email"));
                 u.setPhone_number(rs.getString("phone_number"));
-
                 u.setCreated_at(rs.getDate("created_at"));
                 u.setUpdated_at(rs.getDate("updated_at"));
                 u.setDeleted(rs.getByte("deleted"));
@@ -438,15 +481,43 @@ public class DashboardDAO extends DBContext {
         }
     }
 
+    public List<Order> getAllOrder() {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from Orders";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setId(rs.getInt("id"));
+                o.setUser_id(rs.getInt("user_id"));
+                o.setFirstname(rs.getString("firstname"));
+                o.setLastname(rs.getString("lastname"));
+                o.setEmail(rs.getString("email"));
+                o.setPhone_number(rs.getString("phone_number"));
+                o.setAddress_id(rs.getInt("address_id"));
+                o.setNote(rs.getString("note"));
+                o.setOrder_date(rs.getDate("order_date"));
+                o.setStatus_id(rs.getInt("status_id"));
+                o.setTotal_money(rs.getInt("total_money"));
+                list.add(o);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         DashboardDAO d = new DashboardDAO();
-        System.out.println(d.getUserById(10));
-        User lastest = d.getLastestUser();
-        Address_Detail ad = new Address_Detail(lastest.getId(), "city", "district", "ward", "detail", 1);
-        d.addAddress(ad);
-        System.out.println(lastest.getId());
-
-        System.out.println("====");
-        System.out.println(d.getAllUser());
+//        System.out.println(d.getUserById(10));
+//        User lastest = d.getLastestUser();
+//        Address_Detail ad = new Address_Detail(lastest.getId(), "city", "district", "ward", "detail", 1);
+//        d.addAddress(ad);
+//        System.out.println(lastest.getId());
+//
+//        System.out.println("====");
+//        System.out.println(d.getAllUser());
+        System.out.println(d.getAllOrder());
     }
 }
