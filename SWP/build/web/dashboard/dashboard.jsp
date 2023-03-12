@@ -2,6 +2,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!doctype html>
@@ -15,7 +16,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Dashboard</title>
+        <title>Trang tổng quát</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
@@ -67,16 +68,16 @@
                                         <div class="dropdown px-3">
                                             <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
                                                 <div class="w-48px">
-                                                    <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
+                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                                 <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                                    Ronald Hunter
+                                                    ${a.username}
                                                 </span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                                <a class="dropdown-item" href="logout">Logout</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
                                             </div>
                                         </div>
                                         <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
@@ -84,11 +85,7 @@
                                                 <i class="far fa-bell"></i>
                                                 <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+
                                         </div>
                                     </div>
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,7 +112,7 @@
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-home-lg-alt"></i>
                                                 </span>
-                                                <span class="sidebar-item-text">Dashboard</span>
+                                                <span class="sidebar-item-text">Trang tổng quát</span>
                                             </a>
                                         </li>
                                     </c:if>
@@ -125,31 +122,26 @@
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-shopping-bag"></i>
                                                 </span>
-                                                <span class="sidebar-item-text">Products</span>
+                                                <span class="sidebar-item-text">Sản phẩm</span>
                                                 <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                             </a>
                                             <div class="collapse menu-collapse" id="product">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
+                                                        <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Category List</a>
+                                                        <a class="sidebar-link lh-1" href="">Danh sách danh mục</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Gallery List</a>
+                                                        <a class="sidebar-link lh-1" href="">Danh sách thư viện</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Size List</a>
+                                                        <a class="sidebar-link lh-1" href="">Danh sách dung tích</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Discount List</a>
+                                                        <a class="sidebar-link lh-1" href="">Danh sách giảm giá</a>
                                                     </li>
-
-
-
-
-
                                                 </ul>
                                             </div>
                                         </li>
@@ -160,16 +152,16 @@
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-shopping-cart"></i>
                                                 </span>
-                                                <span class="sidebar-item-text">Order</span>
+                                                <span class="sidebar-item-text">Đơn hàng</span>
                                                 <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                             </a>
                                             <div class="collapse menu-collapse" id="order">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
+                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
+                                                        <a class="sidebar-link lh-1" href="orderdetail">Chi tiết đơn hàng</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -181,16 +173,16 @@
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-users"></i>
                                                 </span>
-                                                <span class="sidebar-item-text">Manage account</span>
+                                                <span class="sidebar-item-text">Quản lý tài khoản</span>
                                                 <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                             </a>
                                             <div class="collapse menu-collapse" id="sellers">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
+                                                        <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser">User's information list</a>
+                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
                                                     </li>
 
                                                 </ul>
@@ -203,7 +195,7 @@
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-comment-alt-lines"></i>
                                                 </span>
-                                                <span class="sidebar-item-text">Reivews</span>
+                                                <span class="sidebar-item-text">Lượt đánh giá</span>
                                             </a>
                                         </li>
                                     </c:if>
@@ -213,19 +205,18 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-cog"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Setting</span>
+                                            <span class="sidebar-item-text">Cài đặt</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="setting">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
                                                 </li>
 
                                             </ul>
                                         </div>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -241,12 +232,12 @@
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
-                                                <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
+                                                <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right w-100">
-                                            <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                            <a class="dropdown-item" href="logout">Logout</a>
+                                            <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                            <a class="dropdown-item" href="logout">Đăng xuất</a>
                                         </div>
                                     </div>
                                 </div>
@@ -257,11 +248,11 @@
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Dashboard</h2>
-                                    <p class="mb-0">Whole data about your business here</p>
+                                    <h2 class="fs-24 mb-0">Trang tổng quát</h2>
+                                    <p class="mb-0">Thống kê dữ liệu về doanh nghiệp</p>
                                 </div>
                                 <div class="col-sm-6 text-sm-right">
-                                    <a href="#" class="btn btn-primary"><i class="fal fa-file-plus"></i><span class="d-inline-block ml-1">Create report</span>
+                                    <a href="#" class="btn btn-primary"><i class="fal fa-file-plus"></i><span class="d-inline-block ml-1">Tạo bản báo cáo</span>
                                     </a>
                                 </div>
                             </div>
@@ -276,27 +267,28 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Revenue</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">${requestScope.total}vnđ</span>
-                                                    <span class="fs-14">Shipping fees are not included.</span>
+                                                    <h6 class="mb-1 card-title fs-16">Doanh thu</h6>
+
+                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.totalmoney}"></fmt:formatNumber> VND</span>
+                                                        <span class="fs-14">Không bao gồm phí vận chuyển.</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 col-xxl-3 mb-4">
-                                    <div class="card rounded-xl">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <div class="mr-3">
-                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-success bg-success-light">
-                                                        <i class="fas fa-truck"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Orders</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">53.668</span>
-                                                    <span class="fs-14">Excluding orders in transit</span>
+                                    <div class="col-sm-6 col-xxl-3 mb-4">
+                                        <div class="card rounded-xl">
+                                            <div class="card-body p-4">
+                                                <div class="media">
+                                                    <div class="mr-3">
+                                                        <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-success bg-success-light">
+                                                            <i class="fas fa-truck"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1 card-title fs-16">Tổng đơn hàng</h6>
+                                                        <span class="fs-24 d-block font-weight-500 text-primary lh-12">${requestScope.totalorders} đơn</span>
+                                                    <span class="fs-14">Không bao gồm đơn hàng đang vận chuyển.</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,9 +304,9 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Products</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">9.856</span>
-                                                    <span class="fs-14">In 19 Categories</span>
+                                                    <h6 class="mb-1 card-title fs-16">Tổng sản phẩm</h6>
+                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">${requestScope.totalProducts} sản phẩm</span>
+                                                    <span class="fs-14">Trong ${requestScope.totalCates} danh mục</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -330,7 +322,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Monthly Earning</h6>
+                                                    <h6 class="mb-1 card-title fs-16">Thu nhập hàng tháng</h6>
                                                     <span class="fs-24 d-block font-weight-500 text-primary lh-12">$6,982</span>
                                                     <span class="fs-14">Based in your local time.</span>
                                                 </div>
@@ -382,35 +374,29 @@
                                     </div>
                                     <div class="card mb-4 p-4 rounded-xl">
                                         <div class="card-body p-0">
-                                            <h5 class="card-title fs-16 mb-2">Marketing Chanel</h5>
+                                            <h5 class="card-title fs-16 mb-2">Kênh tiếp thị</h5>
                                             <span class="text-muted fs-12">Facebook</span>
                                             <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 15%">
-                                                    15%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%">
+                                                    30%
                                                 </div>
                                             </div>
                                             <span class="text-muted fs-12">Instagram</span>
                                             <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 65%">
-                                                    65%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%">
+                                                    25%
                                                 </div>
                                             </div>
                                             <span class="text-muted fs-12">Google</span>
                                             <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 51%">
-                                                    51%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 35%">
+                                                    35%
                                                 </div>
                                             </div>
-                                            <span class="text-muted fs-12">Twitter</span>
-                                            <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
-                                                    80%
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12">Other</span>
+                                            <span class="text-muted fs-12">Khác</span>
                                             <div class="progress ">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
-                                                    80%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 10%">
+                                                    10%
                                                 </div>
                                             </div>
                                         </div>
@@ -426,10 +412,10 @@
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>
-                                    © Glowing - Beauty & Cosmetics Shop HTML Template .
+                                    © Boon Bo - Cửa hàng bán nước hoa .
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="text-sm-right">All rights reserved</div>
+                                    <div class="text-sm-right">Đã đăng ký bản quyền</div>
                                 </div>
                             </div>
                         </footer>

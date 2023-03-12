@@ -11,7 +11,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Add Address</title>
+        <title>Thêm địa chỉ</title>
 
         <script src="././cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -62,16 +62,16 @@
                                         <div class="dropdown px-3">
                                             <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
                                                 <div class="w-48px">
-                                                    <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
+                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                                 <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                                    Ronald Hunter
+                                                    ${a.username}
                                                 </span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                                <a class="dropdown-item" href="logout">Logout</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
                                             </div>
                                         </div>
                                         <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
@@ -79,11 +79,7 @@
                                                 <i class="far fa-bell"></i>
                                                 <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+
                                         </div>
                                     </div>
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,105 +98,100 @@
                                         </div>
                                     </div>
                                 </form>
-                                
+
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <c:if test="${a.role_id==1}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-home-lg-alt"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Dashboard</span>
-                                        </a>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                            <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-home-lg-alt"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Trang tổng quát</span>
+                                            </a>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1 || a.role_id==4}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-shopping-bag"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Products</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="product">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Category List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Gallery List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Size List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Discount List</a>
-                                                </li>
-
-
-
-
-
-                                            </ul>
-                                        </div>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                            <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-shopping-bag"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Sản phẩm</span>
+                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                            </a>
+                                            <div class="collapse menu-collapse" id="product">
+                                                <ul class="sub-menu list-unstyled">
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách danh mục</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách thư viện</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách dung tích</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách giảm giá</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1 || a.role_id==3}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Order</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="order">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                            <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Đơn hàng</span>
+                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                            </a>
+                                            <div class="collapse menu-collapse" id="order">
+                                                <ul class="sub-menu list-unstyled">
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="orderdetail">Chi tiết đơn hàng</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-users"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Manage account</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="sellers">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="alluser">User's information list</a>
-                                                </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                            <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-users"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Quản lý tài khoản</span>
+                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                            </a>
+                                            <div class="collapse menu-collapse" id="sellers">
+                                                <ul class="sub-menu list-unstyled">
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
+                                                    </li>
 
-                                            </ul>
-                                        </div>
-                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-comment-alt-lines"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Reivews</span>
-                                        </a>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                            <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-comment-alt-lines"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Lượt đánh giá</span>
+                                            </a>
+                                        </li>
                                     </c:if>
                                     <li class="list-group-item separate p-0 my-3 mx-n3"></li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
@@ -208,19 +199,18 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-cog"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Setting</span>
+                                            <span class="sidebar-item-text">Cài đặt</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="setting">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
                                                 </li>
 
                                             </ul>
                                         </div>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -230,18 +220,18 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
-                                
+
                                 <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-                                    
+
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
-                                                <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
+                                                <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right w-100">
-                                            <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                            <a class="dropdown-item" href="logout">Logout</a>
+                                            <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                            <a class="dropdown-item" href="logout">Đăng xuất</a>
                                         </div>
                                     </div>
                                 </div>
@@ -256,10 +246,10 @@
                                     <div class="col-xxl-9">
                                         <div class="row mb-6">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <h2 class="fs-24 mb-0">Add New Account</h2>
+                                                <h2 class="fs-24 mb-0">Thêm địa chỉ</h2>
                                             </div>
                                             <div class="col-sm-6 text-sm-right">
-                                                <button class="btn btn-primary">Create</button>
+                                                <button class="btn btn-primary">Hoàn thành</button>
                                             </div>
                                         </div>
                                     </div>
@@ -272,25 +262,46 @@
                                                 </div>
 
                                                 <div class="row">
+                                                    <script>
+
+                                                    </script>
                                                     <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">City</label>
-                                                        <input type="text" required="" placeholder="Type here" name="city" class="form-control bg-input border-0" id="product_color">
+                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Tỉnh</label>
+                                                        <select class="form-control bg-input border-0 select-multiple" name="cityId"
+                                                                id="cityId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
+                                                            <c:forEach items="${requestScope.listCity}" var="lC">
+                                                                <option value="addaddress?cityId=${lC.id}&districtId=1"">
+                                                                    ${lC.name}
+                                                                </option>
+                                                            </c:forEach>
+                                                        </select>
                                                     </div>
 
                                                     <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">District</label>
-                                                        <input type="text" required="" placeholder="Type here" name="district" class="form-control bg-input border-0" id="product_color">
+                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Thành phố, huyện</label>
+                                                        <select class="form-control bg-input border-0 select-multiple" name="districtId" 
+                                                                id="districtId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
+                                                            <c:forEach items="${requestScope.listDistrict}" var="lD">
+                                                                <option value="addaddress?cityId=${param.cityId}&districtId=${lD.id}">${lD.name}</option>
+                                                            </c:forEach>
+                                                        </select>
                                                     </div>
-                                                    
+
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Ward</label>
-                                                        <input type="text" required="" placeholder="Type here" name="ward" class="form-control bg-input border-0" id="product_color">
+                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Quận, phường, thị trấn, thị xã</label>
+                                                        <select class="form-control bg-input border-0 select-multiple" name="wardId"
+                                                                id="wardId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
+                                                            <c:forEach items="${requestScope.listWard}" var="lW">
+                                                                <option value="addaddress?cityId=${param.cityId}&districtId=${param.districtId}">${lW.name}</option>
+                                                            </c:forEach>
+                                                        </select>
                                                     </div>
 
                                                     <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Detail</label>
+                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Số nhà, đường</label>
                                                         <input type="text" required="" placeholder="Type here" name="detail" class="form-control bg-input border-0" id="product_color">
                                                     </div>
                                                 </div>
@@ -306,10 +317,10 @@
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>
-                                    © Glowing - Beauty & Cosmetics Shop HTML Template .
+                                    © Boon Bo - Cửa hàng bán nước hoa .
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="text-sm-right">All rights reserved</div>
+                                    <div class="text-sm-right">Đã đăng ký bản quyền</div>
                                 </div>
                             </div>
                         </footer>

@@ -12,8 +12,11 @@ import java.util.Calendar;
 import java.util.List;
 import model.Address_Detail;
 import model.Order;
+import model.QuanHuyen;
 import model.Role;
+import model.TinhThanhPho;
 import model.User;
+import model.XaPhuong;
 
 /**
  *
@@ -507,6 +510,81 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
+    
+    public List<TinhThanhPho> getAllCity() {
+        List<TinhThanhPho> list = new ArrayList<>();
+        String sql = "select * from TinhThanhPho";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                TinhThanhPho t = new TinhThanhPho();
+                t.setId(rs.getInt("ID"));
+                t.setName(rs.getString("tenTinhThanhPho"));
+                list.add(t);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public TinhThanhPho getCity(int id) {
+        
+        String sql = "select * from TinhThanhPho where id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                TinhThanhPho t = new TinhThanhPho();
+                t.setId(rs.getInt("ID"));
+                t.setName(rs.getString("tenTinhThanhPho"));
+                return t;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+    public List<QuanHuyen> getAllDistrict(int id) {
+        List<QuanHuyen> list = new ArrayList<>();
+        String sql = "select * from [QuanHuyen] where tinhThanhPhoId=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                QuanHuyen q = new QuanHuyen();
+                q.setId(rs.getInt("ID"));
+                q.setName(rs.getString("tenQuanHuyen"));
+                list.add(q);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public List<XaPhuong> getAllWard(int id) {
+        List<XaPhuong> list = new ArrayList<>();
+        String sql = "select * from XaPhuong where quanHuyenId=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                XaPhuong x = new XaPhuong();
+                x.setId(rs.getInt("ID"));
+                x.setName(rs.getString("tenXaPhuong"));
+                list.add(x);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
         DashboardDAO d = new DashboardDAO();
@@ -518,6 +596,6 @@ public class DashboardDAO extends DBContext {
 //
 //        System.out.println("====");
 //        System.out.println(d.getAllUser());
-        System.out.println(d.getAllOrder());
+        System.out.println(d.getAllWard(1));
     }
 }

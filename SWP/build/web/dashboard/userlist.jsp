@@ -17,7 +17,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>User List</title>
+        <title>Danh sách người dùng</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -68,16 +68,16 @@
                                         <div class="dropdown px-3">
                                             <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
                                                 <div class="w-48px">
-                                                    <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
+                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                                 <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                                    Ronald Hunter
+                                                    ${a.username}
                                                 </span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                                <a class="dropdown-item" href="logout">Logout</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
                                             </div>
                                         </div>
                                         <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
@@ -85,11 +85,7 @@
                                                 <i class="far fa-bell"></i>
                                                 <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,102 +107,97 @@
                                 
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <c:if test="${a.role_id==1}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-home-lg-alt"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Dashboard</span>
-                                        </a>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                            <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-home-lg-alt"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Trang tổng quát</span>
+                                            </a>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1 || a.role_id==4}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-shopping-bag"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Products</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="product">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Category List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Gallery List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Size List</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Discount List</a>
-                                                </li>
-
-
-
-
-
-                                            </ul>
-                                        </div>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                            <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-shopping-bag"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Sản phẩm</span>
+                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                            </a>
+                                            <div class="collapse menu-collapse" id="product">
+                                                <ul class="sub-menu list-unstyled">
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách danh mục</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách thư viện</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách dung tích</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="">Danh sách giảm giá</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1 || a.role_id==3}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Order</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="order">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                            <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Đơn hàng</span>
+                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                            </a>
+                                            <div class="collapse menu-collapse" id="order">
+                                                <ul class="sub-menu list-unstyled">
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="orderdetail">Chi tiết đơn hàng</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-users"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Manage account</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="sellers">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
-                                                </li>
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="alluser">User's information list</a>
-                                                </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                            <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-users"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Quản lý tài khoản</span>
+                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                            </a>
+                                            <div class="collapse menu-collapse" id="sellers">
+                                                <ul class="sub-menu list-unstyled">
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
+                                                    </li>
+                                                    <li class="sidebar-item">
+                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
+                                                    </li>
 
-                                            </ul>
-                                        </div>
-                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                        <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-comment-alt-lines"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Reivews</span>
-                                        </a>
-                                    </li>
+                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                            <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                    <i class="fas fa-comment-alt-lines"></i>
+                                                </span>
+                                                <span class="sidebar-item-text">Lượt đánh giá</span>
+                                            </a>
+                                        </li>
                                     </c:if>
                                     <li class="list-group-item separate p-0 my-3 mx-n3"></li>
                                     <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
@@ -214,19 +205,18 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-cog"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Setting</span>
+                                            <span class="sidebar-item-text">Cài đặt</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="setting">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
                                                 </li>
 
                                             </ul>
                                         </div>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -242,12 +232,12 @@
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
-                                                <img src="./avt/${a.avatar}" alt="Ronald Hunter" class="rounded-circle">
+                                                <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right w-100">
-                                            <a class="dropdown-item" href="showprofile?id=${a.id}">My Profile</a>
-                                            <a class="dropdown-item" href="logout">Logout</a>
+                                            <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                            <a class="dropdown-item" href="logout">Đăng xuất</a>
                                         </div>
                                     </div>
                                 </div>
@@ -258,12 +248,12 @@
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
                                 <div class="col-sm-9 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">User list</h2>
+                                    <h2 class="fs-24 mb-0">Danh sách người dùng</h2>
                                 </div>
                                 <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
                                     <a href="addaccount" class="btn btn-primary">
                                         <i class="fal fa-plus"></i>
-                                        <span class="d-inline-block ml-2">Create new</span>
+                                        <span class="d-inline-block ml-2">Tạo tài khoản mới</span>
                                     </a>
                                 </div>
                             </div>
@@ -272,32 +262,14 @@
                                     <div class="card-header bg-transparent p-4">
                                         <div class="row align-items-center">
                                             <div class="col-md-2 col-6">
-                                                <select  class="form-control bg-input border-0" id="selectStatus">
-                                                    <option value="1">Status</option>
-                                                    <option value="2">Active</option>
-                                                    <option value="3">Inactive</option>
+                                                <select  class="form-control bg-input border-0" onchange="location=this.value">
+                                                    <option value="alluser">Trạng thái</option>
+                                                    <option value="alluser">Tất cả trạng thái</option>
+                                                    <option value="activeuser">Hoạt động</option>
+                                                    <option value="inactiveuser">Vô hiệu hóa</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
-                                                <button onclick="getval()" class="btn btn-primary">Find</button>
-                                            </div>
-
-                                            <script type="text/javascript">
-                                                function getval() {
-                                                    var sel = document.getElementById('selectStatus');
-                                                    if (sel.value == "1") {
-                                                        window.location.href = "userlist";
-                                                    }
-                                                    if (sel.value == "2") {
-                                                        window.location.href = "activeuser";
-                                                    }
-                                                    if (sel.value == "3") {
-                                                        window.location.href = "inactiveuser";
-                                                    }
-                                                }
-                                            </script>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="card-body p-4">
@@ -305,11 +277,11 @@
                                         <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th scope="col">Staff</th>
+                                                    <th scope="col">Người dùng</th>
                                                     <th scope="col">Email</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Registered</th>
-                                                    <th scope="col" class="text-right">Action</th>
+                                                    <th scope="col">Trạng thái tài khoản</th>
+                                                    <th scope="col">Ngày đăng kí</th>
+                                                    <th scope="col" class="text-right">Hành động</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -323,8 +295,8 @@
                                                                     <img class="img-avatar" src="./avt/${lu.avatar}" >
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <a href="./showprofile?id=${lu.id}">${lu.username}</a>
-                                                                    <p class="text-muted mb-0 fs-14">User ID#${lu.id}</p>
+                                                                    <a href="./showprofile?id=${lu.id}">${lu.firstname} ${lu.lastname}</a>
+                                                                    <p class="text-muted mb-0 fs-14">Mã người dùng: #${lu.id}</p>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -332,19 +304,19 @@
                                                         <td>
                                                             <c:if test="${lu.deleted ==0}">
                                                                 <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Active
+                                                                    Hoạt động
                                                                 </span>
                                                             </c:if>
                                                             <c:if test="${lu.deleted ==1}">
                                                                 <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Inactive
+                                                                    Vô hiệu hóa
                                                                 </span>
                                                             </c:if>
                                                         </td>
-                                                        <td>a}</td>
+                                                        <td>${lu.created_at}</td>
                                                         <td class="text-right">
                                                             <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                                <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -359,8 +331,8 @@
                                                                     <img class="img-avatar" src="./avt/${lA.avatar}" >
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <a href="./showprofile?id=${lA.id}">${lA.username}</a>
-                                                                    <p class="text-muted mb-0 fs-14">User ID#${lA.id}</p>
+                                                                    <a href="./showprofile?id=${lA.id}">${lA.firstname} ${lA.lastname}</a>
+                                                                    <p class="text-muted mb-0 fs-14">Mã người dùng: #${lA.id}</p>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -368,19 +340,19 @@
                                                         <td>
                                                             <c:if test="${lA.deleted ==0}">
                                                                 <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Active
+                                                                    Hoạt động
                                                                 </span>
                                                             </c:if>
                                                             <c:if test="${lA.deleted ==1}">
                                                                 <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Inactive
+                                                                    Vô hiệu hóa
                                                                 </span>
                                                             </c:if>
                                                         </td>
-                                                        <td>a}</td>
+                                                        <td>${lA.created_at}</td>
                                                         <td class="text-right">
                                                             <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lA.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                                <a href="showprofile?id=${lA.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -395,8 +367,8 @@
                                                                     <img class="img-avatar" src="./avt/${lI.avatar}" >
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <a href="./showprofile?id=${lI.id}">${lI.username}</a>
-                                                                    <p class="text-muted mb-0 fs-14">User ID#${lI.id}</p>
+                                                                    <a href="./showprofile?id=${lI.id}">${lI.firstname} ${lI.lastname}</a>
+                                                                    <p class="text-muted mb-0 fs-14">Mã người dùng: #${lI.id}</p>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -404,19 +376,19 @@
                                                         <td>
                                                             <c:if test="${lI.deleted ==0}">
                                                                 <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Active
+                                                                    Hoạt động
                                                                 </span>
                                                             </c:if>
                                                             <c:if test="${lI.deleted ==1}">
                                                                 <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Inactive
+                                                                    Vô hiệu hóa
                                                                 </span>
                                                             </c:if>
                                                         </td>
-                                                        <td>a}</td>
+                                                        <td>${lI.created_at}</td>
                                                         <td class="text-right">
                                                             <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lI.id}" class="btn btn-primary btn-xs py-2">View details</a>
+                                                                <a href="showprofile?id=${lI.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -445,10 +417,10 @@
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>
-                                    © Glowing - Beauty & Cosmetics Shop HTML Template .
+                                    © Boon Bo - Cửa hàng bán nước hoa .
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="text-sm-right">All rights reserved</div>
+                                    <div class="text-sm-right">Đã đăng ký bản quyền</div>
                                 </div>
                             </div>
                         </footer>

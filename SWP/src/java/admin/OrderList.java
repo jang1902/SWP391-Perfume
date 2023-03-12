@@ -4,7 +4,9 @@
  */
 package admin;
 
+import dal.CategoryDAO;
 import dal.DashboardDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,18 +15,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Address_Detail;
-import model.QuanHuyen;
-import model.TinhThanhPho;
+import model.Category;
+import model.Order;
+import model.Product;
 import model.User;
-import model.XaPhuong;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "AddAddress", urlPatterns = {"/addaddress"})
-public class AddAddress extends HttpServlet {
+@WebServlet(name = "OrderList", urlPatterns = {"/orderlist"})
+public class OrderList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +44,10 @@ public class AddAddress extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddAddress</title>");
+            out.println("<title>Servlet OrderList</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddAddress at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OrderList at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,23 +65,13 @@ public class AddAddress extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        int cityId = Integer.parseInt(request.getParameter("cityId"));
-        int districtId = Integer.parseInt(request.getParameter("districtId"));
+        DashboardDAO dd = new DashboardDAO();     
+        List<Order> o = dd.getAllOrder();
+       
+        
 
-        DashboardDAO d = new DashboardDAO();
-
-        List<TinhThanhPho> t = d.getAllCity();
-        List<QuanHuyen> q = d.getAllDistrict(cityId);
-        List<XaPhuong> x = d.getAllWard(districtId);
-
-        request.setAttribute("lastedU", d.getLastestUser());
-        request.setAttribute("listCity", t);
-        request.setAttribute("curCity", d.getCity(cityId));
-        request.setAttribute("listDistrict", q);
-        request.setAttribute("listWard", x);
-        request.getRequestDispatcher("dashboard/addaddress.jsp").forward(request, response);
-
+        request.setAttribute("orderlist", o);
+        request.getRequestDispatcher("dashboard/orderlist.jsp").forward(request, response);
     }
 
     /**
@@ -94,24 +85,7 @@ public class AddAddress extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String city = request.getParameter("city");
-        String district = request.getParameter("district");
-        String ward = request.getParameter("ward");
-        String detail = request.getParameter("detail");
-        DashboardDAO d = new DashboardDAO();
-        User lastest = d.getLastestUser();
-        try {
-            // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
-//            response.sendRedirect("addaccount");
-
-            //uid, city, district, ward, detail, status
-            Address_Detail ad = new Address_Detail(lastest.getId(), city, district, ward, detail, 1);
-            d.addAddress(ad);
-            response.sendRedirect("dashboard");
-
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
+        processRequest(request, response);
     }
 
     /**

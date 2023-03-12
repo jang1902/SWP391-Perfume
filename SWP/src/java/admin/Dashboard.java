@@ -4,7 +4,9 @@
  */
 package admin;
 
+import dal.CategoryDAO;
 import dal.DashboardDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +15,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Category;
 import model.Order;
+import model.Product;
 import model.User;
 
 /**
@@ -40,7 +44,7 @@ public class Dashboard extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Dashboard</title>");            
+            out.println("<title>Servlet Dashboard</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Dashboard at " + request.getContextPath() + "</h1>");
@@ -61,14 +65,30 @@ public class Dashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DashboardDAO d = new DashboardDAO();
-        List<User> u = d.getNewestUser();
-        List<Order> o = d.getAllOrder();
-        int total = 0;
+        DashboardDAO dd = new DashboardDAO();
+        ProductDAO pd = new ProductDAO();
+        CategoryDAO cd = new CategoryDAO();
+        List<User> u = dd.getNewestUser();
+        List<Order> o = dd.getAllOrder();
+        List<Product> p = pd.getAllProduct();
+        List<Category> c = cd.getAllCategory();
+        int totalmoney = 0, totalorders = 0, totalproducts = 0, totalcates = 0;
         for (Order order : o) {
-            total+=order.getTotal_money();
+            totalmoney += order.getTotal_money();
+            totalorders += 1;
         }
-        request.setAttribute("total", total);
+        for (Product product : p) {
+            totalproducts += 1;
+        }
+        for (Category category : c) {
+            totalcates +=1;
+        }
+        
+
+        request.setAttribute("totalmoney", totalmoney);
+        request.setAttribute("totalorders", totalorders);
+        request.setAttribute("totalProducts", totalproducts);
+        request.setAttribute("totalCates", totalcates);
         request.setAttribute("newestUser", u);
         request.getRequestDispatcher("dashboard/dashboard.jsp").forward(request, response);
     }

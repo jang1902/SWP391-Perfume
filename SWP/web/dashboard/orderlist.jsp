@@ -1,15 +1,11 @@
-<%-- 
-    Document   : userlist
-    Created on : Feb 24, 2023, 11:23:43 PM
-    Author     : asus
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="en">
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/userlist by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:52 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/order-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:47:24 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <meta charset="utf-8">
@@ -17,7 +13,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Danh sách người dùng</title>
+        <title>Danh sách đơn hàng</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -39,12 +35,12 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="User list">
+        <meta name="twitter:title" content="Order list 1">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="userlist">
-        <meta property="og:title" content="User list">
+        <meta property="og:url" content="order-list.html">
+        <meta property="og:title" content="Order list 1">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
@@ -104,7 +100,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                
+
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
@@ -226,9 +222,20 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
-                                
+                                <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
+                                    <form>
+                                        <div class="input-group position-relative bg-input rounded">
+                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                            <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
+                                                <button class="bg-transparent border-0 outline-none">
+                                                    <i class="fal fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-                                    
+
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
@@ -248,27 +255,33 @@
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
                                 <div class="col-sm-9 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Danh sách người dùng</h2>
+                                    <h2 class="fs-24 mb-0">Danh sách đơn hàng</h2>
+                                    <p class="mb-0">Tổng số lượng đơn hàng</p>
                                 </div>
                                 <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
-                                    <a href="addaccount" class="btn btn-primary">
-                                        <i class="fal fa-plus"></i>
-                                        <span class="d-inline-block ml-2">Tạo tài khoản mới</span>
-                                    </a>
+                                    <input class="form-control border-primary w-100" type="text" placeholder="Search Categories">
                                 </div>
                             </div>
-                            <div class="card mb-4 rounded-xl">
+                            <div class="card mb-4 rounded-xl form-control-01">
                                 <div class="card-header bg-transparent p-4">
-                                    <div class="card-header bg-transparent p-4">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-2 col-6">
-                                                <select  class="form-control bg-input border-0" onchange="location=this.value">
-                                                    <option value="alluser">Trạng thái</option>
-                                                    <option value="alluser">Tất cả trạng thái</option>
-                                                    <option value="activeuser">Hoạt động</option>
-                                                    <option value="inactiveuser">Vô hiệu hóa</option>
-                                                </select>
-                                            </div>
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3">
+                                            <input type="text" placeholder="Search..." class="form-control bg-input border-0">
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <select class="form-control bg-input border-0">
+                                                <option>Status</option>
+                                                <option>Active</option>
+                                                <option>Disabled</option>
+                                                <option>Show all</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <select class="form-control bg-input border-0">
+                                                <option>Show 20</option>
+                                                <option>Show 30</option>
+                                                <option>Show 40</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -277,122 +290,41 @@
                                         <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th scope="col">Người dùng</th>
+                                                    <th>#ID</th>
+                                                    <th scope="col">Tên khách hàng</th>
                                                     <th scope="col">Email</th>
-                                                    <th scope="col">Trạng thái tài khoản</th>
-                                                    <th scope="col">Ngày đăng kí</th>
+                                                    <th scope="col">Tổng giá trị</th>
+                                                    <th scope="col">Trạng thái</th>
+                                                    <th scope="col">Ngày đặt hàng</th>
                                                     <th scope="col" class="text-right">Hành động</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                <!-- all user -->
-                                                <c:forEach items="${requestScope.listUser}" var="lu">
+                                                <c:forEach items="${requestScope.orderlist}" var="ol">
                                                     <tr>
-                                                        <td>
-                                                            <div class="media">
-                                                                <div class="w-60px height-60 mr-3">
-                                                                    <img class="img-avatar" src="./avt/${lu.avatar}" >
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <a href="./showprofile?id=${lu.id}">${lu.firstname} ${lu.lastname}</a>
-                                                                    <p class="text-muted mb-0 fs-14">Mã người dùng: #${lu.id}</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>${lu.email}</td>
-                                                        <td>
-                                                            <c:if test="${lu.deleted ==0}">
-                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Hoạt động
-                                                                </span>
-                                                            </c:if>
-                                                            <c:if test="${lu.deleted ==1}">
-                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Vô hiệu hóa
-                                                                </span>
-                                                            </c:if>
-                                                        </td>
-                                                        <td>${lu.created_at}</td>
+                                                        <td>${ol.id}</td>
+                                                        <td>${ol.firstname} ${ol.lastname}</td>
+                                                        <td>${ol.email}</td>
+                                                        <td>${ol.total_money}</td>
+                                                        <td><span class="badge rounded-pill alert-warning text-capitalize fs-12">Status</span></td>
+                                                        <td>${ol.order_date}</td>
                                                         <td class="text-right">
                                                             <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
+                                                                <a href="order-detail.html" class="btn btn-primary mr-1 btn-xs py-2 font-weight-bold">Detail</a>
+                                                                <div class="dropdown no-caret">
+                                                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle btn btn-xs border hover-white bg-hover-primary border-primary py-2 px-3">
+                                                                        <i class="fal fa-ellipsis-h"></i> </a>
+                                                                    <div class="dropdown-menu" style="margin: 0px;">
+                                                                        <a class="dropdown-item" href="order-detail.html">View detail</a>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
 
-                                                <!-- active -->
-                                                <c:forEach items="${requestScope.listUserA}" var="lA">
-                                                    <tr>
-                                                        <td>
-                                                            <div class="media">
-                                                                <div class="w-60px height-60 mr-3">
-                                                                    <img class="img-avatar" src="./avt/${lA.avatar}" >
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <a href="./showprofile?id=${lA.id}">${lA.firstname} ${lA.lastname}</a>
-                                                                    <p class="text-muted mb-0 fs-14">Mã người dùng: #${lA.id}</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>${lA.email}</td>
-                                                        <td>
-                                                            <c:if test="${lA.deleted ==0}">
-                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Hoạt động
-                                                                </span>
-                                                            </c:if>
-                                                            <c:if test="${lA.deleted ==1}">
-                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Vô hiệu hóa
-                                                                </span>
-                                                            </c:if>
-                                                        </td>
-                                                        <td>${lA.created_at}</td>
-                                                        <td class="text-right">
-                                                            <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lA.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-
-                                                <!-- inactive -->
-                                                <c:forEach items="${requestScope.listUserI}" var="lI">
-                                                    <tr>
-                                                        <td>
-                                                            <div class="media">
-                                                                <div class="w-60px height-60 mr-3">
-                                                                    <img class="img-avatar" src="./avt/${lI.avatar}" >
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <a href="./showprofile?id=${lI.id}">${lI.firstname} ${lI.lastname}</a>
-                                                                    <p class="text-muted mb-0 fs-14">Mã người dùng: #${lI.id}</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>${lI.email}</td>
-                                                        <td>
-                                                            <c:if test="${lI.deleted ==0}">
-                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Hoạt động
-                                                                </span>
-                                                            </c:if>
-                                                            <c:if test="${lI.deleted ==1}">
-                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Vô hiệu hóa
-                                                                </span>
-                                                            </c:if>
-                                                        </td>
-                                                        <td>${lI.created_at}</td>
-                                                        <td class="text-right">
-                                                            <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lI.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -882,5 +814,5 @@
     </svg>
 </body>
 
-<!-- Mirrored from templates.g5plus.net/glowing/dashboard/userlist by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:52 GMT -->
+<!-- Mirrored from templates.g5plus.net/glowing/dashboard/order-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:47:25 GMT -->
 </html>
