@@ -21,6 +21,7 @@ import java.util.List;
 import model.Address_Detail;
 import model.Cart;
 import model.Item;
+import model.Order;
 import model.User;
 import org.apache.tomcat.jni.SSLContext;
 
@@ -82,16 +83,18 @@ public class CheckoutServlet extends HttpServlet {
         User u = (User) request.getSession().getAttribute("userNow");
         Cart cart = new Cart(txt, u);
         List<Item> listItem = cart.getItems();
-        int totalQuantity;
-        if (listItem != null) {
-            totalQuantity = listItem.size();
-        } else {
-            totalQuantity = 0;
+        int totalQuantity = 0;
+        for (Item item : listItem) {
+            if (!listItem.isEmpty()) {
+                totalQuantity = totalQuantity + item.getQuantity();
+            }
+
         }
         AddressDAO adao = new AddressDAO();
         List<Address_Detail> listad = adao.getAddressByUserID(u.getId());
-
         Address_Detail ad = adao.getDefaultAddress(u.getId());
+
+        String[] ids = txt.split("/");
 
         request.setAttribute("ad", ad);
         request.setAttribute("listad", listad);
@@ -119,22 +122,13 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         User u = (User) request.getSession().getAttribute("userNow");
-        
+
         OrderDAO dao = new OrderDAO();
         Cart cart = new Cart();
         int address_id = Integer.parseInt(request.getParameter("radio_address"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         if (u == null) {
             response.sendRedirect("login");
         } else {
@@ -150,10 +144,33 @@ public class CheckoutServlet extends HttpServlet {
                 }
                 cart = new Cart(txt, u);
             }
+
             dao.addOrder(u, address_id, cart);
+            Order o = dao.getLastOrder();
+            HttpSession session = request.getSession();
+            session.setAttribute("order", o);
+
+            String[] items = txt.split("/");
+            String remain = "";
+            for (String item : items) {
+                String[] s = item.split(":");
+                if (u != null) {
+                    if (!s[0].equals("" + u.getId())) {
+                        if (remain.isEmpty()) {
+                            remain = item;
+                        } else {
+                            remain += "/" + item;
+                        }
+                    }
+                }
+            }
+            if (!remain.isEmpty()) {
+                Cookie c = new Cookie("cart", remain);
+                c.setMaxAge(60 * 60 * 2 * 24);
+                response.addCookie(c);
+            }
             response.sendRedirect("home");
         }
-
 
     }
 

@@ -326,10 +326,6 @@
                             <c:set value="${requestScope.gender}" var="g"/>
 
 
-
-
-
-
                             <div class="info_products-right-item">
                                 <span>Giới tính phù hợp:</span>
                                 <span class="info_products-right-brand">${g.name}</span>
@@ -349,11 +345,6 @@
                                     <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${param.sid}')" >Thêm vào giỏ</button>
                                 </div>
                             </form>
-
-
-
-
-
 
                         </div>
                         <hr class="decoration_top-right-products">

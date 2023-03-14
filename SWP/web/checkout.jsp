@@ -21,7 +21,8 @@
         <link rel="stylesheet" href="./assets/css/address.css">
         <link rel="icon" href="./assets/img/small_logo1.png">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/dialog.js"></script>
+        
+        <script type="text/javascript" src="js/address.js"></script>
         <title>BOT STORE1</title>
     </head>
     <body>
@@ -200,6 +201,8 @@
         <!-- end header -->
         <!-- body -->
         <div id="body">
+                            
+
             <div class="body_container">
                 <form action="checkout" method="post">
                 <div class="body_left" >
@@ -212,20 +215,10 @@
 
                             <div class="body_left-item-address">
                                 <div class="item-address-font">${sessionScope.userNow.getFirstname()} ${sessionScope.userNow.getLastname()} | ${sessionScope.userNow.getPhone_number()} </div>
-                                <div class="address_list">
-                                    
-                                    <c:forEach items="${listad}" var="l">
-                                    <input ${l.is_default==1?"checked":""} type="radio" name="radio_address" value="${l.id}" />${l.detail}, ${l.ward}, ${l.district}, ${l.city}
-                                    <c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
-                                <!--     <div class="item-address-font2">${l.detail}, ${l.ward}, ${l.district}, ${l.city}</div>
-                                <c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
-                                    -->
-                                </c:forEach>
-                                </div>
-                         <!--      <div class="item-address-font2">${ad.detail}, ${ad.ward}, ${ad.district}, ${ad.city}</div>
+                                <div class="item-address-font2">${ad.detail}, ${ad.ward}, ${ad.district}, ${ad.city}</div>
                                 <c:if test="${ad.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
-                                    <div class="change_address_style"><a class="address_button" href="#login-box">Thay đổi</a></div>
-                         --> 
+                                    <div class="change_address_style"><a class="login-window button" href="#login-box">Thay đổi</a></div>
+                             </div>
                             </div>
                             </div>
 
@@ -240,15 +233,15 @@
 
                                 <span class="info_order" ><div style="margin-top: 15px">Đơn đặt hàng của bạn</div></span>
                                 <div class="body_right-item-buy-products">
-                                    <table border="0px">
-                                        <thead>
+                                    <table border="1px">
+                                      
                                             <tr class="amount_products">
                                                 <th style="width: 600px">Sản phẩm</th>
                                                 <th style="width: 200px">Đơn Giá</th>
                                                 <th>Số Lượng</th>
                                                 <th>Thành Tiền</th>
                                             </tr>
-                                        </thead>
+                                       
                                     <c:forEach items="${listItem}" var="c">
                                         <tr class="amount_products">
                                             <td ><img src="${c.product.thumbnail}" style="width: 40px;height: 40px"/>${c.product.title}${c.size.name}</td>
@@ -261,7 +254,7 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <c:if test="${totalQuan!=0}"><th>Tổng tiền(${totalQuan} sản phẩm): ₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney()}"></fmt:formatNumber></th></c:if> 
+                                        <c:if test="${totalQuan!=0}"><th>Tổng tiền(${totalQuan} sản phẩm):  ₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney()}"></fmt:formatNumber></th></c:if> 
                                         </tr>
                                     </table>
 
@@ -270,7 +263,8 @@
                             </div>
 
                             <!-- Hidden Dialog Box-->
-                            <div id="login-box" class="login">
+                            <div class="login" id="login-box">
+                                <a class="close" href="#"><img class="img-close" title="Close Window" alt="Close" src="close.png" /></a>
                                 <p class="login_title"> Danh sách địa chỉ</p>
                                 <hr/>
 
@@ -278,16 +272,18 @@
                                 <div class="login_detail">
                                 <c:forEach items="${listad}" var="l">
                                     <div class="radio_input">
-                                        <input class="radioBtnInput" type="radio" name="radio_address" value="${l.id}" />${l.detail}<br/> ${l.ward}, ${l.district}, ${l.city}<br/><c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if><br/><hr/>
+                                        <input ${l.is_default==1?"checked":""} class="radioBtnInput" type="radio" name="radio_address" value="${l.id}" />${l.detail}<br/> ${l.ward}, ${l.district}, ${l.city}<br/><c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if><br/><hr/>
                                         </div>
                                 </c:forEach>
                             </div>
                         </div>
+                            <div class="button_position">
+                <button type="submit" class="place_order">Đặt Hàng</button> 
+                </div>
+                </form>
                 </div>
                 <!-- Hidden Dialog Box-->
-
-                <button type="submit" class="place_order">Đặt Hàng</button> 
-                </form>
+                
             </div>
                                         
         </div>

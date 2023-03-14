@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.Calendar;
 import model.Cart;
 import model.Item;
+import model.Order;
 import model.User;
 
 /**
@@ -64,6 +65,32 @@ public class OrderDAO extends DBContext {
             }
         } catch (Exception e) {
         }
+    }
+    
+    public Order getLastOrder(){
+        String sql="select top 1* from Orders order by id desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Order o=new Order(
+                rs.getInt("id"),
+                rs.getInt("user_id"),
+                rs.getString("firstname"),
+                rs.getString("lastname"),
+                rs.getString("email"),
+                rs.getString("phone_number"),
+                rs.getInt("address_id"),
+                rs.getString("note"),
+                rs.getDate("order_date"),
+                rs.getInt("status_id"),
+                rs.getInt("total_money")
+                );
+                return o;
+            }
+        } catch (Exception e) {
+        }
+        return null;
     }
 
     public int getSumTotalMoney(int userid) {
