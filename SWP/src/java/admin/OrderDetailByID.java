@@ -4,9 +4,7 @@
  */
 package admin;
 
-import dal.CategoryDAO;
 import dal.DashboardDAO;
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,18 +13,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Category;
-import model.Order;
 import model.OrderDetail;
-import model.Product;
-import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "OrderList", urlPatterns = {"/orderlist"})
-public class OrderList extends HttpServlet {
+@WebServlet(name = "OrderDetail", urlPatterns = {"/orderdetail"})
+public class OrderDetailByID extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +39,10 @@ public class OrderList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OrderList</title>");
+            out.println("<title>Servlet OrderDetail</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OrderList at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OrderDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,23 +60,19 @@ public class OrderList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String status_id = request.getParameter("status_id");
+        String order_id_raw = request.getParameter("order_id");
         DashboardDAO dd = new DashboardDAO();
-        List<Order> o = null;
-        if (status_id == null) {
-            o = dd.getAllOrder();
-        } else {
-            int status = Integer.parseInt(status_id);
-            o = dd.getOrderByID(status);
-            if (o.isEmpty() && status != 0) {
-                request.setAttribute("msg", "No orders found!");
-            }
-            if (status == 0) {
-                o = dd.getAllOrder();
-            }
-        }
-        request.setAttribute("orderlist", o);
-        request.getRequestDispatcher("dashboard/orderlist.jsp").forward(request, response);
+        int order_id = Integer.parseInt(order_id_raw);
+        
+        OrderDetail od = dd.getOrderDetailById(order_id);
+        List<OrderDetail> listOD = dd.getODbyID(order_id);
+//        Order o = dd.getO
+        
+        request.setAttribute("listOD", listOD);
+        request.setAttribute("orderdetail", od);
+        
+        
+        request.getRequestDispatcher("dashboard/orderdetail.jsp").forward(request, response);
     }
 
     /**
@@ -97,9 +87,9 @@ public class OrderList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-       String order_id_raw = request.getParameter("oid");
+       String order_id_raw = request.getParameter("orderid");
         int order_id = Integer.parseInt(order_id_raw);    
-        String status_id_raw = request.getParameter("sttid");
+        String status_id_raw = request.getParameter("statusid");
         int statusid = Integer.parseInt(status_id_raw);
         DashboardDAO dd = new DashboardDAO();
         try {
@@ -109,7 +99,7 @@ public class OrderList extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-         response.sendRedirect("orderlist?status_id=4");
+         response.sendRedirect("orderdetail?order_id="+order_id);
     }
 
     /**

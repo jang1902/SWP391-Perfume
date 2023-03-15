@@ -263,14 +263,34 @@
 
                                                 <div class="row">
                                                     <script>
-
+                                                        function getCity() {
+                                                            var selectElement = document.getElementById("cityId");
+                                                            var selectedValue = selectElement.value;
+                                                            localStorage.setItem("selectedValue", selectedValue);
+                                                            window.location.href = "addaddress?cityId=${requestScope.cityId}";
+                                                        }
+                                                        function getDistrict() {
+                                                            var selectElement = document.getElementById("districtId");
+                                                            var selectedValue = selectElement.value;
+                                                            localStorage.setItem("selectedValue", selectedValue);
+                                                            window.location.href = "addaddress?cityId=1&districtId=1";
+                                                        }
+                                                        function getWard() {
+                                                            var selectElement = document.getElementById("wardId");
+                                                            var selectedValue = selectElement.value;
+                                                            localStorage.setItem("selectedValue", selectedValue);
+                                                            window.location.href = "addaddress?cityId=1&districtId=1&wardId=1";
+                                                        }
                                                     </script>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Tỉnh</label>
-                                                        <select class="form-control bg-input border-0 select-multiple" name="cityId"
-                                                                id="cityId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
+                                                        <select class="form-control bg-input border-0 select-multiple" name="city"
+                                                                id="cityId"  data-style="form-control w-100 border rounded" onchange="getCity()">
+                                                            
                                                             <c:forEach items="${requestScope.listCity}" var="lC">
-                                                                <option value="addaddress?cityId=${lC.id}&districtId=1"">
+                                                                
+
+                                                                <option value="${lC.name}"">
                                                                     ${lC.name}
                                                                 </option>
                                                             </c:forEach>
@@ -279,10 +299,10 @@
 
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Thành phố, huyện</label>
-                                                        <select class="form-control bg-input border-0 select-multiple" name="districtId" 
-                                                                id="districtId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
+                                                        <select class="form-control bg-input border-0 select-multiple" name="district" 
+                                                                id="districtId"  data-style="form-control w-100 border rounded" onchange="getDistrict()">
                                                             <c:forEach items="${requestScope.listDistrict}" var="lD">
-                                                                <option value="addaddress?cityId=${param.cityId}&districtId=${lD.id}">${lD.name}</option>
+                                                                <option value="${lD.name}">${lD.name}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
@@ -292,10 +312,10 @@
                                                 <div class="row">
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Quận, phường, thị trấn, thị xã</label>
-                                                        <select class="form-control bg-input border-0 select-multiple" name="wardId"
-                                                                id="wardId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
+                                                        <select class="form-control bg-input border-0 select-multiple" name="ward"
+                                                                id="wardId"  data-style="form-control w-100 border rounded" onchange="getWard()">
                                                             <c:forEach items="${requestScope.listWard}" var="lW">
-                                                                <option value="addaddress?cityId=${param.cityId}&districtId=${param.districtId}">${lW.name}</option>
+                                                                <option value="${lW.name}">${lW.name}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
@@ -303,6 +323,14 @@
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Số nhà, đường</label>
                                                         <input type="text" required="" placeholder="Type here" name="detail" class="form-control bg-input border-0" id="product_color">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+
+                                                    <div class="col-md-8">
+                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase"></label>
+                                                        <input type="text" readonly="" required="" placeholder="${requestScope.curCity.name}-${requestScope.curDistrict.name}-${requestScope.curWard.name} " name="detail" class="form-control bg-input border-0" id="product_color">
                                                     </div>
                                                 </div>
                                             </div>

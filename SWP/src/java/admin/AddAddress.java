@@ -64,21 +64,49 @@ public class AddAddress extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        int cityId = Integer.parseInt(request.getParameter("cityId"));
-        int districtId = Integer.parseInt(request.getParameter("districtId"));
-
         DashboardDAO d = new DashboardDAO();
+        String cityId_raw = request.getParameter("cityId");
+        String districtId_raw = request.getParameter("districtId");
+        String wardId_raw = request.getParameter("wardId");
+
+        if (cityId_raw != null) {
+            request.setAttribute("cityId", Integer.parseInt(cityId_raw));
+            int cityId = Integer.parseInt(cityId_raw);
+            TinhThanhPho city = d.getCity(cityId);
+            List<QuanHuyen> q = d.getAllDistrict(cityId);
+            
+            request.setAttribute("curCity", city);
+            request.setAttribute("listDistrict", q);
+        } else {
+            request.setAttribute("cityId", 1);
+            List<QuanHuyen> q = d.getAllDistrict(1);
+            request.setAttribute("listDistrict", q);
+        }
+
+        if (districtId_raw != null) {
+            int districtId = Integer.parseInt(districtId_raw);
+            QuanHuyen district = d.getDistrict(districtId);
+            List<XaPhuong> x = d.getAllWard(districtId);
+            request.setAttribute("curDistrict", district);
+            request.setAttribute("listWard", x);
+        } else {
+            int districtId = 1;
+            List<XaPhuong> x = d.getAllWard(districtId);
+            request.setAttribute("listWard", x);
+        }
+        
+        if(wardId_raw!=null){
+            int wardId = Integer.parseInt(wardId_raw);
+            XaPhuong ward = d.getWard(wardId);
+            request.setAttribute("curWard", ward);
+        }
+        else{
+            
+        }
 
         List<TinhThanhPho> t = d.getAllCity();
-        List<QuanHuyen> q = d.getAllDistrict(cityId);
-        List<XaPhuong> x = d.getAllWard(districtId);
-
         request.setAttribute("lastedU", d.getLastestUser());
         request.setAttribute("listCity", t);
-        request.setAttribute("curCity", d.getCity(cityId));
-        request.setAttribute("listDistrict", q);
-        request.setAttribute("listWard", x);
         request.getRequestDispatcher("dashboard/addaddress.jsp").forward(request, response);
 
     }

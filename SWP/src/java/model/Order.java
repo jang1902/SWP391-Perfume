@@ -36,6 +36,30 @@ public class Order {
     private Date order_date;
     private int status_id;
     private int total_money;
+    private Status status;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Order(int id, int user_id, String firstname, String lastname, String email, String phone_number, int address_id, String note, Date order_date, int status_id, int total_money, Status status) {
+        this.id = id;
+        this.user_id = user_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.address_id = address_id;
+        this.note = note;
+        this.order_date = order_date;
+        this.status_id = status_id;
+        this.total_money = total_money;
+        this.status = status;
+    }
 
     public Order(int id, int user_id, String firstname, String lastname, String email, String phone_number, int address_id, String note, Date order_date, int status_id, int total_money) {
         this.id = id;

@@ -16,6 +16,77 @@ public class OrderDetail {
     private int num;
     private int total_money_in;
     private int total_money_out;
+    private Order order;
+    private User user;
+    private Product product;
+    private SizeProduct sizeproduct;
+    private Size size;
+    private Address_Detail address_detail;
+
+    public OrderDetail(int id, int order_id, int product_id, int price, int num, int total_money_in, int total_money_out, Order order, User user, Product product, SizeProduct sizeproduct, Size size, Address_Detail address_detail) {
+        this.id = id;
+        this.order_id = order_id;
+        this.product_id = product_id;
+        this.price = price;
+        this.num = num;
+        this.total_money_in = total_money_in;
+        this.total_money_out = total_money_out;
+        this.order = order;
+        this.user = user;
+        this.product = product;
+        this.sizeproduct = sizeproduct;
+        this.size = size;
+        this.address_detail = address_detail;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public SizeProduct getSizeproduct() {
+        return sizeproduct;
+    }
+
+    public void setSizeproduct(SizeProduct sizeproduct) {
+        this.sizeproduct = sizeproduct;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    public Address_Detail getAddress_detail() {
+        return address_detail;
+    }
+
+    public void setAddress_detail(Address_Detail address_detail) {
+        this.address_detail = address_detail;
+    }
+    
 
     public OrderDetail() {
     }

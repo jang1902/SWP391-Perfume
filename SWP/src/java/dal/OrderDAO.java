@@ -23,7 +23,7 @@ public class OrderDAO extends DBContext {
         java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
         try {
-            String sql = "insert into [orders] values(?,?,?,?,?,?,null,?,null,?)";
+            String sql = "insert into [orders] values(?,?,?,?,?,?,null,?,1,?)";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, u.getId());
             st.setString(2, u.getFirstname());

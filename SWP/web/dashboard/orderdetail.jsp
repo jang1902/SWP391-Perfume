@@ -1,9 +1,10 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/add-product-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/order-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:51 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <meta charset="utf-8">
@@ -11,9 +12,9 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Thêm địa chỉ</title>
+        <title>Chi tiết đơn hàng</title>
 
-        <script src="././cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+        <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
         <link rel="stylesheet" href="./vendors/bootstrap-select/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="./vendors/slick/slick.min.css">
@@ -33,15 +34,15 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Add product">
+        <meta name="twitter:title" content="Order detail">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="add-product-3.html">
-        <meta property="og:title" content="Add product">
+        <meta property="og:url" content="order-detail.html">
+        <meta property="og:title" content="Order detail">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="./img/Logo_01.png">
+        <meta property="og:image" content="./img/logo_01.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
@@ -238,107 +239,176 @@
                             </nav>
                         </div>
                     </header>
+                    <c:set value="${requestScope.orderdetail}" var="od"/>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
-                        <form action="addaddress" method="POST">
 
-                            <div class="dashboard-page-content">
-                                <div class="row">
-                                    <div class="col-xxl-9">
-                                        <div class="row mb-6">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <h2 class="fs-24 mb-0">Thêm địa chỉ</h2>
+                        <div class="dashboard-page-content">
+                            <c:if test="${od==null}">
+                                <h2 class="fs-24 mb-0">Không có đơn hàng tương ứng!!!</h2>
+                            </c:if>
+                            <c:if test="${od!=null}">
+                                <h2 class="fs-24 mb-0">Chi tiết đơn hàng</h2>
+                                <p class="mb-6">Đơn số #${od.order.id}</p>
+                                <div class="card rounded-xl">
+                                    <header class="card-header bg-transparent p-4">
+                                        <form action="orderdetail" method="POST">
+                                            <input type="hidden" name="orderid" value="${od.order.id}">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-6 mb-lg-0 mb-3">
+                                                    <span class="d-inline-block"><i class="far fa-calendar mr-1"></i>${od.order.order_date} </span>
+                                                    <br>
+                                                    <small class="text-muted">Mã đơn hàng: ${od.order.id}</small>
+                                                </div>
+                                                <div class="col-md-6 ml-auto d-flex justify-content-md-end flex-wrap">
+                                                    <div class="mw-210 mr-1 my-1">
+                                                        <select class="form-control bg-input border-0 " name="statusid">
+                                                            <option value="${od.order.status.id}" >Thay đổi trạng thái</option>
+                                                            <option value="1">Chờ xác nhận</option>
+                                                            <option value="2">Đang vận chuyển</option>
+                                                            <option value="3">Đã giao</option>
+                                                            <option value="4">Đã hủy</option>
+                                                        </select>
+                                                    </div>
+                                                    <button class="btn btn-primary my-1" >Thay đổi</button>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6 text-sm-right">
-                                                <button class="btn btn-primary">Hoàn thành</button>
+                                        </form>
+                                    </header>
+
+                                    <div class="card-body p-4">
+                                        <div class="row mb-8 mt-4 order-info-wrap">
+                                            <div class="col-md-4">
+                                                <div class="media">
+                                                    <span class="d-flex align-items-center justify-content-center w-48px h-48px rounded-circle bg-green-light mr-3 text-green">
+                                                        <i class="fas fa-user"></i>
+                                                    </span>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">Thông tin khách hàng</h6>
+                                                        <p class="mb-1">
+                                                            Tên: ${od.user.firstname} ${od.user.lastname}<br>
+                                                            Email: ${od.user.email}<br>
+                                                            SÐT: ${od.user.phone_number}<br>
+                                                        </p>
+                                                        <a href="showprofile?id=${od.user.id}" class="btn-link-custom">Chi tiết người dùng</a>
+                                                    </div>
+                                                </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="media">
+                                                    <span class="d-flex align-items-center justify-content-center w-48px h-48px rounded-circle bg-green-light mr-3 text-green">
+                                                        <i class="fas fa-truck"></i>
+                                                    </span>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">Thông tin đơn hàng</h6>
+                                                        <p class="mb-1">
+                                                            Trạng thái: ${od.order.status.name}<br>
+                                                            Ghi chú: ${od.order.note}<br>
+
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="media">
+                                                    <span class="d-flex align-items-center justify-content-center w-48px h-48px rounded-circle bg-green-light mr-3 text-green">
+                                                        <i class="fas fa-truck"></i>
+                                                    </span>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-1">Vận chuyển tới</h6>
+                                                        <p class="mb-1">
+                                                            Tỉnh, Thành phố: ${od.address_detail.city}<br>
+                                                            Quận, Huyện: ${od.address_detail.district}<br>
+                                                            Xã, Phường: ${od.address_detail.ward}<br>
+                                                            Số nhà: ${od.address_detail.detail}<br>
+
+                                                        </p>
+                                                        <a href="showprofile?id=${od.user.id}" class="btn-link-custom">Chi tiết người dùng</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tên sản phẩm</th>
+                                                                <th>Đơn giá</th>
+                                                                <th>Số lượng</th>
+                                                                <th class="text-right">Tổng giá trị (VNĐ)</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <c:forEach items="${requestScope.listOD}" var="lOD">
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="./product-detail-01.html" class="media align-items-center">
+                                                                            <div class="w-60px mr-4">
+                                                                                <img src="${lOD.product.thumbnail}" alt="Flowers cotton dress">
+                                                                            </div>
+                                                                            <div class="media-body">
+                                                                                <p class="font-weight-600 text-secondary mb-0">${lOD.product.title} <br> (Dung tích ${lOD.size.name}) </p>
+                                                                            </div>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td><fmt:formatNumber type = "currency" pattern="###,###,###" value="${lOD.price}"></fmt:formatNumber></td>
+                                                                    <td>${lOD.num}</td>
+                                                                    <td class="text-right"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${lOD.price * lOD.num}"></fmt:formatNumber></td>
+                                                                    </tr>
+                                                            </c:forEach>
+                                                            <tr>
+                                                                <td colspan="4">
+                                                                    <div class="d-flex flex-column align-items-end mw-270 ml-auto">
+
+
+                                                                        <div class="row w-100 mb-0 no-gutters">
+                                                                            <span class="col-6 mb-0">Tổng cộng:</span>
+                                                                            <span class="col-6 text-right fs-20 font-weight-600"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${od.order.total_money}"></fmt:formatNumber></span>
+                                                                            </div>
+                                                                            <div class="row w-100 no-gutters">
+                                                                                <span class="col-6 mb-0 text-muted">Trạng thái:</span>
+                                                                                <span class="col-6 text-right fs-20 font-weight-600">
+                                                                                <c:if test="${od.order.status.id==1}">
+                                                                                    <span class="badge rounded-pill alert-warning text-capitalize fs-12">
+                                                                                        ${od.order.status.name}
+                                                                                    </span>
+                                                                                </c:if>
+                                                                                <c:if test="${od.order.status.id==2 || od.order.status.id==3}">
+                                                                                    <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                                        ${od.order.status.name}
+                                                                                    </span>
+                                                                                </c:if>
+                                                                                <c:if test="${od.order.status.id==4}">
+                                                                                    <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                                        ${od.order.status.name}
+                                                                                    </span>
+                                                                                </c:if>
+
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
+
+
                                         </div>
                                     </div>
-                                    <div class="col-xxl-6 form-control-01">
-                                        <div class="card mb-5 rounded-xl">
-                                            <div class="card-body p-4">
-                                                <div class="mb-5">
-                                                    <label for="product_title" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">${requestScope.msg}</label>
 
-                                                </div>
-
-                                                <div class="row">
-                                                    <script>
-                                                        function getCity() {
-                                                            var selectElement = document.getElementById("cityId");
-                                                            var selectedValue = selectElement.value;
-                                                            localStorage.setItem("selectedValue", selectedValue);
-                                                            window.location.href = "addaddress?cityId=${requestScope.cityId}";
-                                                        }
-                                                        function getDistrict() {
-                                                            var selectElement = document.getElementById("districtId");
-                                                            var selectedValue = selectElement.value;
-                                                            localStorage.setItem("selectedValue", selectedValue);
-                                                            window.location.href = "addaddress?cityId=1&districtId=1";
-                                                        }
-                                                        function getWard() {
-                                                            var selectElement = document.getElementById("wardId");
-                                                            var selectedValue = selectElement.value;
-                                                            localStorage.setItem("selectedValue", selectedValue);
-                                                            window.location.href = "addaddress?cityId=1&districtId=1&wardId=1";
-                                                        }
-                                                    </script>
-                                                    <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Tỉnh</label>
-                                                        <select class="form-control bg-input border-0 select-multiple" name="city"
-                                                                id="cityId"  data-style="form-control w-100 border rounded" onchange="getCity()">
-                                                            
-                                                            <c:forEach items="${requestScope.listCity}" var="lC">
-                                                                
-
-                                                                <option value="${lC.name}"">
-                                                                    ${lC.name}
-                                                                </option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Thành phố, huyện</label>
-                                                        <select class="form-control bg-input border-0 select-multiple" name="district" 
-                                                                id="districtId"  data-style="form-control w-100 border rounded" onchange="getDistrict()">
-                                                            <c:forEach items="${requestScope.listDistrict}" var="lD">
-                                                                <option value="${lD.name}">${lD.name}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-
-
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Quận, phường, thị trấn, thị xã</label>
-                                                        <select class="form-control bg-input border-0 select-multiple" name="ward"
-                                                                id="wardId"  data-style="form-control w-100 border rounded" onchange="getWard()">
-                                                            <c:forEach items="${requestScope.listWard}" var="lW">
-                                                                <option value="${lW.name}">${lW.name}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-4 mb-3">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Số nhà, đường</label>
-                                                        <input type="text" required="" placeholder="Type here" name="detail" class="form-control bg-input border-0" id="product_color">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-
-
-                                                    <div class="col-md-8">
-                                                        <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase"></label>
-                                                        <input type="text" readonly="" required="" placeholder="${requestScope.curCity.name}-${requestScope.curDistrict.name}-${requestScope.curWard.name} " name="detail" class="form-control bg-input border-0" id="product_color">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </c:if>
+                        </div>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -810,5 +880,5 @@
     </svg>
 </body>
 
-<!-- Mirrored from templates.g5plus.net/glowing/dashboard/add-product-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
+<!-- Mirrored from templates.g5plus.net/glowing/dashboard/order-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:52 GMT -->
 </html>

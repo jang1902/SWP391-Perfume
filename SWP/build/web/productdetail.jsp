@@ -283,7 +283,7 @@
                                 </c:if>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" id="minus" onclick="minus()" class="qty-btn">
-                                    <input type="text" id="quantity"  name="quantity" value="1"  class="quantity-selector">
+                                    <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="quantity"  name="quantity" value="1"  class="quantity-selector">
                                     
                                         <input type="button" value="+" id="plus" onclick="plus()" class="qty-btn">
                                     </div>

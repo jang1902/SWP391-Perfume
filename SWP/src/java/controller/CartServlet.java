@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.ProductDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Cart;
 import model.Item;
+import model.SizeProduct;
 import model.User;
 
 /**
@@ -35,7 +37,7 @@ public class CartServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Cookie[] arr=request.getCookies();
-       
+       ProductDAO pdao=new ProductDAO();
         String txt="";
         if(arr!=null){
             for (Cookie o:arr) {
@@ -47,12 +49,14 @@ public class CartServlet extends HttpServlet {
         Cart cart=new Cart(txt,a);
         List<Item> listItem= cart.getItems();
         int n;
+        
         if(listItem!=null){
             n=listItem.size();
         }else{
             n=0;
         }
         
+        request.setAttribute("totalQuan", n);
         request.setAttribute("listItem", listItem);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);

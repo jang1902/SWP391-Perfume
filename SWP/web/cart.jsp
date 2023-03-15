@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +16,7 @@
         <link rel="stylesheet" href="./assets/css/header_footer.css">
         <!-- <link rel="stylesheet" href="../assets/css/profile_info.css"> -->
         <link rel="stylesheet" href="./assets/css/cart.css">
+        <link rel="stylesheet" href="./assets/css/products.css">
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="./assets/img/small_logo1.png">
@@ -196,50 +198,127 @@
         <!-- end header -->
         <!-- body -->
         <div id="body">
-            <div class="body_container">
-                
-                <div class="body_right">
+
+            <div class=${totalQuan>0?"body_container_cart":"empty_cart"}>
+
+                <div class=${totalQuan>0?"body_right_cart":"empty_cart_font_div"}>
+
+                    <c:if test="${totalQuan==0}" ><div><span class="empty_cart_font">Giỏ hàng trống</span></div></c:if>
+                    <c:if test="${totalQuan>0}" >
+                        <div class="body_right-item">
+                            <span class="info_order">Đơn đặt hàng của bạn</span>
+                            <div class="body_right-item-buy-products">
+                                <div class="oders_info-child details">
+                                    <div>
+                                        <div class="oders_info-details">
+                                            <div style=" width: 520px;">
+                                                <span >Tên sản phẩm </span>
+                                            </div>
+                                            <div>
+                                                <span>Đơn giá </span>
+
+                                            </div>
+                                            <div>
+                                                <span>Số lượng</span>
+                                            </div>
+                                            <div>
+                                                <span>Số tiền</span>
+
+                                            </div>
+                                            <div>
+                                                <span>Thao tác</span>
+
+                                            </div>
+                                        </div>
 
 
-                    <div class="body_right-item">
-                        <span class="info_order">Đơn đặt hàng của bạn</span>
-                        <div class="body_right-item-buy-products">
-                            <c:forEach items="${listItem}" var="c">
+                                        <div class="oders_info-description">
+                                            <c:forEach items="${listItem}" var="c">
+                                                <div class="oders_info-product">
+                                                    <div class="oders_info-product-child">
+                                                        <div>
+                                                            <img src="${c.product.thumbnail}" alt="" class="product_img">
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <span class="product-name-title">${c.product.title}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out}"></fmt:formatNumber>₫</span>
+                                                        </div>
+
+                                                        <form action="process?pid=${c.sizeproduct.pid}&sid=${c.sizeproduct.sid}" method="post">
+                                                        <div class="quantity-area clearfix">
+                                                            <input name="action" type="submit" value="-" id="minus" class="qty-btn">
+                                                            <input readonly type="text" id="quantity"  name="quantity" value="${c.quantity}">
+                                                            <input name="action" type="submit" value="+" id="plus" class="qty-btn">
+                                                        </div>
+                                                    </form>
+
+
+                                                    <div>
+                                                        <span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out*c.quantity}"></fmt:formatNumber>₫</span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Xóa</span>
+                                                        </div>
+                                                    </div>
+                                            </c:forEach>
+                                            <!--  -->
+                                            <hr>
+                                            <div class="oders_info-product">
+                                                <div class="oders_info-product-child">
+                                                    <div>
+
+                                                    </div>
+                                                    <div class="product-name">
+
+                                                    </div>
+                                                </div>
+                                                <div>
+
+                                                    <span></span>
+
+                                                </div>
+                                                <div>
+                                                    <span></span>
+                                                </div>
+                                                <div>
+                                                    <span></span>
+                                                </div>
+                                                <div>
+                                                    <span>Tổng tiền tạm thời: </span>
+                                                    <span><b>₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney()}"></fmt:formatNumber></b></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="body_right-item">
+
+                                    <div class="button_position">
+                                        <form action="${sessionScope.userNow==null?"login":"checkout"}">
+
+                                        <button ${totalQuan==0?"disabled":""} class="place_order">Checkout</button> 
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="body_right-item">
                                 <div class="body_right-item-products">
-                                    <span>
-                                        <span class="amount_products">${c.quantity}x</span>  ${c.product.title}</span>
-                                    <span>${c.size.name}</span>
-                                    <span>  ${c.sizeproduct.price_out}</span>
 
                                 </div>
-                            </c:forEach>
+                            </div>
                         </div>
-                    </div>
-
-
-                    <hr class="body_right-decoration">
-                    <div class="body_right-item">
-                        <div class="body_right-item-products">
-                            <span>Tổng tiền tạm thời</span>
-                            <b>${cart.getTotalMoney()}</b>
-                        </div>
-                        
-                       <form action="${sessionScope.userNow==null?"login":"checkout"}">
-                           
-                            <button ${totalQuan==0?"disabled":""} class="place_order">Checkout</button> 
-                       </form>
-                        
-                    </div>
-                    <hr class="body_right-decoration">
-                    <div class="body_right-item">
-                        <div class="body_right-item-products">
-
-                        </div>
-                    </div>
+                    </c:if>                  
                 </div>
             </div>
         </div>
-                            
         <!-- end body -->
         <div id="footer">
             <!-- container footer -->
@@ -345,5 +424,10 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+
+
+        </script>
     </body>
+
 </html>
