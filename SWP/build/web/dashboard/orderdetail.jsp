@@ -155,9 +155,7 @@
                                                     <li class="sidebar-item">
                                                         <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
                                                     </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderdetail">Chi tiết đơn hàng</a>
-                                                    </li>
+                                                    
                                                 </ul>
                                             </div>
                                         </li>
@@ -221,21 +219,22 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
+                                <c:if test="${a!=null}">
+                                    <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
 
-                                <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-
-                                    <div class="dropdown pl-2 py-2">
-                                        <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
-                                            <div class="w-40px">
-                                                <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                        <div class="dropdown pl-2 py-2">
+                                            <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
+                                                <div class="w-40px">
+                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right w-100">
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
                                             </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right w-100">
-                                            <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                            <a class="dropdown-item" href="logout">Đăng xuất</a>
                                         </div>
                                     </div>
-                                </div>
+                                </c:if>
                             </nav>
                         </div>
                     </header>
@@ -251,6 +250,7 @@
                                 <p class="mb-6">Đơn số #${od.order.id}</p>
                                 <div class="card rounded-xl">
                                     <header class="card-header bg-transparent p-4">
+
                                         <form action="orderdetail" method="POST">
                                             <input type="hidden" name="orderid" value="${od.order.id}">
                                             <div class="row align-items-center">
@@ -259,20 +259,34 @@
                                                     <br>
                                                     <small class="text-muted">Mã đơn hàng: ${od.order.id}</small>
                                                 </div>
-                                                <div class="col-md-6 ml-auto d-flex justify-content-md-end flex-wrap">
-                                                    <div class="mw-210 mr-1 my-1">
-                                                        <select class="form-control bg-input border-0 " name="statusid">
-                                                            <option value="${od.order.status.id}" >Thay đổi trạng thái</option>
-                                                            <option value="1">Chờ xác nhận</option>
-                                                            <option value="2">Đang vận chuyển</option>
-                                                            <option value="3">Đã giao</option>
-                                                            <option value="4">Đã hủy</option>
-                                                        </select>
+                                                <c:if test="${od.order.status.id!=3 && od.order.status.id!=4}">
+                                                    <div class="col-md-6 ml-auto d-flex justify-content-md-end flex-wrap">
+                                                        <div class="mw-210 mr-1 my-1">
+                                                            <select class="form-control bg-input border-0 " name="statusid">
+                                                                <option value="${od.order.status.id}" >Thay đổi trạng thái</option>
+                                                                <option value="1">Chờ xác nhận</option>
+                                                                <option value="2">Đang vận chuyển</option>
+                                                                <option value="3">Đã giao</option>
+                                                                <option value="4">Đã hủy</option>
+                                                            </select>
+                                                        </div>
+                                                        <button class="btn btn-primary my-1" >Thay đổi</button>
                                                     </div>
-                                                    <button class="btn btn-primary my-1" >Thay đổi</button>
-                                                </div>
+                                                </c:if>
+                                                <c:if test="${od.order.status.id==3}">
+                                                    <div class="col-md-6 ml-auto d-flex justify-content-md-end flex-wrap">
+
+                                                        <a class="btn btn-primary my-1" >Giao thành công</a>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${od.order.status.id==4}">
+                                                    <div class="col-md-6 ml-auto d-flex justify-content-md-end flex-wrap">
+                                                        <a class="btn btn-primary my-1" >Đã hủy đơn</a>
+                                                    </div>
+                                                </c:if>
                                             </div>
                                         </form>
+
                                     </header>
 
                                     <div class="card-body p-4">

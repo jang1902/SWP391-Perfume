@@ -154,9 +154,7 @@
                                                     <li class="sidebar-item">
                                                         <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
                                                     </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderdetail">Chi tiết đơn hàng</a>
-                                                    </li>
+                                                    
                                                 </ul>
                                             </div>
                                         </li>
@@ -220,21 +218,22 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
+                                <c:if test="${a!=null}">
+                                    <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
 
-                                <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-
-                                    <div class="dropdown pl-2 py-2">
-                                        <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
-                                            <div class="w-40px">
-                                                <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                        <div class="dropdown pl-2 py-2">
+                                            <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
+                                                <div class="w-40px">
+                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right w-100">
+                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
+                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
                                             </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right w-100">
-                                            <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                            <a class="dropdown-item" href="logout">Đăng xuất</a>
                                         </div>
                                     </div>
-                                </div>
+                                </c:if>
                             </nav>
                         </div>
                     </header>
