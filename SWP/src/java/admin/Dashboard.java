@@ -84,8 +84,9 @@ public class Dashboard extends HttpServlet {
             totalcates +=1;
         }
         
-
+        request.setAttribute("revenueByMonth", dd.getRevenueByEachMonth());
         request.setAttribute("totalmoney", totalmoney);
+        request.setAttribute("avgMoney", totalmoney/12);
         request.setAttribute("totalorders", totalorders);
         request.setAttribute("totalProducts", totalproducts);
         request.setAttribute("totalCates", totalcates);

@@ -5,6 +5,7 @@
 package controller;
 
 //import dal.CartDAO;
+import dal.DashboardDAO;
 import dal.FeedBackDAO;
 import dal.ProductDAO;
 import java.io.IOException;
@@ -77,13 +78,19 @@ public class DetailServlet extends HttpServlet {
         String id_raw = request.getParameter("id");
         String sid_raw = request.getParameter("sid");
         String gid_raw = request.getParameter("gid");
-
+//        String quantity_raw = request.getParameter("quantity");
+//        
+//        int quantity = Integer.parseInt(quantity_raw);
         int id = Integer.parseInt(id_raw);
         int sid = Integer.parseInt(sid_raw);
         int gid = Integer.parseInt(gid_raw);
         request.setAttribute("sizeid", sid);
-
+        DashboardDAO dd  = new DashboardDAO();
         ProductDAO dao = new ProductDAO();
+        request.setAttribute("pQuantity", dd.getQuantity(id, sid));
+        request.setAttribute("msg", "Trong kho chỉ còn lại "+dd.getQuantity(id, sid)+" sản phẩm");
+//        request.setAttribute("quantity", quantity);
+        
         Product p = dao.getProductByID(id);
 
         SizeProduct getP = dao.getSizeProductByPidSid(id, sid);

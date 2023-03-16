@@ -4,9 +4,11 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -19,6 +21,7 @@ import model.Product;
 import model.QuanHuyen;
 import model.Role;
 import model.Size;
+import model.SizeProduct;
 import model.Status;
 import model.TinhThanhPho;
 import model.User;
@@ -810,7 +813,66 @@ public class DashboardDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
+    }
+
+    public SizeProduct getQuantity(int pid, int sid) {
+
+        String sql = "select quantity from SizeProduct\n"
+                + "where pid =? and sid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, pid);
+            st.setInt(2, sid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                SizeProduct sp = new SizeProduct();
+                sp.setQuantity(rs.getInt("quantity"));
+                return sp;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<OrderDetail> getRevenueByEachMonth() {
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "	SELECT DATEFROMPARTS(2023, m.month, 1) AS month_date, \n"
+                + "       COALESCE(SUM(o.order_quantity), 0) AS total_orders, \n"
+                + "       COALESCE(SUM(o.product_quantity), 0) AS total_products, \n"
+                + "       SUM(o.total_money) AS total_money\n"
+                + "FROM \n"
+                + "  (SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 \n"
+                + "   UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS m\n"
+                + "LEFT JOIN \n"
+                + "  (SELECT MONTH(order_date) AS month, COUNT(a.id) AS order_quantity, \n"
+                + "          SUM(b.num) AS product_quantity, SUM(total_money) AS total_money\n"
+                + "   FROM Orders a JOIN Order_Details b ON a.id = b.order_id\n"
+                + "   WHERE YEAR(order_date) = 2023\n"
+                + "   GROUP BY MONTH(order_date)) AS o\n"
+                + "ON m.month = o.month\n"
+                + "GROUP BY DATEFROMPARTS(2023, m.month, 1);";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+//            st.setInt(1, year);
+//            st.setInt(2, year);
+//            st.setInt(3, year);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail od = new OrderDetail();
+                Order o = new Order();
+                o.setOrder_date(rs.getDate("month_date"));
+                o.setId(rs.getInt("total_orders"));
+                od.setNum(rs.getInt("total_products"));
+                o.setTotal_money(rs.getInt("total_money"));
+                od.setOrder(o);
+                list.add(od);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
     }
 
     public static void main(String[] args) {
@@ -823,6 +885,23 @@ public class DashboardDAO extends DBContext {
 //
 //        System.out.println("====");
 //        System.out.println(d.getAllUser());
-        System.out.println(d.getODbyID(1));
+        List<Order> lo = d.getOrderByID(1);
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        Calendar calendar = Calendar.getInstance();
+//        for (Order order : lo) {
+//            calendar.setTime(order.getOrder_date());
+//            System.out.println(order.getOrder_date());
+//            System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+//            System.out.println(calendar.get(Calendar.MONTH));
+//            System.out.println(calendar.get(Calendar.YEAR));
+//        }
+//        System.out.println(d.getRevenueByEachMonth().get(1).getOrder().getOrder_date().getMonth()+1);
+        for (OrderDetail orderDetail : d.getRevenueByEachMonth()) {
+            System.out.print(orderDetail.getOrder().getOrder_date().getMonth() + 1 + " ");
+            System.out.print(orderDetail.getOrder().getId() + " ");
+            System.out.print(orderDetail.getNum() + " ");
+            System.out.println(orderDetail.getOrder().getTotal_money());
+
+        }
     }
 }

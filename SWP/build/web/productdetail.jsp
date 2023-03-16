@@ -281,352 +281,364 @@
                                     <span class="info_price">${pd.price_out * ((100 - p.discount.value) / 100)}₫</span>
                                     <span class="oldprice">${pd.price_out}₫</span>
                                 </c:if>
+                                <c:set value="${param.quantity}" var="quan"/>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" id="minus" onclick="minus()" class="qty-btn">
-                                    <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="quantity"  name="quantity" value="1"  class="quantity-selector">
-                                    
-                                        <input type="button" value="+" id="plus" onclick="plus()" class="qty-btn">
-                                    </div>
+                                    <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="quantity"  name="quantity" value="1" class="quantity-selector">
+                                    <input type="button" value="+" id="plus" onclick="plus()" class="qty-btn">
                                 </div>
-                                <c:if test="${pd.quantity<=0}">
+                            </div>
+
+
+
+                            <c:if test="${pd.quantity<=0}">
+                                <div  style="margin-top: 70px">
+                                    <button class="info_producst-right-add info_products-right-item" " >HẾT HÀNG</button>
+                                </div>
+                            </c:if>
+                            <c:if test="${pd.quantity>0  }">
+                                <form action="" method="post" name="fo">
                                     <div  style="margin-top: 70px">
-                                        <button class="info_producst-right-add info_products-right-item" " >HẾT HÀNG</button>
+                                        <button class="info_producst-right-add info_products-right-item" onclick="add('${param.id}', '${param.sid}')" >Thêm vào giỏ</button>
                                     </div>
-                                </c:if>
-                                <c:if test="${pd.quantity>0}">
-                                    <form action="" method="post" name="fo">
-                                        <div  style="margin-top: 70px">
-                                            <button class="info_producst-right-add info_products-right-item" onclick="add('${param.id}', '${param.sid}')" >Thêm vào giỏ</button>
-                                        </div>
-                                    </form>
-                                </c:if>
+                                </form>
+                            </c:if>
 
 
 
 
 
 
-                            </div>
-                            <hr class="decoration_top-right-products">
-                            <div class="info_products-right-item view_productsdetails">
-                                <span class="info_products-right-title">Mô tả</span>
-                                <span>${p.description}</span>
-                            </div>
-                            <hr class="decoration_top-right-products">
-                            <div class="info_products-right-item view_policy">
-                                <span class="info_products-right-title">Chính sách hỗ trợ</span>
-                                <span>
-                                    <i class="fa-solid fa-check icon_check-policy"></i>
-                                    Đổi trả miễn phí nếu có lỗi từ nhà sản xuất
-                                </span>
-                                <span>
-                                    <i class="fa-solid fa-check icon_check-policy"></i>
-                                    Kiểm tra hàng trước khi thanh toán
-                                </span>
-                                <span>
-                                    <i class="fa-solid fa-check icon_check-policy"></i>
-                                    Miễn phí vận chuyển
-                                </span>
-                            </div>
+
+
+
+                        </div>
+                        <hr class="decoration_top-right-products">
+                        <div class="info_products-right-item view_productsdetails">
+                            <span class="info_products-right-title">Mô tả</span>
+                            <span>${p.description}</span>
+                        </div>
+                        <hr class="decoration_top-right-products">
+                        <div class="info_products-right-item view_policy">
+                            <span class="info_products-right-title">Chính sách hỗ trợ</span>
+                            <span>
+                                <i class="fa-solid fa-check icon_check-policy"></i>
+                                Đổi trả miễn phí nếu có lỗi từ nhà sản xuất
+                            </span>
+                            <span>
+                                <i class="fa-solid fa-check icon_check-policy"></i>
+                                Kiểm tra hàng trước khi thanh toán
+                            </span>
+                            <span>
+                                <i class="fa-solid fa-check icon_check-policy"></i>
+                                Miễn phí vận chuyển
+                            </span>
                         </div>
                     </div>
-                    <!--display  comment-->
-                    <c:if test="${listF.size()>0}">
-                        <div class="body_container-item products_cmt-detail">
-                            <div class="products_tab">
-                                <button class="products-item" id="products-item-cmt" onclick="op_comment()">
-                                    Nhận xét
-                                </button>
-                            </div>
-                            <div class="products_contents">
-                                <div class="products_cmt" id="product_contentcomment">
-                                    <c:forEach items="${listF}" var="f">
-                                        <div class="products_cmt-item">
-                                            <div class="products_cmt-top">
-                                                <img src="./assets/img/frog (5).png" class="img_avatar-user">
-                                                <div class="user_rated">
-                                                    <span class="user_rated-name">${f.user.username}</span>
-                                                    <div>
-                                                        <span>
-                                                            <c:forEach  begin="1" end="${f.rating}">
-                                                                <i class="fa-solid fa-star icon_star"></i>
-                                                            </c:forEach>
-                                                        </span>
-                                                        <span class="user_rated-cmttime">${f.created_at}</span>
-                                                    </div>
+                </div>
+                <!--display  comment-->
+                <c:if test="${listF.size()>0}">
+                    <div class="body_container-item products_cmt-detail">
+                        <div class="products_tab">
+                            <button class="products-item" id="products-item-cmt" onclick="op_comment()">
+                                Nhận xét
+                            </button>
+                        </div>
+                        <div class="products_contents">
+                            <div class="products_cmt" id="product_contentcomment">
+                                <c:forEach items="${listF}" var="f">
+                                    <div class="products_cmt-item">
+                                        <div class="products_cmt-top">
+                                            <img src="./assets/img/frog (5).png" class="img_avatar-user">
+                                            <div class="user_rated">
+                                                <span class="user_rated-name">${f.user.username}</span>
+                                                <div>
+                                                    <span>
+                                                        <c:forEach  begin="1" end="${f.rating}">
+                                                            <i class="fa-solid fa-star icon_star"></i>
+                                                        </c:forEach>
+                                                    </span>
+                                                    <span class="user_rated-cmttime">${f.created_at}</span>
                                                 </div>
-                                            </div>    
-                                            <div class="products_cmt-bot">
-                                                <p>${f.note}
-                                                </p>
                                             </div>
-                                        </div> 
-                                    </c:forEach> 
-                                </div>
+                                        </div>    
+                                        <div class="products_cmt-bot">
+                                            <p>${f.note}
+                                            </p>
+                                        </div>
+                                    </div> 
+                                </c:forEach> 
                             </div>
                         </div>
-                    </c:if>
+                    </div>
+                </c:if>
 
-                    <!--end display comment-->
-                    <div>
-                        <div class="body_container-item user_ratingproducts">
-                            <div class="user_ratingproducts-title">
-                                Đánh giá của bạn cho sản phẩm này
+                <!--end display comment-->
+                <div>
+                    <div class="body_container-item user_ratingproducts">
+                        <div class="user_ratingproducts-title">
+                            Đánh giá của bạn cho sản phẩm này
+                        </div>
+                        <form action="pdetail" method="post">
+                            <c:set value="${requestScope.product}" var="p"></c:set>
+                            <input type="hidden" name="id" value="${p.id}">
+                            <input type="hidden" name="sid" value="${sid}">
+                            <input type="hidden" name="gid" value="${gid}">
+                            <div class="user_ratingproducts-content">
+                                <div class="review_box">
+                                    <div class="input-rating">
+                                        <span>Xếp hạng sản phẩm: </span>
+                                        <div class="stars">
+                                            <input id="star5" name="rating" required="" value="5" type="radio"><label
+                                                for="star5"></label>
+                                            <input id="star4" name="rating" required="" value="4" type="radio"><label
+                                                for="star4"></label>
+                                            <input id="star3" name="rating" required="" value="3" type="radio"><label
+                                                for="star3"></label>
+                                            <input id="star2" name="rating" required="" value="2" type="radio"><label
+                                                for="star2"></label>
+                                            <input id="star1" name="rating" required="" value="1" type="radio"><label
+                                                for="star1"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user_ratingproducts-cmt">
+                                    <span>Nhận xét của bạn</span> <br>
+                                    <textarea name="review" id="editor2" rows="4" cols="50" class="user_ratingproducts-cmt-child input"></textarea>
+                                </div>
+                                <button class="btn_submit">Gửi</button>
                             </div>
-                            <form action="pdetail" method="post">
-                                <c:set value="${requestScope.product}" var="p"></c:set>
-                                <input type="hidden" name="id" value="${p.id}">
-                                <input type="hidden" name="sid" value="${sid}">
-                                <input type="hidden" name="gid" value="${gid}">
-                                <div class="user_ratingproducts-content">
-                                    <div class="review_box">
-                                        <div class="input-rating">
-                                            <span>Xếp hạng sản phẩm: </span>
-                                            <div class="stars">
-                                                <input id="star5" name="rating" required="" value="5" type="radio"><label
-                                                    for="star5"></label>
-                                                <input id="star4" name="rating" required="" value="4" type="radio"><label
-                                                    for="star4"></label>
-                                                <input id="star3" name="rating" required="" value="3" type="radio"><label
-                                                    for="star3"></label>
-                                                <input id="star2" name="rating" required="" value="2" type="radio"><label
-                                                    for="star2"></label>
-                                                <input id="star1" name="rating" required="" value="1" type="radio"><label
-                                                    for="star1"></label>
-                                            </div>
+                        </form>    
+                    </div>
+                </div>     
+                <div class="body_container-item products_same">
+                    <div class="products_same-title">
+                        Sản phẩm tương tự
+                    </div>
+                    <div class="products_same-child">
+
+                        <c:forEach items="${requestScope.relativeproducts}" var="rp">         
+
+                            <div class="products">
+                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender.id}">
+                                    <img src="${rp.thumbnail}" alt="" class="img_products">
+                                </a>
+                                <div class="describe_products">
+                                    <div class="ratings_products">
+                                        <span>${rp.title}</span>
+                                        <span>
+                                            <i class="fa-solid fa-star icon_star"></i>
+                                            <i class="fa-solid fa-star icon_star"></i>
+                                            <i class="fa-solid fa-star icon_star"></i>
+                                            <i class="fa-solid fa-star icon_star"></i>
+                                            <i class="fa-solid fa-star icon_star"></i>
+                                        </span>
+                                        <div>
+                                            <c:if test="${rp.discount.value == 0}">
+                                                <span class="info_price">${rp.sizeproduct.price_out} đ</span>
+                                            </c:if> 
+                                            <c:if test="${rp.discount.value != 0}">
+                                                <span class="info_price">${rp.sizeproduct.price_out * ((100 - rp.discount.value) / 100)}₫</span>
+                                                <span class="oldprice">${rp.sizeproduct.price_out}₫</span>
+                                            </c:if>
+
+
                                         </div>
                                     </div>
-                                    <div class="user_ratingproducts-cmt">
-                                        <span>Nhận xét của bạn</span> <br>
-                                        <textarea name="review" id="editor2" rows="4" cols="50" class="user_ratingproducts-cmt-child input"></textarea>
-                                    </div>
-                                    <button class="btn_submit">Gửi</button>
-                                </div>
-                            </form>    
-                        </div>
-                    </div>     
-                    <div class="body_container-item products_same">
-                        <div class="products_same-title">
-                            Sản phẩm tương tự
-                        </div>
-                        <div class="products_same-child">
-
-                            <c:forEach items="${requestScope.relativeproducts}" var="rp">         
-
-                                <div class="products">
-                                    <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender.id}">
-                                        <img src="${rp.thumbnail}" alt="" class="img_products">
-                                    </a>
-                                    <div class="describe_products">
-                                        <div class="ratings_products">
-                                            <span>${rp.title}</span>
-                                            <span>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                                <i class="fa-solid fa-star icon_star"></i>
-                                            </span>
-                                            <div>
-                                                <c:if test="${rp.discount.value == 0}">
-                                                    <span class="info_price">${rp.sizeproduct.price_out} đ</span>
-                                                </c:if> 
-                                                <c:if test="${rp.discount.value != 0}">
-                                                    <span class="info_price">${rp.sizeproduct.price_out * ((100 - rp.discount.value) / 100)}₫</span>
-                                                    <span class="oldprice">${rp.sizeproduct.price_out}₫</span>
-                                                </c:if>
-
-
-                                            </div>
-                                        </div>
-                                        <div class="add_like_products">
-                                            <i class="fa-regular fa-heart icon_heart"></i>
-                                            <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
-                                        </div>
+                                    <div class="add_like_products">
+                                        <i class="fa-regular fa-heart icon_heart"></i>
+                                        <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
                                     </div>
                                 </div>
-                            </c:forEach>
-                        </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
-            <!-- end body -->
+        </div>
+        <!-- end body -->
 
-            <!-- footer -->
-            <div id="footer">
-                <!-- container footer -->
-                <div class="container_footer">
-                    <!-- footer logo / online shop -->
-                    <div class="footer_contact-logo">
-                        <a href="#">
-                            <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+        <!-- footer -->
+        <div id="footer">
+            <!-- container footer -->
+            <div class="container_footer">
+                <!-- footer logo / online shop -->
+                <div class="footer_contact-logo">
+                    <a href="#">
+                        <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+                    </a>
+                    <p class="footer_contact-logo-text">
+                        Mua các mô hình, lego, trang trí tại của hàng Bot Store.
+                    </p>
+                    <div class="footer_contact-logo-onlineshop">
+                        <a href="#" id="onlineshop">
+                            <div class="online-shop">
+                                <!-- logo shopee -->
+                                <div class="shopee-tiki">
+                                    <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
+                                </div>
+                                <!-- chữ bên cạnh logo -->
+                                <div>
+                                    <span class="online-shop-text-top">Shopping on</span>
+                                    <p class="online-shop-text-bot">Shopee</p>
+                                </div>
+                            </div>
                         </a>
-                        <p class="footer_contact-logo-text">
-                            Mua các mô hình, lego, trang trí tại của hàng Bot Store.
-                        </p>
-                        <div class="footer_contact-logo-onlineshop">
-                            <a href="#" id="onlineshop">
-                                <div class="online-shop">
-                                    <!-- logo shopee -->
-                                    <div class="shopee-tiki">
-                                        <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
-                                    </div>
-                                    <!-- chữ bên cạnh logo -->
-                                    <div>
-                                        <span class="online-shop-text-top">Shopping on</span>
-                                        <p class="online-shop-text-bot">Shopee</p>
-                                    </div>
+                        <a href="#" id="onlineshop">
+                            <div class="online-shop">
+                                <!-- logo tiki -->
+                                <div class="shopee-tiki">
+                                    <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
                                 </div>
-                            </a>
-                            <a href="#" id="onlineshop">
-                                <div class="online-shop">
-                                    <!-- logo tiki -->
-                                    <div class="shopee-tiki">
-                                        <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
-                                    </div>
-                                    <!-- chữ bên cạnh logo -->
-                                    <div>
-                                        <span class="online-shop-text-top">Shopping on</span>
-                                        <p class="online-shop-text-bot">Tiki</p>
-                                    </div>
+                                <!-- chữ bên cạnh logo -->
+                                <div>
+                                    <span class="online-shop-text-top">Shopping on</span>
+                                    <p class="online-shop-text-bot">Tiki</p>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
-                    <!-- về chúng tôi -->
-                    <div class="footer_contact-about">
-                        <!-- title -->
-                        <div class="footer_contact-title">Về chúng tôi</div>
-                        <!-- about us link -->
-                        <div class="footer_contact-about-link">
-                            <a class="about-link" href="#">Careers</a>
-                            <a class="about-link" href="#">Của hàng của chúng tôi</a>
-                            <a class="about-link" href="#">Chính sách giao hàng</a>
-                            <a class="about-link" href="#">Điều khoản dịch vụ</a>
-                            <a class="about-link" href="#">Chính sách quyền riêng tư</a>
-                        </div>
+                </div>
+                <!-- về chúng tôi -->
+                <div class="footer_contact-about">
+                    <!-- title -->
+                    <div class="footer_contact-title">Về chúng tôi</div>
+                    <!-- about us link -->
+                    <div class="footer_contact-about-link">
+                        <a class="about-link" href="#">Careers</a>
+                        <a class="about-link" href="#">Của hàng của chúng tôi</a>
+                        <a class="about-link" href="#">Chính sách giao hàng</a>
+                        <a class="about-link" href="#">Điều khoản dịch vụ</a>
+                        <a class="about-link" href="#">Chính sách quyền riêng tư</a>
                     </div>
-                    <!-- dịch vụ chăm sóc khách hàng -->
-                    <div class="footer_contact-customer">
-                        <!-- title -->
-                        <div class="footer_contact-title">Hỗ trợ khách hàng</div>
-                        <!-- customer care link -->
-                        <div class="footer_contact-about-link">
-                            <a class="about-link" href="#">Trung tâm hỗ trợ</a>
-                            <a class="about-link" href="#">Cách để mua hàng</a>
-                            <a class="about-link" href="#">Truy cứu đơn hàng</a>
-                            <a class="about-link" href="#">Hợp tác</a>
-                            <a class="about-link" href="#">Hoàn trả và hoàn tiền</a>
-                        </div>
+                </div>
+                <!-- dịch vụ chăm sóc khách hàng -->
+                <div class="footer_contact-customer">
+                    <!-- title -->
+                    <div class="footer_contact-title">Hỗ trợ khách hàng</div>
+                    <!-- customer care link -->
+                    <div class="footer_contact-about-link">
+                        <a class="about-link" href="#">Trung tâm hỗ trợ</a>
+                        <a class="about-link" href="#">Cách để mua hàng</a>
+                        <a class="about-link" href="#">Truy cứu đơn hàng</a>
+                        <a class="about-link" href="#">Hợp tác</a>
+                        <a class="about-link" href="#">Hoàn trả và hoàn tiền</a>
                     </div>
-                    <!-- liên hệ -->
-                    <div class="footer_contact-contact">
-                        <!-- title -->
-                        <div class="footer_contact-title">Liên hệ chúng tôi</div>
-                        <!-- địa chỉ -->
-                        <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
-                        <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
-                        <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
-                        <div class="footer_contact-icon">
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-twitter"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-github"></i>
-                                </div>
-                            </a>
-                        </div>
+                </div>
+                <!-- liên hệ -->
+                <div class="footer_contact-contact">
+                    <!-- title -->
+                    <div class="footer_contact-title">Liên hệ chúng tôi</div>
+                    <!-- địa chỉ -->
+                    <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
+                    <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
+                    <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
+                    <div class="footer_contact-icon">
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-twitter"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <script type="text/javascript">
-
-
-
-
-
-                var img_products = [
-                <c:forEach items="${requestScope.listgallery}" var="gl">
-                    "${gl.thumbnail}",
-                </c:forEach>
-                ];
-
-                var dem = 0;
-
-                function img_product1() {
-                    dem = 0;
-                    var img_products_big = document.getElementById("img_products_big");
-                    img_products_big.src = img_products[dem];
+        <script type="text/javascript">
+            
+            
+            
+            
+            
+            var img_products = [
+            <c:forEach items="${requestScope.listgallery}" var="gl">
+                "${gl.thumbnail}",
+            </c:forEach>
+            ];
+            
+            var dem = 0;
+            
+            function img_product1() {
+                dem = 0;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+            
+            function img_product2() {
+                dem = 1;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+            
+            function img_product3() {
+                dem = 2;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+            
+            function img_product4() {
+                dem = 3;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+            
+            function img_product5() {
+                dem = 4;
+                var img_products_big = document.getElementById("img_products_big");
+                img_products_big.src = img_products[dem];
+            }
+            function add(id, size) {
+                var q ;
+                var quan = document.getElementById("quantity").value;
+                if (q <= ${pd.quantity}) {
+                    q =quan;
+                } else {
+                    q = ${pd.quantity};
                 }
-
-                function img_product2() {
-                    dem = 1;
-                    var img_products_big = document.getElementById("img_products_big");
-                    img_products_big.src = img_products[dem];
+                document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + q;
+                document.fo.submit();
+            }
+            var count = 1;
+            var countEl = document.getElementById("quantity");
+            function plus() {
+                if (count < ${pd.quantity}) {
+                    count++;
+                    countEl.value = count;
+                } else {
+                    countEl.value = count;
+                    
                 }
-
-                function img_product3() {
-                    dem = 2;
-                    var img_products_big = document.getElementById("img_products_big");
-                    img_products_big.src = img_products[dem];
+            }
+            function minus() {
+                if (count > 1) {
+                    count--;
+                    countEl.value = count;
                 }
-
-                function img_product4() {
-                    dem = 3;
-                    var img_products_big = document.getElementById("img_products_big");
-                    img_products_big.src = img_products[dem];
-                }
-
-                function img_product5() {
-                    dem = 4;
-                    var img_products_big = document.getElementById("img_products_big");
-                    img_products_big.src = img_products[dem];
-                }
-                function add(id, size) {
-                    var q = document.getElementById("quantity").value;
-                    document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + q;
-                    document.fo.submit();
-                }
-                var count = 1;
-                var countEl = document.getElementById("quantity");
-                function plus() {
-                    if (count < ${pd.quantity}) {
-                        count++;
-                        countEl.value = count;
-                    } else {
-                        countEl.value = count;
-                        
-                    }
-                }
-                function minus() {
-                    if (count > 1) {
-                        count--;
-                        countEl.value = count;
-                    }
-                }
-
-                CKEDITOR.replace('editor2');
-
-            </script>
-            <!-- end footer -->
-        </body>
-    </html>
+            }
+            
+            CKEDITOR.replace('editor2');
+            
+        </script>
+        <!-- end footer -->
+    </body>
+</html>
