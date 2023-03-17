@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package control.crud;
 
 import dal.CrudDAO;
@@ -19,18 +18,15 @@ import java.util.List;
 import model.Category;
 import model.Discount;
 import model.Gender;
+import model.Product;
 import model.Size;
-
 
 /**
  *
  * @author hp
  */
-
 @WebServlet(name = "CrudProductServlet", urlPatterns = {"/addproduct"})
 public class AddProductServlet extends HttpServlet {
-
-
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,23 +69,34 @@ public class AddProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
+        try{
+        String title_raw = request.getParameter("title");
         CrudDAO crud = new CrudDAO();
 
         List<Category> allc = crud.getAllCategory();
         request.setAttribute("allc", allc);
-        
+
         List<Discount> alld = crud.getAllDiscount();
         request.setAttribute("alld", alld);
-        
+
         List<Gender> allg = crud.getAllGender();
         request.setAttribute("allg", allg);
-        
+
         List<Size> alls = crud.getAllSize();
         request.setAttribute("alls", alls);
 
-        request.getRequestDispatcher("addproduct1.jsp").forward(request, response);
+        if (crud.checkTitle(title_raw))//ton tai ten 
+        {
+            Product product = crud.getProductByTitle(title_raw);
+            request.setAttribute("product", product);
 
+        } else {
+            request.setAttribute("title", title_raw);
+        }
+        }catch(Exception e){
+            
+        }
+         request.getRequestDispatcher("addproduct1.jsp").forward(request, response);
     }
 
     /**

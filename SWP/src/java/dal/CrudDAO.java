@@ -428,6 +428,11 @@ public class CrudDAO extends DBContext {
 
         return false;
     }
+    
+    public static void main(String[] args) {
+        CrudDAO d = new CrudDAO();
+        System.out.println(d.checkTitle("abcd"));
+    }
 
     public Product getProductByTitle(String title) {
 
@@ -935,8 +940,8 @@ public class CrudDAO extends DBContext {
 
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from products p join SizeProduct sp \n"
-                + "on p.id = sp.pid";
+        String sql = "select * from products p join SizeProduct sp \n" +
+"               on p.id = sp.pid where quantity > 0";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();

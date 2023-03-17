@@ -1,6 +1,6 @@
 <%-- 
-    Document   : dashboard
-    Created on : Feb 24, 2023, 5:24:11 PM
+    Document   : crudproduct
+    Created on : Feb 26, 2023, 2:27:15 PM
     Author     : hp
 --%>
 
@@ -10,7 +10,7 @@
 <!doctype html>
 <html lang="en">
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard-product-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:51 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/add-product-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
     <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <meta charset="utf-8">
@@ -18,7 +18,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Bảng danh sách sản phẩm - Boon Bo</title>
+        <title>Thêm sản phẩm - Boon Bo</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -40,28 +40,18 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Dashboard product list">
+        <meta name="twitter:title" content="Add product">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="dashboard-product-list.html">
-        <meta property="og:title" content="Dashboard product list">
+        <meta property="og:url" content="add-product-2.html">
+        <meta property="og:title" content="Add product">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
-
-        <script type="text/javascript">
-            function doDelete(pid, sid) {
-                if (confirm("Are you sure to delete product with id=" + pid + " and size_id=" + sid)) {
-                    window.location = "deleteproduct?pid=" + pid + "&sid=" + sid;
-                }
-            }
-        </script>
-
-
     </head>
     <body>
         <div class="wrapper dashboard-wrapper">
@@ -108,11 +98,11 @@
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse bg-white" id="primaryMenuSidebar">
-                                <form action="dashboardsearch" method="get" class="d-block d-xl-none pt-5 px-3">
+                                <form class="d-block d-xl-none pt-5 px-3">
                                     <div class="input-group position-relative bg-gray">
-                                        <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
+                                        <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
                                         <div class="input-group-append fs-14 px-3 border-left border-2x ">
-                                            <button type="submit" class="bg-transparent border-0 outline-none">
+                                            <button class="bg-transparent border-0 outline-none">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
@@ -316,11 +306,11 @@
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
                                 <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
-                                    <form action="dashboardsearch" method="get" >
+                                    <form>
                                         <div class="input-group position-relative bg-input rounded">
-                                            <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
+                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
                                             <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
-                                                <button type="submit" class="bg-transparent border-0 outline-none">
+                                                <button class="bg-transparent border-0 outline-none">
                                                     <i class="fal fa-search"></i>
                                                 </button>
                                             </div>
@@ -345,125 +335,44 @@
                         </div>
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
+                        
+                        <form action="addproduct" method="get">
                         <div class="dashboard-page-content">
-                            <form action="delete" method="get">
-                                <div class="row mb-6 align-items-center">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <h2 class="fs-24 mb-0">Bảng danh sách sản phẩm</h2>
-                                        <p class="mb-0"></p>
-                                    </div>                                  
-                                    <div class="col-sm-6 d-flex flex-wrap justify-content-sm-end">
-
-                                        
-                                        
-                                        <a href="addproduct.jsp" class="btn btn-primary">Tạo mới
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="card mb-4 rounded-xl p-4">
-                                    <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <div class="table-responsive">
-                                                <table class="table align-middle table-nowrap mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="align-middle border-top-0 pb-4 pt-0">
-                                                                
-                                                            </td>
-                                                            <td class="border-top-0 pb-4 pt-0">
-
-                                                                    <select name="cate" class="form-control bg-input border-0" onchange="location = 'sortcate?cate=' + this.value;">
-                                                                    <option value = "0">Thể loại</option>
-                                                                    <c:forEach items="${allc}" var="c">
-                                                                        
-                                                                        <option value="${c.id}" ${cate==c.id?'selected':''}  >${c.name}</option>
-                                                                        
-                                                                    </c:forEach>
-                                                                </select>
-                                                               
-                                                                </td>
-                                                            <td class="border-top-0 pb-4 pt-0"></td>
-                                                            <td class="border-top-0 pb-4 pt-0"></td>
-                                                            <td class="border-top-0 pb-4 pt-0">
-                                                                <input type="date" name="date" class="form-control bg-input border-0" onchange="location = 'sortdate?date=' + this.value;">
-                                                            </td>
-                                                            <td class="border-top-0 pb-4 pt-0">
-                                                               
-                                                                <select name="gen" class="form-control bg-input border-0" onchange="location = 'sortgen?gen=' + this.value;">
-                                                                    <option>Giới tính</option>
-                                                                    <c:forEach items="${allg}" var="g">
-                                                                        <option value="${g.id}" ${gen==g.id?'selected':''} >${g.name}</option>
-                                                                    </c:forEach>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-
-                                                        <c:forEach items="${allp}" var="p">
-                                                            <tr>
-
-                                                                <td class="text-center align-middle  pt-4 ">
-                                                                    
-                                                                </td>
-
-                                                                <td class=" pt-6 ">
-                                                                    <a href="" class="media align-items-center">
-                                                                        <div class="w-80px mr-5">
-                                                                            <img style="height: 100px; width: 100px" src="${p.thumbnail}" alt="Facial cleanser" class="">
-                                                                        </div>
-                                                                        <div class="media-body">
-                                                                            <p class="font-weight-600 text-secondary mb-0">${p.title}</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </td>
-
-                                                                <td class="text-secondary align-middle font-weight-bold">${p.size.value}ml</td>
-                                                                <td class="text-secondary align-middle font-weight-bold">${p.sizeproduct.price_out}</td>
-
-                                                                <td class="align-middle">${p.updated_at}</td>
-                                                                <td class="align-middle">
-                                                                    <div class="d-flex flex-wrap justify-content-end">
-                                                                        <a href="editproduct?pid=${p.id}&sid=${p.sizeproduct.sid}" class="btn btn-primary btn-sm mr-1 my-1"><i class="fal fa-pen"></i><span class="d-inline-block ml-1">Chỉnh sửa</span></a>
-                                                                        <a href="#" onclick="doDelete('${p.id}', '${p.sizeproduct.sid}')" class="btn btn-sm border hover-white bg-hover-primary mr-1 border-primary my-1 text-secondary font-weight-400"><i class="fas fa-trash-alt"></i><span class="d-inline-block ml-1">Xóa</span></a>
-
-                                                                    </div>
-                                                                </td>
-                                                            </tr> 
-                                                        </c:forEach>
-                                                            
-                                                             
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                            <div class="row">
+                                <div class="col-xxl-6">
+                                    <div class="row mb-6">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <h2 class="fs-24 mb-0">Thêm sản phẩm</h2>
+                                        </div>
+                                        <div class="col-sm-6 text-sm-right">
+                                            <input type="submit" class="btn btn-primary" value="Tiếp">                                      
                                         </div>
                                     </div>
                                 </div>
-                            </form> 
-                            <nav aria-label="Page navigation example" class="mt-6 mb-4">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item mx-1">
-                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <footer class="pt-3 pb-6 footer-dashboard mt-auto">
+                            </div>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script>
-                                    © Glowing - Beauty & Cosmetics Shop HTML Template .
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="text-sm-right">All rights reserved</div>
+                                <div class="col-xxl-6 form-control-01">
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <h6 class="fs-16 font-weight-500">1. Thông tin chung</h6>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="mb-4">
+                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Tên sản phẩm</label>
+                                                        <input required type="text" name="title" placeholder="Type here" class="form-control bg-input border-0" id="product-title">
+                                                    </div>                    
+                                                </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        </form>
+                        
+                        <footer class="pt-3 pb-6 footer-dashboard mt-auto">
+                            
                         </footer>
                     </main>
                 </div>
@@ -555,9 +464,7 @@
                 </div>
             </div>
         </div>
-        <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">       
-        </svg>
-    </body>
+      
+</body>
 
-    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard-product-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:51 GMT -->
 </html>

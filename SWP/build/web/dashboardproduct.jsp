@@ -356,7 +356,7 @@
 
                                         
                                         
-                                        <a href="addproduct" class="btn btn-primary">Tạo mới
+                                        <a href="addproduct.jsp" class="btn btn-primary">Tạo mới
                                         </a>
                                     </div>
                                 </div>
@@ -406,7 +406,7 @@
                                                                 </td>
 
                                                                 <td class=" pt-6 ">
-                                                                    <a href="./product-detail-01.html" class="media align-items-center">
+                                                                    <a href="" class="media align-items-center">
                                                                         <div class="w-80px mr-5">
                                                                             <img style="height: 100px; width: 100px" src="${p.thumbnail}" alt="Facial cleanser" class="">
                                                                         </div>

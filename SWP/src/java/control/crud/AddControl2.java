@@ -89,7 +89,7 @@ public class AddControl2 extends HttpServlet {
             } else {
                 d.insertSizeProduct(d.getIdLastProduct().getId(), sid, quantity, price_in, price_out);
             }
-            response.sendRedirect("addproduct");
+            response.sendRedirect("dashboardp");
         } catch (IOException e) {
             System.out.println(e);
         }

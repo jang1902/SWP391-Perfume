@@ -385,17 +385,17 @@
                                                         <c:if test="${sp.price_in == null}">
                                                             <div class="mb-4">
                                                                 <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá vốn</label>
-                                                                <input name="price_in" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">                    
+                                                                <input required="" name="price_in" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">                    
                                                             </div>
                                                             <div class="mb-4">          
                                                                 <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá bán</label>
-                                                                <input name="price_out" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">
+                                                                <input required="" name="price_out" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">
                                                             </div>
                                                         </c:if>
 
                                                         <div class="mb-4">                           
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Số lượng</label>
-                                                            <input name="quantity" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">
+                                                            <input required="" name="quantity" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">
                                                         </div>
 
                                                     </div>
