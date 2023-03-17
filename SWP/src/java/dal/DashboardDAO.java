@@ -855,9 +855,7 @@ public class DashboardDAO extends DBContext {
                 + "GROUP BY DATEFROMPARTS(2023, m.month, 1);";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-//            st.setInt(1, year);
-//            st.setInt(2, year);
-//            st.setInt(3, year);
+
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 OrderDetail od = new OrderDetail();

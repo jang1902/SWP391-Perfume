@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -275,11 +276,11 @@
                             </div>
                             <div class="info_products-right-item">
                                 <c:if test="${p.discount.value == 0}">
-                                    <span class="info_products-right-price">${pd.price_out}đ</span> <br>
+                                    <span class="info_products-right-price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out}"></fmt:formatNumber>đ</span> <br>
                                 </c:if> 
                                 <c:if test="${p.discount.value != 0}">
-                                    <span class="info_price">${pd.price_out * ((100 - p.discount.value) / 100)}₫</span>
-                                    <span class="oldprice">${pd.price_out}₫</span>
+                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out * ((100 - p.discount.value) / 100)}"></fmt:formatNumber>₫</span>
+                                    <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out}"></fmt:formatNumber>₫</span>
                                 </c:if>
                                 <c:set value="${param.quantity}" var="quan"/>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
@@ -435,11 +436,11 @@
                                         </span>
                                         <div>
                                             <c:if test="${rp.discount.value == 0}">
-                                                <span class="info_price">${rp.sizeproduct.price_out} đ</span>
+                                                <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out}"></fmt:formatNumber> đ</span>
                                             </c:if> 
                                             <c:if test="${rp.discount.value != 0}">
-                                                <span class="info_price">${rp.sizeproduct.price_out * ((100 - rp.discount.value) / 100)}₫</span>
-                                                <span class="oldprice">${rp.sizeproduct.price_out}₫</span>
+                                                <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out * ((100 - rp.discount.value) / 100)}"></fmt:formatNumber>₫</span>
+                                                <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out}"></fmt:formatNumber>₫</span>
                                             </c:if>
 
 

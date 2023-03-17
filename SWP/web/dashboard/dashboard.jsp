@@ -245,7 +245,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Doanh thu</h6>
+                                                    <h6 class="mb-1 card-title fs-16">Tổng doanh thu</h6>
 
                                                     <span class="fs-24 d-block font-weight-500 text-primary lh-12"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.totalmoney}"></fmt:formatNumber> VND</span>
                                                         <span class="fs-14">Không bao gồm phí vận chuyển.</span>
@@ -302,7 +302,7 @@
                                                 <div class="media-body">
                                                     <h6 class="mb-1 card-title fs-16">Thu nhập hàng tháng</h6>
                                                     <span class="fs-24 d-block font-weight-500 text-primary lh-12"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.avgMoney}"></fmt:formatNumber> VND</span>
-                                                    <span class="fs-14">Năm </span>
+                                                    <span class="fs-14">Năm 2023</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,7 +312,7 @@
                             <div class="row">
                                 <div class="col-xl-8">
                                     <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Doanh thu của năm 
+                                        <h5 class="card-title fs-16 mb-3">Doanh thu của năm 2023
                                             
                                             <%--<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop"><c:if test="${rbm.order.total_money !=null}">${rbm.order.total_money}</c:if><c:if test="${rbm.order.total_money ==null}">0</c:if> <c:if test="${loop.count!=12}">, </c:if></c:forEach>--%>
                                         </h5>
@@ -333,7 +333,7 @@
                                         <div class="col-lg-12">
                                             <div class="card mb-4 rounded-xl">
                                                 <div class="card-body">
-                                                    <h5 class="card-title fs-16 mb-3">New Members</h5>
+                                                    <h5 class="card-title fs-16 mb-3">Người dùng mới</h5>
                                                     <div class="new-member-list">
                                                         <c:forEach items="${requestScope.newestUser}" var="nu">
                                                             <div class="d-flex align-items-center justify-content-between mb-6">
@@ -357,7 +357,8 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Revenue Base on Area</h5>
+                                        <h5 class="card-title fs-16 mb-3">Doanh thu theo tháng hiện tại</h5>
+                                        
                                         <div class="card-body p-0">
                                             <canvas id="mychart01" class="chartjs" 
                                                     data-chart-type="bar" 
