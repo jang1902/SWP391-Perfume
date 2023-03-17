@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Address_Detail;
 import model.Cart;
+import model.Discount;
 import model.Item;
 import model.Order;
 import model.User;
@@ -71,7 +72,7 @@ public class CheckoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cookie[] arr = request.getCookies();
-
+        CartDAO cdao=new CartDAO();
         String txt = "";
         if (arr != null) {
             for (Cookie o : arr) {
@@ -80,6 +81,9 @@ public class CheckoutServlet extends HttpServlet {
                 }
             }
         }
+       
+        
+        List<Discount> ld=cdao.getAllDiscount();
         User u = (User) request.getSession().getAttribute("userNow");
         Cart cart = new Cart(txt, u);
         List<Item> listItem = cart.getItems();
@@ -92,12 +96,15 @@ public class CheckoutServlet extends HttpServlet {
         }
         AddressDAO adao = new AddressDAO();
         List<Address_Detail> listad = adao.getAddressByUserID(u.getId());
-        Address_Detail ad = adao.getDefaultAddress(u.getId());
 
-        String[] ids = txt.split("/");
+        Address_Detail ad = (Address_Detail) request.getSession().getAttribute("ad");
 
+        int countAddress = listad.size();
+
+        request.setAttribute("ld", ld);
         request.setAttribute("ad", ad);
         request.setAttribute("listad", listad);
+        request.setAttribute("countAddress", countAddress);
         request.setAttribute("totalQuan", totalQuantity);
         request.setAttribute("listItem", listItem);
         request.setAttribute("cart", cart);
@@ -122,56 +129,64 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
         User u = (User) request.getSession().getAttribute("userNow");
-
-        OrderDAO dao = new OrderDAO();
-        Cart cart = new Cart();
         int address_id = Integer.parseInt(request.getParameter("radio_address"));
+        String action = request.getParameter("action");
+        AddressDAO adao = new AddressDAO();
+        CartDAO cdao=new CartDAO();
+        
+        if (action.equals("action1")) {
+            Address_Detail ad = adao.getAddressDetailByID(address_id);
+            session.setAttribute("ad", ad);
+            response.sendRedirect("checkout");
 
-        if (u == null) {
-            response.sendRedirect("login");
-        } else {
-            Cookie[] arr = request.getCookies();
-            String txt = "";
-            if (arr != null) {
-                for (Cookie o : arr) {
-                    if (o.getName().equals("cart")) {
-                        txt += o.getValue();
-                        o.setMaxAge(0);
-                        response.addCookie(o);
+        } else if (action.equals("action2")) {
+            
+            String note = request.getParameter("note");
+            OrderDAO dao = new OrderDAO();
+            Cart cart = new Cart();
+
+            if (u == null) {
+                response.sendRedirect("login");
+            } else {
+                Cookie[] arr = request.getCookies();
+                String txt = "";
+                if (arr != null) {
+                    for (Cookie o : arr) {
+                        if (o.getName().equals("cart")) {
+                            txt += o.getValue();
+                            o.setMaxAge(0);
+                            response.addCookie(o);
+                        }
                     }
+                    cart = new Cart(txt, u);
                 }
-                cart = new Cart(txt, u);
-            }
+                List<Discount> ld=cdao.getAllDiscount();
+                dao.addOrder(u, address_id, cart, note,ld);
 
-            dao.addOrder(u, address_id, cart);
-            Order o = dao.getLastOrder();
-            HttpSession session = request.getSession();
-            session.setAttribute("order", o);
-
-            String[] items = txt.split("/");
-            String remain = "";
-            for (String item : items) {
-                String[] s = item.split(":");
-                if (u != null) {
-                    if (!s[0].equals("" + u.getId())) {
-                        if (remain.isEmpty()) {
-                            remain = item;
-                        } else {
-                            remain += "/" + item;
+                String[] items = txt.split("/");
+                String remain = "";
+                for (String item : items) {
+                    String[] s = item.split(":");
+                    if (u != null) {
+                        if (!s[0].equals("" + u.getId())) {
+                            if (remain.isEmpty()) {
+                                remain = item;
+                            } else {
+                                remain += "/" + item;
+                            }
                         }
                     }
                 }
+                if (!remain.isEmpty()) {
+                    Cookie c = new Cookie("cart", remain);
+                    c.setMaxAge(60 * 60 * 2 * 24);
+                    response.addCookie(c);
+                }
+                response.sendRedirect("home");
             }
-            if (!remain.isEmpty()) {
-                Cookie c = new Cookie("cart", remain);
-                c.setMaxAge(60 * 60 * 2 * 24);
-                response.addCookie(c);
-            }
-            response.sendRedirect("home");
         }
-
     }
 
     /**

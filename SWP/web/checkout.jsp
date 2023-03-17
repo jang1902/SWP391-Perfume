@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="./assets/css/address.css">
         <link rel="icon" href="./assets/img/small_logo1.png">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        
+
         <script type="text/javascript" src="js/address.js"></script>
         <title>BOT STORE1</title>
     </head>
@@ -201,93 +201,187 @@
         <!-- end header -->
         <!-- body -->
         <div id="body">
-                            
+
 
             <div class="body_container">
                 <form action="checkout" method="post">
-                <div class="body_left" >
-                    
+                    <div class="body_left" >
                         <div class="body_left-item">
                             <div class="body_left-item-title">
                                 <div class="body_left-item-title-st">1</div>
                                 <span>Địa chỉ nhận hàng</span>
                             </div>
+                            <c:if test="${countAddress>0}">
+                                <div class="body_left-item-address">
+                                    <div class="item-address-font">${sessionScope.userNow.getFirstname()} ${sessionScope.userNow.getLastname()} | ${sessionScope.userNow.getPhone_number()} </div>
+                                    <div class="item-address-font2">${sessionScope.ad.detail}, ${sessionScope.ad.ward}, ${sessionScope.ad.district}, ${sessionScope.ad.city}</div>
+                                    <c:if test="${ad.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
+                                        <div class="change_address_style"><a class="address_window button" href="#address-box">Thay đổi</a></div>
+                                    </div>
+                            </c:if>
+                            <c:if test="${countAddress==0}">
+                                <div class="body_left-item-address">
+                                    Bạn chưa có địa chỉ nào, Click vào đây để thêm địa chỉ<div class="change_address_style"><a class="address_window button" href="#address-box">Thêm địa chỉ</a></div>
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
 
-                            <div class="body_left-item-address">
-                                <div class="item-address-font">${sessionScope.userNow.getFirstname()} ${sessionScope.userNow.getLastname()} | ${sessionScope.userNow.getPhone_number()} </div>
-                                <div class="item-address-font2">${ad.detail}, ${ad.ward}, ${ad.district}, ${ad.city}</div>
-                                <c:if test="${ad.is_default==1}"><div class="is_default_style">Mặc định</div></c:if>
-                                    <div class="change_address_style"><a class="login-window button" href="#login-box">Thay đổi</a></div>
-                             </div>
+
+                    <div class="body_left-item">
+                        <div class="body_left-item-title">
+                            <div class="body_left-item-title">
+                                <div class="body_left-item-title-st">2</div>
+                                <span>Sản Phẩm</span>
                             </div>
+                        </div>
+
+                        <span class="info_order" ><div style="margin-top: 15px">Đơn đặt hàng của bạn</div></span>
+                        <div class="body_right-item-buy-products">
+
+
+                            <div class="oders_info-details">
+                                <div style=" width: 520px;">
+                                    <span >Tên sản phẩm </span>
+                                </div>
+                                <div>
+                                    <span>Đơn giá </span>
+
+                                </div>
+                                <div>
+                                    <span>Số lượng</span>
+                                </div>
+                                <div>
+                                    <span>Thành tiền</span>
+
+                                </div>
                             </div>
+                            <div class="oders_info-description">
+                                <c:set var="ldis" value="${ld}"></c:set>
+                                <c:forEach items="${listItem}" var="c">
+                                    <div class="oders_info-product">
+                                        <div class="oders_info-product-child">
+                                            <div>
+                                                <img src="${c.product.thumbnail}" alt="" class="product_img">
+                                            </div>
+                                            <div class="product-name">
+                                                <span class="product-name-title">${c.product.title}</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <c:forEach items="${ld}" var="ld">
+                                            <c:if test="${ld.id==c.product.discount_id}"><span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out-(c.sizeproduct.price_out*(ld.value/100))}"  ></fmt:formatNumber>₫</span></c:if>
+                                            </c:forEach>
+                                            </div>
+                                            <div class="quantity-area clearfix">
+                                            ${c.quantity}
+                                        </div>
 
 
-                            <div class="body_left-item">
-                                <div class="body_left-item-title">
-                                    <div class="body_left-item-title">
-                                        <div class="body_left-item-title-st">2</div>
-                                        <span>Sản Phẩm</span>
+
+                                        <div>
+                                            <c:forEach items="${ld}" var="ld">
+                                                        <c:if test="${ld.id==c.product.discount_id}"><span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${(c.sizeproduct.price_out-(c.sizeproduct.price_out*(ld.value/100)))*c.quantity}"  ></fmt:formatNumber>₫</span></c:if>
+                                            </c:forEach>
+                                            </div>
+                                        </div>
+                                </c:forEach>
+                                <!--  -->
+                                <hr>
+                                <div class="oders_info-product">
+                                    <div class="oders_info-product-child">
+                                        <div>
+                                            <span>Ghi chú:<textarea name="note" style="resize: none" rows="4" cols="66px" placeholder="Thêm ghi chú"></textarea></span>
+                                        </div>
+                                        <div class="product-name">
+
+                                        </div>
+                                    </div>
+                                    <div>
+
+                                        <span></span>
+
+                                    </div>
+                                    <div>
+
+                                    </div>
+                                    <div>
+                                        <span></span>
+                                    </div>
+                                    <div>
+                                        <span>Tổng tiền (${totalQuan} sản phẩm): </span>
+                                        <span><b>₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney(ldis)}"></fmt:formatNumber></b></span>
+                                        </div>
+
                                     </div>
                                 </div>
 
-                                <span class="info_order" ><div style="margin-top: 15px">Đơn đặt hàng của bạn</div></span>
-                                <div class="body_right-item-buy-products">
-                                    <table border="1px">
-                                      
-                                            <tr class="amount_products">
-                                                <th style="width: 600px">Sản phẩm</th>
-                                                <th style="width: 200px">Đơn Giá</th>
-                                                <th>Số Lượng</th>
-                                                <th>Thành Tiền</th>
-                                            </tr>
-                                       
-                                    <c:forEach items="${listItem}" var="c">
-                                        <tr class="amount_products">
-                                            <td ><img src="${c.product.thumbnail}" style="width: 40px;height: 40px"/>${c.product.title}${c.size.name}</td>
-                                            <td >₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out}"></fmt:formatNumber></td>
-                                            <td >${c.quantity}</td>
-                                            <td >₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out*c.quantity}"></fmt:formatNumber></td>
-                                        </tr>
-                                    </c:forEach>
-                                    <tr class="amount_products">
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <c:if test="${totalQuan!=0}"><th>Tổng tiền(${totalQuan} sản phẩm):  ₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney()}"></fmt:formatNumber></th></c:if> 
-                                        </tr>
-                                    </table>
 
+
+                            </div>
+                        </div>
+                        <!-- Hidden Dialog Box-->
+
+
+                        <div class="address_box" id="address-box">
+                            <a class="close" href="#"><div class="img-close"></div></a>
+                            <p class="address_title"> Danh sách địa chỉ</p>
+                            <hr/>
+                            <a href="#" class="close"><div class="img_close"><i class="fa-regular fa-circle-xmark"></i></div></a>
+                            <div class="address_detail">
+                            <c:forEach items="${listad}" var="l">
+                                <div class="radio_input">
+                                    <input ${l.id==sessionScope.ad.id?"checked":""} id="radioBtnInput" class="radioBtnInput" type="radio" name="radio_address" value="${l.id}" />${l.detail}<c:if test="${l.is_default==1}"> <span style="color: orange">(Mặc định)</span></c:if><br/> ${l.ward}, ${l.district}, ${l.city}<br/>
+                                        <br/><hr/>
+                                    </div>
+                            </c:forEach>
+                            <c:if test="${countAddress<3}"><a class="add-address-window button" href="#add-address-box">Thêm địa chỉ </a> </c:if> 
+                                <div class="two_button_css">
+                                    
+                                    <button value="action1" ${countAddress==0?"disabled":""} name="action" class="button_add_address" id="changeAddress" type="submit" value="add">Xác nhận</button>
 
                                 </div>
                             </div>
-
-                            <!-- Hidden Dialog Box-->
-                            <div class="login" id="login-box">
-                                <a class="close" href="#"><img class="img-close" title="Close Window" alt="Close" src="close.png" /></a>
-                                <p class="login_title"> Danh sách địa chỉ</p>
-                                <hr/>
-
-                                <a href="#" class="close"><img src="close.png" class="img-close" title="Close Window" alt="Close" /></a>
-                                <div class="login_detail">
-                                <c:forEach items="${listad}" var="l">
-                                    <div class="radio_input">
-                                        <input ${l.is_default==1?"checked":""} class="radioBtnInput" type="radio" name="radio_address" value="${l.id}" />${l.detail}<br/> ${l.ward}, ${l.district}, ${l.city}<br/><c:if test="${l.is_default==1}"><div class="is_default_style">Mặc định</div></c:if><br/><hr/>
-                                        </div>
-                                </c:forEach>
-                            </div>
                         </div>
-                            <div class="button_position">
-                <button type="submit" class="place_order">Đặt Hàng</button> 
-                </div>
+                        <!-- End Hidden Dialog Box-->
+                        <div class="button_position">
+                            <c:if test="${sessionScope.userNow.firstname == null || sessionScope.userNow.lastname == null || sessionScope.userNow.phone_number == null}">
+                                Chưa đầy đủ thông tin người dùng, click để thêm <a onclick="toProfile()"> <i class="fa-solid fa-person-running"></i></a>
+                            </c:if>
+                            <c:if test="${sessionScope.userNow.firstname != null || sessionScope.userNow.lastname != null || sessionScope.userNow.phone_number != null}">
+                            <button value="action2" name="action" type="submit" ${countAddress==0?"disabled":""} class="place_order">${countAddress==0?"Vui lòng thêm địa chỉ trước khi đặt":"Đặt Hàng"}</button> 
+                            </c:if>
+                    </div>
                 </form>
-                </div>
-                <!-- Hidden Dialog Box-->
-                
             </div>
-                                        
+
+
+            <!-- Hidden Add Address Dialog Box-->
+            <div class="address_box add_address_box" id="add-address-box">
+
+                <p class="address_title"><a class="back-to-address" href="#">back</a> Thêm địa chỉ</p>
+                <a class="close" href="#"><div class="img_close"><i class="fa-regular fa-circle-xmark"></i></div></a>
+                <hr/>
+                <form action="quickaddaddress" method="post">
+                    <div class="address_dialog_box">
+                        <input class="input_address_dialog" type="text" name="city" placeholder="Nhập Tỉnh/Thành phố"><br/>
+                        <input class="input_address_dialog" type="text" name="district" placeholder="Nhập Quận/Huyện"><br/>
+                        <input class="input_address_dialog" type="text" name="ward" placeholder="Nhập Phường/Xã"><br/>
+                        <textarea rows="4" cols="50" class="input_address_dialog" type="text" name="detail_address" placeholder="Chi tiết địa chỉ"></textarea>
+                    </div>
+                    <div class="two_button_css">
+                        <button  class="button_add_address" type="submit" value="add">Thêm</button>
+
+                    </div>
+                </form>
+                <div class="address_detail">
+                </div>
+            </div>
+            <!-- End Hidden Add Address Dialog Box-->
         </div>
-    
+
+    </div>
+
     <div id="footer">
         <!-- container footer -->
         <div class="container_footer">
@@ -393,10 +487,13 @@
         </div>
     </div>
     <script type="text/javascript">
-        function Address_Choice() {
-            var x = document.getElementById("btn_address").value;
-            document.getElementById("input_address_id").value = x;
-        }
+    
+            function toProfile() {
+                if (confirm("Chuyển tới trang cá nhân để điền thông tin?")) {
+                    window.location = "changeProfile";
+                }
+            }
+        
     </script>
     <!-- end body -->
 </body>

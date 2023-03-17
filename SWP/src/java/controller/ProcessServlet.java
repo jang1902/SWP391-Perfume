@@ -5,6 +5,8 @@
 
 package controller;
 
+import dal.CartDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +15,13 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Cart;
+import model.Item;
+import model.Product;
+import model.Size;
+import model.SizeProduct;
+import model.User;
 
 /**
  *
@@ -70,6 +79,8 @@ public class ProcessServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         Cookie[] arr = request.getCookies();
+        ProductDAO pdao=new ProductDAO();
+        CartDAO cdao=new CartDAO();
         String txt = "";
         if (arr != null) {
             for (Cookie o : arr) {
@@ -80,15 +91,55 @@ public class ProcessServlet extends HttpServlet {
                 }
             }
         }
-        
-        String pid =request.getParameter("pid");
-        String sid=request.getParameter("sid");
-        String quantity=request.getParameter("quantity");
-        
+        //d
+        User u= (User) request.getSession().getAttribute("userNow");
+        Cart cart=new Cart(txt,u);
+        String pid_raw =request.getParameter("pid");
+        String action =request.getParameter("action");
+        String sid_raw=request.getParameter("sid");
+        String quantity_raw=request.getParameter("quantity");
+        int quantity;
         try {
+            int pid=Integer.parseInt(pid_raw);
+            int sid=Integer.parseInt(sid_raw);
+            quantity=Integer.parseInt(quantity_raw);
             
+            SizeProduct sp= pdao.getSizeProductByPidSid(pid, sid);
+            Product p= pdao.getProductByID(pid);
+            Size s=cdao.getSizeByID(sid);
+            int storeProduct=sp.getQuantity();
+            
+            
+            if(action.equals("-")&&cart.getQuantity(pid, sid)<=1){
+                cart.removeItem(pid, sid);
+            }else{
+                
+                int price= sp.getPrice_out();
+                if(action.equals("+")){
+                    if(quantity!=storeProduct){
+                        cart.addItem(new Item(sp, p, s, 1, price));
+                    }
+                } else{
+                    cart.addItem(new Item(sp, p, s, -1, price));
+                }
+            }
         } catch (Exception e) {
+            System.out.println(e);
         }
+        
+        List<Item> listItem=cart.getItems();
+        txt="";
+        if (!listItem.isEmpty()){
+            if(u!=null){
+                txt=u.getId()+":"+listItem.get(0).getProduct().getId()+":"+listItem.get(0).getSize().getId()+":"+listItem.get(0).getQuantity();
+                for (int i=1;i<listItem.size();i++) {
+                    txt+="/"+u.getId()+":"+listItem.get(i).getProduct().getId()+":"+listItem.get(i).getSize().getId()+":"+listItem.get(i).getQuantity();
+                }
+            }
+        }
+        Cookie c = new Cookie("cart", txt);
+        c.setMaxAge(2 * 24 * 60 * 60);
+        response.addCookie(c);
         response.sendRedirect("cart");
     }
 

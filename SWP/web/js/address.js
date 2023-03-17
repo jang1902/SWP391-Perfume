@@ -3,26 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 $(document).ready(function() {
-    $('a.login-window').click(function() {
-        //lấy giá trị thuộc tính href - chính là phần tử "#login-box"
-        var loginBox = $(this).attr('href');
- 
-        //cho hiện hộp đăng nhập trong 300ms
-        $(loginBox).fadeIn(300);
- 
-        // thêm phần tử id="over" vào sau body
+    $('a.address_window').click(function() {
+        var addressBox = $(this).attr('href');
+        $(addressBox).fadeIn(300);
         $('body').append('<div id="over">');
         $('#over').fadeIn(300);
- 
-        return false;
+     
  });
- 
- // khi click đóng hộp thoại
  $(document).on('click', "a.close, #over", function() {
-       $('#over, .login').fadeOut(300 , function() {
+       $('#over, .address_box').fadeOut(300 , function() {
            $('#over').remove();
        });
-      return false;
+  
  });
+ 
+ $('a.add-address-window').click(function(){
+     var addbox = $(this).attr('href');
+     $(addbox).fadeIn(10);
+ });
+ 
+
+$(document).on('click', "a.back-to-address", function() {
+       $(' .add_address_box').fadeOut(10 , function() {
+       });
+  
+ });
+ 
+ 
+ $("#myButton").click(function() {
+    var newValue = $("input[name='radio_address']:checked").val(); // get the selected radio button value
+    $.ajax({
+      url: "checkout",
+      type: "get",
+      data: { newAddressID: newValue },
+      success: function(response) {
+        $("#myAttributeSpan").text(response);
+      }
+    });
+  });
 });
 

@@ -74,6 +74,30 @@ public class AddressDAO extends DBContext{
         }
         return null;
     }
+     
+     public void addAddress(Address_Detail a) {
+        String sql = "INSERT INTO [dbo].[Address_Detail]\n"
+                + "           ([uid]\n"
+                + "           ,[city]\n"
+                + "           ,[district]\n"
+                + "           ,[ward]\n"
+                + "           ,[detail]\n"
+                + "           ,[is_default])\n"
+                + "     VALUES\n"
+                + "           (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, a.getUid());
+            st.setString(2, a.getCity());
+            st.setString(3, a.getDistrict());
+            st.setString(4, a.getWard());
+            st.setString(5, a.getDetail());
+            st.setInt(6, a.getIs_default());
+            st.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
    
      public static void main(String[] args) {
         AddressDAO dao=new AddressDAO();

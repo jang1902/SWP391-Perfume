@@ -54,13 +54,31 @@ public class Cart {
         }
     }
 
-    public double getTotalMoney() {
-        double t = 0;
+    public int getTotalMoney(List<Discount> ld) {
+        int t = 0;
         for (Item i : items) {
-            t += (i.getQuantity() * i.getPrice());
+            for(Discount d:ld){
+                
+            if(d.getId()==i.getProduct().getDiscount_id()){
+                t += (i.getQuantity() * (i.getPrice()-i.getPrice()*d.getValue()/100));
+            }
+            }
         }
         return t;
     }
+    
+    public double getExactItemMoneyOut(Item i,List<Discount> ld){
+         double t=0;
+         for(Discount d:ld){
+             if(d.getId()==i.getProduct().getDiscount_id()){
+                t=(i.getPrice()-i.getPrice()*d.getValue()/100);
+             }
+         
+         }
+        return t;
+    }
+    
+ 
 
     public Cart(String txt, User user) {
         items = new ArrayList();

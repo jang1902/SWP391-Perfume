@@ -199,233 +199,241 @@
         <!-- body -->
         <div id="body">
 
-            <div class="body_container_cart">
+            <div class=${totalQuan>0?"body_container_cart":"empty_cart"}>
 
-                <div class="body_right_cart">
+                <div class=${totalQuan>0?"body_right_cart":"empty_cart_font_div"}>
 
+                    <c:if test="${totalQuan==0}" ><div><span class="empty_cart_font">Giỏ hàng trống</span></div></c:if>
+                    <c:if test="${totalQuan>0}" >
+                        <div class="body_right-item">
+                            <span class="info_order">Đơn đặt hàng của bạn</span>
+                            <div class="body_right-item-buy-products">
+                                <div class="oders_info-child details">
+                                    <div>
+                                        <div class="oders_info-details">
+                                            <div style=" width: 480px;">
+                                                <span >Tên sản phẩm </span>
+                                            </div>
+                                            <div>
+                                                <span>Đơn giá </span>
 
-                    <div class="body_right-item">
-                        <span class="info_order">Đơn đặt hàng của bạn</span>
-                        <div class="body_right-item-buy-products">
-                            <div class="oders_info-child details">
-                                <div>
-                                    <div class="oders_info-details">
-                                        <div style=" width: 520px;">
-                                            <span >Tên sản phẩm </span>
+                                            </div>
+                                            <div>
+                                                <span>Số lượng</span>
+                                            </div>
+                                            <div>
+                                                <span>Số tiền</span>
+
+                                            </div>
+                                            <div>
+                                                <span>Thao tác</span>
+
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span>Đơn giá </span>
 
-                                        </div>
-                                        <div>
-                                            <span>Số lượng</span>
-                                        </div>
-                                        <div>
-                                            <span>Số tiền</span>
-
-                                        </div>
-                                        <div>
-                                            <span>Thao tác</span>
-
-                                        </div>
-                                    </div>
-                                    <div class="oders_info-description">
-                                        <c:forEach items="${listItem}" var="c">
-                                            <div class="oders_info-product">
-                                                <div class="oders_info-product-child">
+                                        <c:set var="ldis" value="${ld}"></c:set>
+                                        <div class="oders_info-description">
+                                            <c:forEach items="${listItem}" var="c">
+                                                <div class="oders_info-product">
+                                                    <div class="oders_info-product-child">
+                                                        <div>
+                                                            <img src="${c.product.thumbnail}" alt="" class="product_img">
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <span class="product-name-title">${c.product.title}</span>
+                                                        </div>
+                                                    </div>
                                                     <div>
-                                                        <img src="${c.product.thumbnail}" alt="" class="product_img">
-                                                    </div>
-                                                    <div class="product-name">
-                                                        <span class="product-name-title">${c.product.title}</span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out}"></fmt:formatNumber>₫</span>
-                                                    </div>
-                                                       
-                                                    <form action="process" method="post">
-                                                        <input id="pid" name="pid" type="hidden" value="${c.sizeproduct.pid}">
-                                                        <input id="sid" name="sid" type="hidden" value="${c.sizeproduct.sid}"> 
+                                                        <c:forEach items="${ld}" var="ld">
+                                                            <c:if test="${ld.id==c.product.discount_id}"><span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out-(c.sizeproduct.price_out*(ld.value/100))}"  ></fmt:formatNumber>₫</span></c:if>
+                                                        </c:forEach>
+                                                        </div>
+
+                                                        <form action="process?pid=${c.sizeproduct.pid}&sid=${c.sizeproduct.sid}" method="post">
                                                         <div class="quantity-area clearfix">
-                                                            <input type="submit" value="-" id="minus" class="qty-btn">
-                                                            <input type="text" id="quantity"  name="quantity" value="${c.quantity}">
-                                                            <input type="submit" value="+" id="plus" class="qty-btn">
+                                                            <input name="action" type="submit" value="-" id="minus" class="qty-btn">
+                                                            <input readonly type="text" id="quantity"  name="quantity" value="${c.quantity}">
+                                                            <input name="action" type="submit" value="+" id="plus" class="qty-btn">
                                                         </div>
                                                     </form>
 
 
                                                     <div>
-                                                        <span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${c.sizeproduct.price_out*c.quantity}"></fmt:formatNumber>₫</span>
+                                                        <c:forEach items="${ld}" var="ld">
+                                                        <c:if test="${ld.id==c.product.discount_id}"><span><fmt:formatNumber type = "currency" pattern="###,###,###" value="${(c.sizeproduct.price_out-(c.sizeproduct.price_out*(ld.value/100)))*c.quantity}"  ></fmt:formatNumber>₫</span></c:if>
+                                                        </c:forEach>
+                                                        </div>
+                                                            <form action="deleteItem?pid=${c.sizeproduct.pid}&sid=${c.sizeproduct.sid}" method="post">
+                                                        <div>
+                                                            <button type="submit" class="delete_item" type="submit">Xóa</button>
+                                                        </div>
+                                                        </form>
                                                     </div>
+                                            </c:forEach>
+                                            <!--  -->
+                                            <hr>
+                                            <div class="oders_info-product">
+                                                <div class="oders_info-product-child">
                                                     <div>
-                                                        <span>Xóa</span>
+
+                                                    </div>
+                                                    <div class="product-name">
+
                                                     </div>
                                                 </div>
-                                        </c:forEach>
-                                        <!--  -->
-                                        <hr>
-                                        <div class="oders_info-product">
-                                            <div class="oders_info-product-child">
                                                 <div>
 
-                                                </div>
-                                                <div class="product-name">
+                                                    <span></span>
 
                                                 </div>
-                                            </div>
-                                            <div>
-
-                                                <span></span>
-
-                                            </div>
-                                            <div>
-                                                <span></span>
-                                            </div>
-                                            <div>
-                                                <span></span>
-                                            </div>
-                                            <div>
-                                                <span>Tổng tiền tạm thời: </span>
-                                                <span><b>₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney()}"></fmt:formatNumber></b></span>
+                                                <div>
+                                                    <span></span>
                                                 </div>
+                                                <div>
+                                                    <span></span>
+                                                </div>
+                                                <div>
+                                                    <span>Tổng tiền tạm thời: </span>
+                                                    <span><b>₫<fmt:formatNumber type = "currency" pattern="###,###,###" value="${cart.getTotalMoney(ldis)}"></fmt:formatNumber></b></span>
+                                                    </div>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+
+                                <div class="body_right-item">
+
+                                    <div class="button_position">
+                                        <form action="${sessionScope.userNow==null?"login":"checkout"}">
+
+                                        <button ${totalQuan==0?"disabled":""} class="place_order">Checkout</button> 
+                                    </form>
+                                </div>
                             </div>
-
-
 
                             <div class="body_right-item">
+                                <div class="body_right-item-products">
 
-                                <div class="button_position">
-                                    <form action="${sessionScope.userNow==null?"login":"checkout"}">
-
-                                    <button ${totalQuan==0?"disabled":""} class="place_order">Checkout</button> 
-                                </form>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="body_right-item">
-                            <div class="body_right-item-products">
-
-                            </div>
-                        </div>
-                    </div>
+                    </c:if>                  
                 </div>
             </div>
-</div>
-            <!-- end body -->
-            <div id="footer">
-                <!-- container footer -->
-                <div class="container_footer">
-                    <!-- footer logo / online shop -->
-                    <div class="footer_contact-logo">
-                        <a href="#">
-                            <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+        </div>
+        <!-- end body -->
+        <div id="footer">
+            <!-- container footer -->
+            <div class="container_footer">
+                <!-- footer logo / online shop -->
+                <div class="footer_contact-logo">
+                    <a href="#">
+                        <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+                    </a>
+                    <p class="footer_contact-logo-text">
+                        Mua các mô hình, lego, trang trí tại của hàng Bot Store.
+                    </p>
+                    <div class="footer_contact-logo-onlineshop">
+                        <a href="#" id="onlineshop">
+                            <div class="online-shop">
+                                <!-- logo shopee -->
+                                <div class="shopee-tiki">
+                                    <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
+                                </div>
+                                <!-- chữ bên cạnh logo -->
+                                <div>
+                                    <span class="online-shop-text-top">Shopping on</span>
+                                    <p class="online-shop-text-bot">Shopee</p>
+                                </div>
+                            </div>
                         </a>
-                        <p class="footer_contact-logo-text">
-                            Mua các mô hình, lego, trang trí tại của hàng Bot Store.
-                        </p>
-                        <div class="footer_contact-logo-onlineshop">
-                            <a href="#" id="onlineshop">
-                                <div class="online-shop">
-                                    <!-- logo shopee -->
-                                    <div class="shopee-tiki">
-                                        <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
-                                    </div>
-                                    <!-- chữ bên cạnh logo -->
-                                    <div>
-                                        <span class="online-shop-text-top">Shopping on</span>
-                                        <p class="online-shop-text-bot">Shopee</p>
-                                    </div>
+                        <a href="#" id="onlineshop">
+                            <div class="online-shop">
+                                <!-- logo tiki -->
+                                <div class="shopee-tiki">
+                                    <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
                                 </div>
-                            </a>
-                            <a href="#" id="onlineshop">
-                                <div class="online-shop">
-                                    <!-- logo tiki -->
-                                    <div class="shopee-tiki">
-                                        <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
-                                    </div>
-                                    <!-- chữ bên cạnh logo -->
-                                    <div>
-                                        <span class="online-shop-text-top">Shopping on</span>
-                                        <p class="online-shop-text-bot">Tiki</p>
-                                    </div>
+                                <!-- chữ bên cạnh logo -->
+                                <div>
+                                    <span class="online-shop-text-top">Shopping on</span>
+                                    <p class="online-shop-text-bot">Tiki</p>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
-                    <!-- về chúng tôi -->
-                    <div class="footer_contact-about">
-                        <!-- title -->
-                        <div class="footer_contact-title">Về chúng tôi</div>
-                        <!-- about us link -->
-                        <div class="footer_contact-about-link">
-                            <a class="about-link" href="#">Careers</a>
-                            <a class="about-link" href="#">Của hàng của chúng tôi</a>
-                            <a class="about-link" href="#">Chính sách giao hàng</a>
-                            <a class="about-link" href="#">Điều khoản dịch vụ</a>
-                            <a class="about-link" href="#">Chính sách quyền riêng tư</a>
-                        </div>
+                </div>
+                <!-- về chúng tôi -->
+                <div class="footer_contact-about">
+                    <!-- title -->
+                    <div class="footer_contact-title">Về chúng tôi</div>
+                    <!-- about us link -->
+                    <div class="footer_contact-about-link">
+                        <a class="about-link" href="#">Careers</a>
+                        <a class="about-link" href="#">Của hàng của chúng tôi</a>
+                        <a class="about-link" href="#">Chính sách giao hàng</a>
+                        <a class="about-link" href="#">Điều khoản dịch vụ</a>
+                        <a class="about-link" href="#">Chính sách quyền riêng tư</a>
                     </div>
-                    <!-- dịch vụ chăm sóc khách hàng -->
-                    <div class="footer_contact-customer">
-                        <!-- title -->
-                        <div class="footer_contact-title">Hỗ trợ khách hàng</div>
-                        <!-- customer care link -->
-                        <div class="footer_contact-about-link">
-                            <a class="about-link" href="#">Trung tâm hỗ trợ</a>
-                            <a class="about-link" href="#">Cách để mua hàng</a>
-                            <a class="about-link" href="#">Truy cứu đơn hàng</a>
-                            <a class="about-link" href="#">Hợp tác</a>
-                            <a class="about-link" href="#">Hoàn trả và hoàn tiền</a>
-                        </div>
+                </div>
+                <!-- dịch vụ chăm sóc khách hàng -->
+                <div class="footer_contact-customer">
+                    <!-- title -->
+                    <div class="footer_contact-title">Hỗ trợ khách hàng</div>
+                    <!-- customer care link -->
+                    <div class="footer_contact-about-link">
+                        <a class="about-link" href="#">Trung tâm hỗ trợ</a>
+                        <a class="about-link" href="#">Cách để mua hàng</a>
+                        <a class="about-link" href="#">Truy cứu đơn hàng</a>
+                        <a class="about-link" href="#">Hợp tác</a>
+                        <a class="about-link" href="#">Hoàn trả và hoàn tiền</a>
                     </div>
-                    <!-- liên hệ -->
-                    <div class="footer_contact-contact">
-                        <!-- title -->
-                        <div class="footer_contact-title">Liên hệ chúng tôi</div>
-                        <!-- địa chỉ -->
-                        <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
-                        <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
-                        <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
-                        <div class="footer_contact-icon">
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-twitter"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="#">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </div>
-                            </a>
-                            <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
-                                <div class="footer_contact-icon-child">
-                                    <i class="fa-brands fa-github"></i>
-                                </div>
-                            </a>
-                        </div>
+                </div>
+                <!-- liên hệ -->
+                <div class="footer_contact-contact">
+                    <!-- title -->
+                    <div class="footer_contact-title">Liên hệ chúng tôi</div>
+                    <!-- địa chỉ -->
+                    <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
+                    <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
+                    <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
+                    <div class="footer_contact-icon">
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-twitter"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="#">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                        </a>
+                        <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
+                            <div class="footer_contact-icon-child">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-            <script type="text/javascript">
-        
+        </div>
+        <script type="text/javascript">
 
-            </script>
+
+        </script>
     </body>
 
 </html>
