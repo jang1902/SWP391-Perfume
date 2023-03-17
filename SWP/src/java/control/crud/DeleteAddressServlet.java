@@ -2,25 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package control.crud;
 
+import dal.AddressDAO;
+import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
-import model.User;
 
 /**
  *
  * @author dell
  */
-@WebServlet(name = "ChangeProfileServlet", urlPatterns = {"/changeProfile"})
-public class ChangeProfileServlet extends HttpServlet {
+@WebServlet(name = "DeleteAddressServlet", urlPatterns = {"/deleteAddress"})
+public class DeleteAddressServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class ChangeProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangeProfileServlet</title>");
+            out.println("<title>Servlet DeleteAddressServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangeProfileServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteAddressServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +58,13 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mes = (String)request.getAttribute("mesAva");
-        request.setAttribute("mesAva", mes);
-        request.getRequestDispatcher("changeprofile.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        AddressDAO dao = new AddressDAO();
+       
+            int addressId = Integer.parseInt(id);
+            dao.deleteAddress(addressId);
+       response.sendRedirect("address");
+      
     }
 
     /**

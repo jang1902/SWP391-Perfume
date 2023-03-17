@@ -1,12 +1,13 @@
 <%-- 
-    Document   : order
-    Created on : Jan 31, 2023, 4:19:28 PM
+    Document   : address
+    Created on : Jan 31, 2023, 4:05:49 PM
     Author     : ASUS
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,20 +15,76 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/header_footer.css">
+        <link rel="stylesheet" href="./assets/css/address.css">
         <link rel="stylesheet" href="./assets/css/profile_info.css">
-        <link rel="stylesheet" href="./assets/css/orders.css">
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="./assets/img/small_logo1.png">
-        <title>BOT STORE</title>
-
-        <script type="text/javascript">
-            function doDelete(id) {
-                if (confirm("Bạn chắc chắn muốn hủy đơn hàng id=" + id + "?")) {
-                    window.location = "cancelOrder?id=" + id;
-                }
+        <title>Boon Bo</title>
+        <style>
+            .addinfo{
+                width: 600px;
+                height: auto;
+                background-color: white;
+                padding: 30px 60px;
+                border-radius: 10px;
             }
-        </script>
+
+            .addinfo label{
+                font-family: inherit;
+                color: #818182;
+            }
+            .addinfo select{
+                width: 200px;
+                height: 30px;
+                border-radius: 2px;
+            }
+            .addinfo textarea{
+                width: 300px;
+                height: 40px;
+                border-radius: 2px;
+            }
+            .addinfo button{
+                width: 65px;
+                height: 30px;
+                border-radius: 2px;
+                margin-left: 200px;
+                background-color: #222222;
+                color: #f5f5f5;
+                cursor: pointer;
+            }
+            .addinfo button:hover{
+                background-color: #244444;
+            }
+
+            .input{
+                width: 320px;
+                height: 30px;
+            }
+
+            #city-error{
+                color: red;
+                font-family: serif;
+                margin-left: 200px
+            }
+            #district-error{
+                color: red;
+                font-family: serif;
+                margin-left: 200px
+            }
+            #ward-error{
+                color: red;
+                font-family: serif;
+                margin-left: 200px
+            }
+            #detail-error{
+                color: red;
+                font-family: serif;
+                margin-left: 200px;
+            }
+
+
+        </style>
     </head>
     <body>
         <!-- header -->
@@ -76,23 +133,43 @@
                         </a>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="Tìm Kiếm.." class="input_search">
+                        <input type="text" placeholder="Tìm Kiếm" class="input_search">
                         <div class="search-item">
                             <i class="fa-solid fa-magnifying-glass icon-search"></i>
                         </div>
                     </div>
                     <div class="login-cart">
-                        <div class="login-cart_item">
-                            <!-- test -->
-                            <a href="./src/login.html" class="login_cart-item-link">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                        </div>
-                        <div class="login-cart_item">
-                            <a href="./src/cart.html" class="login_cart-item-link">
+                        <c:if test="${sessionScope.userNow.role_id==null}">
+
+                            <a href="login" class="login_cart-item-link">
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-key"></i>
+                                </div>
+                            </a>      
+
+                        </c:if>
+                        <c:if test="${sessionScope.userNow.role_id!=null}">
+                            <a href="profile" class="login_cart-item-link" >
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            </a>    
+
+                        </c:if>
+
+                        <a href="cart" class="login_cart-item-link">
+                            <div class="login-cart_item">
                                 <i class="fa-solid fa-bag-shopping"></i>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
+                        <c:if test="${sessionScope.userNow.role_id!=null}">
+                            <a href="logout" class="login_cart-item-link">
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </div>
+                            </a>    
+
+                        </c:if>
                     </div>
                 </div>
                 <!-- end header mid top -->
@@ -184,6 +261,8 @@
         </div>
         <!-- end header -->
 
+
+
         <!-- body -->
         <div id="body">
             <!-- container -->
@@ -193,7 +272,7 @@
                     <!-- body left top (dashboard)-->
                     <div class="body_left-dashboard">
                         <div class="body_left-dashboard_title">THÔNG TIN</div>
-                        <a href="myOrder" class="body_left-dashboard_child" id="current_page">
+                        <a href="myOrder" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
                                 Đơn hàng
@@ -201,21 +280,20 @@
                             <span>${requestScope.sumOrder}</span>
                         </a>
 
-
                     </div>
                     <!-- body left bot (acc setting)-->
                     <div class="body_left-setting">
                         <div class="body_left-dashboard_title">TÀI KHOẢN</div>
                         <a href="profile" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-user dashboard_icon"></i>
+                                <i class="fa-solid fa-user  dashboard_icon"></i>
                                 Trang cá nhân
                             </div>
 
                         </a>
-                        <a href="address" class="body_left-dashboard_child">
+                        <a href="address" class="body_left-dashboard_child" id="current_page">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-location-arrow dashboard_icon"></i>
+                                <i class="fa-solid fa-location-arrow  dashboard_icon"></i>
                                 Địa chỉ
                             </div>
                             <span>${requestScope.sumAddress}</span>
@@ -225,79 +303,95 @@
                 </div>
                 <!-- body right -->
                 <div class="body_right">
-                    <div>
-                        <!-- title -->
-                        <div class="body_right-title">
-                            <div class="body_right-title-1">
-                                <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
-                                <p id="body_right-title">Đơn hàng</p>
-                            </div>
-                        </div>
-                        <!-- content -->
-                        <div class="body_right-oders">
-                            <!-- title -->
-                            <div class="body_right-oders-title">
-                                <div class="oders-title-child">Đơn hàng</div>
-                                <div class="oders-title-child">Trạng thái</div>
-                                <div class="oders-title-child">Ngày thanh toán</div>
-                                <div class="oders-title-child">Tổng tiền</div>
-                            </div>
-                            <!-- content -->
+                    <div class="addinfo">
+                        <c:set var="address" value="${requestScope.address}"></c:set>
+                        <form id="form_edit_address" action="editaddress" method="post">
+                                <input name="id" value="${address.id}" hidden/>
+                            <label>Tỉnh\Thành phố:</label>
 
-                            <div>
-                                <c:forEach var="order" items="${requestScope.listOrder}">
+                            <input class="input" style="margin-left: 30px" name="city" type="text" value="${address.city}"/>
 
-                                    <div class="body_right-oders_child">
-                                        <div class="oders_items">
-                                            <div class="oders_items-child">${order.id}</div>
-                                            <div class="oders_items-child ">
-                                                <c:if test="${order.status.id == 1}"><span class="status-gray">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 2}"><span class="status-yellow">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 3}"><span class="status-green">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 4}"><span class="status-red">${order.status.name}</span></c:if>
-                                                </div>
-                                                <div class="oders_items-child">${order.order_date}</div>
-                                            <div class="oders_items-child money_margin"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${order.total_money}"></fmt:formatNumber>đ</div>
-                                            </div>
-                                        <c:if test="${order.status.id == 1}">
-                                            <div class="order_items_icon">
-                                                <a href="" onclick="doDelete('${order.id}')" class="order_items_icon-link"> 
-                                                    Hủy
-                                                </a>
-                                            </div>
-                                        </c:if>
-                                        <div class="order_items_icon">
-                                            <a href="myOrderDetail?id=${order.id}" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                            <br/> <br/>
 
-                                </c:forEach>
-                            </div>
+                            <label>Quận\Huyện:</label>
+                            <input class="input" style="margin-left: 52px" name="district" type="text" value="${address.district}"/>
 
-                            <!-- page button -->
-                            <div class="page_button">
-                                <ul class="page_button_container">
-                                    <li class="page_button-child">
-                                        <i class="fa-solid fa-angle-left"></i>
-                                    </li>
-                                    <li class="page_button-child page_button-current"><span>1</span></li>
-                                    <li class="page_button-child"><span>2</span></li>
-                                    <li class="page_button-child"><span>3</span></li>
-                                    <li class="page_button-child"><span>4</span></li>
-                                    <li class="page_button-child"><span>5</span></li>
-                                    <li class="page_button-child">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                            <br/><br/>
+                            <label>Xã\Phường:</label>
+
+                            <input class="input" style="margin-left: 63px" name="ward" type="text" value="${address.ward}"/>
+
+                            <br/><br/>
+                            <label>Địa chỉ cụ thể:</label>
+                            <input class="input" style="margin-left: 48px" name="detail" type="text" value="${address.detail}"/>
+                            <br/><br/>
+                            <c:if test="${address.is_default == 1}"> 
+                                <input name = "default" type="checkbox" checked ="true" hidden ="true"/>
+                            </c:if>
+
+                            <c:if test="${address.is_default != 1}"> 
+                                <label>Đặt làm mặc định: </label>
+                                <input style="margin-left: 30px" name = "default" type="checkbox" />
+                                <br> <br>
+                            </c:if>
+
+                            <button type="submit">Cập nhật</button>
+
+                        </form>
+                    </div>   
+                            
+                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+
+                    <script>
+                        $(function () {
+                            $("#form_edit_address").validate({
+                                rules: {
+                                    "city": {
+                                        required: true
+                                    },
+                                    "district": {
+                                        required: true
+                                    },
+                                    "ward": {
+                                        required: true
+                                    },
+                                    "detail": {
+                                        required: true
+                                    }
+                                },
+                                messages: {
+                                    "city": {
+                                        required: "Vui lòng nhập tên tỉnh/thành phố "
+                                    },
+                                    "district": {
+                                        required: "Vui lòng nhập tên quận/huyện"
+                                    },
+                                    "ward": {
+                                        required: "Vui lòng nhập tên xã/phường"
+                                    },
+                                    "detail": {
+                                        required: "Vui lòng nhập địa chỉ cụ thể"
+                                    }
+                                }
+                            });
+                        });
+
+                    </script>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
                 </div>
+                <!-- end body right -->
+
             </div>
         </div>
         <!-- end body -->
+
+
 
         <!-- footer -->
         <div id="footer">
@@ -395,7 +489,7 @@
                                 <i class="fa-brands fa-youtube"></i>
                             </div>
                         </a>
-                        <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
+                        <a class="about-link" href="https://github.com/KaviorSalandez/SWP_ShopNuocHoaja">
                             <div class="footer_contact-icon-child">
                                 <i class="fa-brands fa-github"></i>
                             </div>

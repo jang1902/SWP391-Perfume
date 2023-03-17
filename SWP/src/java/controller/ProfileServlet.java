@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.AddressDAO;
 import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,8 +64,12 @@ public class ProfileServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User usernow = (User) session.getAttribute("userNow");
         OrderDAO od = new OrderDAO();
+        AddressDAO adao = new AddressDAO();
+        int sumOrder = od.getNumberOfOrder();
+        int sumAddress = adao.getTotalAddress(usernow.getId());
         int sumMoney = od.getSumTotalMoney(usernow.getId());
-        request.setAttribute("userNow", usernow);
+        request.setAttribute("sumOrder", sumOrder);
+        request.setAttribute("sumAddress", sumAddress);
         request.setAttribute("sumMoney", sumMoney);
         request.getRequestDispatcher("profile_info.jsp").forward(request, response);
     }

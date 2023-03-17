@@ -2,25 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package control.crud;
 
+import dal.AddressDAO;
+import dal.OrderDAO;
+import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
+import java.util.List;
+import model.Address_Detail;
 import model.User;
 
 /**
  *
  * @author dell
  */
-@WebServlet(name = "ChangeProfileServlet", urlPatterns = {"/changeProfile"})
-public class ChangeProfileServlet extends HttpServlet {
+@WebServlet(name = "EditAddressServlet", urlPatterns = {"/editaddress"})
+public class EditAddressServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class ChangeProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangeProfileServlet</title>");
+            out.println("<title>Servlet EditAddressServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangeProfileServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditAddressServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +63,24 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mes = (String)request.getAttribute("mesAva");
-        request.setAttribute("mesAva", mes);
-        request.getRequestDispatcher("changeprofile.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("userNow");
+        String id = request.getParameter("id");
+        AddressDAO dao = new AddressDAO();
+        OrderDAO od = new OrderDAO();
+        try {
+            int aid = Integer.parseInt(id);
+            int sumOrder = od.getNumberOfOrder();
+            int sumAddress = dao.getTotalAddress(user.getId());
+            Address_Detail a = dao.getAddressDetailByID(aid);
+            request.setAttribute("sumOrder", sumOrder);
+            request.setAttribute("sumAddress", sumAddress);
+            request.setAttribute("address", a);
+            request.getRequestDispatcher("editaddress.jsp").forward(request, response);
+
+        } catch (Exception e) {
+        }
+
     }
 
     /**
@@ -76,7 +94,37 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("userNow");
+        AddressDAO dao = new AddressDAO();
+        String id = request.getParameter("id");
+        String city = request.getParameter("city");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        String detail = request.getParameter("detail");
+        String def = request.getParameter("default");
+
+        try {
+            int aid = Integer.parseInt(id);
+            Address_Detail a = dao.getAddressDetailByID(aid);
+            a.setCity(city);
+            a.setDistrict(district);
+            a.setWard(ward);
+            a.setDetail(detail);
+            if (def == null) {
+                a.setIs_default(0);
+            } else {
+                Address_Detail adr = dao.getAddressDefault(user.getId());
+                dao.updateAddressDefault(adr.getId(), 0);
+                a.setIs_default(1);
+            }
+            dao.updateAddress(a);
+
+            response.sendRedirect("address");
+        } catch (Exception e) {
+        }
+
     }
 
     /**

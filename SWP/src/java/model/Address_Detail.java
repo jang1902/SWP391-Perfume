@@ -9,8 +9,9 @@ package model;
  * @author ASUS
  */
 public class Address_Detail {
-    int id,uid;
-    String city,district,ward,detail;
+
+    int id, uid;
+    String city, district, ward, detail;
     int is_default;
 
     public Address_Detail(int uid, String city, String district, String ward, String detail, int is_default) {
@@ -32,6 +33,7 @@ public class Address_Detail {
         this.is_default = is_default;
     }
 
+    
     public Address_Detail() {
     }
 
@@ -90,6 +92,5 @@ public class Address_Detail {
     public void setIs_default(int is_default) {
         this.is_default = is_default;
     }
-    
-            
+
 }

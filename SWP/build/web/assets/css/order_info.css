@@ -44,7 +44,7 @@
     height: 5px;
 }
 .statusbar_active{
-    background-color: #72af5c;
+    background-color: #222222;
     color: white;
     position: relative;
 }
@@ -114,11 +114,12 @@
 }
 .review{
     padding: 10px;
-    background-color: #72af5c;
+    background-color: #222222;
     color: white;
     font-weight: 500;
     border-radius: 10px;
     font-size: 16px;
+    cursor: pointer;
 }
 .description{
     color: gray;
@@ -129,7 +130,7 @@
 }
 .biling_left{
     width:48%;
-    height: 90px;
+    height: 210px;
     /* height: auto; */
     padding: 20px;
     background-color: white;

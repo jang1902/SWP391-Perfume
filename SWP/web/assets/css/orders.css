@@ -49,6 +49,12 @@
     color: rgb(51, 208, 103);
     padding: 7px 10px;
 }
+.status-yellow{
+    border-radius: 20px;
+    background-color: #ffc;
+    color: #c69500;
+    padding: 7px 10px;
+}
 .status-gray{
     border-radius: 20px;
     background-color: #d0d0d0;

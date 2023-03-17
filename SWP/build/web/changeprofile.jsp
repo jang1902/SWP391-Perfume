@@ -1,12 +1,15 @@
 <%-- 
-    Document   : order
-    Created on : Jan 31, 2023, 4:19:28 PM
-    Author     : ASUS
+    Document   : profile
+    Created on :  Feb 11, 2023, 11:39:29 PM
+    Author     : Phuong-Linh
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.User"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,19 +18,130 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/header_footer.css">
         <link rel="stylesheet" href="./assets/css/profile_info.css">
-        <link rel="stylesheet" href="./assets/css/orders.css">
-        <script type="text/javascript" language="javascript" src="./main.js"></script>
+        <script type="text/javascript" language="javascript" src="../main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="./assets/img/small_logo1.png">
         <title>BOT STORE</title>
 
-        <script type="text/javascript">
-            function doDelete(id) {
-                if (confirm("Bạn chắc chắn muốn hủy đơn hàng id=" + id + "?")) {
-                    window.location = "cancelOrder?id=" + id;
-                }
+        <style>
+            .lbtentt{
+                color: rgba(85,85,85,.8);
             }
-        </script>
+            .bgtt{
+                background-color: #f9f9f9;
+                width: 1000px;
+                height: 500px;
+                border-radius: 5px;
+
+            }
+            .bgttr{
+                width: 600px;
+                height: auto;
+                margin-left: 60px;
+                margin-top: 20px;
+                border: 1px;
+                border-style: groove;
+                border-color: #f3f3f3;
+                padding: 10px 0;
+            }
+            .divtt{
+                width: 80%;
+                margin-left: 50px;
+                margin-top: 20px;
+                display: flex
+            }
+            .inputtt{
+                margin-left: 30px;
+                width: 350px;
+                height: 40px;
+                border-radius: 5px;
+                border: 2px solid #dbe4d8;
+                padding: 0 10px;
+            }
+
+            .btnform{
+                width: 100px;
+                height: 40px;
+                margin-left: 182px;
+                margin-top: 20px;
+                background-color: #222222;
+                border: none;
+                border-radius: 2px;
+                color: #f9f9f9;
+                 cursor: pointer;
+
+            }
+            .btnform:hover{
+                background-color: #244444;
+
+            }
+
+            .btnformava{
+                width: 100px;
+                height: 40px;
+                margin-left: 120px;
+                margin-top: 20px;
+                background-color: #666666;
+                border: none;
+                border-radius: 2px;
+                 color: #f9f9f9;
+                 cursor: pointer;
+            }
+
+            .btnformava:hover{
+                background-color: #222222;
+
+            }
+            .lbhoso{
+                font-size: 1.125rem;
+                font-weight: 500;
+                margin-left: 80px;
+                margin-top: 20px;
+                color: #333;
+            }
+
+            .message{
+                margin-left: 90px;
+                margin-top: 25px;
+                color: #397222;
+            }
+
+            .image{
+                margin-left: 90px;
+                margin-top: 30px;
+
+            }
+            img{
+                width: 210px;
+                height: 210px;
+                margin-right: 40px;
+                margin-top: 40px;
+                border-radius: 120px;
+            }
+            .back{
+                width: 150px;
+                height: 30px;
+                background-color: #e2e2e2;
+                text-align: center;
+                border-radius: 5px;
+                display: flex;
+                margin-left: 30px;
+            }
+
+            .back i{
+                margin-top: 6px;
+                margin-left: 2px;
+            }
+            .back a{
+                text-decoration: none;
+                margin-left: 5px;
+                margin-top: 2px;
+            }
+            .back:hover {
+                background: #dbe4d8;
+            }
+
+        </style>
     </head>
     <body>
         <!-- header -->
@@ -54,11 +168,11 @@
                         <i class="fa-solid fa-chevron-down icon_arrowdown"></i>
                         <ul class="language-child">
                             <li class="language_item">
-                                <img src="./assets/img/flagVN.jpg" class="language-item_child flag">
+                                <img src="../assets/img/flagVN.jpg" class="language-item_child flag">
                                 <span class="language-item_child ">VietNam</span>
                             </li>
                             <li class="language_item">
-                                <img src="./assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
+                                <img src="../assets/img/la-co-vuong-quoc-anh.jpg" class="language-item_child flag">
                                 <span class="language-item_child ">English</span>
                             </li>
                         </ul>
@@ -71,28 +185,48 @@
                 <!-- header mid top -->
                 <div class="mid-top">
                     <div class="logo">
-                        <a href="./index.html">
-                            <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
+                        <a href="../index.html">
+                            <img src="../assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="Tìm Kiếm.." class="input_search">
+                        <input type="text" placeholder="Tìm Kiếm..." class="input_search">
                         <div class="search-item">
                             <i class="fa-solid fa-magnifying-glass icon-search"></i>
                         </div>
                     </div>
                     <div class="login-cart">
-                        <div class="login-cart_item">
-                            <!-- test -->
-                            <a href="./src/login.html" class="login_cart-item-link">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                        </div>
-                        <div class="login-cart_item">
-                            <a href="./src/cart.html" class="login_cart-item-link">
+                        <c:if test="${sessionScope.userNow.role_id==null}">
+
+                            <a href="login" class="login_cart-item-link">
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-key"></i>
+                                </div>
+                            </a>      
+
+                        </c:if>
+                        <c:if test="${sessionScope.userNow.role_id!=null}">
+                            <a href="profile" class="login_cart-item-link" >
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            </a>    
+
+                        </c:if>
+
+                        <a href="cart" class="login_cart-item-link">
+                            <div class="login-cart_item">
                                 <i class="fa-solid fa-bag-shopping"></i>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
+                        <c:if test="${sessionScope.userNow.role_id!=null}">
+                            <a href="logout" class="login_cart-item-link">
+                                <div class="login-cart_item">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </div>
+                            </a>    
+
+                        </c:if>
                     </div>
                 </div>
                 <!-- end header mid top -->
@@ -161,7 +295,7 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./index.html">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="../index.html">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -170,10 +304,10 @@
                             <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/oder.html">Đơn hàng</a>
+                            <a class="link_decor_remover hover-link" href="../src/oder.html">Đơn hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
+                            <a class="link_decor_remover hover-link" href="../src/profile_info.html">Trang cá nhân</a>
                         </li>
                     </ul>
                     <!-- end menu right -->
@@ -193,7 +327,7 @@
                     <!-- body left top (dashboard)-->
                     <div class="body_left-dashboard">
                         <div class="body_left-dashboard_title">THÔNG TIN</div>
-                        <a href="myOrder" class="body_left-dashboard_child" id="current_page">
+                        <a href="myOrder" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
                                 Đơn hàng
@@ -201,12 +335,11 @@
                             <span>${requestScope.sumOrder}</span>
                         </a>
 
-
                     </div>
                     <!-- body left bot (acc setting)-->
                     <div class="body_left-setting">
                         <div class="body_left-dashboard_title">TÀI KHOẢN</div>
-                        <a href="profile" class="body_left-dashboard_child">
+                        <a href="profile" class="body_left-dashboard_child" id="current_page">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-user dashboard_icon"></i>
                                 Trang cá nhân
@@ -225,78 +358,99 @@
                 </div>
                 <!-- body right -->
                 <div class="body_right">
-                    <div>
-                        <!-- title -->
-                        <div class="body_right-title">
-                            <div class="body_right-title-1">
-                                <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
-                                <p id="body_right-title">Đơn hàng</p>
-                            </div>
-                        </div>
-                        <!-- content -->
-                        <div class="body_right-oders">
-                            <!-- title -->
-                            <div class="body_right-oders-title">
-                                <div class="oders-title-child">Đơn hàng</div>
-                                <div class="oders-title-child">Trạng thái</div>
-                                <div class="oders-title-child">Ngày thanh toán</div>
-                                <div class="oders-title-child">Tổng tiền</div>
-                            </div>
-                            <!-- content -->
+                    <c:set var="a" value="${sessionScope.userNow}"></c:set>
+                        <div class="bgtt">
+                            <div style="float: left">
+                                <div class="lbhoso">
+                                    <label>Hồ sơ của tôi</label>
+                                </div>
 
-                            <div>
-                                <c:forEach var="order" items="${requestScope.listOrder}">
+                                <div style="width: 200px; height: auto">
+                                    <div class="bgttr">
 
-                                    <div class="body_right-oders_child">
-                                        <div class="oders_items">
-                                            <div class="oders_items-child">${order.id}</div>
-                                            <div class="oders_items-child ">
-                                                <c:if test="${order.status.id == 1}"><span class="status-gray">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 2}"><span class="status-yellow">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 3}"><span class="status-green">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 4}"><span class="status-red">${order.status.name}</span></c:if>
-                                                </div>
-                                                <div class="oders_items-child">${order.order_date}</div>
-                                            <div class="oders_items-child money_margin"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${order.total_money}"></fmt:formatNumber>đ</div>
-                                            </div>
-                                        <c:if test="${order.status.id == 1}">
-                                            <div class="order_items_icon">
-                                                <a href="" onclick="doDelete('${order.id}')" class="order_items_icon-link"> 
-                                                    Hủy
-                                                </a>
-                                            </div>
-                                        </c:if>
-                                        <div class="order_items_icon">
-                                            <a href="myOrderDetail?id=${order.id}" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
+                                        <form action="dochangeprofile" method="get">
+                                            <div class="divtt">
+                                            <c:if test="${a.username != null}">
+                                                <label style="color: rgba(85,85,85,.8);"> Tên đăng nhập</label>
+                                                <label style="margin-left: 30px">${a.username} </label>
+                                            </c:if>
+                                            <a style="margin-left: 160px" href="changepassword">Đổi mật khẩu</a>
                                         </div>
-                                    </div>
+                                        <div class="divtt"style="margin-left: 115px">
+                                            <label class="lbtentt"> Email</label>
+                                            <label style="margin-left: 33px">${a.email} </label>
+                                        </div>
+                                        <div  class="divtt"style="margin-left: 130px">
+                                            <label class="lbtentt">Họ</label>
+                                            <c:choose>
+                                                <c:when test="${a.firstname == null}">
+                                                    <input class="inputtt" name="firstname" placeholder="   ( Thêm họ )"> 
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input class="inputtt" name="firstname" value="${a.firstname}">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="divtt"style="margin-left: 127px">
+                                            <label class="lbtentt">Tên</label>
+                                            <c:choose>
+                                                <c:when test="${a.lastname == null}">
+                                                    <input class="inputtt" name="lastname"placeholder="   ( Thêm tên )"> 
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input class="inputtt" name="lastname" value="${a.lastname}"> 
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
 
-                                </c:forEach>
-                            </div>
+                                        <div class="divtt"style="margin-left: 58px">
+                                            <label class="lbtentt">Số điện thoại</label>
+                                            <c:choose>
+                                                <c:when test="${a.phone_number == null}">
+                                                    <input class="inputtt" name="phone_number" placeholder="   ( Thêm số điện thoại )"> 
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input class="inputtt" name="phone_number" value="${a.phone_number}"> 
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
 
-                            <!-- page button -->
-                            <div class="page_button">
-                                <ul class="page_button_container">
-                                    <li class="page_button-child">
-                                        <i class="fa-solid fa-angle-left"></i>
-                                    </li>
-                                    <li class="page_button-child page_button-current"><span>1</span></li>
-                                    <li class="page_button-child"><span>2</span></li>
-                                    <li class="page_button-child"><span>3</span></li>
-                                    <li class="page_button-child"><span>4</span></li>
-                                    <li class="page_button-child"><span>5</span></li>
-                                    <li class="page_button-child">
-                                        <i class="fa-solid fa-angle-right"></i>
-                                    </li>
-                                </ul>
+                                        <div style="display: flex">
+                                            <button type="submit" class="btnform">Cập nhật</button>
+                                            <label class="message">${requestScope.message}</label>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                        <form action="dochangeavatar" method="post" enctype="multipart/form-data">
+                            <div style="float: right">
+                                <div class="image">
+                                    <img src="${a.avatar}">
+                                </div>
+                                <br>
+                                <input style="margin-left: 120px" name="avatar"type="file" id="myInput"> <br>
+                                <button class="btnformava" type="submit" id="myButton" disabled>Lưu ảnh</button>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            const myInput = document.getElementById("myInput");
+            const myButton = document.getElementById("myButton");
+
+            myInput.addEventListener("change", function () {
+                if (myInput.value.trim() === "") {
+                    myButton.disabled = true;
+                } else {
+                    myButton.disabled = false;
+                }
+            });
+        </script>
+
         <!-- end body -->
 
         <!-- footer -->
@@ -306,7 +460,7 @@
                 <!-- footer logo / online shop -->
                 <div class="footer_contact-logo">
                     <a href="#">
-                        <img class="footer_logo-resize" src="./assets/img/Logo.png" alt="logo">
+                        <img class="footer_logo-resize" src="../assets/img/Logo.png" alt="logo">
                     </a>
                     <p class="footer_contact-logo-text">
                         Mua các mô hình, lego, trang trí tại của hàng Bot Store.
@@ -316,7 +470,7 @@
                             <div class="online-shop">
                                 <!-- logo shopee -->
                                 <div class="shopee-tiki">
-                                    <img class="online-shop-logo" src="./assets/img/shopee.png" alt="shopee logo">
+                                    <img class="online-shop-logo" src="../assets/img/shopee.png" alt="shopee logo">
                                 </div>
                                 <!-- chữ bên cạnh logo -->
                                 <div>
@@ -329,7 +483,7 @@
                             <div class="online-shop">
                                 <!-- logo tiki -->
                                 <div class="shopee-tiki">
-                                    <img class="online-shop-logo" src="./assets/img/tiki.png" alt="tiki logo">
+                                    <img class="online-shop-logo" src="../assets/img/tiki.png" alt="tiki logo">
                                 </div>
                                 <!-- chữ bên cạnh logo -->
                                 <div>

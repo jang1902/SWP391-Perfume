@@ -9,6 +9,7 @@ package model;
  * @author canduykhanh
  */
 public class Status {
+
     private int id;
     private String name;
 
@@ -35,6 +36,4 @@ public class Status {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
 }

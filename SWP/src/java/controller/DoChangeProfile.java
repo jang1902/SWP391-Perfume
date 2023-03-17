@@ -4,23 +4,24 @@
  */
 package controller;
 
+import dal.UserDAO;
+import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
+import jakarta.servlet.annotation.WebServlet;
 import model.User;
 
 /**
  *
  * @author dell
  */
-@WebServlet(name = "ChangeProfileServlet", urlPatterns = {"/changeProfile"})
-public class ChangeProfileServlet extends HttpServlet {
+@WebServlet(name = "DoChangeProfile", urlPatterns = {"/dochangeprofile"})
+
+public class DoChangeProfile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +40,10 @@ public class ChangeProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangeProfileServlet</title>");
+            out.println("<title>Servlet DoChangeProfile</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangeProfileServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DoChangeProfile at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,11 +59,28 @@ public class ChangeProfileServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mes = (String)request.getAttribute("mesAva");
-        request.setAttribute("mesAva", mes);
-        request.getRequestDispatcher("changeprofile.jsp").forward(request, response);
+        //processRequest(request, response);
+        HttpSession session = request.getSession();
+        User usernow = (User) session.getAttribute("userNow");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String phone_number = request.getParameter("phone_number");
+        UserDAO dao = new UserDAO();
+        try {
+            usernow.setFirstname(firstname);
+            usernow.setLastname(lastname);
+            usernow.setPhone_number(phone_number);
+            dao.updateUser(usernow.getId(), firstname, lastname, phone_number);
+            String ms = "Cập nhật thành công";
+            session.setAttribute("userNow", usernow);
+            request.setAttribute("message", ms);
+            request.getRequestDispatcher("changeProfile").forward(request, response);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -76,7 +94,7 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

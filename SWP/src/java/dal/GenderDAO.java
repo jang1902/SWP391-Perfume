@@ -32,5 +32,4 @@ public class GenderDAO extends DBContext {
         }
         return list;
     }
-
 }

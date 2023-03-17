@@ -2,25 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package control.crud;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import dal.AddressDAO;
+import dal.OrderDAO;
+import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import model.Address_Detail;
 import model.User;
 
 /**
  *
  * @author dell
  */
-@WebServlet(name = "ChangeProfileServlet", urlPatterns = {"/changeProfile"})
-public class ChangeProfileServlet extends HttpServlet {
+@WebServlet(name = "AddAddressServlet", urlPatterns = {"/add_address"})
+public class AddAddressServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,19 +43,7 @@ public class ChangeProfileServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ChangeProfileServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ChangeProfileServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,9 +58,15 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mes = (String)request.getAttribute("mesAva");
-        request.setAttribute("mesAva", mes);
-        request.getRequestDispatcher("changeprofile.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("userNow");
+        AddressDAO dao = new AddressDAO();
+        OrderDAO od = new OrderDAO();
+        int sumOrder = od.getNumberOfOrder();
+        int sumAddress = dao.getTotalAddress(user.getId());
+        request.setAttribute("sumOrder", sumOrder);
+        request.setAttribute("sumAddress", sumAddress);
+        request.getRequestDispatcher("addaddress.jsp").forward(request, response);
     }
 
     /**
@@ -76,7 +80,27 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("userNow");
+        AddressDAO dao = new AddressDAO();
+        String city = request.getParameter("city");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        String detail = request.getParameter("detail");
+        int sumAddress = dao.getTotalAddress(user.getId());
+        int df;
+        if(sumAddress != 0){
+            df = 0;
+        }
+        else{
+            df = 1;
+        }
+        Address_Detail a = new Address_Detail(user.getId(), city, district, ward, detail, df);
+
+        dao.addAddress(a);
+        response.sendRedirect("address");
+
     }
 
     /**
