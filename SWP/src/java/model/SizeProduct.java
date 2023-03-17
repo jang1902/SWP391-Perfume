@@ -24,8 +24,6 @@ public class SizeProduct {
     public SizeProduct() {
     }
 
-    public SizeProduct() {
-    }
 
     public int getPid() {
         return pid;

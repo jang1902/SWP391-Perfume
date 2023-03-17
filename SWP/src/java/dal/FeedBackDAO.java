@@ -70,7 +70,7 @@ public class FeedBackDAO extends DBContext {
     }
 
     //get top  3 new feedback 
-    public List<Feedback> getTop3NewFeedbackByPid(int pid) {
+    public List<Feedback> getTop3NewFeedbackBygetToPid(int pid) {
         List<Feedback> listF = new ArrayList<>();
         String sql = "select top 3 f.id,f.user_id,f.product_id,f.note,f.rating,f.created_at from FeedBacks f \n"
                 + "                join Users u on f.user_id = u.id\n"
@@ -292,8 +292,7 @@ public class FeedBackDAO extends DBContext {
 //        Order o = fd.getOrderByID(o_id);
 //        Feedback f = fd.getFeedBackByUserOrderProduct(u, o, p);
 //        System.out.println(f.getId()+f.getNote());
-        FeedBackDAO f = new FeedBackDAO();
-        System.out.println(f.checkOrder(11, 7).size());
+        
     }
 
 }

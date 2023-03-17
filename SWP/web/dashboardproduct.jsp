@@ -52,16 +52,16 @@
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
-        
+
         <script type="text/javascript">
-            function doDelete(pid,sid) {
+            function doDelete(pid, sid) {
                 if (confirm("Are you sure to delete product with id=" + pid + " and size_id=" + sid)) {
                     window.location = "deleteproduct?pid=" + pid + "&sid=" + sid;
                 }
             }
         </script>
-        
-        
+
+
     </head>
     <body>
         <div class="wrapper dashboard-wrapper">
@@ -108,11 +108,11 @@
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse bg-white" id="primaryMenuSidebar">
-                                <form class="d-block d-xl-none pt-5 px-3">
+                                <form action="dashboardsearch" method="get" class="d-block d-xl-none pt-5 px-3">
                                     <div class="input-group position-relative bg-gray">
-                                        <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                        <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
                                         <div class="input-group-append fs-14 px-3 border-left border-2x ">
-                                            <button class="bg-transparent border-0 outline-none">
+                                            <button type="submit" class="bg-transparent border-0 outline-none">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
@@ -132,25 +132,25 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-shopping-bag"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Products</span>
+                                            <span class="sidebar-item-text">Sản phẩm</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboardp">Product List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Category List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardc">Danh sách thể loại</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Gallery List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardg">Danh sách thư viện</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Size List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboards">Danh sách kích thước</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="">Discount List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardd">Danh sách mã giảm giá</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -316,11 +316,11 @@
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
                                 <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
-                                    <form>
+                                    <form action="dashboardsearch" method="get" >
                                         <div class="input-group position-relative bg-input rounded">
-                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                            <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
                                             <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
-                                                <button class="bg-transparent border-0 outline-none">
+                                                <button type="submit" class="bg-transparent border-0 outline-none">
                                                     <i class="fal fa-search"></i>
                                                 </button>
                                             </div>
@@ -328,27 +328,7 @@
                                     </form>
                                 </div>
                                 <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-                                    <div class="dropdown no-caret px-2 py-2">
-                                        <a href="#" class="dropdown-toggle fs-20 font-weight-500 lh-1 animation-shake position-relative" data-toggle="dropdown">
-                                            <i class="far fa-bell"></i>
-                                            <span class="badge badge-secondary rounded-circle">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="request-full-screen d-block px-2 fs-20" title="Full screen"><i class="far fa-rss-square"></i></a>
-                                    <div class="dropdown px-2 py-2 dropdown-language">
-                                        <a class="dropdown-toggle fs-20" data-toggle="dropdown"><i class="far fa-globe-americas"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item text-brand" href="#"><img src="./img/flag-us.png" alt="English">English</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-fr.png" alt="Français">Français</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-jp.png" alt="Japan">日本語</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-cn.png" alt="China">中国人</a>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">
@@ -366,87 +346,99 @@
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
                         <div class="dashboard-page-content">
-                            <div class="row mb-6 align-items-center">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Bảng danh sách sản phẩm</h2>
-                                    <p class="mb-0"></p>
+                            <form action="delete" method="get">
+                                <div class="row mb-6 align-items-center">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <h2 class="fs-24 mb-0">Bảng danh sách sản phẩm</h2>
+                                        <p class="mb-0"></p>
+                                    </div>                                  
+                                    <div class="col-sm-6 d-flex flex-wrap justify-content-sm-end">
+
+                                        
+                                        
+                                        <a href="addproduct.jsp" class="btn btn-primary">Tạo mới
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6 d-flex flex-wrap justify-content-sm-end">
-                                    
-                                    <a href="addproduct" class="btn btn-primary">Create new
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card mb-4 rounded-xl p-4">
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
+                                <div class="card mb-4 rounded-xl p-4">
+                                    <div class="card-body p-0">
                                         <div class="table-responsive">
-                                            <table class="table align-middle table-nowrap mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="align-middle border-top-0 pb-4 pt-0">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input ml-xxl-n2" type="checkbox" id="transactionCheck">
-                                                                <label class="form-check-label" for="transactionCheck"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td class="border-top-0 pb-4 pt-0"><select class="form-control bg-input border-0">
-                                                                <option selected="" data-select2-id="3">All Categories</option>
-                                                                <c:forEach items="${allc}" var="c">
-                                                                <option>${c.name}</option>
-                                                                </c:forEach>
-                                                            </select></td>
-                                                        <td class="border-top-0 pb-4 pt-0"></td>
-                                                        <td class="border-top-0 pb-4 pt-0"></td>
-                                                        <td class="border-top-0 pb-4 pt-0"><input type="date" class="form-control bg-input border-0"></td>
-                                                        <td class="border-top-0 pb-4 pt-0">
-                                                            <select class="form-control bg-input border-0">
-                                                                <option>All Gender</option>
-                                                                <c:forEach items="${allg}" var="g">
-                                                                <option>${g.name}</option>
-                                                                </c:forEach>
-                                                            </select></td>
-                                                    </tr>
-                                                    
-                                                <c:forEach items="${allp}" var="p">
-                                                    <tr>
-                                                        <td class="text-center align-middle  pt-4 ">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="transactionCheck1">
-                                                                <label class="form-check-label" for="transactionCheck1"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td class=" pt-6 ">
-                                                            <a href="./product-detail-01.html" class="media align-items-center">
-                                                                <div class="w-80px mr-5">
-                                                                    <img style="height: 100px; width: 100px" src="${p.thumbnail}" alt="Facial cleanser" class="">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="font-weight-600 text-secondary mb-0">${p.title}</p>
-                                                                </div>
-                                                            </a>
-                                                        </td>
-                                                        
-                                                        <td class="text-secondary align-middle font-weight-bold">${p.size.value}ml</td>
-                                                        <td class="text-secondary align-middle font-weight-bold">${p.sizeproduct.price_out}</td>
-                                                        
-                                                        <td class="align-middle">${p.updated_at}</td>
-                                                        <td class="align-middle">
-                                                            <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="editproduct?pid=${p.id}&sid=${p.sizeproduct.sid}" class="btn btn-primary btn-sm mr-1 my-1"><i class="fal fa-pen"></i><span class="d-inline-block ml-1">Edit</span></a>
-                                                                <a href="#" onclick="doDelete('${p.id}','${p.sizeproduct.sid}')" class="btn btn-sm border hover-white bg-hover-primary mr-1 border-primary my-1 text-secondary font-weight-400"><i class="fas fa-trash-alt"></i><span class="d-inline-block ml-1">Delete</span></a>
+                                            <div class="table-responsive">
+                                                <table class="table align-middle table-nowrap mb-0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="align-middle border-top-0 pb-4 pt-0">
                                                                 
-                                                            </div>
-                                                        </td>
-                                                    </tr> 
-                                                </c:forEach>
-                                                
-                                                </tbody>
-                                            </table>
+                                                            </td>
+                                                            <td class="border-top-0 pb-4 pt-0">
+
+                                                                    <select name="cate" class="form-control bg-input border-0" onchange="location = 'sortcate?cate=' + this.value;">
+                                                                    <option value = "0">Thể loại</option>
+                                                                    <c:forEach items="${allc}" var="c">
+                                                                        
+                                                                        <option value="${c.id}" ${cate==c.id?'selected':''}  >${c.name}</option>
+                                                                        
+                                                                    </c:forEach>
+                                                                </select>
+                                                               
+                                                                </td>
+                                                            <td class="border-top-0 pb-4 pt-0"></td>
+                                                            <td class="border-top-0 pb-4 pt-0"></td>
+                                                            <td class="border-top-0 pb-4 pt-0">
+                                                                <input type="date" name="date" class="form-control bg-input border-0" onchange="location = 'sortdate?date=' + this.value;">
+                                                            </td>
+                                                            <td class="border-top-0 pb-4 pt-0">
+                                                               
+                                                                <select name="gen" class="form-control bg-input border-0" onchange="location = 'sortgen?gen=' + this.value;">
+                                                                    <option>Giới tính</option>
+                                                                    <c:forEach items="${allg}" var="g">
+                                                                        <option value="${g.id}" ${gen==g.id?'selected':''} >${g.name}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+
+                                                        <c:forEach items="${allp}" var="p">
+                                                            <tr>
+
+                                                                <td class="text-center align-middle  pt-4 ">
+                                                                    
+                                                                </td>
+
+                                                                <td class=" pt-6 ">
+                                                                    <a href="./product-detail-01.html" class="media align-items-center">
+                                                                        <div class="w-80px mr-5">
+                                                                            <img style="height: 100px; width: 100px" src="${p.thumbnail}" alt="Facial cleanser" class="">
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            <p class="font-weight-600 text-secondary mb-0">${p.title}</p>
+                                                                        </div>
+                                                                    </a>
+                                                                </td>
+
+                                                                <td class="text-secondary align-middle font-weight-bold">${p.size.value}ml</td>
+                                                                <td class="text-secondary align-middle font-weight-bold">${p.sizeproduct.price_out}</td>
+
+                                                                <td class="align-middle">${p.updated_at}</td>
+                                                                <td class="align-middle">
+                                                                    <div class="d-flex flex-wrap justify-content-end">
+                                                                        <a href="editproduct?pid=${p.id}&sid=${p.sizeproduct.sid}" class="btn btn-primary btn-sm mr-1 my-1"><i class="fal fa-pen"></i><span class="d-inline-block ml-1">Chỉnh sửa</span></a>
+                                                                        <a href="#" onclick="doDelete('${p.id}', '${p.sizeproduct.sid}')" class="btn btn-sm border hover-white bg-hover-primary mr-1 border-primary my-1 text-secondary font-weight-400"><i class="fas fa-trash-alt"></i><span class="d-inline-block ml-1">Xóa</span></a>
+
+                                                                    </div>
+                                                                </td>
+                                                            </tr> 
+                                                        </c:forEach>
+                                                            
+                                                             
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form> 
                             <nav aria-label="Page navigation example" class="mt-6 mb-4">
                                 <ul class="pagination justify-content-start">
                                     <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
@@ -564,8 +556,8 @@
             </div>
         </div>
         <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">       
-    </svg>
-</body>
+        </svg>
+    </body>
 
-<!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard-product-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:51 GMT -->
+    <!-- Mirrored from templates.g5plus.net/glowing/dashboard/dashboard-product-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:51 GMT -->
 </html>

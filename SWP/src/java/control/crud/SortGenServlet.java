@@ -2,15 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package control.home;
 
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
+
+
 package control.crud;
 
 import dal.CrudDAO;
-========
-import dal.HomeDAO;
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,31 +18,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
 import model.Gender;
-========
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
 import model.Product;
 
 /**
  *
  * @author hp
  */
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
+
 @WebServlet(name="SortGenServlet", urlPatterns={"/sortgen"})
 public class SortGenServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-========
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
-public class HomeServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -58,17 +44,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
             out.println("<title>Servlet SortGenServlet</title>");  
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SortGenServlet at " + request.getContextPath () + "</h1>");
-========
-            out.println("<title>Servlet ProductServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductServlet at " + request.getContextPath() + "</h1>");
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
             out.println("</body>");
             out.println("</html>");
         }
@@ -85,7 +64,7 @@ public class HomeServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
+
     throws ServletException, IOException {
         
         String id_raw = request.getParameter("gen");
@@ -106,23 +85,7 @@ public class HomeServlet extends HttpServlet {
         
         request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
     } 
-========
-            throws ServletException, IOException {
 
-        HomeDAO d = new HomeDAO();
-
-        List<Product> pBestSeller = d.getProductBestSeller();
-        request.setAttribute("pBestSeller", pBestSeller);
-
-        List<Product> pDiscount = d.getProductDiscount();
-        request.setAttribute("pDiscount", pDiscount);
-
-        List<Product> pNew = d.getProductNew();
-        request.setAttribute("pNew", pNew);
-
-        request.getRequestDispatcher("home.jsp").forward(request, response);
-    }
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
 
     /**
      * Handles the HTTP <code>POST</code> method.

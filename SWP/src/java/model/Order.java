@@ -66,9 +66,6 @@ public class Order {
         this.address_id = address_id;
     }
 
-    public Order() {
-    }
-
     
     public int getId() {
         return id;
@@ -117,15 +114,7 @@ public class Order {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
-
-    public int getAddress_id() {
-        return address_id;
-    }
-
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
-    }
-
+    
     public String getNote() {
         return note;
     }

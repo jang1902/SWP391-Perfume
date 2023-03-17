@@ -99,7 +99,7 @@ public class DetailServlet extends HttpServlet {
         
         FeedBackDAO fb = new FeedBackDAO();
        // List<Feedback> listF = fb.getFeedbackByPid(id);
-        List<Feedback> listF = fb.getTop3NewFeedbackByPid(id);
+        List<Feedback> listF = fb.getTop3NewFeedbackBygetToPid(id);
         try {
             lg = dao.randomRelative(gid,id);
             request.setAttribute("relativeproducts", lg);
