@@ -592,7 +592,7 @@ public class ShopDAO extends DBContext {
     }
 
     //phan trang cac san pham theo sap xep tang dan theo gia
-    public List<Product> getAllProductPresentationPagingBySortAscPrice(int pageIndex, int pageSize) { // lay tat ca san pham dai dien cho tung category
+    public List<Product> getAllProductPresentationPagingBySortAscPrice(int pageIndex, int pageSize) {
         List<Product> list = new ArrayList<>();
         String sql = "select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid \n"
                 + "                   from Products p  \n"
@@ -672,16 +672,15 @@ public class ShopDAO extends DBContext {
     //phan trang cac san pham theo gia nhap vao tu bn den bao nhieu
     public List<Product> getAllProductPresentationPagingBySearchPrice(int fromValue, int toValue, int pageIndex, int pageSize) { // lay tat ca san pham dai dien cho tung category
         List<Product> list = new ArrayList<>();
-        String sql = "select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid \n"
-                + "                   from Products p  \n"
-                + "                   join SizeProduct sp on p.id = sp.pid  \n"
-                + "                   join Sizes s on s.id = sp.sid  \n"
-                + "                   join Discounts d on d.id = p.discount_id\n"
-                + "				   where (sp.price_out-sp.price_out*d.value/100) between ? and ?\n"
-                + "                   group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id\n"
-                + "				   order by price asc\n"
-                + "				   OFFSET (?-1)*? rows					\n"
-                + "				   FETCH NEXT ? rows only";
+        String sql = " select * from (select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid\n"
+                + " from Products p  join SizeProduct sp on p.id = sp.pid \n"
+                + "                  join Sizes s on s.id = sp.sid  \n"
+                + "                  join Discounts d on d.id = p.discount_id\n"
+                + " group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id) as t\n"
+                + "where t.price between ? and ?\n"
+                + "order by t.price \n"
+                + " OFFSET (?-1)*? rows					\n"
+                + "FETCH NEXT ? rows only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, fromValue);
@@ -713,14 +712,12 @@ public class ShopDAO extends DBContext {
 
     //dem tat ca cac san pham tim kiem dc theo gia tu bao nhieu den bao nhieu 
     public int countAllProductBySearchPrice(int x, int y) {
-        String sql = "select count(*) from (select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid \n"
-                + "                   from Products p  \n"
-                + "                   join SizeProduct sp on p.id = sp.pid  \n"
-                + "                   join Sizes s on s.id = sp.sid  \n"
-                + "                   join Discounts d on d.id = p.discount_id  \n"
-                + "				   where (sp.price_out-sp.price_out*d.value/100) between ? and ?\n"
-                + "                   group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id \n"
-                + "				   ) as p";
+        String sql = " select count(*) from (select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid\n"
+                + " from Products p  join SizeProduct sp on p.id = sp.pid \n"
+                + "                  join Sizes s on s.id = sp.sid  \n"
+                + "                  join Discounts d on d.id = p.discount_id\n"
+                + " group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id) as t\n"
+                + "where t.price between ? and ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, x);
@@ -734,20 +731,19 @@ public class ShopDAO extends DBContext {
         }
         return 0;
     }
-    
-    
-      //phan trang cac san pham theo sap xep giam dan theo gia
+
+    //phan trang cac san pham theo sap xep giam dan theo gia
     public List<Product> getAllProductPresentationPagingBySortAZ(int pageIndex, int pageSize) { // lay tat ca san pham dai dien cho tung category
         List<Product> list = new ArrayList<>();
-        String sql = "select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid \n" +
-"                   from Products p  \n" +
-"                   join SizeProduct sp on p.id = sp.pid  \n" +
-"                   join Sizes s on s.id = sp.sid  \n" +
-"                   join Discounts d on d.id = p.discount_id  \n" +
-"                   group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id\n" +
-"				   order by p.title asc\n" +
-"				   OFFSET (?-1)*? rows					\n" +
-"				   FETCH NEXT ? rows only";
+        String sql = "select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid \n"
+                + "                   from Products p  \n"
+                + "                   join SizeProduct sp on p.id = sp.pid  \n"
+                + "                   join Sizes s on s.id = sp.sid  \n"
+                + "                   join Discounts d on d.id = p.discount_id  \n"
+                + "                   group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id\n"
+                + "				   order by p.title asc\n"
+                + "				   OFFSET (?-1)*? rows					\n"
+                + "				   FETCH NEXT ? rows only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, pageIndex);
@@ -774,18 +770,19 @@ public class ShopDAO extends DBContext {
         }
         return list;
     }
-      //phan trang cac san pham theo sap xep giam dan theo gia
+    //phan trang cac san pham theo sap xep giam dan theo gia
+
     public List<Product> getAllProductPresentationPagingBySortZA(int pageIndex, int pageSize) { // lay tat ca san pham dai dien cho tung category
         List<Product> list = new ArrayList<>();
-        String sql = "select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid \n" +
-"                   from Products p  \n" +
-"                   join SizeProduct sp on p.id = sp.pid  \n" +
-"                   join Sizes s on s.id = sp.sid  \n" +
-"                   join Discounts d on d.id = p.discount_id  \n" +
-"                   group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id\n" +
-"				   order by p.title desc\n" +
-"				   OFFSET (?-1)*? rows					\n" +
-"				   FETCH NEXT ? rows only";
+        String sql = "select p.id,p.title, p.thumbnail, p.discount_id,p.gender_id,p.category_id, d.value ,min(sp.price_out-sp.price_out*d.value/100) as price, min(sp.sid) as sid \n"
+                + "                   from Products p  \n"
+                + "                   join SizeProduct sp on p.id = sp.pid  \n"
+                + "                   join Sizes s on s.id = sp.sid  \n"
+                + "                   join Discounts d on d.id = p.discount_id  \n"
+                + "                   group by p.id,p.title, p.thumbnail , p.discount_id, d.value,p.gender_id,p.category_id\n"
+                + "				   order by p.title desc\n"
+                + "				   OFFSET (?-1)*? rows					\n"
+                + "				   FETCH NEXT ? rows only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, pageIndex);
@@ -880,5 +877,5 @@ public class ShopDAO extends DBContext {
         }
         System.out.println(cnt);
 
-}}
-
+    }
+}

@@ -3,10 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package control.shop;
+package controller.feedback;
 
-import dal.CategoryDAO;
-import dal.GenderDAO;
+import dal.FeedBackDAO;
 import dal.ShopDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,14 +15,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Product;
+import model.Feedback;
 
 /**
  *
  * @author canduykhanh
  */
-@WebServlet(name="ProductServlet", urlPatterns={"/shop"})
-public class ShopServlet extends HttpServlet {
+@WebServlet(name="LoadMoreFeedbackServlet", urlPatterns={"/load"})
+public class LoadMoreFeedbackServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +39,10 @@ public class ShopServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductServlet</title>");  
+            out.println("<title>Servlet LoadMoreFeedbackServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet LoadMoreFeedbackServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,36 +59,36 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        ShopDAO shopDAO = new ShopDAO();
-        CategoryDAO categoryDAO = new CategoryDAO();
-        GenderDAO genderDAO = new GenderDAO();
-        request.setCharacterEncoding("UTF-8");
-        int pageIndex = 1;
-        try {
-            pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-        } catch (Exception e) {
-
+        String amount = request.getParameter("exist");
+        String pid_raw = request.getParameter("product_id");
+        int iamount = Integer.parseInt(amount);
+        int pid = Integer.parseInt(pid_raw);
+        //lay id cua san pham do
+        FeedBackDAO fd = new FeedBackDAO();
+        List<Feedback> listf = fd.getNext3Feedback(pid, iamount);
+        PrintWriter out = response.getWriter();
+        for (Feedback f : listf) {
+            out.println("<div class=\"products_cmt-item feedbackok\">\n" +
+"                                        <div class=\"products_cmt-top\">\n" +
+"                                            <img src=\"./assets/img/frog (5).png\" class=\"img_avatar-user\">\n" +
+"                                            <div class=\"user_rated\">\n" +
+"                                                <span class=\"user_rated-name\">"+f.getUser().getUsername()+"</span>\n" +
+"                                                <div>\n" +
+"                                                    <span>\n" +
+"                                                        <c:forEach  begin=\"1\" end=\""+f.getRating()+"\">\n" +
+"                                                            <i class=\"fa-solid fa-star icon_star\"></i>\n" +
+"                                                        </c:forEach>\n" +
+"                                                    </span>\n" +
+"                                                    <span class=\"user_rated-cmttime\">"+f.getCreated_at()+"</span>\n" +
+"                                                </div>\n" +
+"                                            </div>\n" +
+"                                        </div>    \n" +
+"                                        <div class=\"products_cmt-bot\">\n" +
+"                                            <p>"+f.getNote()+"\n" +
+"                                            </p>\n" +
+"                                        </div>\n" +
+"                                    </div>");
         }
-        int pageSize = 9;
-        int totalRow = shopDAO.countAllProduct();
-        int maxPage=0;
-        if(totalRow==0){
-            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
-        }
-        else{
-            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
-            maxPage = totalRow/pageSize  + (totalRow%pageSize > 0  ? 1:0);
-            int nextPage = pageIndex+1;
-            int backPage = pageIndex-1;
-            List<Product>listP = shopDAO.getAllProductPresentationPaging(pageIndex, pageSize);
-            request.setAttribute("listP", listP);
-            request.setAttribute("maxPage", maxPage);
-            request.setAttribute("nextPage", nextPage);
-            request.setAttribute("backPage", backPage);
-            request.setAttribute("pageIndex", pageIndex);
-            request.setAttribute("total", totalRow);
-        }
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
     } 
 
     /** 

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.shop;
+package control.shop;
 
 import dal.CategoryDAO;
 import dal.GenderDAO;
@@ -71,23 +71,15 @@ public class SearchPriceController extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println("Error parse indexpage");
         }
-        String fromValue = request.getParameter("from");
-        String toValue = request.getParameter("to");
-        int from=0;
-        int to=0;
-        try {
-            from = Integer.parseInt(fromValue);
-        } catch (NumberFormatException e) {
-            System.out.println("Error parse from value");
-        }
-        try {
-            to = Integer.parseInt(toValue);
-        } catch (NumberFormatException e) {
-            System.out.println("Error parse to value");
-        }
+        String a = request.getParameter("price-range");
+        a = a.trim();
+        String[] price_range = a.split(" - ");
+        int from = Integer.parseInt(price_range[0].replaceAll("[^\\d]", ""));
+        int to = Integer.parseInt(price_range[1].replaceAll("[^\\d]", ""));
+        String output = from +","+to;
+        
         int pageSize = 9;
         int totalRow = shopDAO.countAllProductBySearchPrice(from, to);
-        String msg = from >= to ? "Gia tri ko hop le":"";
         int maxPage = 0;
         if (totalRow == 0) {
             request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
@@ -104,11 +96,9 @@ public class SearchPriceController extends HttpServlet {
             request.setAttribute("pageIndex", pageIndex);
             request.setAttribute("total", totalRow);
         }
-        request.setAttribute("from", from);
-        request.setAttribute("to", to);
-        request.setAttribute("fromValue", fromValue);
-        request.setAttribute("toValue", toValue);
-        request.setAttribute("msg", msg);
+    
+        request.setAttribute("price",output);
+        request.setAttribute("a",a);
         request.getRequestDispatcher("shop.jsp").forward(request, response);
         
     } 

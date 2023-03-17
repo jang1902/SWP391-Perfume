@@ -219,11 +219,12 @@ public User checkAccount(String username, String password){
         }
     }
     
+
     
     public static void main(String[] args) {
         UserDAO d=new UserDAO();
         
-        User u=d.checkAccount("maigiang", "123");
-         System.out.println(u);
+//        User u=d.getAccountById(11);
+//         System.out.println(u.getId()+u.getUsername());
     }
 }

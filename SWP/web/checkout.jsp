@@ -282,11 +282,12 @@
                                 </c:forEach>
                             </div>
                         </div>
+                
                 </div>
                 <!-- Hidden Dialog Box-->
-
+                
                 <button class="place_order">Đặt Hàng</button> 
-                </form>
+               </form>
             </div>
         </div>
     </div>

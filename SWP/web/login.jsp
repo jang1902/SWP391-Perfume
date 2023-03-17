@@ -33,7 +33,7 @@
                     <form action="login" method="post">
                         <p style="color:red">${requestScope.mess}</p>
                         <p style="color:green">${requestScope.ms}</p>
-                        <input type="text" placeholder="Email hoặc Số Điện Thoại" class="body_right-inputlogin" name="user">
+                        <input type="text" placeholder="Tên đăng nhập" class="body_right-inputlogin" name="user">
                         <input type="password" placeholder="Mật Khẩu" class="body_right-inputlogin" name="pass">
                         <div class="body_right-login" id="login">
                             <button class="body_right-btnlogin" type="submit">Đăng Nhập</button> <br>

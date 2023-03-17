@@ -21,6 +21,7 @@ import java.util.List;
 import model.Address_Detail;
 import model.Cart;
 import model.Item;
+import model.Order;
 import model.User;
 import org.apache.tomcat.jni.SSLContext;
 
@@ -114,24 +115,33 @@ public class CheckoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
       
-        Cookie arr[]=request.getCookies();
-        String txt="";
-        if(arr!=null){
-            for(Cookie c: arr){
-                if(c.getName().equals("cart")) txt=txt+c.getValue();
-                c.setMaxAge(0);
-                response.addCookie(c);
+       User u = (User) request.getSession().getAttribute("userNow");
+
+        OrderDAO dao = new OrderDAO();
+        Cart cart = new Cart();
+        int address_id = Integer.parseInt(request.getParameter("radio_address"));
+
+        if (u == null) {
+            response.sendRedirect("login");
+        } else {
+            Cookie[] arr = request.getCookies();
+            String txt = "";
+            if (arr != null) {
+                for (Cookie o : arr) {
+                    if (o.getName().equals("cart")) {
+                        txt += o.getValue();
+                        o.setMaxAge(0);
+                        response.addCookie(o);
+                    }
+                }
+                cart = new Cart(txt, u);
             }
+            dao.addOrder(u, address_id, cart);
+            Order o = dao.getLastOrder();
+            HttpSession session = request.getSession();
+            session.setAttribute("order", o);
+            response.sendRedirect("home");
         }
-        int address_id=Integer.parseInt(request.getParameter("radio_address"));
-        User u= (User)request.getSession().getAttribute("userNow");
-        Cart cart=new Cart(txt,u);
-        List<Item> listItem=cart.getItems();
-        OrderDAO dao=new OrderDAO();
-        dao.addOrder(u,address_id, cart);
-          HttpSession session = request.getSession();
-            session.setAttribute("userNow", u);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /** 

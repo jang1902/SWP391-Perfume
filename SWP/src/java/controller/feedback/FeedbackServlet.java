@@ -3,11 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package control.shop;
+package controller.feedback;
 
-import dal.CategoryDAO;
-import dal.GenderDAO;
-import dal.ShopDAO;
+import dal.FeedBackDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,15 +14,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
 import model.Product;
+import model.User;
 
 /**
  *
  * @author canduykhanh
  */
-@WebServlet(name="ProductServlet", urlPatterns={"/shop"})
-public class ShopServlet extends HttpServlet {
+@WebServlet(name="FeedbackServlet", urlPatterns={"/feedback"})
+public class FeedbackServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +40,10 @@ public class ShopServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductServlet</title>");  
+            out.println("<title>Servlet FeedbackServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet FeedbackServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,36 +60,7 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        ShopDAO shopDAO = new ShopDAO();
-        CategoryDAO categoryDAO = new CategoryDAO();
-        GenderDAO genderDAO = new GenderDAO();
-        request.setCharacterEncoding("UTF-8");
-        int pageIndex = 1;
-        try {
-            pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-        } catch (Exception e) {
-
-        }
-        int pageSize = 9;
-        int totalRow = shopDAO.countAllProduct();
-        int maxPage=0;
-        if(totalRow==0){
-            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
-        }
-        else{
-            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
-            maxPage = totalRow/pageSize  + (totalRow%pageSize > 0  ? 1:0);
-            int nextPage = pageIndex+1;
-            int backPage = pageIndex-1;
-            List<Product>listP = shopDAO.getAllProductPresentationPaging(pageIndex, pageSize);
-            request.setAttribute("listP", listP);
-            request.setAttribute("maxPage", maxPage);
-            request.setAttribute("nextPage", nextPage);
-            request.setAttribute("backPage", backPage);
-            request.setAttribute("pageIndex", pageIndex);
-            request.setAttribute("total", totalRow);
-        }
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -102,7 +73,41 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        FeedBackDAO f = new FeedBackDAO();
+        HttpSession session = request.getSession();
+        String id_raw = request.getParameter("id");
+        String sid_raw = request.getParameter("sid");
+        String gid_raw = request.getParameter("gid");
+        String note = request.getParameter("review");
+        String rating_raw = request.getParameter("rating");
+        User userNow = (User) session.getAttribute("userNow");
+        int id = Integer.parseInt(id_raw);
+        int rating;
+        int value = f.checkF(userNow.getId(), id).size();
+        int flag = f.checkOrder(userNow.getId(), id).size();
+        if (value < flag) {
+            if (userNow != null) {
+                try {
+                    int sid = Integer.parseInt(sid_raw);
+                    int gid = Integer.parseInt(gid_raw);
+                    ProductDAO dao = new ProductDAO();
+                    Product p = dao.getProductByID(id);
+                    rating = Integer.parseInt(rating_raw);
+                    FeedBackDAO fb = new FeedBackDAO();
+                    fb.insertFeedback(userNow, p, note, rating);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                session.removeAttribute("note");
+                response.sendRedirect("pdetail?id=" + id_raw + "&sid=" + sid_raw + "&gid=" + gid_raw);
+            } else {
+                 session.removeAttribute("note");
+                response.sendRedirect("login");
+            }
+        } else {
+            session.setAttribute("note", "Mua hàng trước khi đánh giá !!!");
+            response.sendRedirect("pdetail?id=" + id_raw + "&sid=" + sid_raw + "&gid=" + gid_raw);
+        }
     }
 
     /** 

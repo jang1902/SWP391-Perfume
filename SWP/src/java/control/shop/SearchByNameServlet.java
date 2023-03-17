@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.shop;
+package control.shop;
 
 import dal.CategoryDAO;
 import dal.GenderDAO;
@@ -22,7 +22,7 @@ import model.Product;
  * @author canduykhanh
  */
 @WebServlet(name = "SearchController", urlPatterns = {"/search"})
-public class SearchController extends HttpServlet {
+public class SearchByNameServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,18 +73,20 @@ public class SearchController extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println("Error parse indexpage");
         }
-        String txtSearch = request.getParameter("txtSearch");
-        int isSearch = 0;
-        if(txtSearch!=null && !txtSearch.equals("")){
-            isSearch =1;
-        }
+        String txtSearch_raw = request.getParameter("txtSearch");
+        String txtSearch = txtSearch_raw.replaceAll("\\s+", " ");
+        txtSearch = txtSearch.trim();
+//        int isSearch = 0;
+//        if(txtSearch!=null && !txtSearch.equals("")){
+//            isSearch =1;
+//        }
         int pageSize = 9;
         int totalRow = shopDAO.countAllProductBySearchTitle(txtSearch);
         int maxPage = 0;
         if (totalRow == 0) {
             request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
         } else {
-            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
+            //Tìm xem có bao nhiêu trang  : 13/9 =1  +1 =2
             maxPage = totalRow / pageSize + (totalRow % pageSize > 0 ? 1 : 0);
             int nextPage = pageIndex + 1;
             int backPage = pageIndex - 1;
@@ -96,7 +98,7 @@ public class SearchController extends HttpServlet {
             request.setAttribute("pageIndex", pageIndex);
             request.setAttribute("total", totalRow);
         }
-        request.setAttribute("isSearch", isSearch);
+        //request.setAttribute("isSearch", isSearch);
         request.setAttribute("txtSearch", txtSearch);
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
