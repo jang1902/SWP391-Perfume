@@ -11,12 +11,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/header_footer.css">
-    <link rel="stylesheet" href="../assets/css/profile_info.css">
-    <link rel="stylesheet" href="../assets/css/order_info.css">
+    <link rel="stylesheet" href="./assets/css/header_footer.css">
+    <link rel="stylesheet" href="./assets/css/profile_info.css">
+    <link rel="stylesheet" href="./assets/css/order_info.css">
     <script type="text/javascript" language="javascript" src="../main.js"></script>
-    <link rel="stylesheet" href="../assets/font/fontawesome-free-6.1.1/css/all.min.css">
-    <link rel="icon" href="../assets/img/small_logo1.png">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
+    <link rel="icon" href="./assets/img/small_logo1.png">
     <title>BOT STORE</title>
 </head>
 <body>

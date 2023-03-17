@@ -54,6 +54,22 @@ public class Order {
         this.total_money = total_money;
     }
 
+    public int getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(int address_id) {
+        this.address_id = address_id;
+    }
+
+    public Order(int address_id) {
+        this.address_id = address_id;
+    }
+
+    public Order() {
+    }
+
+    
     public int getId() {
         return id;
     }

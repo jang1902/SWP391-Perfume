@@ -6,9 +6,8 @@
 package controller;
 
 import dal.AddressDAO;
-import dal.CartDAO;
-import dal.ProductDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -19,17 +18,15 @@ import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Address_Detail;
 import model.Cart;
-import model.Discount;
 import model.Item;
-import model.SizeProduct;
 import model.User;
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(name="CartServlet", urlPatterns={"/cart"})
-public class CartServlet extends HttpServlet {
+@WebServlet(name="QuickAddAddressServlet", urlPatterns={"/quickaddaddress"})
+public class QuickAddAddressServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,40 +38,19 @@ public class CartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Cookie[] arr=request.getCookies();
-       ProductDAO pdao=new ProductDAO();
-        String txt="";
-        if(arr!=null){
-            for (Cookie o:arr) {
-                if(o.getName().equals("cart"))
-                txt+=o.getValue();
-            }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet QuickAddAddressServlet</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet QuickAddAddressServlet at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        CartDAO cdao=new CartDAO();
-        AddressDAO adao=new AddressDAO();
-        HttpSession session=request.getSession();
-        
-        List<Discount> ld=cdao.getAllDiscount();
-         User a= (User) request.getSession().getAttribute("userNow");
-         Address_Detail ad=adao.getDefaultAddress(a.getId());
-        Cart cart=new Cart(txt,a);
-        List<Item> listItem= cart.getItems();
-        int n;
-        
-        if(listItem!=null){
-            n=listItem.size();
-        }else{
-            n=0;
-        }
-        
-        session.setAttribute("ad", ad);
-        request.setAttribute("ld", ld);
-        request.setAttribute("totalQuan", n);
-        request.setAttribute("listItem", listItem);
-        request.setAttribute("cart", cart);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
     } 
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -100,7 +76,26 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("userNow");
+        AddressDAO dao = new AddressDAO();
+        String city = request.getParameter("city");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        String detail = request.getParameter("detail_address");
+        Address_Detail address=dao.getDefaultAddress(user.getId());
+        if(address==null){
+            Address_Detail ad=new Address_Detail(user.getId(), city, district, ward, detail,1 );
+            dao.addAddress(ad);
+            session.setAttribute("ad", ad);
+            
+        }else{
+             dao.addAddress(new Address_Detail(user.getId(), city, district, ward, detail,0 ));
+        }
+
+        response.sendRedirect("checkout");
+
     }
 
     /** 

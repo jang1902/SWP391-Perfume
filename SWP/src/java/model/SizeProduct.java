@@ -11,7 +11,6 @@ public class SizeProduct {
     int quantity;
     int price_in;
     int price_out;
-   
     public SizeProduct(int pid, int sid, int quantity, int price_in, int price_out) {
         this.pid = pid;
         this.sid = sid;
@@ -21,6 +20,9 @@ public class SizeProduct {
         
     }
 
+
+    public SizeProduct() {
+    }
 
     public SizeProduct() {
     }

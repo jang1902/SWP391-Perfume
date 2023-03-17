@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.util.Calendar;
+import java.util.List;
 import model.Cart;
+import model.Discount;
 import model.Item;
 import model.Order;
 import model.User;
@@ -20,11 +22,11 @@ import model.User;
  */
 public class OrderDAO extends DBContext {
 
-    public void addOrder(User u, int address_id, Cart cart) {
+    public void addOrder(User u, int address_id, Cart cart, String note,List<Discount> ld) {
         java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
         try {
-            String sql = "insert into [orders] values(?,?,?,?,?,?,null,?,2,?)";
+            String sql = "insert into [orders] values(?,?,?,?,?,?,?,?,1,?)";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, u.getId());
             st.setString(2, u.getFirstname());
@@ -32,8 +34,9 @@ public class OrderDAO extends DBContext {
             st.setString(4, u.getEmail());
             st.setString(5, u.getPhone_number());
             st.setInt(6, address_id);
-            st.setDate(7, (Date) curDate);
-            st.setDouble(8, cart.getTotalMoney());
+            st.setString(7, note);
+            st.setDate(8, (Date) curDate);
+            st.setDouble(9, cart.getTotalMoney(ld));
             st.executeUpdate();
 
             String sql2 = "select top 1 id from orders order by id  desc";
@@ -47,10 +50,10 @@ public class OrderDAO extends DBContext {
                     st.setInt(1, order_id);
                     st.setInt(2, i.getProduct().getId());
                     st.setInt(3, i.getSizeproduct().getSid());
-                    st.setInt(4, i.getSizeproduct().getPrice_out());
+                    st.setDouble(4, cart.getExactItemMoneyOut(i, ld));
                     st.setInt(5, i.getQuantity());
-                    st.setDouble(6, cart.getTotalMoney());
-                    st.setDouble(7, cart.getTotalMoney());
+                    st.setDouble(6, i.getQuantity()*i.getSizeproduct().getPrice_in());
+                    st.setDouble(7, cart.getExactItemMoneyOut(i, ld)*i.getQuantity());
                     st.executeUpdate();
                 }
                 String sql4 = "update SizeProduct set quantity=quantity-? where pid=? AND sid=?";
@@ -65,23 +68,6 @@ public class OrderDAO extends DBContext {
             }
         } catch (Exception e) {
         }
-    }
-
-    public int getSumTotalMoney(int userid) {
-        int sum = 0;
-        String sql = "select sum(total_money) from Orders\n"
-                + "where user_id = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, userid);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                sum = rs.getInt(1);
-            }
-        } catch (Exception e) {
-
-        }
-        return sum;
     }
     
     public Order getLastOrder(){
@@ -108,6 +94,23 @@ public class OrderDAO extends DBContext {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    public int getSumTotalMoney(int userid) {
+        int sum = 0;
+        String sql = "select sum(total_money) from Orders\n"
+                + "where user_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, userid);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                sum = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return sum;
     }
 
 }

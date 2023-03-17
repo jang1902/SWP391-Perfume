@@ -100,16 +100,16 @@
     display: flex;
     flex-direction: column;
     margin-left: 20px;
-    height: 70px;
+    height: 50px;
     /* justify-content: space-between; */
 }
 .oders_info-product-child{
     display: flex;
     align-items: center;
-    width: 320px;
+    width: 500px;
 }
 .product-name-title{
-    font-size: 22px;
+    font-size: 20px;
     /* margin-bottom: 10px; */
 }
 .review{
@@ -121,7 +121,7 @@
     font-size: 16px;
 }
 .description{
-    color: gray;
+    color: black;
 }
 .biling{
     display: flex;

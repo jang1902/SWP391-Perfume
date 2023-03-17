@@ -2,15 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package control.home;
+package controller.shop;
 
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
-package control.crud;
-
-import dal.CrudDAO;
-========
-import dal.HomeDAO;
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
+import dal.CategoryDAO;
+import dal.GenderDAO;
+import dal.ShopDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,32 +15,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Category;
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
-import model.Gender;
-========
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
 import model.Product;
 
 /**
  *
- * @author hp
+ * @author canduykhanh
  */
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
-@WebServlet(name="SortGenServlet", urlPatterns={"/sortgen"})
-public class SortGenServlet extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-========
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "SearchController", urlPatterns = {"/search"})
+public class SearchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -58,17 +41,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
-            out.println("<title>Servlet SortGenServlet</title>");  
+            out.println("<title>Servlet SearchController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SortGenServlet at " + request.getContextPath () + "</h1>");
-========
-            out.println("<title>Servlet ProductServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductServlet at " + request.getContextPath() + "</h1>");
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
+            out.println("<h1>Servlet SearchController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -85,44 +61,45 @@ public class HomeServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortGenServlet.java
-    throws ServletException, IOException {
-        
-        String id_raw = request.getParameter("gen");
-        int id = Integer.parseInt(id_raw);
-        request.setAttribute("gen", id);
-        CrudDAO crud = new CrudDAO();
-        
-        List<Product> allp = crud.getProductByGid(id);
-        request.setAttribute("allp", allp);    
-        
-        List<Category> allc = crud.getAllCategory();
-        request.setAttribute("allc", allc);
-        
-        List<Gender> allg = crud.getAllGender();
-        request.setAttribute("allg", allg);
-        
-        
-        
-        request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
-    } 
-========
             throws ServletException, IOException {
-
-        HomeDAO d = new HomeDAO();
-
-        List<Product> pBestSeller = d.getProductBestSeller();
-        request.setAttribute("pBestSeller", pBestSeller);
-
-        List<Product> pDiscount = d.getProductDiscount();
-        request.setAttribute("pDiscount", pDiscount);
-
-        List<Product> pNew = d.getProductNew();
-        request.setAttribute("pNew", pNew);
-
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        ShopDAO shopDAO = new ShopDAO();
+        CategoryDAO categoryDAO = new CategoryDAO();
+        GenderDAO genderDAO = new GenderDAO();
+        request.setCharacterEncoding("UTF-8");
+        int pageIndex = 1;
+        String indexPage = request.getParameter("pageIndex");
+        try {
+            pageIndex = Integer.parseInt(indexPage);
+        } catch (NumberFormatException e) {
+            System.out.println("Error parse indexpage");
+        }
+        String txtSearch = request.getParameter("txtSearch");
+        int isSearch = 0;
+        if(txtSearch!=null && !txtSearch.equals("")){
+            isSearch =1;
+        }
+        int pageSize = 9;
+        int totalRow = shopDAO.countAllProductBySearchTitle(txtSearch);
+        int maxPage = 0;
+        if (totalRow == 0) {
+            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
+        } else {
+            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
+            maxPage = totalRow / pageSize + (totalRow % pageSize > 0 ? 1 : 0);
+            int nextPage = pageIndex + 1;
+            int backPage = pageIndex - 1;
+            List<Product> listP = shopDAO.getAllProductPresentationPagingBySeachTitle(txtSearch, pageIndex, pageSize);
+            request.setAttribute("listP", listP);
+            request.setAttribute("maxPage", maxPage);
+            request.setAttribute("nextPage", nextPage);
+            request.setAttribute("backPage", backPage);
+            request.setAttribute("pageIndex", pageIndex);
+            request.setAttribute("total", totalRow);
+        }
+        request.setAttribute("isSearch", isSearch);
+        request.setAttribute("txtSearch", txtSearch);
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
->>>>>>>> Jang:SWP/src/java/control/home/HomeServlet.java
 
     /**
      * Handles the HTTP <code>POST</code> method.

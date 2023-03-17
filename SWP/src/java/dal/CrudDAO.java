@@ -735,7 +735,6 @@ public class CrudDAO extends DBContext {
             if (rs.next()) {
                 Product c = new Product();
                 c.setId(rs.getInt("id"));
-
                 return c;
             }
 
