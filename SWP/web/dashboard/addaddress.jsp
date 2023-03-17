@@ -154,7 +154,7 @@
                                                     <li class="sidebar-item">
                                                         <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
                                                     </li>
-                                                    
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -261,35 +261,14 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <script>
-                                                        function getCity() {
-                                                            var selectElement = document.getElementById("cityId");
-                                                            var selectedValue = selectElement.value;
-                                                            localStorage.setItem("selectedValue", selectedValue);
-                                                            window.location.href = "addaddress?cityId=${requestScope.cityId}";
-                                                        }
-                                                        function getDistrict() {
-                                                            var selectElement = document.getElementById("districtId");
-                                                            var selectedValue = selectElement.value;
-                                                            localStorage.setItem("selectedValue", selectedValue);
-                                                            window.location.href = "addaddress?cityId=1&districtId=1";
-                                                        }
-                                                        function getWard() {
-                                                            var selectElement = document.getElementById("wardId");
-                                                            var selectedValue = selectElement.value;
-                                                            localStorage.setItem("selectedValue", selectedValue);
-                                                            window.location.href = "addaddress?cityId=1&districtId=1&wardId=1";
-                                                        }
-                                                    </script>
+
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Tỉnh</label>
                                                         <select class="form-control bg-input border-0 select-multiple" name="city"
-                                                                id="cityId"  data-style="form-control w-100 border rounded" onchange="getCity()">
-                                                            
-                                                            <c:forEach items="${requestScope.listCity}" var="lC">
-                                                                
+                                                                id="cityId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
 
-                                                                <option value="${lC.name}"">
+                                                            <c:forEach items="${requestScope.listCity}" var="lC">
+                                                                <option value="addaddress?cityId=${lC.id}">
                                                                     ${lC.name}
                                                                 </option>
                                                             </c:forEach>
@@ -299,22 +278,22 @@
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Thành phố, huyện</label>
                                                         <select class="form-control bg-input border-0 select-multiple" name="district" 
-                                                                id="districtId"  data-style="form-control w-100 border rounded" onchange="getDistrict()">
+                                                                id="districtId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
                                                             <c:forEach items="${requestScope.listDistrict}" var="lD">
-                                                                <option value="${lD.name}">${lD.name}</option>
+                                                                <option value="addaddress?cityId=${requestScope.cityId}&districtId=${lD.id}">
+                                                                    ${lD.name}
+                                                                </option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
-
-
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-4 mb-3">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Quận, phường, thị trấn, thị xã</label>
                                                         <select class="form-control bg-input border-0 select-multiple" name="ward"
-                                                                id="wardId"  data-style="form-control w-100 border rounded" onchange="getWard()">
+                                                                id="wardId"  data-style="form-control w-100 border rounded" onchange="location = this.value">
                                                             <c:forEach items="${requestScope.listWard}" var="lW">
-                                                                <option value="${lW.name}">${lW.name}</option>
+                                                                <option value="addaddress?cityId=${requestScope.cityId}&districtId=${requestScope.districtId}&wardId=${lW.id}">${lW.name}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
@@ -329,7 +308,10 @@
 
                                                     <div class="col-md-8">
                                                         <label for="product_color" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase"></label>
-                                                        <input type="text" readonly="" required="" placeholder="${requestScope.curCity.name}-${requestScope.curDistrict.name}-${requestScope.curWard.name} " name="detail" class="form-control bg-input border-0" id="product_color">
+                                                        <input type="text" readonly="" required="" placeholder="${requestScope.curCity.name}-${requestScope.curDistrict.name}-${requestScope.curWard.name} "  class="form-control bg-input border-0" id="product_color">
+                                                        <input type="hidden" value="${requestScope.curCity.name}" name="finalcity">
+                                                        <input type="hidden" value="${requestScope.curDistrict.name}" name="finaldistrict">
+                                                        <input type="hidden" value="${requestScope.curWard.name}" name="finalward">
                                                     </div>
                                                 </div>
                                             </div>

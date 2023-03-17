@@ -318,7 +318,6 @@
                                                         <p class="mb-1">
                                                             Trạng thái: ${od.order.status.name}<br>
                                                             Ghi chú: ${od.order.note}<br>
-
                                                         </p>
 
                                                     </div>
@@ -362,7 +361,7 @@
                                                             <c:forEach items="${requestScope.listOD}" var="lOD">
                                                                 <tr>
                                                                     <td>
-                                                                        <a href="./product-detail-01.html" class="media align-items-center">
+                                                                        <a href="pdetail?id=${lOD.product.id}&sid=${lOD.size.id}&gid=${lOD.product.gender.id}" class="media align-items-center">
                                                                             <div class="w-60px mr-4">
                                                                                 <img src="${lOD.product.thumbnail}" alt="Flowers cotton dress">
                                                                             </div>

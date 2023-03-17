@@ -301,7 +301,7 @@
                                             <div class="card-body p-4">
                                                 <div>
                                                     <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Ảnh đại diện</label>
-                                                    <input class="form-control bg-input border-0" name="image" type="file">
+                                                    <input required="" class="form-control bg-input border-0" name="image" type="file">
                                                 </div>
                                             </div>
                                         </div>

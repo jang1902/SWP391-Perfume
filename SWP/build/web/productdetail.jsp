@@ -282,7 +282,7 @@
                                     <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out * ((100 - p.discount.value) / 100)}"></fmt:formatNumber>₫</span>
                                     <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out}"></fmt:formatNumber>₫</span>
                                 </c:if>
-                                <c:set value="${param.quantity}" var="quan"/>
+                                <%--<c:set value="${param.quantity}" var="quan"/>--%>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" id="minus" onclick="minus()" class="qty-btn">
                                     <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="quantity"  name="quantity" value="1" class="quantity-selector">
@@ -297,7 +297,7 @@
                                     <button class="info_producst-right-add info_products-right-item" " >HẾT HÀNG</button>
                                 </div>
                             </c:if>
-                            <c:if test="${pd.quantity>0  }">
+                            <c:if test="${pd.quantity>0 }">
                                 <form action="" method="post" name="fo">
                                     <div  style="margin-top: 70px">
                                         <button class="info_producst-right-add info_products-right-item" onclick="add('${param.id}', '${param.sid}')" >Thêm vào giỏ</button>
@@ -611,8 +611,8 @@
             function add(id, size) {
                 var q ;
                 var quan = document.getElementById("quantity").value;
-                if (q <= ${pd.quantity}) {
-                    q =quan;
+                if (quan <= ${pd.quantity}) {
+                    q = quan ;
                 } else {
                     q = ${pd.quantity};
                 }

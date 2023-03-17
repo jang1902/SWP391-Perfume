@@ -74,7 +74,6 @@ public class AddAddress extends HttpServlet {
             int cityId = Integer.parseInt(cityId_raw);
             TinhThanhPho city = d.getCity(cityId);
             List<QuanHuyen> q = d.getAllDistrict(cityId);
-            
             request.setAttribute("curCity", city);
             request.setAttribute("listDistrict", q);
         } else {
@@ -87,11 +86,13 @@ public class AddAddress extends HttpServlet {
             int districtId = Integer.parseInt(districtId_raw);
             QuanHuyen district = d.getDistrict(districtId);
             List<XaPhuong> x = d.getAllWard(districtId);
+            request.setAttribute("districtId", districtId);
             request.setAttribute("curDistrict", district);
             request.setAttribute("listWard", x);
         } else {
-            int districtId = 1;
-            List<XaPhuong> x = d.getAllWard(districtId);
+            
+            request.setAttribute("districtId", 1);
+            List<XaPhuong> x = d.getAllWard(1);
             request.setAttribute("listWard", x);
         }
         
@@ -99,9 +100,10 @@ public class AddAddress extends HttpServlet {
             int wardId = Integer.parseInt(wardId_raw);
             XaPhuong ward = d.getWard(wardId);
             request.setAttribute("curWard", ward);
+            
         }
         else{
-            
+            request.setAttribute("wardId", 1); 
         }
 
         List<TinhThanhPho> t = d.getAllCity();
@@ -122,9 +124,9 @@ public class AddAddress extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String city = request.getParameter("city");
-        String district = request.getParameter("district");
-        String ward = request.getParameter("ward");
+        String city = request.getParameter("finalcity");
+        String district = request.getParameter("finaldistrict");
+        String ward = request.getParameter("finalward");
         String detail = request.getParameter("detail");
         DashboardDAO d = new DashboardDAO();
         User lastest = d.getLastestUser();
@@ -135,7 +137,7 @@ public class AddAddress extends HttpServlet {
             //uid, city, district, ward, detail, status
             Address_Detail ad = new Address_Detail(lastest.getId(), city, district, ward, detail, 1);
             d.addAddress(ad);
-            response.sendRedirect("dashboard");
+            response.sendRedirect("showprofile?id="+lastest.getId());
 
         } catch (NumberFormatException e) {
             System.out.println(e);

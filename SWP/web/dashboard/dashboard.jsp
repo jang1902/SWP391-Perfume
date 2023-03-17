@@ -3,6 +3,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="org.apache.poi.ss.usermodel.*" %>
+<%@ page import="org.apache.poi.xssf.usermodel.*" %>
 
 
 <!doctype html>
@@ -228,9 +230,30 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <h2 class="fs-24 mb-0">Trang tổng quát</h2>
                                     <p class="mb-0">Thống kê dữ liệu về doanh nghiệp</p>
+                                    <div class="">
+                                        <select class="form-control bg-input border-0" onchange="location = this.value">
+                                            <option value="dashboard">Chọn năm</option>
+                                            <c:forEach items="${requestScope.allyear}" var="year">
+                                                <option value="dashboard?year=${year.order_date.getYear()+1900}">${year.order_date.getYear()+1900}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
+
+                                <c:if test="${param.year == null}">
+                                    <c:set var="getYear" value="2023" />
+                                </c:if>
+                                <c:if test="${param.year!=null}">
+                                    <c:set value="${param.year}" var="getYear"/>
+                                </c:if>
+
+
+
                                 <div class="col-sm-6 text-sm-right">
-                                    <a href="#" class="btn btn-primary"><i class="fal fa-file-plus"></i><span class="d-inline-block ml-1">Tạo bản báo cáo</span>
+                                    <a href="export?year=${getYear}" class="btn btn-primary"><i class="fal fa-file-plus"></i>
+                                        <span class="d-inline-block ml-1">
+                                            Tạo bản báo cáo chi tiết
+                                        </span>
                                     </a>
                                 </div>
                             </div>
@@ -266,7 +289,7 @@
                                                     <div class="media-body">
                                                         <h6 class="mb-1 card-title fs-16">Tổng đơn hàng</h6>
                                                         <span class="fs-24 d-block font-weight-500 text-primary lh-12">${requestScope.totalorders} đơn</span>
-                                                    <span class="fs-14">Không bao gồm đơn hàng đang vận chuyển.</span>
+                                                    <span class="fs-14">Chỉ tính những đơn hàng giao thành công.</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -302,7 +325,7 @@
                                                 <div class="media-body">
                                                     <h6 class="mb-1 card-title fs-16">Thu nhập hàng tháng</h6>
                                                     <span class="fs-24 d-block font-weight-500 text-primary lh-12"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.avgMoney}"></fmt:formatNumber> VND</span>
-                                                    <span class="fs-14">Năm 2023</span>
+                                                    <span class="fs-14">Năm ${getYear}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,29 +335,29 @@
                             <div class="row">
                                 <div class="col-xl-8">
                                     <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Doanh thu của năm 2023
-                                            
+                                        <h5 class="card-title fs-16 mb-3">Doanh thu của năm ${getYear}
+
                                             <%--<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop"><c:if test="${rbm.order.total_money !=null}">${rbm.order.total_money}</c:if><c:if test="${rbm.order.total_money ==null}">0</c:if> <c:if test="${loop.count!=12}">, </c:if></c:forEach>--%>
                                         </h5>
                                         <div class="card-body p-0">
                                             <canvas id="mychart" class="chartjs" data-chart-type="line" 
                                                     data-chart-labels='["1","2","3","4","5","6","7","8","9","10","11","12"]' 
                                                     data-chart-options='{"elements":{"line":{"tension":0.3}},"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' 
-                                                    data-chart-datasets='[{"label":"Doanh thu","data":[<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop"><c:if test="${rbm.order.total_money !=null}">${rbm.order.total_money}</c:if><c:if test="${rbm.order.total_money ==null}">0</c:if> <c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#2C78DC33","hoverBackgroundColor":"#2C78DC33","borderColor":"#2C78DC","hoverBorderColor":"#2C78DC","borderWidth":1,"fill":true},
+                                                    data-chart-datasets='[{"label":"Doanh thu","data":[<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop">${rbm.order.total_money}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#2C78DC33","hoverBackgroundColor":"#2C78DC33","borderColor":"#2C78DC","hoverBorderColor":"#2C78DC","borderWidth":1,"fill":true},
                                                     {"label":"Đơn hàng","data":[<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop">${rbm.order.id}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#04D18233","hoverBackgroundColor":"#04D18233","borderColor":"#04D182","hoverBorderColor":"#04D182","borderWidth":1,"fill":true},
                                                     {"label":"Sản phẩm","data":[<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop">${rbm.num}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#EF287830","hoverBackgroundColor":"#EF287830","borderColor":"#EF287391","hoverBorderColor":"#EF287391","borderWidth":1,"fill":true}]' 
-                                                    data-chart-additional-options='{"chatId":"mychart"}' 
-                                                    height="265">
+                                                            data-chart-additional-options='{"chatId":"mychart"}' 
+                                                            height="265">
 
-                                            </canvas>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="card mb-4 rounded-xl">
-                                                <div class="card-body">
-                                                    <h5 class="card-title fs-16 mb-3">Người dùng mới</h5>
-                                                    <div class="new-member-list">
+                                                        </canvas>
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="card mb-4 rounded-xl">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title fs-16 mb-3">Người dùng mới</h5>
+                                                            <div class="new-member-list">
                                                         <c:forEach items="${requestScope.newestUser}" var="nu">
                                                             <div class="d-flex align-items-center justify-content-between mb-6">
                                                                 <div class="media">
@@ -357,14 +380,17 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Doanh thu theo tháng hiện tại</h5>
-                                        
+                                        <h5 class="card-title fs-16 mb-3">Lợi nhuận thu về trong năm ${getYear}</h5>
+
                                         <div class="card-body p-0">
                                             <canvas id="mychart01" class="chartjs" 
                                                     data-chart-type="bar" 
-                                                    data-chart-labels='["900","1200","1400","1600"]' 
+                                                    data-chart-labels='["1","2","3","4","5","6","7","8","9","10","11","12"]' 
                                                     data-chart-options='{"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' 
-                                                    data-chart-datasets='[{"label":"US","data":[233,321,783,900],"backgroundColor":"#5897FB","hoverBackgroundColor":"#5897FB","borderColor":"#5897FB","hoverBorderColor":"#5897FB","borderWidth":1,"fill":true},{"label":"Europe","data":[408,547,675,734],"backgroundColor":"#7BCF86","hoverBackgroundColor":"#7BCF86","borderColor":"#7BCF86","hoverBorderColor":"#7BCF86","borderWidth":1,"fill":true},{"label":"Asian","data":[208,447,575,634],"backgroundColor":"#FF9076","hoverBackgroundColor":"#FF9076","borderColor":"#FF9076","hoverBorderColor":"#FF9076","borderWidth":1,"fill":true},{"label":"Africa","data":[123,345,122,302],"backgroundColor":"#D595E5","hoverBackgroundColor":"#D595E5","borderColor":"#D595E5","hoverBorderColor":"#D595E5","borderWidth":"1","fill":true}]' 
+                                                    data-chart-datasets='[
+                                                    {"label":"Giá nhập vào","data":[<c:forEach items="${requestScope.profit}" var="prf" varStatus="loop">${prf.total_money_in}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#5897FB","hoverBackgroundColor":"#5897FB","borderColor":"#5897FB","hoverBorderColor":"#5897FB","borderWidth":1,"fill":true},
+                                                    {"label":"Giá bán ra","data":[<c:forEach items="${requestScope.profit}" var="prf" varStatus="loop">${prf.total_money_out}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#7BCF86","hoverBackgroundColor":"#7BCF86","borderColor":"#7BCF86","hoverBorderColor":"#7BCF86","borderWidth":1,"fill":true},
+                                                    {"label":"Tiền lãi","data":[<c:forEach items="${requestScope.profit}" var="prf" varStatus="loop">${prf.price}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#FF9076","hoverBackgroundColor":"#FF9076","borderColor":"#FF9076","hoverBorderColor":"#FF9076","borderWidth":1,"fill":true}]' 
                                                     data-chart-additional-options='{"chatId":"mychart01"}' 
                                                     height="222">
 

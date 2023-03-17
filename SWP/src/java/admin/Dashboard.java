@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
 import model.Order;
+import model.OrderDetail;
 import model.Product;
 import model.User;
 
@@ -65,32 +66,69 @@ public class Dashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String year_raw = request.getParameter("year");
+        int year;
+        if (year_raw != null) {
+            year = Integer.parseInt(year_raw);
+        } else {
+            year = 2023;
+        }
+
         DashboardDAO dd = new DashboardDAO();
         ProductDAO pd = new ProductDAO();
         CategoryDAO cd = new CategoryDAO();
         List<User> u = dd.getNewestUser();
-        List<Order> o = dd.getAllOrder();
+        List<Order> o = dd.getAllSuccessOrder(year);
         List<Product> p = pd.getAllProduct();
         List<Category> c = cd.getAllCategory();
-        int totalmoney = 0, totalorders = 0, totalproducts = 0, totalcates = 0;
+        List<Order> allyear = dd.getAllYear();
+
+        int  totalorders = 0, totalproducts = 0, totalcates = 0;
         for (Order order : o) {
-            totalmoney += order.getTotal_money();
             totalorders += 1;
+
         }
         for (Product product : p) {
             totalproducts += 1;
         }
         for (Category category : c) {
-            totalcates +=1;
+            totalcates += 1;
         }
-        
-        request.setAttribute("revenueByMonth", dd.getRevenueByEachMonth());
-        request.setAttribute("totalmoney", totalmoney);
-        request.setAttribute("avgMoney", totalmoney/12);
+        List<OrderDetail> od;
+
+        if (year_raw != null) {
+            int totalmoney = 0 ;
+            od = dd.getRevenueByEachMonth(year);
+            for (OrderDetail orderDetail : od) {
+                totalmoney += orderDetail.getOrder().getTotal_money();
+            }
+            request.setAttribute("totalmoney", totalmoney);
+            request.setAttribute("avgMoney", totalmoney / 12);
+            request.setAttribute("revenueByMonth", od);
+        } else {
+            int totalmoney = 0;
+            od = dd.getRevenueByEachMonth(2023);
+            for (OrderDetail orderDetail : od) {
+                totalmoney += orderDetail.getOrder().getTotal_money();
+            }
+            request.setAttribute("totalmoney", totalmoney);
+            request.setAttribute("avgMoney", totalmoney / 12);
+            request.setAttribute("revenueByMonth", od);
+        }
+        List<OrderDetail> od2;
+        if (year_raw != null) {
+            od2 = dd.getProfitEachMonth(year);
+            request.setAttribute("profit", od2);
+        } else {
+            request.setAttribute("profit", dd.getProfitEachMonth(2023));
+        }
+
         request.setAttribute("totalorders", totalorders);
         request.setAttribute("totalProducts", totalproducts);
         request.setAttribute("totalCates", totalcates);
         request.setAttribute("newestUser", u);
+        request.setAttribute("allyear", allyear);
+        request.setAttribute("year", year);
         request.getRequestDispatcher("dashboard/dashboard.jsp").forward(request, response);
     }
 
