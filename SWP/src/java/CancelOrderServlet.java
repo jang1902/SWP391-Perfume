@@ -2,25 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
 
+import dal.OrderDAO;
+import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
-import model.User;
+import model.Order;
+import model.Status;
 
 /**
  *
  * @author dell
  */
-@WebServlet(name = "ChangeProfileServlet", urlPatterns = {"/changeProfile"})
-public class ChangeProfileServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/cancelOrder"})
+public class CancelOrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class ChangeProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangeProfileServlet</title>");
+            out.println("<title>Servlet CancelOrderServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangeProfileServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CancelOrderServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +59,17 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mes = (String)request.getAttribute("mesAva");
-        request.setAttribute("mesAva", mes);
-        request.getRequestDispatcher("changeprofile.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        OrderDAO odao = new OrderDAO();
+        try {
+            int oid = Integer.parseInt(id);
+            Order order = odao.getOrderById(oid);
+            order.setStatus(odao.getStatusById(4));
+            order.setStatus_id(4);
+            odao.updateStatusOrder(oid, 4);
+            request.getRequestDispatcher("myOrder").forward(request, response);
+        } catch (Exception e) {
+        }
     }
 
     /**

@@ -11,6 +11,7 @@ import java.util.Date;
  * @author canduykhanh
  */
 public class Order {
+
     /*
     [id] int PRIMARY KEY IDENTITY(1, 1),
   [user_id] int,
@@ -23,8 +24,7 @@ public class Order {
   [order_date] datetime,
   [status_id] int,
   [total_money] int
-    */
-    
+     */
     private int id;
     private int user_id;
     private String firstname;
@@ -36,8 +36,41 @@ public class Order {
     private Date order_date;
     private int status_id;
     private int total_money;
+    private Status status;
+    private Address_Detail address;
 
     public Order() {
+    }
+
+    public Order(int id, int user_id, String firstname, String lastname, String email, String phone_number, int address_id, String note, Date order_date, int status_id, int total_money, Status status) {
+        this.id = id;
+        this.user_id = user_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.address_id = address_id;
+        this.note = note;
+        this.order_date = order_date;
+        this.status_id = status_id;
+        this.total_money = total_money;
+        this.status = status;
+    }
+
+    public Order(int id, int user_id, String firstname, String lastname, String email, String phone_number, int address_id, String note, Date order_date, int status_id, int total_money, Status status, Address_Detail address) {
+        this.id = id;
+        this.user_id = user_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.address_id = address_id;
+        this.note = note;
+        this.order_date = order_date;
+        this.status_id = status_id;
+        this.total_money = total_money;
+        this.status = status;
+        this.address = address;
     }
 
     public Order(int id, int user_id, String firstname, String lastname, String email, String phone_number, int address_id, String note, Date order_date, int status_id, int total_money) {
@@ -114,7 +147,15 @@ public class Order {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
-    
+
+    public int getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(int address_id) {
+        this.address_id = address_id;
+    }
+
     public String getNote() {
         return note;
     }
@@ -147,8 +188,19 @@ public class Order {
         this.total_money = total_money;
     }
 
-   
-    
-    
-           
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Address_Detail getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address_Detail address) {
+        this.address = address;
+    }
 }

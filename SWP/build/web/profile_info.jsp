@@ -8,6 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -76,17 +77,38 @@
                         </div>
                     </div>
                     <div class="login-cart">
-                        <a href="../src/login.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                        </a>
-                        <a href="../src/cart.html" class="login_cart-item-link">
-                            <div class="login-cart_item">
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </div>
-                        </a>
-                    </div>
+                    <c:if test="${sessionScope.userNow.role_id==null}">
+
+                    <a href="login" class="login_cart-item-link">
+                    <div class="login-cart_item">
+                    <i class="fa-solid fa-key"></i>
+                     </div>
+                    </a>      
+
+                    </c:if>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="profile" class="login_cart-item-link" >
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                    
+                    <a href="cart" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                    </a>
+                    <c:if test="${sessionScope.userNow.role_id!=null}">
+                    <a href="logout" class="login_cart-item-link">
+                        <div class="login-cart_item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </a>    
+
+                    </c:if>
+                </div>
                 </div>
                 <!-- end header mid top -->
                 <!-- header mid bot -->
@@ -186,52 +208,33 @@
                     <!-- body left top (dashboard)-->
                     <div class="body_left-dashboard">
                         <div class="body_left-dashboard_title">THÔNG TIN</div>
-                        <a href="./oder.html" class="body_left-dashboard_child">
+                        <a href="myOrder" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
                                 Đơn hàng
                             </div>
-                            <span>69</span>
+                            <span>${requestScope.sumOrder}</span>
                         </a>
-                        <a href="./favorite.html" class="body_left-dashboard_child">
-                            <div id="hover_icon">
-                                <i class="fa-solid fa-heart  dashboard_icon"></i>
-                                Yêu thích
-                            </div>
-                            <span>420</span>
-                        </a>
-                        <a href="./support.html" class="body_left-dashboard_child">
-                            <div id="hover_icon">
-                                <i class="fa-solid fa-headset  dashboard_icon"></i>
-                                Hỗ trợ
-                            </div>
-                            <span>1</span>
-                        </a>
+                        
                     </div>
                     <!-- body left bot (acc setting)-->
                     <div class="body_left-setting">
                         <div class="body_left-dashboard_title">TÀI KHOẢN</div>
-                        <a href="../src/profile_info.html" class="body_left-dashboard_child" id="current_page">
+                        <a href="profile" class="body_left-dashboard_child" id="current_page">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-user dashboard_icon"></i>
                                 Trang cá nhân
                             </div>
-                            <span>1</span>
+                            
                         </a>
-                        <a href="../src/address.html" class="body_left-dashboard_child">
+                        <a href="address" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-location-arrow dashboard_icon"></i>
                                 Địa chỉ
                             </div>
-                            <span>2</span>
+                            <span>${requestScope.sumAddress}</span>
                         </a>
-                        <a href="../src/thanh_toan.html" class="body_left-dashboard_child">
-                            <div id="hover_icon">
-                                <i class="fa-solid fa-credit-card dashboard_icon"></i>
-                                Phương thức thanh toán
-                            </div>
-                            <span>3</span>
-                        </a>
+                        
                     </div>
                 </div>
                 <!-- body right -->
@@ -243,25 +246,26 @@
                                 <i class="fa-solid fa-user body_right-title_icon"></i>
                                 <p id="body_right-title">Trang Cá Nhân</p>
                             </div>
-                            <a class="body_right-edit_button" href="changeprofile">
+                            <a class="body_right-edit_button" href="changeProfile">
                                 Sửa thông tin cá nhân
                             </a>
                         </div>
                         <!-- tên và trang thái -->
                         <div class="body_right-status">
                             <!-- avatar -->
+                            <c:set var="a" value="${sessionScope.userNow}"/>
                             <div class="body_right-status_avatar">
-                                <img src="./assets/img/frog (7).png" alt="con ech" id="body_right-status_avatar">
+                                <img src="${a.avatar}" alt="con ech" id="body_right-status_avatar">
                             </div>
                             <!-- name and crown -->
                             <div class="body_right-status_right">
                                 <!-- name -->
-                                <c:set var="a" value="${requestScope.userNow}"/>
+                                
                                 <div class="body_right-status_name">
                                     <div id="body_right-status_name">${a.username}</div>
                                     <div class="body_right-status_name-money">
                                         Đã chi tiêu:
-                                        <span id="body_right-status_name-money">${requestScope.sumMoney}$</span>
+                                        <span id="body_right-status_name-money"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.sumMoney}"></fmt:formatNumber>đ</span>
                                     </div>
 
                                     <c:choose>
@@ -298,7 +302,7 @@
                                         <c:choose>
                                             <c:when test="${requestScope.sumMoney < 1000000}">
                                                 <p id="body_right-status_crown-child">
-                                                    Hãy mua thêm ${lack}$ để lên thành viên bạc
+                                                    Hãy mua thêm <fmt:formatNumber type = "currency" pattern="###,###,###" value="${lack}"></fmt:formatNumber>đ để lên thành viên bạc
                                                 </p>
                                                 <div>
                                                     <progress style="width: 290px" min="0" max="1000000" value="${requestScope.sumMoney}">
@@ -337,24 +341,7 @@
                             </div>
                         </div>
                         <!-- lịch sử các đơn hàng -->
-                        <div class="body_right-history">
-                            <div class="body_right-history_child">
-                                <span class="body_right-history_child-number">267</span>
-                                <p>Đơn hàng đã mua</p>
-                            </div>
-                            <div class="body_right-history_child">
-                                <span class="body_right-history_child-number">6</span>
-                                <p>Đơn hàng đợi thanh toán</p>
-                            </div>
-                            <div class="body_right-history_child">
-                                <span class="body_right-history_child-number">2</span>
-                                <p>Đơn hàng đã huỷ</p>
-                            </div>
-                            <div class="body_right-history_child">
-                                <span class="body_right-history_child-number">10</span>
-                                <p>Đơn hàng đang giao</p>
-                            </div>
-                        </div>
+                        
                         <!-- thông tin cá nhân -->
                         <div class="body_right-info">
                             <div class="body_right-info_child">
@@ -365,7 +352,7 @@
                                 <c:choose>
                                     <c:when test = "${a.firstname == null}">
                                         <div class="body_right-info_child-text">
-                                            <a href="" style="text-decoration: none">Thêm thông tin</a>
+                                            <a href="changeProfile" style="text-decoration: none">Thêm thông tin</a>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
@@ -382,7 +369,7 @@
                                 <c:choose>
                                     <c:when test = "${a.lastname == null}">
                                         <div class="body_right-info_child-text">
-                                            <a href="" style="text-decoration: none">Thêm thông tin</a>
+                                            <a href="changeProfile" style="text-decoration: none">Thêm thông tin</a>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
@@ -408,7 +395,7 @@
                                 <c:choose>
                                     <c:when test="${a.phone_number == null}">
                                         <div class="body_right-info_child-text">
-                                            <a href="" style="text-decoration: none">Thêm thông tin</a>
+                                            <a href="changeProfile" style="text-decoration: none">Thêm thông tin</a>
                                         </div>
                                     </c:when>
                                     <c:otherwise>

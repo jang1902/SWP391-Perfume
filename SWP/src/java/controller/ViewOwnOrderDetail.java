@@ -4,23 +4,28 @@
  */
 package controller;
 
+import dal.AddressDAO;
+import dal.OrderDAO;
+import dal.ProductDAO;
+import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
+import java.util.List;
+import model.Order;
+import model.OrderDetail;
 import model.User;
 
 /**
  *
  * @author dell
  */
-@WebServlet(name = "ChangeProfileServlet", urlPatterns = {"/changeProfile"})
-public class ChangeProfileServlet extends HttpServlet {
+@WebServlet(name = "ViewOwnOrderDetail", urlPatterns = {"/myOrderDetail"})
+public class ViewOwnOrderDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +44,10 @@ public class ChangeProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangeProfileServlet</title>");
+            out.println("<title>Servlet ViewOwnOrderDetail</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangeProfileServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ViewOwnOrderDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +65,28 @@ public class ChangeProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mes = (String)request.getAttribute("mesAva");
-        request.setAttribute("mesAva", mes);
-        request.getRequestDispatcher("changeprofile.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User usernow = (User) session.getAttribute("userNow");
+        String id = request.getParameter("id");
+        OrderDAO dao = new OrderDAO();
+        AddressDAO adao = new AddressDAO();
+        ProductDAO pdao = new ProductDAO();
+        try {
+            int oid = Integer.parseInt(id);
+            Order order = dao.getOrderById(oid);
+            List<OrderDetail> list = dao.getOrderDetailByOrderId(oid);
+            int sumOrder = dao.getNumberOfOrder();
+            int sumAddress = adao.getTotalAddress(usernow.getId());
+            int money = dao.getSumMoney(list);
+            
+            request.setAttribute("money", money);
+            request.setAttribute("sumOrder", sumOrder);
+            request.setAttribute("sumAddress", sumAddress);
+            request.setAttribute("listOrderDetail", list);
+            request.setAttribute("order", order);
+            request.getRequestDispatcher("order_detail.jsp").forward(request, response);
+        } catch (Exception e) {
+        }
     }
 
     /**

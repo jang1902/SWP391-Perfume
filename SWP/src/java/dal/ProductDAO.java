@@ -268,14 +268,13 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
-    
-    public Map<Product,List<SizeProduct>> getAllProductWithSizeProduct() {
-        ProductDAO dao=new ProductDAO();
-        Map<Product,List<SizeProduct>> map = new HashMap<Product,List<SizeProduct>>();
+
+    public Map<Product, List<SizeProduct>> getAllProductWithSizeProduct() {
+        ProductDAO dao = new ProductDAO();
+        Map<Product, List<SizeProduct>> map = new HashMap<Product, List<SizeProduct>>();
         List<Product> listP = dao.getAllProduct();
         List<SizeProduct> listSP = new ArrayList<>();
-        
-        
+
         String sql = "select * from SizeProduct";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -289,21 +288,17 @@ public class ProductDAO extends DBContext {
                 c.setPrice_out(rs.getInt("price_out"));
                 listSP.add(c);
             }
-            
-            
-            
+
             for (Product product : listP) {
                 for (SizeProduct sizeProduct : listSP) {
-                    if(product.getId()==sizeProduct.getPid() && sizeProduct.getSid()==1){// muốn get hết size thì bỏ "&& sizeProduct.getSid()==1"
+                    if (product.getId() == sizeProduct.getPid() && sizeProduct.getSid() == 1) {// muốn get hết size thì bỏ "&& sizeProduct.getSid()==1"
                         List<SizeProduct> listTemp = new ArrayList<>();
                         listTemp.add(sizeProduct);
                         map.put(product, listTemp);
                     }
                 }
             }
-            
-         
-            
+
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -347,7 +342,6 @@ public class ProductDAO extends DBContext {
                 s.setId(rs.getInt("id"));
                 s.setName(rs.getString("name"));
                 s.setValue(rs.getInt("value"));
-
                 ls.add(s);
             }
         } catch (SQLException e) {
@@ -393,5 +387,47 @@ public class ProductDAO extends DBContext {
             ls.add(c);
         }
         return ls;
+    }
+
+    public Size getSizeById(int id) {
+        String sql = "select * from Sizes where id = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Size size = new Size();
+                size.setId(rs.getInt("id"));
+                size.setName(rs.getString("name"));
+                size.setValue(rs.getInt("value"));
+                return size;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public Discount getDiscountById(int id) {
+        String sql = "select * from Discounts where id = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Discount d = new Discount();
+                d.setId(rs.getInt("id"));
+                d.setValue(rs.getInt("value"));
+                return d;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public static void main(String[] args) {
+        ProductDAO dao = new ProductDAO();
+        System.out.println(dao.getDiscountById(2).getValue());
     }
 }
