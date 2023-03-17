@@ -64,7 +64,7 @@ public class DashbroadProductServlet extends HttpServlet {
         CrudDAO crud = new CrudDAO();
         
         List<Product> allp = crud.getAllProduct();
-        request.setAttribute("allp", allp);
+        request.setAttribute("allp", allp);        
         
         List<Category> allc = crud.getAllCategory();
         request.setAttribute("allc", allc);

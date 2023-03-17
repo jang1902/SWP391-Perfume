@@ -13,17 +13,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 import model.Category;
-import model.Gender;
-import model.Product;
+import model.Gallery;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name="DeleteProductServlet", urlPatterns={"/deleteproduct"})
-public class DeleteProductServlet extends HttpServlet {
+@WebServlet(name="EditGalleryServlet", urlPatterns={"/editg"})
+public class EditGalleryServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +38,10 @@ public class DeleteProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteProductServlet</title>");  
+            out.println("<title>Servlet EditGalleryServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet EditGalleryServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,24 +59,17 @@ public class DeleteProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
-        String pid_raw = request.getParameter("pid");
-        String sid_raw = request.getParameter("sid");
+        String id_raw = request.getParameter("gid");
         
-        int pid,sid;
+        int id = Integer.parseInt(id_raw);     
         
-        pid = Integer.parseInt(pid_raw);
-        sid = Integer.parseInt(sid_raw);
+        CrudDAO d = new CrudDAO();
         
-        CrudDAO crud = new CrudDAO();
-
+        Gallery c = d.getGalleryById(id);
         
+        request.setAttribute("gallery", c);
         
-        crud.deleteSizeProduct(pid, sid);// phai xoa het pid ben sizeproduct thi moi xoa duoc product
-        crud.deleteProduct(pid);
-        request.getRequestDispatcher("dashboardp").forward(request, response);
-        
-        
-        
+        request.getRequestDispatcher("editgallery.jsp").forward(request, response);
     } 
 
     /** 

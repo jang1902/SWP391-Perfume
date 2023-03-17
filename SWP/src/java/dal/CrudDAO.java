@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Category;
 import model.Discount;
+import model.Gallery;
 import model.Gender;
 import model.Product;
 import model.Size;
@@ -22,6 +23,555 @@ import model.SizeProduct;
  * @author hp
  */
 public class CrudDAO extends DBContext {
+
+    public boolean checkDiscountById(int id) {
+
+        String sql = "SELECT discount_id\n"
+                + "      \n"
+                + "  FROM [SWP391_1].[dbo].[Products]\n"
+                + "  group by discount_id";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);     
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+
+                if (id == rs.getInt("discount_id")) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkSizeByValue(int value) {
+
+        String sql = "SELECT [id]\n"
+                + "      ,[name]\n"
+                + "      ,[value]\n"
+                + "  FROM [dbo].[Sizes]\n"
+                + "  where value = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, value);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkDiscountExist(int value) {
+
+        String sql = "SELECT [id]\n"
+                + "      ,[value]\n"
+                + "  FROM [dbo].[Discounts]\n"
+                + "  where value = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, value);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkCategoryExist(String name) {
+
+        String sql = "SELECT [id]\n"
+                + "      ,[name]\n"
+                + "  FROM [dbo].[Categories]\n"
+                + "\n"
+                + "  where name = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public void insertDiscount(int discount) {
+        String sql = "INSERT INTO [dbo].[Discounts]\n"
+                + "           ([value])\n"
+                + "     VALUES\n"
+                + "           (?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, discount);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void insertSize(int size) {
+        String sql = "INSERT INTO [dbo].[Sizes]\n"
+                + "           ([name]\n"
+                + "           ,[value])\n"
+                + "     VALUES\n"
+                + "           (?\n"
+                + "           ,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            String size_raw = size + "ml";
+            st.setString(1, size_raw);
+            st.setInt(2, size);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void insertGallery(int id, String thumbnail) {
+        String sql = "INSERT INTO [dbo].[Galeries]\n"
+                + "           ([product_id]\n"
+                + "           ,[thumbnail])\n"
+                + "     VALUES\n"
+                + "           (?\n"
+                + "           ,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.setString(2, thumbnail);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void insertCategory(String name) {
+        String sql = "INSERT INTO [dbo].[Categories]\n"
+                + "           ([name])\n"
+                + "     VALUES\n"
+                + "           (?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteGallery(int id) {
+        String sql = "DELETE FROM [dbo].[Galeries]\n"
+                + "      WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteSize(int id) {
+        String sql = "DELETE FROM [dbo].[Sizes]\n"
+                + "      WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteDiscount(int id) {
+        String sql = "DELETE FROM [dbo].[Discounts]\n"
+                + "      WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteCategory(int id) {
+        String sql = "DELETE FROM [dbo].[Categories]\n"
+                + "      WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editSize(int id, int size) {
+        String sql = "UPDATE [dbo].[Sizes]\n"
+                + "   SET [name] = ? \n"
+                + "      ,[value] = ? \n"
+                + " WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            String name = size + "ml";
+            st.setString(1, name);
+            st.setInt(2, size);
+            st.setInt(3, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editDiscount(int id, int discount) {
+        String sql = "UPDATE [dbo].[Discounts]\n"
+                + "   SET [value] = ?\n"
+                + " WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, discount);
+            st.setInt(2, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editGallery(int id, int pid, String thumbnail) {
+        String sql = "UPDATE [dbo].[Galeries]\n"
+                + "   SET [product_id] = ?\n"
+                + "      ,[thumbnail] = ?\n"
+                + " WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, pid);
+            st.setString(2, thumbnail);
+            st.setInt(3, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editCategory(String name, int id) {
+        String sql = "UPDATE [dbo].[Categories]\n"
+                + "   SET [name] = ?\n"
+                + " WHERE id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            st.setInt(2, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public SizeProduct getSizeProduct(int sid, int pid) {
+        String sql = "SELECT [pid]\n"
+                + "      ,[sid]\n"
+                + "      ,[quantity]\n"
+                + "      ,[price_in]\n"
+                + "      ,[price_out]\n"
+                + "  FROM [dbo].[SizeProduct]\n"
+                + "  where sid = ? and pid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, sid);
+            st.setInt(2, pid);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                SizeProduct c = new SizeProduct();
+                c.setPid(rs.getInt("pid"));
+                c.setSid(rs.getInt("sid"));
+                c.setQuantity(rs.getInt("quantity"));
+                c.setPrice_in(rs.getInt("price_in"));
+                c.setPrice_out(rs.getInt("price_out"));
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void addQuantity(int sid, int pid, int quantity) {
+        String sql = "UPDATE [dbo].[SizeProduct]\n"
+                + "   SET \n"
+                + "      [quantity] = ?\n"
+                + "     \n"
+                + " WHERE sid = ? and pid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, quantity);
+            st.setInt(2, sid);
+            st.setInt(3, pid);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public boolean checkCategoryExist(int cid) {
+
+        String sql = "SELECT [category_id]\n"
+                + "      \n"
+                + "  FROM [SWP391_1].[dbo].[Products]\n"
+                + "  group by [category_id]";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+
+                if (cid == rs.getInt("category_id")) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkSizeExist(int sid) {
+
+        String sql = "select sid from SizeProduct group by sid";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+
+                if (sid == rs.getInt("sid")) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkSize(int sid, int pid) {
+
+        String sql = "select sid from SizeProduct where pid = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, pid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                if (sid == rs.getInt("sid")) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkTitle(String title) {
+
+        String sql = "select title from products";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                if (title.equals(rs.getString("title"))) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+    public Product getProductByTitle(String title) {
+
+        String sql = "select * from products where title = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, title);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Product c = new Product();
+                c.setId(rs.getInt("id"));
+                c.setCategory(getCategoryByCid(rs.getInt("category_id")));
+                c.setTitle(rs.getString("title"));
+                c.setGender(getGenderByCid(rs.getInt("gender_id")));
+                c.setDiscount(getDiscountByCid(rs.getInt("discount_id")));
+                c.setThumbnail(rs.getString("thumbnail"));
+                c.setDescription(rs.getString("description"));
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<Product> getProductByDate(String date) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from products p join SizeProduct sp  \n"
+                + "                 on p.id = sp.pid \n"
+                + "                 where p.updated_at = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, date);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product c = new Product();
+                c.setId(rs.getInt("id"));
+                Category cate = getCategoryByCid(rs.getInt("category_id"));
+                c.setCategory(cate);
+                Gender g = getGenderByCid(rs.getInt("gender_id"));
+                c.setGender(g);
+                Discount d = getDiscountByCid(rs.getInt("discount_id"));
+                c.setDiscount(d);
+                c.setTitle(rs.getString("title"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                c.setDescription(rs.getString("description"));
+                SizeProduct ps = new SizeProduct();
+                ps.setPid(rs.getInt("id"));
+                ps.setQuantity(rs.getInt("quantity"));
+                ps.setSid(rs.getInt("sid"));
+                ps.setPrice_in(rs.getInt("price_in"));
+                ps.setPrice_out(rs.getInt("price_out"));
+                c.setSizeproduct(ps);
+                Size s = getSizeByCid(rs.getInt("sid"));
+                c.setSize(s);
+                c.setUpdated_at(rs.getDate("updated_at"));
+                c.setCreated_at(rs.getDate("created_at"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Product> getProductByGid(int id) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from products p join SizeProduct sp \n"
+                + "on p.id = sp.pid "
+                + "where p.gender_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product c = new Product();
+                c.setId(rs.getInt("id"));
+                Category cate = getCategoryByCid(rs.getInt("category_id"));
+                c.setCategory(cate);
+                Gender g = getGenderByCid(rs.getInt("gender_id"));
+                c.setGender(g);
+                Discount d = getDiscountByCid(rs.getInt("discount_id"));
+                c.setDiscount(d);
+                c.setTitle(rs.getString("title"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                c.setDescription(rs.getString("description"));
+                SizeProduct ps = new SizeProduct();
+                ps.setPid(rs.getInt("id"));
+                ps.setQuantity(rs.getInt("quantity"));
+                ps.setSid(rs.getInt("sid"));
+                ps.setPrice_in(rs.getInt("price_in"));
+                ps.setPrice_out(rs.getInt("price_out"));
+                c.setSizeproduct(ps);
+                Size s = getSizeByCid(rs.getInt("sid"));
+                c.setSize(s);
+                c.setUpdated_at(rs.getDate("updated_at"));
+                c.setCreated_at(rs.getDate("created_at"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Product> getProductByCid(int id) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from products p join SizeProduct sp \n"
+                + "on p.id = sp.pid "
+                + "where p.category_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product c = new Product();
+                c.setId(rs.getInt("id"));
+                Category cate = getCategoryByCid(rs.getInt("category_id"));
+                c.setCategory(cate);
+                Gender g = getGenderByCid(rs.getInt("gender_id"));
+                c.setGender(g);
+                Discount d = getDiscountByCid(rs.getInt("discount_id"));
+                c.setDiscount(d);
+                c.setTitle(rs.getString("title"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                c.setDescription(rs.getString("description"));
+                SizeProduct ps = new SizeProduct();
+                ps.setPid(rs.getInt("id"));
+                ps.setQuantity(rs.getInt("quantity"));
+                ps.setSid(rs.getInt("sid"));
+                ps.setPrice_in(rs.getInt("price_in"));
+                ps.setPrice_out(rs.getInt("price_out"));
+                c.setSizeproduct(ps);
+                Size s = getSizeByCid(rs.getInt("sid"));
+                c.setSize(s);
+                c.setUpdated_at(rs.getDate("updated_at"));
+                c.setCreated_at(rs.getDate("created_at"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
     public Product getEditProduct(int pid, int sid) {
 
@@ -125,8 +675,11 @@ public class CrudDAO extends DBContext {
     }
 
     public void deleteSizeProduct(int pid, int sid) {
-        String sql = "DELETE FROM [dbo].[SizeProduct]\n"
-                + "      WHERE pid = ? and sid = ?";
+        String sql = "UPDATE [dbo].[SizeProduct]\n"
+                + "   SET \n"
+                + "      [quantity] = 0\n"
+                + "     \n"
+                + " WHERE pid = ? and sid = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, pid);
@@ -137,8 +690,7 @@ public class CrudDAO extends DBContext {
         }
     }
 
-    public void insertSizeProduct(int pid, int sid, int quantity, int price_in,
-            int price_out) {
+    public void insertSizeProduct(int pid, int sid, int quantity, int price_in, int price_out) {
         String sql = "INSERT INTO [dbo].[SizeProduct]\n"
                 + "           ([pid]\n"
                 + "           ,[sid]\n"
@@ -178,6 +730,7 @@ public class CrudDAO extends DBContext {
             if (rs.next()) {
                 Product c = new Product();
                 c.setId(rs.getInt("id"));
+
                 return c;
             }
 
@@ -188,8 +741,7 @@ public class CrudDAO extends DBContext {
         return null;
     }
 
-    public void insertProduct(int category_id, String title, int gender_id, int discount_id,
-            String thumbnail, String description) {
+    public void insertProduct(int category_id, String title, int gender_id, int discount_id, String thumbnail, String description) {
         String sql = "INSERT INTO [dbo].[Products]\n"
                 + "           ([category_id]\n"
                 + "           ,[title]\n"
@@ -220,6 +772,49 @@ public class CrudDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+
+    public List<Gallery> getAllGalleryByPid(int id) {
+        List<Gallery> list = new ArrayList<>();
+        String sql = "select * from Galeries"
+                + " where product_id = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Gallery c = new Gallery();
+                c.setId(rs.getInt("id"));
+                c.setProduct_id(rs.getInt("product_id"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Gallery> getAllGallery() {
+        List<Gallery> list = new ArrayList<>();
+        String sql = "select * from Galeries"
+                + " order by product_id asc ";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Gallery c = new Gallery();
+                c.setId(rs.getInt("id"));
+                c.setProduct_id(rs.getInt("product_id"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
     }
 
     public List<Size> getAllSize() {
@@ -298,6 +893,46 @@ public class CrudDAO extends DBContext {
         return list;
     }
 
+    public List<Product> getAllProductByTitle(String title) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from products p join SizeProduct sp \n"
+                + "on p.id = sp.pid \n"
+                + "where p.title like ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setNString(1, "%" + title + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product c = new Product();
+                c.setId(rs.getInt("id"));
+                Category cate = getCategoryByCid(rs.getInt("category_id"));
+                c.setCategory(cate);
+                Gender g = getGenderByCid(rs.getInt("gender_id"));
+                c.setGender(g);
+                Discount d = getDiscountByCid(rs.getInt("discount_id"));
+                c.setDiscount(d);
+                c.setTitle(rs.getString("title"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                c.setDescription(rs.getString("description"));
+                SizeProduct ps = new SizeProduct();
+                ps.setPid(rs.getInt("id"));
+                ps.setQuantity(rs.getInt("quantity"));
+                ps.setSid(rs.getInt("sid"));
+                ps.setPrice_in(rs.getInt("price_in"));
+                ps.setPrice_out(rs.getInt("price_out"));
+                c.setSizeproduct(ps);
+                Size s = getSizeByCid(rs.getInt("sid"));
+                c.setSize(s);
+                c.setUpdated_at(rs.getDate("updated_at"));
+                c.setCreated_at(rs.getDate("created_at"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
         String sql = "select * from products p join SizeProduct sp \n"
@@ -342,6 +977,30 @@ public class CrudDAO extends DBContext {
             arr.add(list.get(i));
         }
         return arr;
+    }
+
+    public Gallery getGalleryById(int id) { // lay cac loai san pham bang category_id
+
+        String sql = "SELECT [id]\n"
+                + "      ,[product_id]\n"
+                + "      ,[thumbnail]\n"
+                + "  FROM [dbo].[Galeries]\n"
+                + "  where id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Gallery c = new Gallery();
+                c.setId(rs.getInt("id"));
+                c.setProduct_id(rs.getInt("product_id"));
+                c.setThumbnail(rs.getString("thumbnail"));
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
     public Category getCategoryByCid(int cid) { // lay cac loai san pham bang category_id

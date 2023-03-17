@@ -88,7 +88,7 @@ public class AddProductServlet extends HttpServlet {
         List<Size> alls = crud.getAllSize();
         request.setAttribute("alls", alls);
 
-        request.getRequestDispatcher("addproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("addproduct1.jsp").forward(request, response);
 
     }
 

@@ -13,17 +13,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Category;
-import model.Gender;
-import model.Product;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name="DeleteProductServlet", urlPatterns={"/deleteproduct"})
-public class DeleteProductServlet extends HttpServlet {
+@WebServlet(name="DeleteGalleryServlet", urlPatterns={"/deleteg"})
+public class DeleteGalleryServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +36,10 @@ public class DeleteProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteProductServlet</title>");  
+            out.println("<title>Servlet DeleteGalleryServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet DeleteGalleryServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,25 +56,14 @@ public class DeleteProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String id_raw = request.getParameter("gid");
         
-        String pid_raw = request.getParameter("pid");
-        String sid_raw = request.getParameter("sid");
+        int id = Integer.parseInt(id_raw);
         
-        int pid,sid;
+        CrudDAO d = new CrudDAO();
+        d.deleteGallery(id);
         
-        pid = Integer.parseInt(pid_raw);
-        sid = Integer.parseInt(sid_raw);
-        
-        CrudDAO crud = new CrudDAO();
-
-        
-        
-        crud.deleteSizeProduct(pid, sid);// phai xoa het pid ben sizeproduct thi moi xoa duoc product
-        crud.deleteProduct(pid);
-        request.getRequestDispatcher("dashboardp").forward(request, response);
-        
-        
-        
+        response.sendRedirect("dashboardg");
     } 
 
     /** 

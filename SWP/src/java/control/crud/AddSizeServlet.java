@@ -13,17 +13,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Category;
-import model.Gender;
-import model.Product;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name="DeleteProductServlet", urlPatterns={"/deleteproduct"})
-public class DeleteProductServlet extends HttpServlet {
+@WebServlet(name="AddSizeServlet", urlPatterns={"/addsize"})
+public class AddSizeServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +36,10 @@ public class DeleteProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteProductServlet</title>");  
+            out.println("<title>Servlet AddSizeServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet AddSizeServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,23 +56,23 @@ public class DeleteProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String size_raw = request.getParameter("size");
         
-        String pid_raw = request.getParameter("pid");
-        String sid_raw = request.getParameter("sid");
-        
-        int pid,sid;
-        
-        pid = Integer.parseInt(pid_raw);
-        sid = Integer.parseInt(sid_raw);
-        
-        CrudDAO crud = new CrudDAO();
+        int size = Integer.parseInt(size_raw);
 
+        CrudDAO d = new CrudDAO();
         
+        if (d.checkSizeByValue(size)) {
+            String mess = "Dung tích này đã tồn tại!!!";
+            request.setAttribute("mess", mess);
+ 
+            request.getRequestDispatcher("addsize.jsp").forward(request, response);
+        } else {
+            d.insertSize(size);
         
-        crud.deleteSizeProduct(pid, sid);// phai xoa het pid ben sizeproduct thi moi xoa duoc product
-        crud.deleteProduct(pid);
-        request.getRequestDispatcher("dashboardp").forward(request, response);
-        
+            response.sendRedirect("dashboards");
+        }
+
         
         
     } 
