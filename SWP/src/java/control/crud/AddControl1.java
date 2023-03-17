@@ -13,17 +13,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Category;
-import model.Gender;
-import model.Product;
+import java.util.HashSet;
+import model.SizeProduct;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name="DeleteProductServlet", urlPatterns={"/deleteproduct"})
-public class DeleteProductServlet extends HttpServlet {
+@WebServlet(name="AddControl1", urlPatterns={"/add1"})
+public class AddControl1 extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +38,10 @@ public class DeleteProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteProductServlet</title>");  
+            out.println("<title>Servlet AddControl2</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet AddControl2 at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,25 +58,44 @@ public class DeleteProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String title_raw = request.getParameter("title");
+        String description_raw = request.getParameter("description");
+        String gender_id_raw = request.getParameter("gender_id"); 
+        String size_id_raw = request.getParameter("size_id");        
+        String discount_id_raw = request.getParameter("discount_id");
+        String category_id_raw = request.getParameter("category_id");
+        String thumbnail_raw = request.getParameter("thumbnail");
         
-        String pid_raw = request.getParameter("pid");
-        String sid_raw = request.getParameter("sid");
+        int discount_id, gender_id, category_id, size_id;
+        discount_id = Integer.parseInt(discount_id_raw);
+        gender_id = Integer.parseInt(gender_id_raw);
+        category_id = Integer.parseInt(category_id_raw);
+        size_id = Integer.parseInt(size_id_raw);
         
-        int pid,sid;
+        boolean check = true;
         
-        pid = Integer.parseInt(pid_raw);
-        sid = Integer.parseInt(sid_raw);
-        
-        CrudDAO crud = new CrudDAO();
-
-        
-        
-        crud.deleteSizeProduct(pid, sid);// phai xoa het pid ben sizeproduct thi moi xoa duoc product
-        crud.deleteProduct(pid);
-        request.getRequestDispatcher("dashboardp").forward(request, response);
-        
-        
-        
+        try {
+            CrudDAO d = new CrudDAO();
+            
+            if(!d.checkTitle(title_raw))// neu khong ton tai ten thi add vao bang product
+            {
+                d.insertProduct(category_id, title_raw, gender_id, discount_id, thumbnail_raw, description_raw);  
+                check = false;
+            }
+            else // San pham ton tai thi khong add vao product
+            {
+                SizeProduct sp = d.getSizeProduct(size_id, d.getProductByTitle(title_raw).getId());// lay size product co id san pham ton tai de check gia
+                request.setAttribute("sp" , sp);
+            }
+            
+                request.setAttribute("sid", size_id);
+                request.setAttribute("pid", d.getProductByTitle(title_raw).getId());             
+                request.setAttribute("check", check);
+            
+            request.getRequestDispatcher("addproduct2.jsp").forward(request, response);
+        }catch(IOException e){
+            System.out.println(e);
+        }
     } 
 
     /** 

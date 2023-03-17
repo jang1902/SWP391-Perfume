@@ -1,11 +1,13 @@
 <%-- 
-    Document   : editproduct
-    Created on : Feb 28, 2023, 3:04:37 PM
+    Document   : crudproduct
+    Created on : Feb 26, 2023, 2:27:15 PM
     Author     : hp
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
     <!-- Mirrored from templates.g5plus.net/glowing/dashboard/add-product-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2023 07:49:53 GMT -->
@@ -16,7 +18,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Sửa sản phẩm - Boon Bo</title>
+        <title>Thêm sản phẩm - Boon Bo</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -334,13 +336,13 @@
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
 
-                        <form action="edit" method="get">
+                        <form action="add2" method="get">
                             <div class="dashboard-page-content">
                                 <div class="row">
                                     <div class="col-xxl-6">
                                         <div class="row mb-6">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <h2 class="fs-24 mb-0">Sửa sản phẩm</h2>
+                                                <h2 class="fs-24 mb-0">Thêm sản phẩm</h2>
                                             </div>
                                             <div class="col-sm-6 text-sm-right">
                                                 <input type="submit" class="btn btn-primary" value="Lưu">                                      
@@ -352,134 +354,50 @@
                                     <div class="col-xxl-6 form-control-01">
                                         <div class="card mb-4">
                                             <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <h6 class="fs-16 font-weight-500">1. Thông tin chung</h6>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">ID</label>
-                                                            <input type="text" name="pid" value="${product.id}" class="form-control bg-input border-0" id="product-title" readonly>
-                                                            <input name="sid_old" value="${product.size.id}" class="form-control bg-input border-0" id="product-title" hidden >
-                                                        </div>
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Tên sản phẩm</label>
-                                                            <input type="text" name="title" value="${product.title}" class="form-control bg-input border-0" id="product-title">
-                                                        </div>
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="description">Thông tin</label>
-                                                            <textarea name="description" class="form-control bg-input border-0" rows="4" id="description">${product.description}</textarea>
-                                                        </div>
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Giới tính</label>
-                                                            <select name="gender_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">                                                                                                                     
 
-                                                                <c:forEach items="${allg}" var="g">
-                                                                    <c:if test="${product.gender.id == g.id}">
-                                                                        <option selected value="${g.id}"> ${g.name} </option>
-                                                                    </c:if>
-                                                                    <c:if test="${product.gender.id != g.id}">
-                                                                        <option value="${g.id}"> ${g.name} </option>
-                                                                    </c:if>
-                                                                </c:forEach>                                                            
 
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Dung tích</label>
-                                                            <select name="sid_new" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
-
-                                                                <c:forEach items="${alls}" var="s">
-                                                                    <c:if test="${product.size.id == s.id}">
-                                                                        <option selected value="${s.id}"> ${s.value}ml </option>
-                                                                    </c:if>
-                                                                    <c:if test="${product.size.id != s.id}">
-                                                                        <option value="${s.id}"> ${s.value}ml </option>
-                                                                    </c:if>
-                                                                </c:forEach>
-
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Số lượng</label>
-                                                            <input type="number" name="quantity" value="${product.sizeproduct.quantity}" class="form-control bg-input border-0" id="product-title">
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <hr class="mb-4 mt-0">
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <h6 class="fs-16 font-weight-500">2. Giá </h6>
                                                     </div>
                                                     <div class="col-md-9">
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá vốn</label>
-                                                            <input name="price_in" type="number" value="${product.sizeproduct.price_in}" class="form-control bg-input border-0" id="cost">
-                                                            <label style="margin-top: 15px" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá bán</label>
-                                                            <input name="price_out" type="number" value="${product.sizeproduct.price_out}" class="form-control bg-input border-0" id="cost">
+                                                        
+                                                            
+                                                            <input name="pid" value="${pid}" hidden=""  type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">                    
+                                                           
+                                                            
+                                                            <input name="sid" value="${sid}" hidden="" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">                    
+                                                    
+                                                      
+                                                            <input name="check" value="${check}" hidden="" type="text" placeholder="00.0" class="form-control bg-input border-0" id="cost">                    
+                                                  
+                                                            
+                                                        <c:if test="${sp.price_in != null}">
+                                                            <div class="mb-4">
+                                                                <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá vốn</label>
+                                                                <input name="price_in" readonly="" type="number" value="${sp.price_in}" class="form-control bg-input border-0" id="cost">                    
+                                                            </div>
+                                                            <div class="mb-4">          
+                                                                <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá bán</label>
+                                                                <input name="price_out" readonly="" type="number" value="${sp.price_out}" class="form-control bg-input border-0" id="cost">
+                                                            </div>
+                                                        </c:if>
+                                                        <c:if test="${sp.price_in == null}">
+                                                            <div class="mb-4">
+                                                                <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá vốn</label>
+                                                                <input name="price_in" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">                    
+                                                            </div>
+                                                            <div class="mb-4">          
+                                                                <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá bán</label>
+                                                                <input name="price_out" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">
+                                                            </div>
+                                                        </c:if>
+
+                                                        <div class="mb-4">                           
+                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Số lượng</label>
+                                                            <input name="quantity" type="number" placeholder="00.0" class="form-control bg-input border-0" id="cost">
                                                         </div>
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Giảm giá</label>
-                                                            <select name="discount_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
 
-                                                                <c:forEach items="${alld}" var="d">
-                                                                    <c:if test="${product.discount.id == d.id}">
-                                                                        <option selected value="${d.id}"> ${d.value}% </option>
-                                                                    </c:if>
-                                                                    <c:if test="${product.size.id != d.id}">
-                                                                        <option value="${d.id}"> ${d.value}% </option>
-                                                                    </c:if>
-                                                                </c:forEach>
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <hr class="mb-4 mt-0">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <h6 class="fs-16 font-weight-500">3. Loại sản phẩm</h6>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase"></label>
-                                                            <c:forEach items="${allc}" var="c">                                                     
-
-                                                                <c:if test="${product.category.id == c.id}">
-                                                                    <label class="mb-1 form-check">
-                                                                    <input name="category_id" class="form-check-input" checked="" value="${c.id}" type="radio">
-                                                                    <span class="form-check-label">${c.name}</span>
-                                                                </label>
-                                                                </c:if>
-                                                                <c:if test="${product.category.id != c.id}">
-                                                                    <label class="mb-1 form-check">
-                                                                    <input name="category_id" class="form-check-input" value="${c.id}" type="radio">
-                                                                    <span class="form-check-label">${c.name}</span>
-                                                                </label>
-                                                                </c:if>
-
-
-                                                            </c:forEach>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <hr class="mb-4 mt-0">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <h6 class="fs-16 font-weight-500">4. Hình ảnh</h6>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <div class="mb-4">
-                                                            <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase"></label>
-                                                            <input name="thumbnail" class="form-control bg-input border-0" type="file">
-                                                        </div>
                                                     </div>
 
                                                 </div>

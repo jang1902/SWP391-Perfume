@@ -13,15 +13,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Product;
-import model.SizeProduct;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name="AddControl", urlPatterns={"/add"})
-public class AddControl extends HttpServlet {
+@WebServlet(name="AddDiscountServlet", urlPatterns={"/adddiscount"})
+public class AddDiscountServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +36,10 @@ public class AddControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddControl</title>");  
+            out.println("<title>Servlet AddDiscountServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddControl at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet AddDiscountServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,35 +56,20 @@ public class AddControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String discount_raw = request.getParameter("discount");
+        int discount = Integer.parseInt(discount_raw);
         
-        String title_raw = request.getParameter("title");
-        String description_raw = request.getParameter("description");
-        String gender_id_raw = request.getParameter("gender_id"); 
-        String size_id_raw = request.getParameter("size_id");        
-        String quantity_raw = request.getParameter("quantity");
-        String price_in_raw = request.getParameter("price_in");
-        String price_out_raw = request.getParameter("price_out");
-        String discount_id_raw = request.getParameter("discount_id");
-        String category_id_raw = request.getParameter("category_id");
-        String thumbnail_raw = request.getParameter("thumbnail");
+        CrudDAO d = new CrudDAO();
         
-        int price_out ,price_in, quantity, discount_id, gender_id, category_id, size_id;
-        price_out = Integer.parseInt(price_out_raw);
-        price_in = Integer.parseInt(price_in_raw);
-        quantity = Integer.parseInt(quantity_raw);
-        discount_id = Integer.parseInt(discount_id_raw);
-        gender_id = Integer.parseInt(gender_id_raw);
-        category_id = Integer.parseInt(category_id_raw);
-        size_id = Integer.parseInt(size_id_raw);
-        
-        try {
-            CrudDAO d = new CrudDAO();
-            d.insertProduct(category_id, title_raw, gender_id, discount_id, thumbnail_raw, description_raw);                 
-            d.insertSizeProduct(d.getIdLastProduct().getId(), size_id, quantity, price_in, price_out);
-            response.sendRedirect("addproduct");
-        }catch(IOException e){
-            System.out.println(e);
-        }
+        if (d.checkDiscountExist(discount)) {
+            String mess = "Mã giảm giá này đã tồn tại!!!";
+            request.setAttribute("mess", mess);
+ 
+            request.getRequestDispatcher("adddiscount.jsp").forward(request, response);
+        } else {
+            d.insertDiscount(discount);        
+            response.sendRedirect("dashboardd");
+        }   
     } 
 
     /** 
@@ -99,9 +82,7 @@ public class AddControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
         processRequest(request, response);
-        
     }
 
     /** 

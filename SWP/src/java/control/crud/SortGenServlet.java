@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package control.shop;
+package control.crud;
 
-import dal.CategoryDAO;
-import dal.GenderDAO;
-import dal.ShopDAO;
+import dal.CrudDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,14 +14,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Category;
+import model.Gender;
 import model.Product;
 
 /**
  *
- * @author canduykhanh
+ * @author hp
  */
-@WebServlet(name="SearchPriceController", urlPatterns={"/searchByPrice"})
-public class SearchPriceController extends HttpServlet {
+@WebServlet(name="SortGenServlet", urlPatterns={"/sortgen"})
+public class SortGenServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +40,10 @@ public class SearchPriceController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchPriceController</title>");  
+            out.println("<title>Servlet SortGenServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchPriceController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet SortGenServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,57 +60,24 @@ public class SearchPriceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        ShopDAO shopDAO = new ShopDAO();
-        CategoryDAO categoryDAO = new CategoryDAO();
-        GenderDAO genderDAO = new GenderDAO();
-        request.setCharacterEncoding("UTF-8");
-        int pageIndex = 1;
-        String indexPage = request.getParameter("pageIndex");
-        try {
-            pageIndex = Integer.parseInt(indexPage);
-        } catch (NumberFormatException e) {
-            System.out.println("Error parse indexpage");
-        }
-        String fromValue = request.getParameter("from");
-        String toValue = request.getParameter("to");
-        int from=0;
-        int to=0;
-        try {
-            from = Integer.parseInt(fromValue);
-        } catch (NumberFormatException e) {
-            System.out.println("Error parse from value");
-        }
-        try {
-            to = Integer.parseInt(toValue);
-        } catch (NumberFormatException e) {
-            System.out.println("Error parse to value");
-        }
-        int pageSize = 9;
-        int totalRow = shopDAO.countAllProductBySearchPrice(from, to);
-        String msg = from >= to ? "Gia tri ko hop le":"";
-        int maxPage = 0;
-        if (totalRow == 0) {
-            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
-        } else {
-            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
-            maxPage = totalRow / pageSize + (totalRow % pageSize > 0 ? 1 : 0);
-            int nextPage = pageIndex + 1;
-            int backPage = pageIndex - 1;
-            List<Product> listP = shopDAO.getAllProductPresentationPagingBySearchPrice(from,to, pageIndex, pageSize);
-            request.setAttribute("listP", listP);
-            request.setAttribute("maxPage", maxPage);
-            request.setAttribute("nextPage", nextPage);
-            request.setAttribute("backPage", backPage);
-            request.setAttribute("pageIndex", pageIndex);
-            request.setAttribute("total", totalRow);
-        }
-        request.setAttribute("from", from);
-        request.setAttribute("to", to);
-        request.setAttribute("fromValue", fromValue);
-        request.setAttribute("toValue", toValue);
-        request.setAttribute("msg", msg);
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
         
+        String id_raw = request.getParameter("gen");
+        int id = Integer.parseInt(id_raw);
+        request.setAttribute("gen", id);
+        CrudDAO crud = new CrudDAO();
+        
+        List<Product> allp = crud.getProductByGid(id);
+        request.setAttribute("allp", allp);    
+        
+        List<Category> allc = crud.getAllCategory();
+        request.setAttribute("allc", allc);
+        
+        List<Gender> allg = crud.getAllGender();
+        request.setAttribute("allg", allg);
+        
+        
+        
+        request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
     } 
 
     /** 

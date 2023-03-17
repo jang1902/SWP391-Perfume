@@ -167,7 +167,7 @@
                             Ưu đãi 
                         </div>
                         <div class="body_top-title-right">
-                            <a href="./src/allproducts.html" class="body_top-title-right-item">Xem tất cả
+                            <a href="shop" class="body_top-title-right-item">Xem tất cả
                                 <i class="fa-solid fa-caret-right icon_arrow-viewall"></i>
                             </a>
                         </div>
@@ -219,7 +219,7 @@
                             Sản phẩm hàng đầu 
                         </div>
                         <div class="body_top-title-right">
-                            <a href="./src/allproducts.html" class="body_top-title-right-item">Xem tất cả
+                            <a href="shop" class="body_top-title-right-item">Xem tất cả
                                 <i class="fa-solid fa-caret-right icon_arrow-viewall"></i>
                             </a>
                         </div>
@@ -267,7 +267,7 @@
                         Sản phẩm mới
                     </div>
                     <div class="body_top-title-right">
-                        <a href="./src/allproducts.html" class="body_top-title-right-item">Xem tất cả
+                        <a href="shop" class="body_top-title-right-item">Xem tất cả
                             <i class="fa-solid fa-caret-right icon_arrow-viewall"></i>
                         </a>
                     </div>

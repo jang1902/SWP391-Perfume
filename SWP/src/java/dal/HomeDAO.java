@@ -130,24 +130,6 @@ public class HomeDAO extends DBContext {
         return list;
     }
 
-    public List<Category> getAllCategory() { // lay tat ca cac category
-        List<Category> list = new ArrayList<>();
-        String sql = "SELECT [id]\n"
-                + "      ,[name]\n"
-                + "  FROM Categories";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Category c = new Category();
-                c.setId(rs.getInt("id"));
-                c.setName(rs.getString("name"));
-                list.add(c);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
+
 
 }

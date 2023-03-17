@@ -17,8 +17,8 @@ public class Product {
     private String description;
     private Date created_at;
     private Date updated_at;
-    private Discount discount;
     private Gender gender;
+    private Discount discount;
     private Gallery gallery;
     private Category category;
     private SizeProduct sizeproduct;
@@ -29,7 +29,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, int category_id, String title, int gender_id, int discount_id, String thumbnail, String description, Date created_at, Date updated_at, Discount discount, Gender gender, Gallery gallery, Category category, SizeProduct sizeproduct, Size size, OrderDetail orderdetail) {
+    public Product(int id, int category_id, String title, int gender_id, int discount_id, String thumbnail, String description, Date created_at, Date updated_at, Gender gender, Discount discount, Gallery gallery, Category category, SizeProduct sizeproduct, Size size, OrderDetail orderdetail) {
         this.id = id;
         this.category_id = category_id;
         this.title = title;
@@ -39,14 +39,24 @@ public class Product {
         this.description = description;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.discount = discount;
         this.gender = gender;
+        this.discount = discount;
         this.gallery = gallery;
         this.category = category;
         this.sizeproduct = sizeproduct;
         this.size = size;
         this.orderdetail = orderdetail;
     }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+
 
     public OrderDetail getOrderdetail() {
         return orderdetail;
@@ -96,14 +106,6 @@ public class Product {
         this.size = size;
     }
     
-    public Discount getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Discount discount) {
-        this.discount = discount;
-
-    }
 
     public int getId() {
         return id;

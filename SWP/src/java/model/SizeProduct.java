@@ -11,14 +11,16 @@ public class SizeProduct {
     int quantity;
     int price_in;
     int price_out;
-
+   
     public SizeProduct(int pid, int sid, int quantity, int price_in, int price_out) {
         this.pid = pid;
         this.sid = sid;
         this.quantity = quantity;
         this.price_in = price_in;
         this.price_out = price_out;
+        
     }
+
 
     public SizeProduct() {
     }

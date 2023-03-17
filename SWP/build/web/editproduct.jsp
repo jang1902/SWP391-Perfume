@@ -98,7 +98,7 @@
                             <div class="collapse navbar-collapse bg-white" id="primaryMenuSidebar">
                                 <form class="d-block d-xl-none pt-5 px-3">
                                     <div class="input-group position-relative bg-gray">
-                                        <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                        <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
                                         <div class="input-group-append fs-14 px-3 border-left border-2x ">
                                             <button class="bg-transparent border-0 outline-none">
                                                 <i class="fal fa-search"></i>
@@ -120,22 +120,25 @@
                                             <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                 <i class="fas fa-shopping-bag"></i>
                                             </span>
-                                            <span class="sidebar-item-text">Products</span>
+                                            <span class="sidebar-item-text">Sản phẩm</span>
                                             <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
                                         </a>
                                         <div class="collapse menu-collapse" id="product">
                                             <ul class="sub-menu list-unstyled">
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardc">Danh sách thể loại</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
+                                                    <a class="sidebar-link lh-1" href="dashboardg">Danh sách thư viện</a>
                                                 </li>
                                                 <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
+                                                    <a class="sidebar-link lh-1" href="dashboards">Danh sách kích thước</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboardd">Danh sách mã giảm giá</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -303,7 +306,7 @@
                                 <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
                                     <form>
                                         <div class="input-group position-relative bg-input rounded">
-                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
                                             <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
                                                 <button class="bg-transparent border-0 outline-none">
                                                     <i class="fal fa-search"></i>
@@ -313,27 +316,7 @@
                                     </form>
                                 </div>
                                 <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-                                    <div class="dropdown no-caret px-2 py-2">
-                                        <a href="#" class="dropdown-toggle fs-20 font-weight-500 lh-1 animation-shake position-relative" data-toggle="dropdown">
-                                            <i class="far fa-bell"></i>
-                                            <span class="badge badge-secondary rounded-circle">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="request-full-screen d-block px-2 fs-20" title="Full screen"><i class="far fa-rss-square"></i></a>
-                                    <div class="dropdown px-2 py-2 dropdown-language">
-                                        <a class="dropdown-toggle fs-20" data-toggle="dropdown"><i class="far fa-globe-americas"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item text-brand" href="#"><img src="./img/flag-us.png" alt="English">English</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-fr.png" alt="Français">Français</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-jp.png" alt="Japan">日本語</a>
-                                            <a class="dropdown-item" href="#"><img src="./img/flag-cn.png" alt="China">中国人</a>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="dropdown pl-2 py-2">
                                         <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                             <div class="w-40px">

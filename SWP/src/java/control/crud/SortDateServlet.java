@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package control.crud;
 
 import dal.CrudDAO;
@@ -13,7 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Category;
 import model.Gender;
 import model.Product;
@@ -22,36 +27,39 @@ import model.Product;
  *
  * @author hp
  */
-@WebServlet(name="DeleteProductServlet", urlPatterns={"/deleteproduct"})
-public class DeleteProductServlet extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+@WebServlet(name = "SortDateServlet", urlPatterns = {"/sortdate"})
+public class SortDateServlet extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteProductServlet</title>");  
+            out.println("<title>Servlet SortDateServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet SortDateServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -59,30 +67,28 @@ public class DeleteProductServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        
-        String pid_raw = request.getParameter("pid");
-        String sid_raw = request.getParameter("sid");
-        
-        int pid,sid;
-        
-        pid = Integer.parseInt(pid_raw);
-        sid = Integer.parseInt(sid_raw);
+            throws ServletException, IOException {
+        String date_raw = request.getParameter("date");
+        String date = date_raw.trim().replaceAll("/", "-");
+        request.setAttribute("date", date_raw);
         
         CrudDAO crud = new CrudDAO();
+ 
+        List<Product> allp = crud.getProductByDate(date);
+        request.setAttribute("allp", allp);
+        
+        List<Category> allc = crud.getAllCategory();
+        request.setAttribute("allc", allc);
 
-        
-        
-        crud.deleteSizeProduct(pid, sid);// phai xoa het pid ben sizeproduct thi moi xoa duoc product
-        crud.deleteProduct(pid);
-        request.getRequestDispatcher("dashboardp").forward(request, response);
-        
-        
-        
-    } 
+        List<Gender> allg = crud.getAllGender();
+        request.setAttribute("allg", allg);
 
-    /** 
+        request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
+    }
+
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -90,12 +96,13 @@ public class DeleteProductServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override
