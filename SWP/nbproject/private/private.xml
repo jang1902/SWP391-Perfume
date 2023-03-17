@@ -6,8 +6,10 @@
             <file>file:/D:/SWP_Boon_Bo/SWP/src/java/controller/DetailServlet.java</file>
             <file>file:/D:/SWP_Boon_Bo/SWP/web/shop.jsp</file>
             <file>file:/D:/SWP_Boon_Bo/SWP/src/java/dal/FeedBackDAO.java</file>
+            <file>file:/D:/SWP_Boon_Bo/SWP/src/java/dal/ShopDAO.java</file>
             <file>file:/D:/SWP_Boon_Bo/SWP/web/productdetail.jsp</file>
             <file>file:/D:/SWP_Boon_Bo/SWP/src/java/controller/feedback/LoadMoreFeedbackServlet.java</file>
+            <file>file:/D:/SWP_Boon_Bo/SWP/src/java/model/Feedback.java</file>
         </group>
     </open-files>
 </project-private>

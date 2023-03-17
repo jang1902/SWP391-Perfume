@@ -323,8 +323,14 @@
                     <div class=" row col-sm-9 justify-content-end">
                         <c:if test="${listP.size()>0}"><button type="button" class="btn btn-secondary mg-16">Hiển thị ${listP.size()}/${total} sản phẩm</button></c:if>
                             &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;    &nbsp;  &nbsp;  &nbsp;  &nbsp;     
-                            <button type="button" class="btn btn-secondary mg-16">Bán chạy</button>
-                            <button type="button" class="btn btn-secondary mg-16">Mới nhất</button>
+                           <form >
+                                <input type="text" value="${isDiscount}"hidden="">
+                                <button type="button" class="btn btn-secondary mg-16"><a href="searchByDiscount" style="color: inherit; text-decoration: none;">Ưu đãi</a></button>
+                            </form>
+                            <form >
+                                <input type="text" value="${isNew}"hidden="">
+                                <button type="button" class="btn btn-secondary mg-16"><a href="newList" style="color: inherit; text-decoration: none;">Mới nhất</a></button>
+                            </form>
                         </div>
 
                         <div class="input-group col-sm-3">
@@ -391,6 +397,9 @@
                                                 <i class="fa-solid fa-star icon_star"></i>
                                                 <i class="fa-solid fa-star icon_star"></i>
                                                 <i class="fa-solid fa-star icon_star"></i>
+                                                <i class="fa-solid fa-star icon_star"></i>
+                                                
+                                                                                         
                                             </span>
                                             <div>
                                                 <c:if test="${o.discount.value!=0}">
@@ -405,6 +414,9 @@
                                         </div>
                                         <div class="add_like_products">
                                             <i class="fa-regular fa-heart icon_heart"></i>
+                                            <c:if test="${o.discount.value>0}">
+                                                 <i class="" style="font-size: 13px; color: red;">-${o.discount.value}%</i>
+                                            </c:if>
                                             <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
                                         </div>
                                     </div>
@@ -418,7 +430,7 @@
                     <c:if test="${maxPage>1}">
                         <div class="paging mt-5">
                             <nav aria-label="Page navigation example">
-                                <c:if test="${cateId == null && genderId==null && txtSearch==null && fromValue==null && toValue==null && typeSort==null && a==null}">
+                                <c:if test="${cateId == null && genderId==null && txtSearch==null && fromValue==null && toValue==null && typeSort==null && a==null &&isNew==null && isDiscount==null}">
                                     <ul class="pagination ">
                                         <c:if test="${backPage>0}">
                                             <li class="page-item">
@@ -458,6 +470,52 @@
                                             <c:if test="${nextPage<maxPage+1}">
                                             <li class="page-item">
                                                 <a class="page-link" href="search?pageIndex=${nextPage}&txtSearch=${txtSearch}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                    </ul>
+                                </c:if>
+                                 <c:if test="${isNew!=null}">
+                                    <ul class="pagination ">
+                                        <c:if test="${backPage>0}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="newList?pageIndex=${backPage}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${maxPage}" step="1" var="i">
+                                            <li class="page-item ${i==pageIndex?"active":""}"><a class="page-link" href="newList?pageIndex=${i}">${i}</a></li>
+                                            </c:forEach>        
+                                            <c:if test="${nextPage<maxPage+1}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="newList?pageIndex=${nextPage}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                    </ul>
+                                </c:if>
+                                 <c:if test="${isDiscount!=null}">
+                                    <ul class="pagination ">
+                                        <c:if test="${backPage>0}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="searchByDiscount?pageIndex=${backPage}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${maxPage}" step="1" var="i">
+                                            <li class="page-item ${i==pageIndex?"active":""}"><a class="page-link" href="searchByDiscount?pageIndex=${i}">${i}</a></li>
+                                            </c:forEach>        
+                                            <c:if test="${nextPage<maxPage+1}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="searchByDiscount?pageIndex=${nextPage}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
