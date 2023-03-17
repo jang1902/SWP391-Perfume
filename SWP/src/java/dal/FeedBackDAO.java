@@ -70,7 +70,7 @@ public class FeedBackDAO extends DBContext {
     }
 
     //get top  3 new feedback 
-    public List<Feedback> getTop3NewFeedbackBygetToPid(int pid) {
+    public List<Feedback> getTop3NewFeedbackByPid(int pid) {
         List<Feedback> listF = new ArrayList<>();
         String sql = "select top 3 f.id,f.user_id,f.product_id,f.note,f.rating,f.created_at from FeedBacks f \n"
                 + "                join Users u on f.user_id = u.id\n"
