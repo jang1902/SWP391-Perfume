@@ -4,14 +4,9 @@
  */
 package admin;
 
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
-package control.crud;
 
-import dal.CrudDAO;
-
-========
 import dal.DashboardDAO;
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,29 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.Category;
-import model.Gender;
-import model.Product;
-
-
-/**
- *
- * @author hp
- */
-
-@WebServlet(name = "SortDateServlet", urlPatterns = {"/sortdate"})
-public class SortDateServlet extends HttpServlet {
-
-========
 
 /**
  *
@@ -49,7 +22,7 @@ public class SortDateServlet extends HttpServlet {
  */
 @WebServlet(name = "FeedbackDetail", urlPatterns = {"/feedbackdetail"})
 public class FeedbackDetail extends HttpServlet {
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,19 +41,12 @@ public class FeedbackDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
 
-            out.println("<title>Servlet SortDateServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SortDateServlet at " + request.getContextPath() + "</h1>");
-
-========
             out.println("<title>Servlet FeedbackDetail</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet FeedbackDetail at " + request.getContextPath() + "</h1>");
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -98,33 +64,14 @@ public class FeedbackDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
 
-        String date_raw = request.getParameter("date");
-        String date = date_raw.trim().replaceAll("/", "-");
-        request.setAttribute("date", date_raw);
-        
-        CrudDAO crud = new CrudDAO();
- 
-        List<Product> allp = crud.getProductByDate(date);
-        request.setAttribute("allp", allp);
-        
-        List<Category> allc = crud.getAllCategory();
-        request.setAttribute("allc", allc);
-
-        List<Gender> allg = crud.getAllGender();
-        request.setAttribute("allg", allg);
-
-        request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
-
-========
         String fid_raw = request.getParameter("fid");
         DashboardDAO dd = new DashboardDAO();
         
         request.setAttribute("feedback", dd.getFeedbackbyID(Integer.parseInt(fid_raw)));
         
         request.getRequestDispatcher("dashboard/feedbackdetail.jsp").forward(request, response);
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
     }
 
     /**
@@ -138,11 +85,7 @@ public class FeedbackDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
 
-        processRequest(request, response);
-
-========
         String note = request.getParameter("note");
         
         DashboardDAO d = new DashboardDAO();
@@ -161,7 +104,7 @@ public class FeedbackDetail extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
     }
 
     /**

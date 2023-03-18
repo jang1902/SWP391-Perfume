@@ -63,7 +63,7 @@ public class ChangeProfileServlet extends HttpServlet {
         request.getRequestDispatcher("changeprofile.jsp").forward(request, response);
     }
 
-    } 
+     
 
     /** 
      * Handles the HTTP <code>POST</code> method.

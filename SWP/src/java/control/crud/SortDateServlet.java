@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
 
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
+
+
 package control.crud;
 
 import dal.CrudDAO;
 
-========
-import dal.DashboardDAO;
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,7 +17,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
+
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -41,15 +39,7 @@ import model.Product;
 @WebServlet(name = "SortDateServlet", urlPatterns = {"/sortdate"})
 public class SortDateServlet extends HttpServlet {
 
-========
 
-/**
- *
- * @author asus
- */
-@WebServlet(name = "FeedbackDetail", urlPatterns = {"/feedbackdetail"})
-public class FeedbackDetail extends HttpServlet {
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,19 +58,14 @@ public class FeedbackDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
+
 
             out.println("<title>Servlet SortDateServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SortDateServlet at " + request.getContextPath() + "</h1>");
 
-========
-            out.println("<title>Servlet FeedbackDetail</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FeedbackDetail at " + request.getContextPath() + "</h1>");
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -98,7 +83,6 @@ public class FeedbackDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
 
         String date_raw = request.getParameter("date");
         String date = date_raw.trim().replaceAll("/", "-");
@@ -117,14 +101,7 @@ public class FeedbackDetail extends HttpServlet {
 
         request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
 
-========
-        String fid_raw = request.getParameter("fid");
-        DashboardDAO dd = new DashboardDAO();
-        
-        request.setAttribute("feedback", dd.getFeedbackbyID(Integer.parseInt(fid_raw)));
-        
-        request.getRequestDispatcher("dashboard/feedbackdetail.jsp").forward(request, response);
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
+
     }
 
     /**
@@ -138,30 +115,11 @@ public class FeedbackDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<<< HEAD:SWP/src/java/control/crud/SortDateServlet.java
+
 
         processRequest(request, response);
 
-========
-        String note = request.getParameter("note");
-        
-        DashboardDAO d = new DashboardDAO();
-        model.Feedback f = d.getFeedbackbyID(Integer.parseInt(request.getParameter("fid")));
-        
-        try {
-            // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
-//            response.sendRedirect("addaccount");
 
-            //uid, city, district, ward, detail, status
-            model.Feedback nf = new model.Feedback();
-            nf.setNote(note);
-            d.updateFeedback(nf);
-            response.sendRedirect("feedback");
-
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
->>>>>>>> TruongBQ:SWP/src/java/admin/FeedbackDetail.java
     }
 
     /**

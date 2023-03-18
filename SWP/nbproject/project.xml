@@ -11,10 +11,6 @@
                     <path-in-war>WEB-INF/classes</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.activation-jaf1.1.1.jar-1}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.commons-logging-1.2.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -112,6 +108,10 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.xmlbeans-5.1.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.activation-jaf1.1.1.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

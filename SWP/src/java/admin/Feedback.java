@@ -4,11 +4,9 @@
  */
 package admin;
 
-<<<<<<<< HEAD:SWP/src/java/control/crud/DeleteAddressServlet.java
-import dal.AddressDAO;
-========
+
 import dal.DashboardDAO;
->>>>>>>> TruongBQ:SWP/src/java/admin/Feedback.java
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,22 +14,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-<<<<<<<< HEAD:SWP/src/java/control/crud/DeleteAddressServlet.java
-========
 import java.util.List;
->>>>>>>> TruongBQ:SWP/src/java/admin/Feedback.java
+
 
 /**
  *
  * @author asus
  */
-<<<<<<<< HEAD:SWP/src/java/control/crud/DeleteAddressServlet.java
-@WebServlet(name = "DeleteAddressServlet", urlPatterns = {"/deleteAddress"})
-public class DeleteAddressServlet extends HttpServlet {
-========
+
 @WebServlet(name = "Feedback", urlPatterns = {"/feedback"})
 public class Feedback extends HttpServlet {
->>>>>>>> TruongBQ:SWP/src/java/admin/Feedback.java
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,17 +43,12 @@ public class Feedback extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-<<<<<<<< HEAD:SWP/src/java/control/crud/DeleteAddressServlet.java
-            out.println("<title>Servlet DeleteAddressServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DeleteAddressServlet at " + request.getContextPath() + "</h1>");
-========
+
             out.println("<title>Servlet Feedback</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Feedback at " + request.getContextPath() + "</h1>");
->>>>>>>> TruongBQ:SWP/src/java/admin/Feedback.java
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -78,15 +66,7 @@ public class Feedback extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<<< HEAD:SWP/src/java/control/crud/DeleteAddressServlet.java
-        String id = request.getParameter("id");
-        AddressDAO dao = new AddressDAO();
-       
-            int addressId = Integer.parseInt(id);
-            dao.deleteAddress(addressId);
-       response.sendRedirect("address");
-      
-========
+
         DashboardDAO dd = new DashboardDAO();
         
         
@@ -155,7 +135,7 @@ public class Feedback extends HttpServlet {
         
         
         request.getRequestDispatcher("dashboard/feedback.jsp").forward(request, response);
->>>>>>>> TruongBQ:SWP/src/java/admin/Feedback.java
+
     }
 
     /**

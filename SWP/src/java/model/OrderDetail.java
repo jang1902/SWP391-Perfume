@@ -180,20 +180,5 @@ public class OrderDetail {
         this.total_money_out = total_money_out;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-    
-     public Size getSize() {
-        return size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
 
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Category;
 import model.Discount;
+import model.Gender;
 import model.Product;
 import model.Size;
 

@@ -59,7 +59,7 @@ public class Cart {
         for (Item i : items) {
             for(Discount d:ld){
                 
-            if(d.getId()==i.getProduct().getDiscount_id()){
+            if(d.getId()==i.getProduct().getDiscount().getId()){
                 t += (i.getQuantity() * (i.getPrice()-i.getPrice()*d.getValue()/100));
             }
             }
@@ -70,7 +70,7 @@ public class Cart {
     public double getExactItemMoneyOut(Item i,List<Discount> ld){
          double t=0;
          for(Discount d:ld){
-             if(d.getId()==i.getProduct().getDiscount_id()){
+             if(d.getId()==i.getProduct().getDiscount().getId()){
                 t=(i.getPrice()-i.getPrice()*d.getValue()/100);
              }
          

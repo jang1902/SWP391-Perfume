@@ -94,7 +94,7 @@ public class DetailServlet extends HttpServlet {
 
         List<Gallery> listg = dao.getGalleryByPid(id);
 
-        List<Gallery> listg = dao.getGalleryByPid(id);
+     
 
         Category getC = dao.getCategoryNameById(p.getCategory().getId());
 
@@ -149,8 +149,5 @@ public class DetailServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    public static void main(String[] args) {
-        ProductDAO d = new ProductDAO();
-        System.out.println(d.getCategoryNameById(1));
-    }
+    
 }
