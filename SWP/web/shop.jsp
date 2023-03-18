@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -403,12 +404,12 @@
                                             </span>
                                             <div>
                                                 <c:if test="${o.discount.value!=0}">
-                                                    <span class="info_price">${o.sizeproduct.price_out- o.sizeproduct.price_out*o.discount.value/100}₫</span>
-                                                    <span class="oldprice">${o.sizeproduct.price_out}₫
+                                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${o.sizeproduct.price_out- o.sizeproduct.price_out*o.discount.value/100}"></fmt:formatNumber>đ</span>
+                                                    <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${o.sizeproduct.price_out}"></fmt:formatNumber>đ
                                                     </span>
                                                 </c:if>
                                                 <c:if test="${o.discount.value==0}">
-                                                    <span class="info_price">${o.sizeproduct.price_out}₫</span>
+                                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${o.sizeproduct.price_out}"></fmt:formatNumber>đ</span>
                                                 </c:if>
                                             </div>
                                         </div>

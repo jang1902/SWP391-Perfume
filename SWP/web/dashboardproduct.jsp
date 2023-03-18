@@ -3,7 +3,7 @@
     Created on : Feb 24, 2023, 5:24:11 PM
     Author     : hp
 --%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -417,7 +417,7 @@
                                                                 </td>
 
                                                                 <td class="text-secondary align-middle font-weight-bold">${p.size.value}ml</td>
-                                                                <td class="text-secondary align-middle font-weight-bold">${p.sizeproduct.price_out}</td>
+                                                                <td class="text-secondary align-middle font-weight-bold"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${p.sizeproduct.price_out}"></fmt:formatNumber>đ</td>
 
                                                                 <td class="align-middle">${p.updated_at}</td>
                                                                 <td class="align-middle">

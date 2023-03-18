@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -192,8 +193,8 @@
                                     </span>
                                     <div>
 
-                                        <span class="info_price">${pd.sizeproduct.price_out * ((100 - pd.discount.value) / 100)}₫</span>
-                                        <span class="oldprice">${pd.sizeproduct.price_out}₫</span>
+                                        <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.sizeproduct.price_out * ((100 - pd.discount.value) / 100)}"></fmt:formatNumber>đ</span>
+                                        <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.sizeproduct.price_out}"></fmt:formatNumber>đ</span>
 
                                     </div>
                                 </div>
@@ -235,14 +236,14 @@
                                 <span>${pb.title}</span>
                                 <c:if test="${pb.discount.id != 1}">
                                 <div>                                    
-                                    <span class="info_price">${pb.sizeproduct.price_out * (100 - pb.discount.value) / 100}₫</span>
-                                    <span class="oldprice">${pb.sizeproduct.price_out}₫</span>
+                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pb.sizeproduct.price_out * (100 - pb.discount.value) / 100}"></fmt:formatNumber>đ</span>
+                                    <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pb.sizeproduct.price_out}"></fmt:formatNumber>đ</span>
                                 </div>
                                 </c:if>
                                 
                                 <c:if test="${pb.discount.id == 1}">
                                 <div>                                    
-                                    <span class="info_price">${pb.sizeproduct.price_out}₫</span>      
+                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pb.sizeproduct.price_out}"></fmt:formatNumber>đ</span>      
                                 </div>
                                 </c:if>
                             </div>
@@ -295,14 +296,14 @@
 
                                 <c:if test="${p.discount.id != 1}">
                                 <div>                                    
-                                    <span class="info_price">${p.sizeproduct.price_out * (100 - p.discount.value) / 100}₫</span>
-                                    <span class="oldprice">${p.sizeproduct.price_out}₫</span>
+                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${p.sizeproduct.price_out * (100 - p.discount.value) / 100}"></fmt:formatNumber>đ</span>
+                                    <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${p.sizeproduct.price_out}"></fmt:formatNumber>đ</span>
                                 </div>
                                 </c:if>
                                 
                                 <c:if test="${p.discount.id == 1}">
                                 <div>                                    
-                                    <span class="info_price">${p.sizeproduct.price_out}₫</span>      
+                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${p.sizeproduct.price_out}"></fmt:formatNumber>đ</span>      
                                 </div>
                                 </c:if>
 
