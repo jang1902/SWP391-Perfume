@@ -148,14 +148,7 @@ public class Order {
         this.phone_number = phone_number;
     }
 
-    public int getAddress_id() {
-        return address_id;
-    }
-
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
-    }
-
+ 
     public String getNote() {
         return note;
     }
