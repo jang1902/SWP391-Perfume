@@ -62,7 +62,60 @@ public class ActiveUser extends HttpServlet {
             throws ServletException, IOException {
         DashboardDAO d = new DashboardDAO();
         List<User> lA = d.getAllActiveUser();
-        request.setAttribute("listUserA", lA);
+        int page = 0;
+        String pageStr = request.getParameter("page");
+
+        final int PAGE_SIZE = 8;
+        List<User> list = d.getAllActiveUser();
+        int maxPage = list.size() / 8;
+        if (pageStr != null && !pageStr.equals("0")) {
+            page = Integer.parseInt(pageStr);
+        }
+        
+
+        double max = (double) list.size() / (double) 8;
+        if (list.size() % 8 != 0) {
+            maxPage += 1;
+        }
+        int numOfPro = page * PAGE_SIZE;
+        String str = String.valueOf(max - (maxPage - 1));
+        String[] split = str.split("\\.");
+        if (page == maxPage) {
+            if (split[1].equals("125")) {
+                numOfPro = numOfPro - 7;
+            }
+            if (split[1].equals("25")) {
+                numOfPro = numOfPro - 6;
+            }
+            if (split[1].equals("375")) {
+                numOfPro = numOfPro - 5;
+            }
+            if (split[1].equals("5")) {
+                numOfPro = numOfPro - 4;
+            }
+            if (split[1].equals("625")) {
+                numOfPro = numOfPro - 3;
+            }
+            if (split[1].equals("75")) {
+                numOfPro = numOfPro - 2;
+            }
+            if (split[1].equals("875")) {
+                numOfPro = numOfPro - 1;
+            }
+ 
+        }
+        int from = (page - 1) * PAGE_SIZE;
+        if (!(pageStr != null && !pageStr.equals("0"))) {
+            maxPage = 0;
+            from = 0;
+            numOfPro = 0;
+        }
+
+        request.setAttribute("maxPage", maxPage);
+
+        request.setAttribute("numPrd", list.size());
+    
+        request.setAttribute("listUserA", list.subList(from, numOfPro));
         request.getRequestDispatcher("userlist").forward(request, response);
     }
 

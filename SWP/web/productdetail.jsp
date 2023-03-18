@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -190,83 +191,23 @@
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    <button class="menu_left">
-                        <i class="fa-solid fa-bars icon_list"></i>
-                        Danh mục sản phẩm
-                        <div class="menu_left-child">
-                            <ul>
-                                <li class="menu_left-item">
-                                    Mô hình xe hơi
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Lego
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình phim</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Marvel</li>
-                                            <li class="menu_left-item-child">DC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Transformer
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình anime</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Naruto</li>
-                                            <li class="menu_left-item-child">One Piece</li>
-                                            <li class="menu_left-item-child">Dragon Ball</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Figger
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình khác</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Mô hình cây mini</li>
-                                            <li class="menu_left-item-child">Mô hình trang trí</li>
-                                            <li class="menu_left-item-child">Mô hình PC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </button>
-                    <!-- end menu left -->
-                    <!-- menu right -->
-                    <ul class="menu_right">
+                    <div class="menu_right">             
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="shop">Cửa hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
+                            <a class="link_decor_remover hover-link" href="#">Nước hoa</a>
+                        </li>                        
+                        <li class="menu_right-item">
+                            <a class="link_decor_remover hover-link" href="#">Nến thơm và tinh dầu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
+                            <a class="link_decor_remover hover-link" href="#">Sản phẩm khác</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/oder.html">Đơn hàng</a>
+                            <a class="link_decor_remover hover-link" href="#">Giới thiệu</a>
                         </li>
-                        <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
-                        </li>
-                    </ul>
+                    </div> 
                     <!-- end menu right -->
                 </div>
                 <!-- end header mid bot -->
@@ -278,9 +219,7 @@
         <!-- body -->
 
 
-        <!--        <form action="pdetail" method="post" id="myform">
-                    <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
-                </form>-->
+
 
         <c:set value="${requestScope.detail}" var="pd"/>
         <c:set value="${requestScope.product}" var="p"/>
@@ -289,7 +228,7 @@
             <div class="body_container">
                 <ul class="breadcrumb">
                     <li><a href="home">Home</a></li>
-                    <li><a href="listproduct?cid=${p.category_id}">${cate.name}</a></li>
+                    <li><a href="filter-product?cateId=${p.category.id}">${requestScope.cate.name}</a></li>
                     <li>${p.title}</li>
                 </ul>
 
@@ -320,7 +259,7 @@
                                             list-style: none;
                                             border-radius: 6px;
                                             cursor: pointer;
-                                            background-color: #eeeeee;"><a style="text-decoration: none; color: #000000;" href="pdetail?id=${param.id}&sid=${s.id}&gid=${p.gender_id}">${s.value}</a></button>
+                                            background-color: #eeeeee;"><a style="text-decoration: none; color: #000000;" href="pdetail?id=${param.id}&sid=${s.id}&gid=${p.gender.id}">${s.value}</a></button>
                                     </c:forEach>
 
                             </div>
@@ -333,19 +272,38 @@
 
                             </div>
                             <div class="info_products-right-item">
-                                <span class="info_products-right-price">${pd.price_out}đ</span> <br>
+                                <c:if test="${p.discount.value == 0}">
+                                    <span class="info_products-right-price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out}"></fmt:formatNumber>đ</span> <br>
+                                </c:if> 
+                                <c:if test="${p.discount.value != 0}">
+                                    <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out * ((100 - p.discount.value) / 100)}"></fmt:formatNumber>₫</span>
+                                    <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${pd.price_out}"></fmt:formatNumber>₫</span>
+                                </c:if>
+                                <%--<c:set value="${param.quantity}" var="quan"/>--%>
                                 <div class="quantity-area clearfix" style="margin-bottom: -25px" >
                                     <input type="button" value="-" id="minus" onclick="minus()" class="qty-btn">
-                                    <input type="text" id="quantity"  name="quantity" value="1"  class="quantity-selector">
+                                    <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="quantity"  name="quantity" value="1" class="quantity-selector">
                                     <input type="button" value="+" id="plus" onclick="plus()" class="qty-btn">
                                 </div>
                             </div>
 
-                            <form action="" method="post" name="fo">
+
+
+                            <c:if test="${pd.quantity<=0}">
                                 <div  style="margin-top: 70px">
-                                    <button class="info_producst-right-add info_products-right-item" onclick="add('${p.id}', '${param.sid}')" >Thêm vào giỏ</button>
+                                    <button class="info_producst-right-add info_products-right-item" " >HẾT HÀNG</button>
                                 </div>
-                            </form>
+                            </c:if>
+                            <c:if test="${pd.quantity>0 }">
+                                <form action="" method="post" name="fo">
+                                    <div  style="margin-top: 70px">
+                                        <button class="info_producst-right-add info_products-right-item" onclick="add('${param.id}', '${param.sid}')" >Thêm vào giỏ</button>
+                                    </div>
+                                </form>
+                            </c:if>
+
+
+
 
                         </div>
                         <hr class="decoration_top-right-products">
@@ -461,15 +419,10 @@
                     </div>
                     <div class="products_same-child">
 
-                        <c:forEach items="${requestScope.relativeproducts}" var="rp">
-                            <form action="pdetail" method="post">
-                                <input type="hidden" value="1" name="sid"/>
-                                <input type="hidden" value="${rp.id}" name="id"/>
-                                <c:set value="${requestScope.detail}" var="lgd"/>
-                            </form>
+                        <c:forEach items="${requestScope.relativeproducts}" var="rp">         
 
                             <div class="products">
-                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender_id}">
+                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender.id}">
                                     <img src="${rp.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
@@ -483,7 +436,15 @@
                                             <i class="fa-solid fa-star icon_star"></i>
                                         </span>
                                         <div>
-                                            <span class="info_price">${lgd.price_out} đ</span>
+                                            <c:if test="${rp.discount.value == 0}">
+                                                <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out}"></fmt:formatNumber> đ</span>
+                                            </c:if> 
+                                            <c:if test="${rp.discount.value != 0}">
+                                                <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out * ((100 - rp.discount.value) / 100)}"></fmt:formatNumber>₫</span>
+                                                <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out}"></fmt:formatNumber>₫</span>
+                                            </c:if>
+
+
                                         </div>
                                     </div>
                                     <div class="add_like_products">
@@ -616,48 +577,59 @@
                 "${gl.thumbnail}",
             </c:forEach>
             ];
-
+            
             var dem = 0;
-
+            
             function img_product1() {
                 dem = 0;
                 var img_products_big = document.getElementById("img_products_big");
                 img_products_big.src = img_products[dem];
             }
-
+            
             function img_product2() {
                 dem = 1;
                 var img_products_big = document.getElementById("img_products_big");
                 img_products_big.src = img_products[dem];
             }
-
+            
             function img_product3() {
                 dem = 2;
                 var img_products_big = document.getElementById("img_products_big");
                 img_products_big.src = img_products[dem];
             }
-
+            
             function img_product4() {
                 dem = 3;
                 var img_products_big = document.getElementById("img_products_big");
                 img_products_big.src = img_products[dem];
             }
-
+            
             function img_product5() {
                 dem = 4;
                 var img_products_big = document.getElementById("img_products_big");
                 img_products_big.src = img_products[dem];
             }
             function add(id, size) {
-                var q = document.getElementById("quantity").value;
+                var q ;
+                var quan = document.getElementById("quantity").value;
+                if (quan <= ${pd.quantity}) {
+                    q = quan ;
+                } else {
+                    q = ${pd.quantity};
+                }
                 document.fo.action = "buy?pid=" + id + "&sid=" + size + "&quantity=" + q;
                 document.fo.submit();
             }
             var count = 1;
             var countEl = document.getElementById("quantity");
             function plus() {
-                count++;
-                countEl.value = count;
+                if (count < ${pd.quantity}) {
+                    count++;
+                    countEl.value = count;
+                } else {
+                    countEl.value = count;
+                    
+                }
             }
             function minus() {
                 if (count > 1) {

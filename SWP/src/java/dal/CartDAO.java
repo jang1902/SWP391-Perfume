@@ -18,7 +18,8 @@ import model.Size;
  *
  * @author ASUS
  */
-public class CartDAO extends DBContext{
+public class CartDAO extends DBContext {
+
     public Product getProductsById(int id) {
 
         String sql = "select * from Products where id=?";
@@ -29,11 +30,16 @@ public class CartDAO extends DBContext{
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("id"));// đọc từ bảng
-                p.setCategory_id(rs.getInt("category_id"));
+                Category ca = new Category();
+                ca.setId(rs.getInt("category_id"));
+                p.setCategory(ca);
                 p.setTitle(rs.getString("title"));
-                p.setGender_id(rs.getInt("gender_id"));
-      
-                p.setDiscount_id(rs.getInt("discount_id"));
+                Gender g = new Gender();
+                g.setId(rs.getInt("gender_id"));
+                p.setGender(g);
+                Discount d = new Discount();
+                d.setId(rs.getInt("discount_id"));
+                p.setDiscount(d);
                 p.setThumbnail(rs.getString("thumbnail"));
                 p.setDescription(rs.getString("description"));
                 p.setCreated_at(rs.getDate("created_at"));
@@ -45,8 +51,8 @@ public class CartDAO extends DBContext{
         }
         return null;
     }
-    
-    public Size getSizeByID(int id){
+
+    public Size getSizeByID(int id) {
         String sql = "select * from Sizes where id=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);

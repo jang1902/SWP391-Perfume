@@ -479,3 +479,28 @@ ul.breadcrumb li a:hover {
     padding: 0 6px;
     margin: 0 0 10px;
 }
+.biling_right-something div {
+    display: flex;
+    justify-content: space-between;
+}
+.biling_right-something div p {
+    margin: 5px 0;
+}
+.total{
+    color: black;
+    font-weight: 500;
+}
+
+.empty_cart_font{
+      font-size: 18px;
+    font-weight: 700;
+}
+
+.empty_cart{
+    height: 300px
+}
+
+.empty_cart_font_div{
+    display: flex;
+    justify-content: center;
+}

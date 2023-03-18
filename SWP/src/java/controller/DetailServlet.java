@@ -77,7 +77,9 @@ public class DetailServlet extends HttpServlet {
         String id_raw = request.getParameter("id");
         String sid_raw = request.getParameter("sid");
         String gid_raw = request.getParameter("gid");
-
+//        String quantity_raw = request.getParameter("quantity");
+//        
+//        int quantity = Integer.parseInt(quantity_raw);
         int id = Integer.parseInt(id_raw);
         int sid = Integer.parseInt(sid_raw);
         int gid = Integer.parseInt(gid_raw);
@@ -92,7 +94,9 @@ public class DetailServlet extends HttpServlet {
 
         List<Gallery> listg = dao.getGalleryByPid(id);
 
-        Category getC = dao.getCategoryNameById(p.getCategory_id());
+        List<Gallery> listg = dao.getGalleryByPid(id);
+
+        Category getC = dao.getCategoryNameById(p.getCategory().getId());
 
         Gender g = dao.getGenderByID(id);
         List<Product> lg;
@@ -145,5 +149,8 @@ public class DetailServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    public static void main(String[] args) {
+        ProductDAO d = new ProductDAO();
+        System.out.println(d.getCategoryNameById(1));
+    }
 }

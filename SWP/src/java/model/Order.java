@@ -39,7 +39,8 @@ public class Order {
     private Status status;
     private Address_Detail address;
 
-    public Order() {
+    public Status getStatus() {
+        return status;
     }
 
     public Order(int id, int user_id, String firstname, String lastname, String email, String phone_number, int address_id, String note, Date order_date, int status_id, int total_money, Status status) {
