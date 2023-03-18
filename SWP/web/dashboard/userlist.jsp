@@ -34,17 +34,17 @@
 
         <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="./img/favicon.jpg">
+        <link rel="icon" href="./assets/img/small_logo1.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="User list">
+        <meta name="twitter:title" content="Dashboard">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="userlist">
-        <meta property="og:title" content="User list">
+        <meta property="og:url" content="dashboard.html">
+        <meta property="og:title" content="Dashboard">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
@@ -64,30 +64,9 @@
                                     <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
-                                    <div class="d-flex align-items-center d-xl-none">
-                                        <div class="dropdown px-3">
-                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
-                                                <div class="w-48px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
-                                                </div>
-                                                <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                                    ${a.username}
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
-                                            <a href="#" class="dropdown-toggle text-heading fs-20 font-weight-500 lh-1" data-toggle="dropdown">
-                                                <i class="far fa-bell"></i>
-                                                <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
-                                            </a>
-                                            
-                                        </div>
-                                    </div>
+
+
+
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
@@ -104,7 +83,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                
+
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
@@ -158,9 +137,9 @@
                                             <div class="collapse menu-collapse" id="order">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
+                                                        <a class="sidebar-link lh-1" href="orderlist?page=1">Danh sách đơn hàng</a>
                                                     </li>
-                                                    
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -180,7 +159,7 @@
                                                         <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
+                                                        <a class="sidebar-link lh-1" href="alluser?page=1">Thông tin của người dùng</a>
                                                     </li>
 
                                                 </ul>
@@ -189,7 +168,7 @@
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <a href="feedback?page=1" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-comment-alt-lines"></i>
                                                 </span>
@@ -197,24 +176,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    <li class="list-group-item separate p-0 my-3 mx-n3"></li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-cog"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Cài đặt</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="setting">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -261,11 +223,11 @@
                                     <div class="card-header bg-transparent p-4">
                                         <div class="row align-items-center">
                                             <div class="col-md-2 col-6">
-                                                <select  class="form-control bg-input border-0" onchange="location=this.value">
-                                                    <option value="alluser">Trạng thái</option>
-                                                    <option value="alluser">Tất cả trạng thái</option>
-                                                    <option value="activeuser">Hoạt động</option>
-                                                    <option value="inactiveuser">Vô hiệu hóa</option>
+                                                <select  class="form-control bg-input border-0" onchange="location = this.value">
+                                                    <option value="alluser?page=1">Trạng thái</option>
+                                                    <option value="alluser?page=1">Tất cả trạng thái</option>
+                                                    <option value="activeuser?page=1">Hoạt động</option>
+                                                    <option value="inactiveuser?page=1">Vô hiệu hóa</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -286,42 +248,48 @@
                                             <tbody>
 
                                                 <!-- all user -->
-                                                <c:forEach items="${requestScope.listUser}" var="lu">
-                                                    <tr>
-                                                        <td>
-                                                            <div class="media">
-                                                                <div class="w-60px height-60 mr-3">
-                                                                    <img class="img-avatar" src="./avt/${lu.avatar}" >
+                                                <c:if test="${requestScope.listUser!=null}">
+                                                    <c:forEach items="${requestScope.listUser}" var="lu">
+                                                        <tr>
+                                                            <td>
+                                                                <div class="media">
+                                                                    <div class="w-60px height-60 mr-3">
+                                                                        <img class="img-avatar" src="./avt/${lu.avatar}" >
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <a href="./showprofile?id=${lu.id}">${lu.firstname} ${lu.lastname}</a>
+                                                                        <p class="text-muted mb-0 fs-14">Mã người dùng: #${lu.id}</p>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="media-body">
-                                                                    <a href="./showprofile?id=${lu.id}">${lu.firstname} ${lu.lastname}</a>
-                                                                    <p class="text-muted mb-0 fs-14">Mã người dùng: #${lu.id}</p>
+                                                            </td>
+                                                            <td>${lu.email}</td>
+                                                            <td>
+                                                                <c:if test="${lu.deleted ==0}">
+                                                                    <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                        Hoạt động
+                                                                    </span>
+                                                                </c:if>
+                                                                <c:if test="${lu.deleted ==1}">
+                                                                    <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                        Vô hiệu hóa
+                                                                    </span>
+                                                                </c:if>
+                                                            </td>
+                                                            <td>${lu.created_at}</td>
+                                                            <td class="text-right">
+                                                                <div class="d-flex flex-wrap justify-content-end">
+                                                                    <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>${lu.email}</td>
-                                                        <td>
-                                                            <c:if test="${lu.deleted ==0}">
-                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                    Hoạt động
-                                                                </span>
-                                                            </c:if>
-                                                            <c:if test="${lu.deleted ==1}">
-                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                    Vô hiệu hóa
-                                                                </span>
-                                                            </c:if>
-                                                        </td>
-                                                        <td>${lu.created_at}</td>
-                                                        <td class="text-right">
-                                                            <div class="d-flex flex-wrap justify-content-end">
-                                                                <a href="showprofile?id=${lu.id}" class="btn btn-primary btn-xs py-2">Chi tiết</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:if>
+                                                <c:if test="${requestScope.listUserI==null && requestScope.listUser==null && requestScope.listUserA == null}">
+                                                <h2 class="fs-24 mb-0">Không có người dùng phù hợp!</h2>
+                                            </c:if>
 
-                                                <!-- active -->
+                                            <!-- active -->
+                                            <c:if test="${requestScope.listUserA!=null}">
                                                 <c:forEach items="${requestScope.listUserA}" var="lA">
                                                     <tr>
                                                         <td>
@@ -356,8 +324,13 @@
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
+                                            </c:if>
+                                            <c:if test="${requestScope.listUserI==null && requestScope.listUser==null && requestScope.listUserA == null}">
+                                                <h2 class="fs-24 mb-0">Không có người dùng phù hợp!</h2>
+                                            </c:if>
 
-                                                <!-- inactive -->
+                                            <!-- inactive -->
+                                            <c:if test="${requestScope.listUserI!=null}">
                                                 <c:forEach items="${requestScope.listUserI}" var="lI">
                                                     <tr>
                                                         <td>
@@ -392,23 +365,94 @@
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
+                                            </c:if>
+                                                <c:if test="${requestScope.listUserI==null && requestScope.listUser==null && requestScope.listUserA == null}">
+                                                <h2 class="fs-24 mb-0">Không có người dùng phù hợp!</h2>
+                                            </c:if>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
+
                             </div>
-                            <nav aria-label="Page navigation example" class="mt-5 mb-4">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item mx-1">
-                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <c:if test="${requestScope.listUser !=null}">
+                                <c:set var="maxPage" value="${requestScope.maxPage}"/>
+                                <nav aria-label="Page navigation example" class="mt-5 mb-4">
+                                    <ul class="pagination justify-content-start">
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=1}">
+                                                <a class="page-link" href="alluser?page=${param.page-1}">
+                                                    <i class="far fa-chevron-left"></i>
+                                                </a>
+                                            </c:if>
+
+                                        </li>
+                                        <li class="page-item active mx-1"><a class="page-link" href="alluser?page=${param.page}">${param.page}</a></li>
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=requestScope.maxPage}">
+                                                <a class="page-link" href="alluser?page=${param.page+1}">
+                                                    <i class="far fa-chevron-right"></i>
+                                                </a>
+                                            </c:if>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </c:if>
+                            <c:if test="${requestScope.listUserA !=null}">
+                                <c:set var="maxPage" value="${requestScope.maxPage}"/>
+                                <nav aria-label="Page navigation example" class="mt-5 mb-4">
+                                    <ul class="pagination justify-content-start">
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=1}">
+                                                <a class="page-link" href="activeuser?page=${param.page-1}">
+                                                    <i class="far fa-chevron-left"></i>
+                                                </a>
+                                            </c:if>
+
+                                        </li>
+                                        <li class="page-item active mx-1"><a class="page-link" href="activeuser?page=${param.page}">${param.page}</a></li>
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=requestScope.maxPage}">
+                                                <a class="page-link" href="activeuser?page=${param.page+1}">
+                                                    <i class="far fa-chevron-right"></i>
+                                                </a>
+                                            </c:if>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </c:if>
+                            <c:if test="${requestScope.listUserI !=null}">
+                                <c:set var="maxPage" value="${requestScope.maxPage}"/>
+                                <nav aria-label="Page navigation example" class="mt-5 mb-4">
+                                    <ul class="pagination justify-content-start">
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=1}">
+                                                <a class="page-link" href="inactiveuser?page=${param.page-1}">
+                                                    <i class="far fa-chevron-left"></i>
+                                                </a>
+                                            </c:if>
+
+                                        </li>
+                                        <li class="page-item active mx-1"><a class="page-link" href="inactiveuser?page=${param.page}">${param.page}</a></li>
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=requestScope.maxPage}">
+                                                <a class="page-link" href="inactiveuser?page=${param.page+1}">
+                                                    <i class="far fa-chevron-right"></i>
+                                                </a>
+                                            </c:if>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </c:if>
                         </div>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
                             <div class="row">

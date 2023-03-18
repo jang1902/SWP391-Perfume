@@ -18,8 +18,8 @@ import java.util.List;
  *
  * @author asus
  */
-@WebServlet(name = "Feedback", urlPatterns = {"/feedback"})
-public class Feedback extends HttpServlet {
+@WebServlet(name = "SortFBdown", urlPatterns = {"/sortfeedbackdown"})
+public class SortFBdown extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class Feedback extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Feedback</title>");            
+            out.println("<title>Servlet SortFBdown</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Feedback at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SortFBdown at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,73 +60,68 @@ public class Feedback extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DashboardDAO dd = new DashboardDAO();
-        
-        
+
         List<model.Feedback> f = dd.listFeedback();
-        
-        if(f.size()==0){
+
+        if (f.size() == 0) {
             request.setAttribute("msg", "Chưa có đánh giá nào!");
-        }
-        else{
+        } else {
             int page = 0;
-        String pageStr = request.getParameter("page");
+            String pageStr = request.getParameter("page");
 
-        final int PAGE_SIZE = 8;
-        List<model.Feedback> list = dd.listFeedback();
-        int maxPage = list.size() / 8;
-        if (pageStr != null && !pageStr.equals("0")) {
-            page = Integer.parseInt(pageStr);
-        }
-        
+            final int PAGE_SIZE = 8;
+            List<model.Feedback> list = dd.listFeedbackDown();
+            int maxPage = list.size() / 8;
+            if (pageStr != null && !pageStr.equals("0")) {
+                page = Integer.parseInt(pageStr);
+            }
 
-        double max = (double) list.size() / (double) 8;
-        if (list.size() % 8 != 0) {
-            maxPage += 1;
-        }
-        int numOfPro = page * PAGE_SIZE;
-        String str = String.valueOf(max - (maxPage - 1));
-        String[] split = str.split("\\.");
-        if (page == maxPage) {
-            if (split[1].equals("125")) {
-                numOfPro = numOfPro - 7;
+            double max = (double) list.size() / (double) 8;
+            if (list.size() % 8 != 0) {
+                maxPage += 1;
             }
-            if (split[1].equals("25")) {
-                numOfPro = numOfPro - 6;
+            int numOfPro = page * PAGE_SIZE;
+            String str = String.valueOf(max - (maxPage - 1));
+            String[] split = str.split("\\.");
+            if (page == maxPage) {
+                if (split[1].equals("125")) {
+                    numOfPro = numOfPro - 7;
+                }
+                if (split[1].equals("25")) {
+                    numOfPro = numOfPro - 6;
+                }
+                if (split[1].equals("375")) {
+                    numOfPro = numOfPro - 5;
+                }
+                if (split[1].equals("5")) {
+                    numOfPro = numOfPro - 4;
+                }
+                if (split[1].equals("625")) {
+                    numOfPro = numOfPro - 3;
+                }
+                if (split[1].equals("75")) {
+                    numOfPro = numOfPro - 2;
+                }
+                if (split[1].equals("875")) {
+                    numOfPro = numOfPro - 1;
+                }
+
             }
-            if (split[1].equals("375")) {
-                numOfPro = numOfPro - 5;
+            int from = (page - 1) * PAGE_SIZE;
+            if (!(pageStr != null && !pageStr.equals("0"))) {
+                maxPage = 0;
+                from = 0;
+                numOfPro = 0;
             }
-            if (split[1].equals("5")) {
-                numOfPro = numOfPro - 4;
-            }
-            if (split[1].equals("625")) {
-                numOfPro = numOfPro - 3;
-            }
-            if (split[1].equals("75")) {
-                numOfPro = numOfPro - 2;
-            }
-            if (split[1].equals("875")) {
-                numOfPro = numOfPro - 1;
-            }
- 
-        }
-        int from = (page - 1) * PAGE_SIZE;
-        if (!(pageStr != null && !pageStr.equals("0"))) {
-            maxPage = 0;
-            from = 0;
-            numOfPro = 0;
+
+            request.setAttribute("maxPage", maxPage);
+
+            request.setAttribute("numPrd", list.size());
+
+            request.setAttribute("listFeedback", list.subList(from, numOfPro));
         }
 
-        request.setAttribute("maxPage", maxPage);
-
-        request.setAttribute("numPrd", list.size());
-    
-        request.setAttribute("listFeedback", list.subList(from, numOfPro));
-        }
-        
-        
-        
-        request.getRequestDispatcher("dashboard/feedback.jsp").forward(request, response);
+        request.getRequestDispatcher("feedback").forward(request, response);
     }
 
     /**

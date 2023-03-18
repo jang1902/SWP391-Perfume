@@ -29,17 +29,17 @@
 
         <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="./img/favicon.jpg">
+        <link rel="icon" href="./assets/img/small_logo1.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Order detail">
+        <meta name="twitter:title" content="Dashboard">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="order-detail.html">
-        <meta property="og:title" content="Order detail">
+        <meta property="og:url" content="dashboard.html">
+        <meta property="og:title" content="Dashboard">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
@@ -59,30 +59,9 @@
                                     <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
-                                    <div class="d-flex align-items-center d-xl-none">
-                                        <div class="dropdown px-3">
-                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
-                                                <div class="w-48px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
-                                                </div>
-                                                <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                                    ${a.username}
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
-                                            <a href="#" class="dropdown-toggle text-heading fs-20 font-weight-500 lh-1" data-toggle="dropdown">
-                                                <i class="far fa-bell"></i>
-                                                <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
-                                            </a>
 
-                                        </div>
-                                    </div>
+
+
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
@@ -153,9 +132,9 @@
                                             <div class="collapse menu-collapse" id="order">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
+                                                        <a class="sidebar-link lh-1" href="orderlist?page=1">Danh sách đơn hàng</a>
                                                     </li>
-                                                    
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -175,7 +154,7 @@
                                                         <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
+                                                        <a class="sidebar-link lh-1" href="alluser?page=1">Thông tin của người dùng</a>
                                                     </li>
 
                                                 </ul>
@@ -184,7 +163,7 @@
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <a href="feedback" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-comment-alt-lines"></i>
                                                 </span>
@@ -192,24 +171,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    <li class="list-group-item separate p-0 my-3 mx-n3"></li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-cog"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Cài đặt</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="setting">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>

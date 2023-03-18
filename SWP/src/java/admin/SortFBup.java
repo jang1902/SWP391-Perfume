@@ -18,8 +18,8 @@ import java.util.List;
  *
  * @author asus
  */
-@WebServlet(name = "Feedback", urlPatterns = {"/feedback"})
-public class Feedback extends HttpServlet {
+@WebServlet(name = "SortFBup", urlPatterns = {"/sortfeedbackup"})
+public class SortFBup extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class Feedback extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Feedback</title>");            
+            out.println("<title>Servlet SortFBup</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Feedback at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SortFBup at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,7 +72,7 @@ public class Feedback extends HttpServlet {
         String pageStr = request.getParameter("page");
 
         final int PAGE_SIZE = 8;
-        List<model.Feedback> list = dd.listFeedback();
+        List<model.Feedback> list = dd.listFeedbackUp();
         int maxPage = list.size() / 8;
         if (pageStr != null && !pageStr.equals("0")) {
             page = Integer.parseInt(pageStr);
@@ -126,7 +126,7 @@ public class Feedback extends HttpServlet {
         
         
         
-        request.getRequestDispatcher("dashboard/feedback.jsp").forward(request, response);
+        request.getRequestDispatcher("feedback").forward(request, response);
     }
 
     /**

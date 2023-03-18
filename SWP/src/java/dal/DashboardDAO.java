@@ -824,7 +824,6 @@ public class DashboardDAO extends DBContext {
 
                 od.setPrice(rs.getInt("price"));
                 od.setNum(rs.getInt("num"));
-                
 
                 Order o = new Order();
                 o.setTotal_money(rs.getInt("total_money"));
@@ -1113,6 +1112,123 @@ public class DashboardDAO extends DBContext {
         return list;
     }
 
+    public Feedback getFeedbackbyID(int id) {
+
+        String sql = "	select f.id as fid, p.title, u.firstname, u.lastname, f.rating, f.note\n"
+                + "	from FeedBacks f join Users u\n"
+                + "				on f.user_id = u.id\n"
+                + "				join Products p \n"
+                + "				on p.id = f.product_id \n"
+                + "				where f.id =?\n"
+                + "				order by rating desc ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Feedback f = new Feedback();
+                Product p = new Product();
+                User u = new User();
+                f.setId(rs.getInt("fid"));
+                p.setTitle(rs.getString("title"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                f.setRating(rs.getInt("rating"));
+                f.setNote(rs.getString("note"));
+                f.setUser(u);
+                f.setProduct(p);
+
+                return f;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void updateFeedback(Feedback f) {
+        String sql = "UPDATE [dbo].[FeedBacks]\n"
+                + "   SET \n"
+                + "      [note] = ?\n"
+                + "\n"
+                + " WHERE id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, f.getNote());
+            st.setInt(2, f.getId());
+            
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public List<Feedback> listFeedbackUp() {
+        List<Feedback> list = new ArrayList<>();
+        String sql = "select f.id as fid, p.title, u.firstname, u.lastname, f.rating, f.created_at\n"
+                + "	from FeedBacks f join Users u\n"
+                + "				on f.user_id = u.id\n"
+                + "				join Products p \n"
+                + "				on p.id = f.product_id \n"
+                + "				order by rating asc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Feedback f = new Feedback();
+                Product p = new Product();
+                User u = new User();
+                f.setId(rs.getInt("fid"));
+                p.setTitle(rs.getString("title"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                f.setRating(rs.getInt("rating"));
+                f.setCreated_at(rs.getDate("created_at"));
+
+                f.setUser(u);
+                f.setProduct(p);
+                list.add(f);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Feedback> listFeedbackDown() {
+        List<Feedback> list = new ArrayList<>();
+        String sql = "select f.id as fid, p.title, u.firstname, u.lastname, f.rating, f.created_at\n"
+                + "	from FeedBacks f join Users u\n"
+                + "				on f.user_id = u.id\n"
+                + "				join Products p \n"
+                + "				on p.id = f.product_id \n"
+                + "				order by rating desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Feedback f = new Feedback();
+                Product p = new Product();
+                User u = new User();
+                f.setId(rs.getInt("fid"));
+                p.setTitle(rs.getString("title"));
+                u.setFirstname(rs.getString("firstname"));
+                u.setLastname(rs.getString("lastname"));
+                f.setRating(rs.getInt("rating"));
+                f.setCreated_at(rs.getDate("created_at"));
+
+                f.setUser(u);
+                f.setProduct(p);
+                list.add(f);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         DashboardDAO d = new DashboardDAO();
 //        System.out.println(d.getUserById(10));
@@ -1145,8 +1261,9 @@ public class DashboardDAO extends DBContext {
 //        for (Order order : d.getAllYear()) {
 //            System.out.println(order.getOrder_date().getYear() + 1900);
 //        }
-        for (OrderDetail orderDetail : d.getRevenueByEachMonth(2023)) {
-            System.out.println(orderDetail.getTotal_money_out());
-        }
+//        for (OrderDetail orderDetail : d.getRevenueByEachMonth(2023)) {
+//            System.out.println(orderDetail.getTotal_money_out());
+//        }
+System.out.println(d.getFeedbackbyID(10).getNote());
     }
 }

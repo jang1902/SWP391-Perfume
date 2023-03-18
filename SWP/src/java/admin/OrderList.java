@@ -67,21 +67,190 @@ public class OrderList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String status_id = request.getParameter("status_id");
-        DashboardDAO dd = new DashboardDAO();
-        List<Order> o = null;
-        if (status_id == null) {
-            o = dd.getAllOrder();
-        } else {
-            int status = Integer.parseInt(status_id);
-            o = dd.getOrderByID(status);
-            if (o.isEmpty() && status != 0) {
-                request.setAttribute("msg", "No orders found!");
-            }
-            if (status == 0) {
-                o = dd.getAllOrder();
-            }
+        String page_raw = request.getParameter("page");
+        int getPage;
+        if(page_raw!=null){
+            getPage = Integer.parseInt(page_raw);
         }
-        request.setAttribute("orderlist", o);
+        else{
+            getPage=1;
+        }
+        int status;
+        DashboardDAO dd = new DashboardDAO();
+        if (status_id != null) {
+            status = Integer.parseInt(status_id);
+            if (status != 0) {
+                int page = 0;
+
+                String pageStr = request.getParameter("page");
+
+                final int PAGE_SIZE = 8;
+                List<Order> list = dd.getOrderByID(status);
+                if (list.size() != 0) {
+                    int maxPage = list.size() / 8;
+                    if (pageStr != null && !pageStr.equals("0")) {
+                        page = Integer.parseInt(pageStr);
+                    }
+
+                    double max = (double) list.size() / (double) 8;
+                    if (list.size() % 8 != 0) {
+                        maxPage += 1;
+                    }
+                    int numOfPro = page * PAGE_SIZE;
+                    String str = String.valueOf(max - (maxPage - 1));
+                    String[] split = str.split("\\.");
+                    if (page == maxPage) {
+                        if (split[1].equals("125")) {
+                            numOfPro = numOfPro - 7;
+                        }
+                        if (split[1].equals("25")) {
+                            numOfPro = numOfPro - 6;
+                        }
+                        if (split[1].equals("375")) {
+                            numOfPro = numOfPro - 5;
+                        }
+                        if (split[1].equals("5")) {
+                            numOfPro = numOfPro - 4;
+                        }
+                        if (split[1].equals("625")) {
+                            numOfPro = numOfPro - 3;
+                        }
+                        if (split[1].equals("75")) {
+                            numOfPro = numOfPro - 2;
+                        }
+                        if (split[1].equals("875")) {
+                            numOfPro = numOfPro - 1;
+                        }
+
+                    }
+                    int from = (page - 1) * PAGE_SIZE;
+                    if (!(pageStr != null && !pageStr.equals("0"))) {
+                        maxPage = 0;
+                        from = 0;
+                        numOfPro = 0;
+                    }
+
+                    request.setAttribute("maxPage", maxPage);
+
+                    request.setAttribute("numPrd", list.size());
+
+                    request.setAttribute("orderlist", list.subList(from, numOfPro));
+                } else {
+                    request.setAttribute("size", 0);
+                }
+            } else {
+                int page = 0;
+                String pageStr = request.getParameter("page");
+
+                final int PAGE_SIZE = 8;
+                List<Order> list = dd.getAllOrder();
+                int maxPage = list.size() / 8;
+                if (pageStr != null && !pageStr.equals("0")) {
+                    page = Integer.parseInt(pageStr);
+                }
+
+                double max = (double) list.size() / (double) 8;
+                if (list.size() % 8 != 0) {
+                    maxPage += 1;
+                }
+                int numOfPro = page * PAGE_SIZE;
+                String str = String.valueOf(max - (maxPage - 1));
+                String[] split = str.split("\\.");
+                if (page == maxPage) {
+                    if (split[1].equals("125")) {
+                        numOfPro = numOfPro - 7;
+                    }
+                    if (split[1].equals("25")) {
+                        numOfPro = numOfPro - 6;
+                    }
+                    if (split[1].equals("375")) {
+                        numOfPro = numOfPro - 5;
+                    }
+                    if (split[1].equals("5")) {
+                        numOfPro = numOfPro - 4;
+                    }
+                    if (split[1].equals("625")) {
+                        numOfPro = numOfPro - 3;
+                    }
+                    if (split[1].equals("75")) {
+                        numOfPro = numOfPro - 2;
+                    }
+                    if (split[1].equals("875")) {
+                        numOfPro = numOfPro - 1;
+                    }
+
+                }
+                int from = (page - 1) * PAGE_SIZE;
+                if (!(pageStr != null && !pageStr.equals("0"))) {
+                    maxPage = 0;
+                    from = 0;
+                    numOfPro = 0;
+                }
+
+                request.setAttribute("maxPage", maxPage);
+
+                request.setAttribute("numPrd", list.size());
+
+                request.setAttribute("orderlist", list.subList(from, numOfPro));
+            }
+        } else {
+            int page = 0;
+            String pageStr = request.getParameter("page");
+
+            final int PAGE_SIZE = 8;
+            List<Order> list = dd.getAllOrder();
+            int maxPage = list.size() / 8;
+            if (pageStr != null && !pageStr.equals("0")) {
+                page = Integer.parseInt(pageStr);
+            }
+
+            double max = (double) list.size() / (double) 8;
+            if (list.size() % 8 != 0) {
+                maxPage += 1;
+            }
+            int numOfPro = page * PAGE_SIZE;
+            String str = String.valueOf(max - (maxPage - 1));
+            String[] split = str.split("\\.");
+            if (page == maxPage) {
+                if (split[1].equals("125")) {
+                    numOfPro = numOfPro - 7;
+                }
+                if (split[1].equals("25")) {
+                    numOfPro = numOfPro - 6;
+                }
+                if (split[1].equals("375")) {
+                    numOfPro = numOfPro - 5;
+                }
+                if (split[1].equals("5")) {
+                    numOfPro = numOfPro - 4;
+                }
+                if (split[1].equals("625")) {
+                    numOfPro = numOfPro - 3;
+                }
+                if (split[1].equals("75")) {
+                    numOfPro = numOfPro - 2;
+                }
+                if (split[1].equals("875")) {
+                    numOfPro = numOfPro - 1;
+                }
+
+            }
+            int from = (page - 1) * PAGE_SIZE;
+            if (!(pageStr != null && !pageStr.equals("0"))) {
+                maxPage = 0;
+                from = 0;
+                numOfPro = 0;
+            }
+
+            request.setAttribute("maxPage", maxPage);
+
+            request.setAttribute("numPrd", list.size());
+
+            request.setAttribute("orderlist", list.subList(from, numOfPro));
+        }
+
+//        request.setAttribute("orderlist", o);
+
         request.getRequestDispatcher("dashboard/orderlist.jsp").forward(request, response);
     }
 
@@ -97,8 +266,8 @@ public class OrderList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-       String order_id_raw = request.getParameter("oid");
-        int order_id = Integer.parseInt(order_id_raw);    
+        String order_id_raw = request.getParameter("oid");
+        int order_id = Integer.parseInt(order_id_raw);
         String status_id_raw = request.getParameter("sttid");
         int statusid = Integer.parseInt(status_id_raw);
         DashboardDAO dd = new DashboardDAO();
@@ -109,7 +278,7 @@ public class OrderList extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-         response.sendRedirect("orderlist?status_id=4");
+        response.sendRedirect("orderlist?status_id=4");
     }
 
     /**

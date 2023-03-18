@@ -4,6 +4,7 @@
  */
 package admin;
 
+import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -57,7 +58,10 @@ public class FeedbackDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String fid_raw = request.getParameter("fid");
+        DashboardDAO dd = new DashboardDAO();
         
+        request.setAttribute("feedback", dd.getFeedbackbyID(Integer.parseInt(fid_raw)));
         
         request.getRequestDispatcher("dashboard/feedbackdetail.jsp").forward(request, response);
     }
@@ -73,7 +77,24 @@ public class FeedbackDetail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String note = request.getParameter("note");
+        
+        DashboardDAO d = new DashboardDAO();
+        model.Feedback f = d.getFeedbackbyID(Integer.parseInt(request.getParameter("fid")));
+        
+        try {
+            // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
+//            response.sendRedirect("addaccount");
+
+            //uid, city, district, ward, detail, status
+            model.Feedback nf = new model.Feedback();
+            nf.setNote(note);
+            d.updateFeedback(nf);
+            response.sendRedirect("feedback");
+
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
     }
 
     /**

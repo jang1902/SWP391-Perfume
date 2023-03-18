@@ -139,7 +139,7 @@
                                             <div class="collapse menu-collapse" id="order">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
+                                                        <a class="sidebar-link lh-1" href="orderlist?page=1">Danh sách đơn hàng</a>
                                                     </li>
 
                                                 </ul>
@@ -161,7 +161,7 @@
                                                         <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
+                                                        <a class="sidebar-link lh-1" href="alluser?page=1">Thông tin của người dùng</a>
                                                     </li>
 
                                                 </ul>
@@ -170,7 +170,7 @@
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <a href="feedback?page=1" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-comment-alt-lines"></i>
                                                 </span>
@@ -178,24 +178,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    <li class="list-group-item separate p-0 my-3 mx-n3"></li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-cog"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Cài đặt</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="setting">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>

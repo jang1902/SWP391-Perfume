@@ -30,17 +30,17 @@
 
         <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="./img/favicon.jpg">
+        <link rel="icon" href="./assets/img/small_logo1.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Order list 1">
+        <meta name="twitter:title" content="Dashboard">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="order-list.html">
-        <meta property="og:title" content="Order list 1">
+        <meta property="og:url" content="dashboard.html">
+        <meta property="og:title" content="Dashboard">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
@@ -60,30 +60,9 @@
                                     <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
-                                    <div class="d-flex align-items-center d-xl-none">
-                                        <div class="dropdown px-3">
-                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
-                                                <div class="w-48px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
-                                                </div>
-                                                <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                                    ${a.username}
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
-                                            <a href="#" class="dropdown-toggle text-heading fs-20 font-weight-500 lh-1" data-toggle="dropdown">
-                                                <i class="far fa-bell"></i>
-                                                <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
-                                            </a>
 
-                                        </div>
-                                    </div>
+
+
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
@@ -154,9 +133,9 @@
                                             <div class="collapse menu-collapse" id="order">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
+                                                        <a class="sidebar-link lh-1" href="orderlist?page=1">Danh sách đơn hàng</a>
                                                     </li>
-                                                    
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -176,7 +155,7 @@
                                                         <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
+                                                        <a class="sidebar-link lh-1" href="alluser?page=1">Thông tin của người dùng</a>
                                                     </li>
 
                                                 </ul>
@@ -185,7 +164,7 @@
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <a href="feedback?page=1" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-comment-alt-lines"></i>
                                                 </span>
@@ -193,24 +172,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    <li class="list-group-item separate p-0 my-3 mx-n3"></li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-cog"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Cài đặt</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="setting">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -252,110 +214,117 @@
                             </div>
 
                             <div class="card mb-4 rounded-xl form-control-01">
-                                <form action="orderlist" method="GET">
-                                    <div class="card-header bg-transparent p-4">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3">
 
-                                            </div>
-                                            <div class="col-md-2 col-6">
-                                                <select class="form-control bg-input border-0"  name="status_id">
-                                                    <option value="0">Tất cả trạng thái</option>
-                                                    <option value="1">Chờ xác nhận</option>
-                                                    <option value="2">Đang vận chuyển</option>
-                                                    <option value="3">Đã giao hàng</option>
-                                                    <option value="4">Đã hủy</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2 col-6 text-sm-right">
-                                                <button class="btn btn-primary">Phân loại</button>
-                                            </div>
+                                <div class="card-header bg-transparent p-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3">
+
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <select class="form-control bg-input border-0"  name="status_id" onchange="location = this.value">
+                                                <option value="orderlist?status_id=0&page=1">Chọn trạng thái</option>
+                                                <option value="orderlist?status_id=0&page=1">Tất cả trạng thái</option>
+                                                <option value="orderlist?status_id=1&page=1">Chờ xác nhận</option>
+                                                <option value="orderlist?status_id=2&page=1">Đang vận chuyển</option>
+                                                <option value="orderlist?status_id=3&page=1">Đã giao hàng</option>
+                                                <option value="orderlist?status_id=4&page=1">Đã hủy</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-6 text-sm-right">
+                                            <button class="btn btn-primary">Phân loại</button>
                                         </div>
                                     </div>
-                                </form>
-                                <c:if test="${requestScope.msg != null}"><h3>${requestScope.msg}</h3></c:if>
+                                </div>
 
-                                <c:if test="${requestScope.msg==null}">
-                                    <div class="card-body p-4">
 
-                                        <div class="table-responsive">
-                                            <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
-                                                <thead class="table-light">
+                                <div class="card-body p-4">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>#ID</th>
+                                                    <th scope="col">Tên khách hàng</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Tổng giá trị</th>
+                                                    <th scope="col">Trạng thái</th>
+                                                    <th scope="col">Ngày đặt hàng</th>
+                                                    <th scope="col" class="text-right">Hành động</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:if test="${requestScope.size ==0}">
+                                                <h2 class="fs-24 mb-0">Không có đơn hàng nào!</h2>
+                                            </c:if>
+                                            <c:if test="${requestScope.orderlist!=null}">
+                                                <c:forEach items="${requestScope.orderlist}" var="ol">
                                                     <tr>
-                                                        <th>#ID</th>
-                                                        <th scope="col">Tên khách hàng</th>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col">Tổng giá trị</th>
-                                                        <th scope="col">Trạng thái</th>
-                                                        <th scope="col">Ngày đặt hàng</th>
-                                                        <th scope="col" class="text-right">Hành động</th>
+                                                        <td>${ol.id}</td>
+                                                        <td>${ol.firstname} ${ol.lastname}</td>
+                                                        <td>${ol.email}</td>
+                                                        <td><fmt:formatNumber type = "currency" pattern="###,###,###" value="${ol.total_money}"></fmt:formatNumber> VND</td>
+                                                            <td>
+                                                            <c:if test="${ol.status_id==1}">
+                                                                <span class="badge rounded-pill alert-warning text-capitalize fs-12">
+                                                                    ${ol.status.name}
+                                                                </span>
+                                                            </c:if>
+                                                            <c:if test="${ol.status_id==2 || ol.status_id==3}">
+                                                                <span class="badge rounded-pill alert-success text-capitalize fs-12">
+                                                                    ${ol.status.name}
+                                                                </span>
+                                                            </c:if>
+                                                            <c:if test="${ol.status_id==4}">
+                                                                <span class="badge rounded-pill alert-danger text-capitalize fs-12">
+                                                                    ${ol.status.name}
+                                                                </span>
+                                                            </c:if>
+
+                                                        </td>
+                                                        <td>${ol.order_date}</td>
+                                                        <td class="text-right">
+                                                            <div class="d-flex flex-wrap justify-content-end">
+                                                                <a href="orderdetail?order_id=${ol.id}" class="btn btn-primary mr-1 btn-xs py-2 font-weight-bold">Chi tiết</a> 
+
+                                                            </div>
+                                                        </td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <c:forEach items="${requestScope.orderlist}" var="ol">
-                                                        <tr>
-                                                            <td>${ol.id}</td>
-                                                            <td>${ol.firstname} ${ol.lastname}</td>
-                                                            <td>${ol.email}</td>
-                                                            <td><fmt:formatNumber type = "currency" pattern="###,###,###" value="${ol.total_money}"></fmt:formatNumber> VND</td>
-                                                                <td>
-                                                                <c:if test="${ol.status_id==1}">
-                                                                    <span class="badge rounded-pill alert-warning text-capitalize fs-12">
-                                                                        ${ol.status.name}
-                                                                    </span>
-                                                                </c:if>
-                                                                <c:if test="${ol.status_id==2 || ol.status_id==3}">
-                                                                    <span class="badge rounded-pill alert-success text-capitalize fs-12">
-                                                                        ${ol.status.name}
-                                                                    </span>
-                                                                </c:if>
-                                                                <c:if test="${ol.status_id==4}">
-                                                                    <span class="badge rounded-pill alert-danger text-capitalize fs-12">
-                                                                        ${ol.status.name}
-                                                                    </span>
-                                                                </c:if>
-
-                                                            </td>
-                                                            <td>${ol.order_date}</td>
-                                                            <td class="text-right">
-                                                                <div class="d-flex flex-wrap justify-content-end">
-                                                                    <a href="orderdetail?order_id=${ol.id}" class="btn btn-primary mr-1 btn-xs py-2 font-weight-bold">Chi tiết</a>
-<!--                                                                    <div class="dropdown no-caret">
-                                                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle btn btn-xs border hover-white bg-hover-primary border-primary py-2 px-3">
-                                                                            <i class="fal fa-ellipsis-h"></i> </a>
-                                                                        <div class="dropdown-menu" style="margin: 0px;">
-                                                                            
-                                                                                <a class="dropdown-item" href="orderdetail?order_id=${ol.id}">Chi tiết</a>
-                                                                                <input type="hidden" value="${ol.id}" name="oid">
-                                                                                <input type="hidden" value="${ol.status.id}" name="sttid">
-                                                                                <button class="dropdown-item text-danger" >Hủy đơn</button>
-                                                                            
-                                                                        </div>
-                                                                    </div>-->
-
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                </c:forEach>
+                                            </c:if>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </c:if>
+                                </div>
+
                             </div>
-                            <nav aria-label="Page navigation example" class="mt-5 mb-4">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item mx-1">
-                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <c:set var="maxPage" value="${requestScope.maxPage}"/>
+                            <c:if test="${requestScope.size !=0}">
+
+
+                                <nav aria-label="Page navigation example" class="mt-5 mb-4">
+                                    <ul class="pagination justify-content-start">
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=1}">
+                                                <a class="page-link" href="orderlist?status_id=${param.status_id}&page=${param.page-1}">
+                                                    <i class="far fa-chevron-left"></i>
+                                                </a>
+                                            </c:if>
+
+                                        </li>
+                                        <li class="page-item active mx-1"><a class="page-link" href="orderlist?status_id=${param.status_id}&page=${param.page}">${param.page}</a></li>
+
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=requestScope.maxPage}">
+                                                <a class="page-link" href="orderlist?status_id=${param.status_id}&page=${param.page+1}">
+                                                    <i class="far fa-chevron-right"></i>
+                                                </a>
+                                            </c:if>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </c:if>
                         </div>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
                             <div class="row">

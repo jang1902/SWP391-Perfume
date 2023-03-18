@@ -29,25 +29,26 @@
 
         <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="./images/favicon.jpg">
+        <link rel="icon" href="./assets/img/small_logo1.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Setting sample 1">
+        <meta name="twitter:title" content="Dashboard">
         <meta name="twitter:description" content="Glowing Shop Html Template">
-        <meta name="twitter:image" content="./images/logo_01.png">
+        <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="setting-sample-1.html">
-        <meta property="og:title" content="Setting sample 1">
+        <meta property="og:url" content="dashboard.html">
+        <meta property="og:title" content="Dashboard">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="./images/logo_01.png">
+        <meta property="og:image" content="./img/logo_01.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
     </head>
     <body>
+        <c:set var="a" value="${sessionScope.userNow}"/>
         <div class="wrapper dashboard-wrapper">
             <div class="d-flex flex-wrap flex-xl-nowrap">
                 <div class="db-sidebar bg-white">
@@ -58,30 +59,9 @@
                                     <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
-                                    <div class="d-flex align-items-center d-xl-none">
-                                        <div class="dropdown px-3">
-                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
-                                                <div class="w-48px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
-                                                </div>
-                                                <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                                    ${a.username}
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
-                                            <a href="#" class="dropdown-toggle text-heading fs-20 font-weight-500 lh-1" data-toggle="dropdown">
-                                                <i class="far fa-bell"></i>
-                                                <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
-                                            </a>
 
-                                        </div>
-                                    </div>
+
+
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
@@ -152,7 +132,7 @@
                                             <div class="collapse menu-collapse" id="order">
                                                 <ul class="sub-menu list-unstyled">
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderlist">Danh sách đơn hàng</a>
+                                                        <a class="sidebar-link lh-1" href="orderlist?page=1">Danh sách đơn hàng</a>
                                                     </li>
 
                                                 </ul>
@@ -174,7 +154,7 @@
                                                         <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser">Thông tin của người dùng</a>
+                                                        <a class="sidebar-link lh-1" href="alluser?page=1">Thông tin của người dùng</a>
                                                     </li>
 
                                                 </ul>
@@ -183,7 +163,7 @@
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <a href="feedback?page=1" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-comment-alt-lines"></i>
                                                 </span>
@@ -191,24 +171,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    <li class="list-group-item separate p-0 my-3 mx-n3"></li>
-                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                        <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                <i class="fas fa-cog"></i>
-                                            </span>
-                                            <span class="sidebar-item-text">Cài đặt</span>
-                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                        </a>
-                                        <div class="collapse menu-collapse" id="setting">
-                                            <ul class="sub-menu list-unstyled">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Cài đặt</a>
-                                                </li>
 
-                                            </ul>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -243,65 +206,50 @@
                             <div class="card rounded-xl mb-4">
                                 <div class="card-body p-4">
                                     <div class="row mx-n5">
-                                        
+
                                         <div class="col-lg-9 px-5">
                                             <section class="p-xl-5">
-                                                <form class="form-control-01">
+                                                <form action="orderdetail" method="post" class="form-control-01">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-12">
+                                                            <c:set value="${requestScope.feedback}" var="f"/>
+                                                            <input type="hidden" value="${f.id}" name="fid">
                                                             <div class="row gx-3">
-                                                                <div class="col-6 mb-3">
-                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="first-name">First name</label>
-                                                                    <input class="form-control bg-input border-0" type="text" placeholder="Type here" id="first-name" name="first-name">
+                                                                <div class="col-8 mb-3">
+                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="first-name">Khách hàng</label>
+                                                                    <input readonly="" class="form-control bg-input border-0" type="text" placeholder="${f.user.firstname} ${f.user.lastname}" id="first-name" name="name">
                                                                 </div>
 
-                                                                <div class="col-6 mb-3">
-                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="last-name">Last name</label>
-                                                                    <input class="form-control bg-input border-0" type="text" placeholder="Type here" id="last-name" name="last-name">
-                                                                </div>
-
-                                                                <div class="col-lg-6 mb-3">
-                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="email">Email</label>
-                                                                    <input class="form-control bg-input border-0" type="email" placeholder="example@mail.com" id="email" name="email">
-                                                                </div>
-
-                                                                <div class="col-lg-6 mb-3">
-                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="phone">Phone</label>
-                                                                    <input class="form-control bg-input border-0" type="tel" placeholder="+1234567890" id="phone" name="phone">
+                                                                <div class="col-4 mb-3">
+                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="last-name">Đánh giá</label>
+                                                                    <input readonly="" class="form-control bg-input border-0" type="text" placeholder="${f.rating}/5" id="last-name" name="rating">
                                                                 </div>
 
                                                                 <div class="col-lg-12 mb-3">
-                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="address">Address</label>
-                                                                    <input class="form-control bg-input border-0" type="text" placeholder="Type here" id="address" name="address">
+                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="email">Sản phẩm</label>
+                                                                    <input readonly="" class="form-control bg-input border-0" type="email" placeholder="${f.product.title}" id="email" name="title">
                                                                 </div>
-
-                                                                <div class="col-lg-6 mb-3">
-                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="birthday">Birthday</label>
-                                                                    <input class="form-control bg-input border-0" type="date" id="birthday" name="birthday">
-                                                                </div>
+                                                                
+                                                                    <div class="col-lg-12 mb-3">
+                                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="phone">Nội dung</label>
+                                                                        <input class="form-control bg-input border-0" type="tel" placeholder="${f.note}" id="note" name="note">
+                                                                    </div>
+                                                                    <button class="btn btn-primary" type="submit">Save changes</button>
+                                                                
 
                                                             </div>
 
                                                         </div>
 
-                                                        <aside class="col-lg-4">
-                                                            <div class="text-lg-center">
-                                                                <div class="mw-196 mx-auto">
-                                                                    <img class="img-lg mb-3 img-avatar rounded-circle" src="./images/avatar-1.png" alt="User Photo">
-                                                                </div>
-                                                                <div>
-                                                                    <a class="btn border hover-white bg-hover-primary border-hover-primary" href="#"><i class="fas fa-cloud-upload"></i> Upload </a>
-                                                                </div>
-                                                            </div>
-                                                        </aside>
+
 
                                                     </div>
 
                                                     <br>
-                                                    <button class="btn btn-primary" type="submit">Save changes</button>
+
                                                 </form>
                                                 <hr class="my-5">
-                                               
+
                                             </section>
                                         </div>
 
