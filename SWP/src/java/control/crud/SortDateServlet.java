@@ -4,11 +4,9 @@
  */
 
 
-
 package control.crud;
 
 import dal.CrudDAO;
-
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +15,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -38,7 +34,6 @@ import model.Product;
 
 @WebServlet(name = "SortDateServlet", urlPatterns = {"/sortdate"})
 public class SortDateServlet extends HttpServlet {
-
 
 
     /**
@@ -100,7 +95,6 @@ public class SortDateServlet extends HttpServlet {
         request.setAttribute("allg", allg);
 
         request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
-
 
     }
 

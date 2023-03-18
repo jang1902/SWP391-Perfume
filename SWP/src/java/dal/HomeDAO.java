@@ -37,9 +37,7 @@ public class HomeDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();
-                Gender g = new Gender();
-                g.setId(rs.getInt("gender_id"));
-                c.setGender(g);
+                c.setGender_id(rs.getInt("gender_id"));
                 c.setTitle(rs.getString("title"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setUpdated_at(rs.getDate("updated_at"));
@@ -75,9 +73,7 @@ public class HomeDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();
-                Gender g = new Gender();
-                g.setId(rs.getInt("gender_id"));
-                c.setGender(g);
+                c.setGender_id(rs.getInt("gender_id"));
                 c.setTitle(rs.getString("title"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setId(rs.getInt("id"));

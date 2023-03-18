@@ -15,10 +15,6 @@ public class Gender {
     public Gender() {
     }
 
-    public Gender(int id) {
-        this.id = id;
-    }
-
     public Gender(int id, String name) {
         this.id = id;
         this.name = name;

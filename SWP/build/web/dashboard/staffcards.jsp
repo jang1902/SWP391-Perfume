@@ -14,7 +14,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Danh sách nhân viên</title>
+        <title>Staff List</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script><link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./vendors/fontawesome-pro-5/css/all.css">
@@ -31,17 +31,17 @@
 
         <link rel="stylesheet" href="./css/themes.css">
 
-        <link rel="icon" href="./assets/img/small_logo1.png">
+        <link rel="icon" href="./img/favicon.jpg">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@">
         <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="Dashboard">
+        <meta name="twitter:title" content="Staffs cards">
         <meta name="twitter:description" content="Glowing Shop Html Template">
         <meta name="twitter:image" content="./img/logo_01.png">
 
-        <meta property="og:url" content="dashboard.html">
-        <meta property="og:title" content="Dashboard">
+        <meta property="og:url" content="staffcards">
+        <meta property="og:title" content="Staffs cards">
         <meta property="og:description" content="Glowing Shop Html Template">
         <meta property="og:type" content="website">
         <meta property="og:image" content="./img/logo_01.png">
@@ -50,20 +50,44 @@
         <meta property="og:image:height" content="630">
     </head>
     <body>
-        <c:set var="a" value="${sessionScope.userNow}"/>
         <div class="wrapper dashboard-wrapper">
             <div class="d-flex flex-wrap flex-xl-nowrap">
                 <div class="db-sidebar bg-white">
                     <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
                         <div class="sticky-area border-right">
                             <div class="d-flex px-3 px-xl-6 w-100 border-bottom py-2">
-                                <a class="navbar-brand" href="home">
-                                    <img src="./assets/img/Logo.png" alt="Glowing">
+                                <a class="navbar-brand" href="./index.html">
+                                    <img src="./img/logo-black.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
-
-
-
+                                    <div class="d-flex align-items-center d-xl-none">
+                                        <div class="dropdown px-3">
+                                            <a href="#" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
+                                                <div class="w-48px">
+                                                    <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                </div>
+                                                <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
+                                                    Ronald Hunter
+                                                </span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">My Profile</a>
+                                                <a class="dropdown-item" href="#">My Profile</a>
+                                                <a class="dropdown-item" href="#">Logout</a>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
+                                            <a href="#" class="dropdown-toggle text-heading fs-20 font-weight-500 lh-1" data-toggle="dropdown">
+                                                <i class="far fa-bell"></i>
+                                                <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
@@ -80,100 +104,155 @@
                                         </div>
                                     </div>
                                 </form>
-
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
-                                    <c:if test="${a.role_id==1}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-home-lg-alt"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Trang tổng quát</span>
-                                            </a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1 || a.role_id==4}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                            <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-shopping-bag"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Sản phẩm</span>
-                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                            </a>
-                                            <div class="collapse menu-collapse" id="product">
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách danh mục</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách thư viện</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách dung tích</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách giảm giá</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1 || a.role_id==3}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                            <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Đơn hàng</span>
-                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                            </a>
-                                            <div class="collapse menu-collapse" id="order">
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderlist?page=1">Danh sách đơn hàng</a>
-                                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-home-lg-alt"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-shopping-bag"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Products</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="product">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-list.html">Product List</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-grid.html">Product Grid</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard-product-list-02.html">Product Grid 2</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard-categories.html">Categoried</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Order</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="order">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="order-list.html">Order List 1</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="order-list-2.html">Order List 2</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="order-detail.html">Order detail</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-users"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Manage Account</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="sellers">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="alluser">User's information list</a>
+                                                </li>
 
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                            <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-users"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Quản lý tài khoản</span>
-                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                            </a>
-                                            <div class="collapse menu-collapse" id="sellers">
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser?page=1">Thông tin của người dùng</a>
-                                                    </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#add_product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-plus-square"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Add Product</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="add_product">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-1.html">Add Product 1</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-2.html">Add Product 2</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-3.html">Add Product 3</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-4.html">Add Product 4</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="feedback?page=1" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-comment-alt-lines"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Lượt đánh giá</span>
-                                            </a>
-                                        </li>
-                                    </c:if>
-                                    
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#account" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Account</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="account">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="./user-login.html">User login</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="./user-registration.html">User registration</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                        <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-comment-alt-lines"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Reivews</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-group-item separate p-0 my-3 mx-n3"></li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-cog"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Setting</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="setting">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -183,22 +262,52 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
-                                <c:if test="${a!=null}">
-                                    <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-
-                                        <div class="dropdown pl-2 py-2">
-                                            <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
-                                                <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
-                                                </div>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right w-100">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
+                                <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
+                                    <form>
+                                        <div class="input-group position-relative bg-input rounded">
+                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                            <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
+                                                <button class="bg-transparent border-0 outline-none">
+                                                    <i class="fal fa-search"></i>
+                                                </button>
                                             </div>
                                         </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
+                                    <div class="dropdown no-caret px-2 py-2">
+                                        <a href="#" class="dropdown-toggle fs-20 font-weight-500 lh-1 animation-shake position-relative" data-toggle="dropdown">
+                                            <i class="far fa-bell"></i>
+                                            <span class="badge badge-secondary rounded-circle">4</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
                                     </div>
-                                </c:if>
+                                    <a href="#" class="request-full-screen d-block px-2 fs-20" title="Full screen"><i class="far fa-rss-square"></i></a>
+                                    <div class="dropdown px-2 py-2 dropdown-language">
+                                        <a class="dropdown-toggle fs-20" data-toggle="dropdown"><i class="far fa-globe-americas"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item text-brand" href="#"><img src="./img/flag-us.png" alt="English">English</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-fr.png" alt="Français">Français</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-jp.png" alt="Japan">日本語</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-cn.png" alt="China">中国人</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown pl-2 py-2">
+                                        <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
+                                            <div class="w-40px">
+                                                <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right w-100">
+                                            <a class="dropdown-item" href="#">My Profile</a>
+                                            <a class="dropdown-item" href="#">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </nav>
                         </div>
                     </header>
@@ -206,12 +315,12 @@
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
                                 <div class="col-sm-9 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Thẻ nhân viên</h2>
+                                    <h2 class="fs-24 mb-0">Staffs cards</h2>
                                 </div>
                                 <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
                                     <a href="addaccount" class="btn btn-primary">
                                         <i class="fal fa-plus"></i>
-                                        <span class="d-inline-block ml-2">Tạo tài khoản mới</span>
+                                        <span class="d-inline-block ml-2">Create new</span>
                                     </a>
                                 </div>
                             </div>
@@ -220,30 +329,29 @@
                                 <div class="card-header bg-transparent p-4">
                                     <div class="row align-items-center">
                                         <div class="col-md-2 col-6">
-                                            <select  class="form-control bg-input border-0" onchange="location = this.value">
-                                                <option value="showallstaff">Vị trí</option>
-                                                <option value="showallstaff">Tất cả vị trí</option>
-                                                <option value="stockmanagerlist">Quản lý kho</option>
-                                                <option value="orderstafflist">Nhân viên duyệt đơn</option>
+                                            <select  class="form-control bg-input border-0" id="selectPosition">
+                                                <option value="1">Position</option>
+                                                <option value="2">Stock Manager</option>
+                                                <option value="3">Order Staff</option>
                                             </select>
                                         </div>
-<!--                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
+                                        <div class="col-md-4 col-12 mr-auto mb-md-0 mb-3 form-control-01">
                                             <button onclick="getval()" class="btn btn-primary">Find</button>
-                                        </div>-->
+                                        </div>
 
                                         <script type="text/javascript">
-//                                            function getval() {
-//                                                var sel = document.getElementById('selectPosition');
-//                                                if (sel.value == "1") {
-//                                                    window.location.href = "showallstaff";
-//                                                }
-//                                                if (sel.value == "2") {
-//                                                    window.location.href = "stockmanagerlist";
-//                                                }
-//                                                if (sel.value == "3") {
-//                                                    window.location.href = "orderstafflist";
-//                                                }
-//                                            }
+                                            function getval() {
+                                                var sel = document.getElementById('selectPosition');
+                                                if (sel.value == "1") {
+                                                    window.location.href = "showallstaff";
+                                                }
+                                                if (sel.value == "2") {
+                                                    window.location.href = "stockmanagerlist";
+                                                }
+                                                if (sel.value == "3") {
+                                                    window.location.href = "orderstafflist";
+                                                }
+                                            }
                                         </script>
                                     </div>
 
@@ -255,15 +363,15 @@
                                             <div class="col-sm-6 col-lg-3 mb-6">
                                                 <div class="card card-user rounded-xl">
                                                     <div class="card-header text-center">
-                                                        <img class="img-avatar" src="./avt/${ls.avatar}" >
+                                                        <img class="img-avatar" src="./img/avatar-1.png" alt="Mary Sandra">
                                                     </div>
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title mt-8 fs-16 mb-3">${ls.username}</h5>
                                                         <div class="card-text text-muted">
-                                                            <p class="m-0">Mã nhân viên: #${ls.id}</p>
+                                                            <p class="m-0">Staff ID: #${ls.id}</p>
                                                             <p class="mb-0">${ls.role.name}</p>
                                                         </div>
-                                                        <a href="showprofile?id=${ls.id}" class="btn btn-sm btn-primary fs-14 mt-3">Chi tiết</a>
+                                                        <a href="showprofile?id=${ls.id}" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -277,15 +385,15 @@
                                             <div class="col-sm-6 col-lg-3 mb-6">
                                                 <div class="card card-user rounded-xl">
                                                     <div class="card-header text-center">
-                                                        <img class="img-avatar" src="./avt/${sm.avatar}" >
+                                                        <img class="img-avatar" src="./img/avatar-1.png" alt="Mary Sandra">
                                                     </div>
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title mt-8 fs-16 mb-3">${sm.username}</h5>
                                                         <div class="card-text text-muted">
-                                                            <p class="m-0">Mã nhân viên: #${sm.id}</p>
+                                                            <p class="m-0">Staff ID: #${sm.id}</p>
                                                             <p class="mb-0">${sm.role.name}</p>
                                                         </div>
-                                                        <a href="showprofile?id=${sm.id}" class="btn btn-sm btn-primary fs-14 mt-3">Chi tiết</a>
+                                                        <a href="showprofile?id=${sm.id}" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,15 +407,15 @@
                                             <div class="col-sm-6 col-lg-3 mb-6">
                                                 <div class="card card-user rounded-xl">
                                                     <div class="card-header text-center">
-                                                        <img class="img-avatar" src="./avt/${os.avatar}" >
+                                                        <img class="img-avatar" src="./img/avatar-1.png" alt="Mary Sandra">
                                                     </div>
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title mt-8 fs-16 mb-3">${os.username}</h5>
                                                         <div class="card-text text-muted">
-                                                            <p class="m-0">Mã nhân viên: #${os.id}</p>
+                                                            <p class="m-0">Staff ID: #${os.id}</p>
                                                             <p class="mb-0">${os.role.name}</p>
                                                         </div>
-                                                        <a href="showprofile?id=${os.id}" class="btn btn-sm btn-primary fs-14 mt-3">Chi tiết</a>
+                                                        <a href="showprofile?id=${os.id}" class="btn btn-sm btn-primary fs-14 mt-3">View details</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -317,7 +425,18 @@
                                 
                                 
                             </div>
-
+                            <nav aria-label="Page navigation example" class="mt-5 mb-4">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
+                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
+                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
+                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
+                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
+                                    <li class="page-item mx-1">
+                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
                             <div class="row">
@@ -325,10 +444,10 @@
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>
-                                    © Boon Bo - Cửa hàng bán nước hoa .
+                                    © Glowing - Beauty & Cosmetics Shop HTML Template .
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="text-sm-right">Đã đăng ký bản quyền</div>
+                                    <div class="text-sm-right">All rights reserved</div>
                                 </div>
                             </div>
                         </footer>

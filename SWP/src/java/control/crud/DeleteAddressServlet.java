@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.crud;
+
 
 
 import dal.AddressDAO;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,10 +19,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 
+
+
 /**
  *
- * @author asus
+ * @author dell
  */
+
 
 @WebServlet(name = "DeleteAddressServlet", urlPatterns = {"/deleteAddress"})
 public class DeleteAddressServlet extends HttpServlet {
@@ -44,12 +49,10 @@ public class DeleteAddressServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-
             out.println("<title>Servlet DeleteAddressServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet DeleteAddressServlet at " + request.getContextPath() + "</h1>");
-
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,8 +75,6 @@ public class DeleteAddressServlet extends HttpServlet {
             int addressId = Integer.parseInt(id);
             dao.deleteAddress(addressId);
        response.sendRedirect("address");
-      
-
     }
 
     /**

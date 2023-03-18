@@ -52,6 +52,7 @@ public class LoginGoogleServlet extends HttpServlet {
 
         User user = d.getAccountByEmail(email);
         if(user==null){
+
               java.sql.Timestamp dateTime = new java.sql.Timestamp(System.currentTimeMillis());
               Date date=new Date(dateTime.getTime());
              

@@ -19,20 +19,6 @@ public class User {
     private Address_Detail address_detail;
     private String avatar;
 
-    public User(int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, Date created_at, Date updated_at, int deleted, String avatar) {
-        this.role_id = role_id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone_number = phone_number;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted = deleted;
-        this.avatar = avatar;
-    }
-
     public User(int role_id, String firstname, String lastname, String username, String password, String email, String phone_number, Date created_at, Date updated_at, int deleted) {
         this.role_id = role_id;
         this.firstname = firstname;

@@ -2,9 +2,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="org.apache.poi.ss.usermodel.*" %>
-<%@ page import="org.apache.poi.xssf.usermodel.*" %>
 
 
 <!doctype html>
@@ -18,7 +15,7 @@
         <meta name="description" content="Glowing Shop Html Template">
         <meta name="author" content="">
         <meta name="generator" content="Jekyll">
-        <title>Trang tổng quát</title>
+        <title>Dashboard</title>
 
         <script src="./cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
@@ -55,7 +52,6 @@
         <meta property="og:image:height" content="630">
     </head>
     <body>
-        <c:set var="a" value="${sessionScope.userNow}"/>
         <div class="wrapper dashboard-wrapper">
             <div class="d-flex flex-wrap flex-xl-nowrap">
                 <div class="db-sidebar bg-white">
@@ -66,9 +62,34 @@
                                     <img src="./assets/img/Logo.png" alt="Glowing">
                                 </a>
                                 <div class="ml-auto d-flex align-items-center ">
-
-
-
+                                    <div class="d-flex align-items-center d-xl-none">
+                                        <div class="dropdown px-3">
+                                            <a href="a" class="dropdown-toggle d-flex align-items-center text-heading" data-toggle="dropdown">
+                                                <div class="w-48px">
+                                                    <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                                </div>
+                                                <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
+                                                    Ronald Hunter
+                                                </span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">My Profile</a>
+                                                <a class="dropdown-item" href="#">My Profile</a>
+                                                <a class="dropdown-item" href="#">Logout</a>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
+                                            <a href="#" class="dropdown-toggle text-heading fs-20 font-weight-500 lh-1" data-toggle="dropdown">
+                                                <i class="far fa-bell"></i>
+                                                <span class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button class="navbar-toggler border-0 px-0" type="button" data-toggle="collapse" data-target="#primaryMenuSidebar" aria-controls="primaryMenuSidebar" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
@@ -85,99 +106,145 @@
                                         </div>
                                     </div>
                                 </form>
-
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
-                                    <c:if test="${a.role_id==1}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-home-lg-alt"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Trang tổng quát</span>
-                                            </a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1 || a.role_id==4}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                            <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-shopping-bag"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Sản phẩm</span>
-                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                            </a>
-                                            <div class="collapse menu-collapse" id="product">
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách danh mục</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách thư viện</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách dung tích</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách giảm giá</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1 || a.role_id==3}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                            <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Đơn hàng</span>
-                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                            </a>
-                                            <div class="collapse menu-collapse" id="order">
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="orderlist?page=1">Danh sách đơn hàng</a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
-                                            <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-users"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Quản lý tài khoản</span>
-                                                <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
-                                            </a>
-                                            <div class="collapse menu-collapse" id="sellers">
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="showallstaff">Thẻ thông tin nhân viên</a>
-                                                    </li>
-                                                    <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="alluser?page=1">Thông tin của người dùng</a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${a.role_id==1}">
-                                        <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="feedback?page=1" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
-                                                <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
-                                                    <i class="fas fa-comment-alt-lines"></i>
-                                                </span>
-                                                <span class="sidebar-item-text">Lượt đánh giá</span>
-                                            </a>
-                                        </li>
-                                    </c:if>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                        <a href="dashboard" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-home-lg-alt"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-shopping-bag"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Products</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="product">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-product-grid.html">Update Product</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard/dashboard-categories.html">Categoried</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#order" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Order</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="order">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-list.html">Order List 1</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="dashboard/order-detail.html">Order detail</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#sellers" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-users"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Manage account</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="sellers">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="showallstaff">Staff's information card</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="alluser">User's information list</a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#add_product" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-plus-square"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Add Product</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="add_product">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-1.html">Add Product 1</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-2.html">Add Product 2</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-3.html">Add Product 3</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="add-product-4.html">Add Product 4</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#account" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Account</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="account">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="./user-login.html">User login</a>
+                                                </li>
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="./user-registration.html">User registration</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1">
+                                        <a href="review.html" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-comment-alt-lines"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Reivews</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="list-group-item separate p-0 my-3 mx-n3"></li>
+                                    <li class="list-group-item px-0 py-0 sidebar-item mb-1 has-children">
+                                        <a href="#setting" class="text-heading lh-1 sidebar-link d-flex align-items-center py-2 px-3 px-xl-4" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
+                                                <i class="fas fa-cog"></i>
+                                            </span>
+                                            <span class="sidebar-item-text">Setting</span>
+                                            <span class="d-inline-block ml-auto"><i class="fal fa-angle-down"></i></span>
+                                        </a>
+                                        <div class="collapse menu-collapse" id="setting">
+                                            <ul class="sub-menu list-unstyled">
+                                                <li class="sidebar-item">
+                                                    <a class="sidebar-link lh-1" href="setting-sample-1.html">Setting</a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </li>
                                     
                                 </ul>
                             </div>
@@ -188,22 +255,52 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
-                                <c:if test="${a!=null}">
-                                    <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
-
-                                        <div class="dropdown pl-2 py-2">
-                                            <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
-                                                <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
-                                                </div>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right w-100">
-                                                <a class="dropdown-item" href="showprofile?id=${a.id}">Thông tin cá nhân</a>
-                                                <a class="dropdown-item" href="logout">Đăng xuất</a>
+                                <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
+                                    <form>
+                                        <div class="input-group position-relative bg-input rounded">
+                                            <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                            <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
+                                                <button class="bg-transparent border-0 outline-none">
+                                                    <i class="fal fa-search"></i>
+                                                </button>
                                             </div>
                                         </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
+                                    <div class="dropdown no-caret px-2 py-2">
+                                        <a href="#" class="dropdown-toggle fs-20 font-weight-500 lh-1 animation-shake position-relative" data-toggle="dropdown">
+                                            <i class="far fa-bell"></i>
+                                            <span class="badge badge-secondary rounded-circle">4</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
                                     </div>
-                                </c:if>
+                                    <a href="#" class="request-full-screen d-block px-2 fs-20" title="Full screen"><i class="far fa-rss-square"></i></a>
+                                    <div class="dropdown px-2 py-2 dropdown-language">
+                                        <a class="dropdown-toggle fs-20" data-toggle="dropdown"><i class="far fa-globe-americas"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item text-brand" href="#"><img src="./img/flag-us.png" alt="English">English</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-fr.png" alt="Français">Français</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-jp.png" alt="Japan">日本語</a>
+                                            <a class="dropdown-item" href="#"><img src="./img/flag-cn.png" alt="China">中国人</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown pl-2 py-2">
+                                        <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
+                                            <div class="w-40px">
+                                                <img src="./img/avatar-2.png" alt="Ronald Hunter" class="rounded-circle">
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right w-100">
+                                            <a class="dropdown-item" href="#">My Profile</a>
+                                            <a class="dropdown-item" href="#">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </nav>
                         </div>
                     </header>
@@ -211,32 +308,11 @@
                         <div class="dashboard-page-content">
                             <div class="row mb-6 align-items-center">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h2 class="fs-24 mb-0">Trang tổng quát</h2>
-                                    <p class="mb-0">Thống kê dữ liệu về doanh nghiệp</p>
-                                    <div class="">
-                                        <select class="form-control bg-input border-0" onchange="location = this.value">
-                                            <option value="dashboard">Chọn năm</option>
-                                            <c:forEach items="${requestScope.allyear}" var="year">
-                                                <option value="dashboard?year=${year.order_date.getYear()+1900}">${year.order_date.getYear()+1900}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
+                                    <h2 class="fs-24 mb-0">Dashboard</h2>
+                                    <p class="mb-0">Whole data about your business here</p>
                                 </div>
-
-                                <c:if test="${param.year == null}">
-                                    <c:set var="getYear" value="2023" />
-                                </c:if>
-                                <c:if test="${param.year!=null}">
-                                    <c:set value="${param.year}" var="getYear"/>
-                                </c:if>
-
-
-
                                 <div class="col-sm-6 text-sm-right">
-                                    <a href="export?year=${getYear}" class="btn btn-primary"><i class="fal fa-file-plus"></i>
-                                        <span class="d-inline-block ml-1">
-                                            Tạo bản báo cáo chi tiết
-                                        </span>
+                                    <a href="#" class="btn btn-primary"><i class="fal fa-file-plus"></i><span class="d-inline-block ml-1">Create report</span>
                                     </a>
                                 </div>
                             </div>
@@ -251,28 +327,27 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Tổng doanh thu</h6>
-
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.totalmoney}"></fmt:formatNumber> VND</span>
-                                                        <span class="fs-14">Không bao gồm phí vận chuyển.</span>
-                                                    </div>
+                                                    <h6 class="mb-1 card-title fs-16">Revenue</h6>
+                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">$13,456.5</span>
+                                                    <span class="fs-14">Shipping fees are not included.</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-xxl-3 mb-4">
-                                        <div class="card rounded-xl">
-                                            <div class="card-body p-4">
-                                                <div class="media">
-                                                    <div class="mr-3">
-                                                        <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-success bg-success-light">
-                                                            <i class="fas fa-truck"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-1 card-title fs-16">Tổng đơn hàng</h6>
-                                                        <span class="fs-24 d-block font-weight-500 text-primary lh-12">${requestScope.totalorders} đơn</span>
-                                                    <span class="fs-14">Chỉ tính những đơn hàng giao thành công.</span>
+                                </div>
+                                <div class="col-sm-6 col-xxl-3 mb-4">
+                                    <div class="card rounded-xl">
+                                        <div class="card-body p-4">
+                                            <div class="media">
+                                                <div class="mr-3">
+                                                    <span class="w-48px h-48px d-flex align-items-center justify-content-center fs-20 badge rounded-circle text-success bg-success-light">
+                                                        <i class="fas fa-truck"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="mb-1 card-title fs-16">Orders</h6>
+                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">53.668</span>
+                                                    <span class="fs-14">Excluding orders in transit</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -288,9 +363,9 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Tổng sản phẩm</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">${requestScope.totalProducts} sản phẩm</span>
-                                                    <span class="fs-14">Trong ${requestScope.totalCates} danh mục</span>
+                                                    <h6 class="mb-1 card-title fs-16">Products</h6>
+                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">9.856</span>
+                                                    <span class="fs-14">In 19 Categories</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -306,9 +381,9 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Thu nhập hàng tháng</h6>
-                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.avgMoney}"></fmt:formatNumber> VND</span>
-                                                    <span class="fs-14">Năm ${getYear}</span>
+                                                    <h6 class="mb-1 card-title fs-16">Monthly Earning</h6>
+                                                    <span class="fs-24 d-block font-weight-500 text-primary lh-12">$6,982</span>
+                                                    <span class="fs-14">Based in your local time.</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -318,43 +393,29 @@
                             <div class="row">
                                 <div class="col-xl-8">
                                     <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Doanh thu của năm ${getYear}
-
-                                            <%--<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop"><c:if test="${rbm.order.total_money !=null}">${rbm.order.total_money}</c:if><c:if test="${rbm.order.total_money ==null}">0</c:if> <c:if test="${loop.count!=12}">, </c:if></c:forEach>--%>
-                                        </h5>
+                                        <h5 class="card-title fs-16 mb-3">Sale statistics</h5>
                                         <div class="card-body p-0">
-                                            <canvas id="mychart" class="chartjs" data-chart-type="line" 
-                                                    data-chart-labels='["1","2","3","4","5","6","7","8","9","10","11","12"]' 
-                                                    data-chart-options='{"elements":{"line":{"tension":0.3}},"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' 
-                                                    data-chart-datasets='[{"label":"Doanh thu","data":[<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop">${rbm.order.total_money}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#2C78DC33","hoverBackgroundColor":"#2C78DC33","borderColor":"#2C78DC","hoverBorderColor":"#2C78DC","borderWidth":1,"fill":true},
-                                                    {"label":"Đơn hàng","data":[<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop">${rbm.order.id}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#04D18233","hoverBackgroundColor":"#04D18233","borderColor":"#04D182","hoverBorderColor":"#04D182","borderWidth":1,"fill":true},
-                                                    {"label":"Sản phẩm","data":[<c:forEach items="${requestScope.revenueByMonth}" var="rbm" varStatus="loop">${rbm.num}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#EF287830","hoverBackgroundColor":"#EF287830","borderColor":"#EF287391","hoverBorderColor":"#EF287391","borderWidth":1,"fill":true}]' 
-                                                            data-chart-additional-options='{"chatId":"mychart"}' 
-                                                            height="265">
-
-                                                        </canvas>
-                                                    </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card mb-4 rounded-xl">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title fs-16 mb-3">Người dùng mới</h5>
-                                                            <div class="new-member-list">
-                                                        <c:forEach items="${requestScope.newestUser}" var="nu">
-                                                            <div class="d-flex align-items-center justify-content-between mb-6">
-                                                                <div class="media">
-                                                                    <div class="w-40px mr-2">
-                                                                        <img src="./avt/${nu.avatar}" alt="" class="rounded-circle ">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h6 class="fs-14 mb-0 lh-1">${nu.firstname} ${nu.lastname}</h6>
-                                                                        <p class="text-muted fs-12 mb-0">Date created: ${nu.created_at}</p>
-                                                                    </div>
+                                            <canvas id="mychart" class="chartjs" data-chart-type="line" data-chart-labels='["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]' data-chart-options='{"elements":{"line":{"tension":0.3}},"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' data-chart-datasets='[{"label":"Sales","data":[18,17,4,3,2,20,25,31,25,22,20,9],"backgroundColor":"#2C78DC33","hoverBackgroundColor":"#2C78DC33","borderColor":"#2C78DC","hoverBorderColor":"#2C78DC","borderWidth":1,"fill":true},{"label":"Visitors","data":[40,20,17,9,23,35,39,30,34,25,27,17],"backgroundColor":"#04D18233","hoverBackgroundColor":"#04D18233","borderColor":"#04D182","hoverBorderColor":"#04D182","borderWidth":1,"fill":true},{"label":"Products","data":[30,10,27,19,33,15,19,20,24,15,37,6],"backgroundColor":"#EF287830","hoverBackgroundColor":"#EF287830","borderColor":"#EF287391","hoverBorderColor":"#EF287391","borderWidth":1,"fill":true}]' data-chart-additional-options='{"chatId":"mychart"}' height="265"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card mb-4 rounded-xl">
+                                                <div class="card-body">
+                                                    <h5 class="card-title fs-16 mb-3">New Members</h5>
+                                                    <div class="new-member-list">
+                                                        <div class="d-flex align-items-center justify-content-between mb-6">
+                                                            <div class="media">
+                                                                <div class="w-40px mr-2">
+                                                                    <img src="./img/avatar-4.png" alt="" class="rounded-circle ">
                                                                 </div>
-                                                                <a href="showprofile?id=${nu.id}" class="btn btn-xs btn-primary"> View Profile </a>
+                                                                <div class="media-body">
+                                                                    <h6 class="fs-14 mb-0 lh-1">Patric Adams</h6>
+                                                                    <p class="text-muted fs-12 mb-0">Sanfrancisco</p>
+                                                                </div>
                                                             </div>
-                                                        </c:forEach>
+                                                            <a href="#" class="btn btn-xs btn-primary"> View Profile </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -363,48 +424,42 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="card rounded-xl p-4 mb-4">
-                                        <h5 class="card-title fs-16 mb-3">Lợi nhuận thu về trong năm ${getYear}</h5>
-
+                                        <h5 class="card-title fs-16 mb-3">Revenue Base on Area</h5>
                                         <div class="card-body p-0">
-                                            <canvas id="mychart01" class="chartjs" 
-                                                    data-chart-type="bar" 
-                                                    data-chart-labels='["1","2","3","4","5","6","7","8","9","10","11","12"]' 
-                                                    data-chart-options='{"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' 
-                                                    data-chart-datasets='[
-                                                    {"label":"Giá nhập vào","data":[<c:forEach items="${requestScope.profit}" var="prf" varStatus="loop">${prf.total_money_in}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#5897FB","hoverBackgroundColor":"#5897FB","borderColor":"#5897FB","hoverBorderColor":"#5897FB","borderWidth":1,"fill":true},
-                                                    {"label":"Giá bán ra","data":[<c:forEach items="${requestScope.profit}" var="prf" varStatus="loop">${prf.total_money_out}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#7BCF86","hoverBackgroundColor":"#7BCF86","borderColor":"#7BCF86","hoverBorderColor":"#7BCF86","borderWidth":1,"fill":true},
-                                                    {"label":"Tiền lãi","data":[<c:forEach items="${requestScope.profit}" var="prf" varStatus="loop">${prf.price}<c:if test="${loop.count!=12}">, </c:if></c:forEach>],"backgroundColor":"#FF9076","hoverBackgroundColor":"#FF9076","borderColor":"#FF9076","hoverBorderColor":"#FF9076","borderWidth":1,"fill":true}]' 
-                                                    data-chart-additional-options='{"chatId":"mychart01"}' 
-                                                    height="222">
-
-                                            </canvas>
+                                            <canvas id="mychart01" class="chartjs" data-chart-type="bar" data-chart-labels='["900","1200","1400","1600"]' data-chart-options='{"plugins":{"legend":{"labels":{"usePointStyle":true}}},"scales":{"y":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}},"x":{"ticks":{"display":true},"grid":{"display":true,"drawBorder":false,"drawTicks":true}}}}' data-chart-datasets='[{"label":"US","data":[233,321,783,900],"backgroundColor":"#5897FB","hoverBackgroundColor":"#5897FB","borderColor":"#5897FB","hoverBorderColor":"#5897FB","borderWidth":1,"fill":true},{"label":"Europe","data":[408,547,675,734],"backgroundColor":"#7BCF86","hoverBackgroundColor":"#7BCF86","borderColor":"#7BCF86","hoverBorderColor":"#7BCF86","borderWidth":1,"fill":true},{"label":"Asian","data":[208,447,575,634],"backgroundColor":"#FF9076","hoverBackgroundColor":"#FF9076","borderColor":"#FF9076","hoverBorderColor":"#FF9076","borderWidth":1,"fill":true},{"label":"Africa","data":[123,345,122,302],"backgroundColor":"#D595E5","hoverBackgroundColor":"#D595E5","borderColor":"#D595E5","hoverBorderColor":"#D595E5","borderWidth":"1","fill":true}]' data-chart-additional-options='{"chatId":"mychart01"}' height="222"></canvas>
                                         </div>
                                     </div>
                                     <div class="card mb-4 p-4 rounded-xl">
                                         <div class="card-body p-0">
-                                            <h5 class="card-title fs-16 mb-2">Kênh tiếp thị</h5>
+                                            <h5 class="card-title fs-16 mb-2">Marketing Chanel</h5>
                                             <span class="text-muted fs-12">Facebook</span>
                                             <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%">
-                                                    30%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 15%">
+                                                    15%
                                                 </div>
                                             </div>
                                             <span class="text-muted fs-12">Instagram</span>
                                             <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%">
-                                                    25%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 65%">
+                                                    65%
                                                 </div>
                                             </div>
                                             <span class="text-muted fs-12">Google</span>
                                             <div class="progress mb-2">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 35%">
-                                                    35%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 51%">
+                                                    51%
                                                 </div>
                                             </div>
-                                            <span class="text-muted fs-12">Khác</span>
+                                            <span class="text-muted fs-12">Twitter</span>
+                                            <div class="progress mb-2">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
+                                                    80%
+                                                </div>
+                                            </div>
+                                            <span class="text-muted fs-12">Other</span>
                                             <div class="progress ">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: 10%">
-                                                    10%
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%">
+                                                    80%
                                                 </div>
                                             </div>
                                         </div>
@@ -420,10 +475,10 @@
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>
-                                    © Boon Bo - Cửa hàng bán nước hoa .
+                                    © Glowing - Beauty & Cosmetics Shop HTML Template .
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="text-sm-right">Đã đăng ký bản quyền</div>
+                                    <div class="text-sm-right">All rights reserved</div>
                                 </div>
                             </div>
                         </footer>

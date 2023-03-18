@@ -4,9 +4,6 @@
  */
 package admin;
 
-import dal.CategoryDAO;
-import dal.DashboardDAO;
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,12 +11,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Category;
-import model.Order;
-import model.OrderDetail;
-import model.Product;
-import model.User;
 
 /**
  *
@@ -45,7 +36,7 @@ public class Dashboard extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Dashboard</title>");
+            out.println("<title>Servlet Dashboard</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Dashboard at " + request.getContextPath() + "</h1>");
@@ -66,69 +57,6 @@ public class Dashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String year_raw = request.getParameter("year");
-        int year;
-        if (year_raw != null) {
-            year = Integer.parseInt(year_raw);
-        } else {
-            year = 2023;
-        }
-
-        DashboardDAO dd = new DashboardDAO();
-        ProductDAO pd = new ProductDAO();
-        CategoryDAO cd = new CategoryDAO();
-        List<User> u = dd.getNewestUser();
-        List<Order> o = dd.getAllSuccessOrder(year);
-        List<Product> p = pd.getAllProduct();
-        List<Category> c = cd.getAllCategory();
-        List<Order> allyear = dd.getAllYear();
-
-        int  totalorders = 0, totalproducts = 0, totalcates = 0;
-        for (Order order : o) {
-            totalorders += 1;
-
-        }
-        for (Product product : p) {
-            totalproducts += 1;
-        }
-        for (Category category : c) {
-            totalcates += 1;
-        }
-        List<OrderDetail> od;
-
-        if (year_raw != null) {
-            int totalmoney = 0 ;
-            od = dd.getRevenueByEachMonth(year);
-            for (OrderDetail orderDetail : od) {
-                totalmoney += orderDetail.getOrder().getTotal_money();
-            }
-            request.setAttribute("totalmoney", totalmoney);
-            request.setAttribute("avgMoney", totalmoney / 12);
-            request.setAttribute("revenueByMonth", od);
-        } else {
-            int totalmoney = 0;
-            od = dd.getRevenueByEachMonth(2023);
-            for (OrderDetail orderDetail : od) {
-                totalmoney += orderDetail.getOrder().getTotal_money();
-            }
-            request.setAttribute("totalmoney", totalmoney);
-            request.setAttribute("avgMoney", totalmoney / 12);
-            request.setAttribute("revenueByMonth", od);
-        }
-        List<OrderDetail> od2;
-        if (year_raw != null) {
-            od2 = dd.getProfitEachMonth(year);
-            request.setAttribute("profit", od2);
-        } else {
-            request.setAttribute("profit", dd.getProfitEachMonth(2023));
-        }
-
-        request.setAttribute("totalorders", totalorders);
-        request.setAttribute("totalProducts", totalproducts);
-        request.setAttribute("totalCates", totalcates);
-        request.setAttribute("newestUser", u);
-        request.setAttribute("allyear", allyear);
-        request.setAttribute("year", year);
         request.getRequestDispatcher("dashboard/dashboard.jsp").forward(request, response);
     }
 

@@ -34,17 +34,10 @@ public class ProductDAO extends DBContext {
             while (rs.next()) {
                 Product c = new Product();
                 c.setId(rs.getInt("id"));
-                Category ca = new Category();
-                ca.setId(rs.getInt("category_id"));
-                c.setCategory(ca);
+                c.setCategory_id(rs.getInt("category_id"));
                 c.setTitle(rs.getString("title"));
-                Gender g = new Gender();
-                g.setId(rs.getInt("gender_id"));
-                c.setGender(g);
-                Discount d = new Discount();
-                d.setId(rs.getInt("discount_id"));
-                c.setDiscount(d);
-
+                c.setGender_id(rs.getInt("gender_id"));
+                c.setDiscount_id(rs.getInt("discount_id"));
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setDescription(rs.getString("description"));
                 c.setCreated_at(rs.getDate("created_at"));
@@ -58,9 +51,7 @@ public class ProductDAO extends DBContext {
     }
 
     public Product getProductByID(int id) {
-        String sql = "select * from Products p join Discounts d\n"
-                + "on p.discount_id=d.id\n"
-                + "where p.id=?";
+        String sql = "select * from Products where id=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -68,17 +59,10 @@ public class ProductDAO extends DBContext {
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("id"));
-                Category ca = new Category();
-                ca.setId(rs.getInt("category_id"));
-                p.setCategory(ca);
+                p.setCategory_id(rs.getInt("category_id"));
                 p.setTitle(rs.getString("title"));
-                Gender g = new Gender();
-                g.setId(rs.getInt("gender_id"));
-                p.setGender(g);
-                Discount d = new Discount();
-                d.setId(rs.getInt("discount_id"));
-                d.setValue(rs.getInt("value"));
-                p.setDiscount(d);   
+                p.setGender_id(rs.getInt("gender_id"));
+                p.setDiscount_id(rs.getInt("discount_id"));
                 p.setThumbnail(rs.getString("thumbnail"));
                 p.setDescription(rs.getString("description"));
                 p.setCreated_at(rs.getDate("created_at"));
@@ -109,9 +93,7 @@ public class ProductDAO extends DBContext {
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setUpdated_at(rs.getDate("updated_at"));
                 c.setId(rs.getInt("id"));
-                Gender g = new Gender();
-                g.setId(rs.getInt("gender_id"));
-                c.setGender(g);
+                c.setGender_id(rs.getInt("gender_id"));
                 SizeProduct sp = new SizeProduct();
                 sp.setPid(rs.getInt("id"));
                 sp.setSid(rs.getInt("sid"));
@@ -147,9 +129,7 @@ public class ProductDAO extends DBContext {
                 c.setThumbnail(rs.getString("thumbnail"));
                 c.setUpdated_at(rs.getDate("updated_at"));
                 c.setId(rs.getInt("id"));
-                Gender g = new Gender();
-                g.setId(rs.getInt("gender_id"));
-                c.setGender(g);
+                c.setGender_id(rs.getInt("gender_id"));
                 SizeProduct sp = new SizeProduct();
                 sp.setPid(rs.getInt("id"));
                 sp.setSid(rs.getInt("sid"));
@@ -211,9 +191,9 @@ public class ProductDAO extends DBContext {
     }
 
     public Gender getGenderByID(int id) {
-        String sql = "select g.id, g.name from Genders g join Products p\n"
-                + "on g.id = p.gender_id\n"
-                + "				where p.id = ?";
+        String sql = "select * from Genders g join Products p\n"
+                + "  on g.id = p.gender_id\n"
+                + "  where p.id =?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -394,9 +374,7 @@ public class ProductDAO extends DBContext {
             c.setThumbnail(rs.getString("thumbnail"));
             c.setUpdated_at(rs.getDate("updated_at"));
             c.setId(rs.getInt("id"));
-            Gender g = new Gender();
-            g.setId(rs.getInt("gender_id"));
-            c.setGender(g);
+            c.setGender_id(rs.getInt("gender_id"));
             SizeProduct sp = new SizeProduct();
             sp.setPid(rs.getInt("id"));
             sp.setSid(rs.getInt("sid"));
