@@ -77,6 +77,7 @@ public class QuickAddAddressServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
+        
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("userNow");
         AddressDAO dao = new AddressDAO();
@@ -84,16 +85,17 @@ public class QuickAddAddressServlet extends HttpServlet {
         String district = request.getParameter("district");
         String ward = request.getParameter("ward");
         String detail = request.getParameter("detail_address");
-        Address_Detail address=dao.getDefaultAddress(user.getId());
-        if(address==null){
-            Address_Detail ad=new Address_Detail(user.getId(), city, district, ward, detail,1 );
-            dao.addAddress(ad);
-            session.setAttribute("ad", ad);
-            
-        }else{
-             dao.addAddress(new Address_Detail(user.getId(), city, district, ward, detail,0 ));
-        }
+        Address_Detail address = dao.getDefaultAddress(user.getId());
+        if (address == null) {
+            address = new Address_Detail(user.getId(), city, district, ward, detail, 1);
+            dao.addAddress(address);
+            address = dao.getDefaultAddress(user.getId());
 
+        } else {
+            Address_Detail ad=new Address_Detail(user.getId(), city, district, ward, detail, 0);
+            dao.addAddress(ad);
+        }
+        session.setAttribute("ad", address);
         response.sendRedirect("checkout");
 
     }
