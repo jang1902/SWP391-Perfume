@@ -96,11 +96,12 @@ public class DetailServlet extends HttpServlet {
 
         Gender g = dao.getGenderByID(id);
         List<Product> lg;
-        
+
         FeedBackDAO fb = new FeedBackDAO();
-        List<Feedback> listF = fb.getFeedbackByPid(id);
+       // List<Feedback> listF = fb.getFeedbackByPid(id);
+        List<Feedback> listF = fb.getTop3NewFeedbackByPid(id);
         try {
-            lg = dao.randomRelative(gid,id);
+            lg = dao.randomRelative(gid, id);
             request.setAttribute("relativeproducts", lg);
         } catch (SQLException ex) {
         }
@@ -131,32 +132,67 @@ public class DetailServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String id_raw = request.getParameter("id");
-        String sid_raw = request.getParameter("sid");
-        String gid_raw = request.getParameter("gid");
-        String note = request.getParameter("review");
-        String rating_raw = request.getParameter("rating");
-        User userNow = (User) session.getAttribute("userNow");
-        int rating;
-        if (userNow != null) {
-            try {
-                int id = Integer.parseInt(id_raw);
-                int sid = Integer.parseInt(sid_raw);
-                int gid = Integer.parseInt(gid_raw);
-                ProductDAO dao = new ProductDAO();
-                Product p = dao.getProductByID(id);
-                rating = Integer.parseInt(rating_raw);
-                FeedBackDAO fb = new FeedBackDAO();
-                fb.insertFeedback(userNow, p, note, rating);
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            response.sendRedirect("pdetail?id=" + id_raw + "&sid=" + sid_raw +"&gid=" +gid_raw);
-        }else{
-            response.sendRedirect("login");
-        }
-        
+//        HttpSession session = request.getSession();
+//        String id_raw = request.getParameter("id");
+//        String sid_raw = request.getParameter("sid");
+//        String gid_raw = request.getParameter("gid");
+//        String note = request.getParameter("review");
+//        String rating_raw = request.getParameter("rating");
+//        User userNow = (User) session.getAttribute("userNow");
+//        int rating;
+//        if (userNow != null) {
+//            try {
+//                int id = Integer.parseInt(id_raw);
+//                int sid = Integer.parseInt(sid_raw);
+//                int gid = Integer.parseInt(gid_raw);
+//                ProductDAO dao = new ProductDAO();
+//                Product p = dao.getProductByID(id);
+//                rating = Integer.parseInt(rating_raw);
+//                FeedBackDAO fb = new FeedBackDAO();
+//                fb.insertFeedback(userNow, p, note, rating);
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//            response.sendRedirect("pdetail?id=" + id_raw + "&sid=" + sid_raw +"&gid=" +gid_raw);
+//        }else{
+//            response.sendRedirect("login");
+//        }
+//        FeedBackDAO f = new FeedBackDAO();
+//        HttpSession session = request.getSession();
+//        String id_raw = request.getParameter("id");
+//        String sid_raw = request.getParameter("sid");
+//        String gid_raw = request.getParameter("gid");
+//        String note = request.getParameter("review");
+//        String rating_raw = request.getParameter("rating");
+//        User userNow = (User) session.getAttribute("userNow");
+//        int id = Integer.parseInt(id_raw);
+//        int rating;
+//        int value = f.checkF(userNow.getId(), id).size();
+//        int flag = f.checkOrder(userNow.getId(), id).size();
+//        if (value < flag) {
+//            if (userNow != null) {
+//                try {
+//                    int sid = Integer.parseInt(sid_raw);
+//                    int gid = Integer.parseInt(gid_raw);
+//                    ProductDAO dao = new ProductDAO();
+//                    Product p = dao.getProductByID(id);
+//                    rating = Integer.parseInt(rating_raw);
+//                    FeedBackDAO fb = new FeedBackDAO();
+//                    fb.insertFeedback(userNow, p, note, rating);
+//                } catch (Exception e) {
+//                    System.out.println(e);
+//                }
+//                session.removeAttribute("note");
+//                response.sendRedirect("pdetail?id=" + id_raw + "&sid=" + sid_raw + "&gid=" + gid_raw);
+//            } else {
+//                 session.removeAttribute("note");
+//                response.sendRedirect("login");
+//            }
+//        } else {
+//            session.setAttribute("note", "Mua hàng trước khi đánh giá !!!");
+//            response.sendRedirect("pdetail?id=" + id_raw + "&sid=" + sid_raw + "&gid=" + gid_raw);
+//        }
+
     }
 
     /**

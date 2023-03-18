@@ -5,6 +5,9 @@
 
 package controller;
 
+import dal.AddressDAO;
+import dal.CartDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,9 +15,13 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import model.Address_Detail;
 import model.Cart;
+import model.Discount;
 import model.Item;
+import model.SizeProduct;
 import model.User;
 
 /**
@@ -35,7 +42,7 @@ public class CartServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Cookie[] arr=request.getCookies();
-       
+       ProductDAO pdao=new ProductDAO();
         String txt="";
         if(arr!=null){
             for (Cookie o:arr) {
@@ -43,16 +50,26 @@ public class CartServlet extends HttpServlet {
                 txt+=o.getValue();
             }
         }
+        CartDAO cdao=new CartDAO();
+        AddressDAO adao=new AddressDAO();
+        HttpSession session=request.getSession();
+        
+        List<Discount> ld=cdao.getAllDiscount();
          User a= (User) request.getSession().getAttribute("userNow");
+         Address_Detail ad=adao.getDefaultAddress(a.getId());
         Cart cart=new Cart(txt,a);
         List<Item> listItem= cart.getItems();
         int n;
+        
         if(listItem!=null){
             n=listItem.size();
         }else{
             n=0;
         }
         
+        session.setAttribute("ad", ad);
+        request.setAttribute("ld", ld);
+        request.setAttribute("totalQuan", n);
         request.setAttribute("listItem", listItem);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);

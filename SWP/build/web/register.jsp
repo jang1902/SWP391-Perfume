@@ -41,7 +41,7 @@
     <body id="body">
         <div class="body_container">
             <div class="body_left">
-                <a href="./index.html" class="body_left-linkhome">
+                <a href="home" class="body_left-linkhome">
                     <img src="./assets/img/small_logo1.png" alt="">
                     <img src="./assets/img/Logo.png" alt="Ảnh Logo" class="body_left-imgLogo">
                 </a>

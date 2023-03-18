@@ -15,6 +15,7 @@
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="assets/img/small_logo1.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <title>BOT STORE</title>
     </head>
     <style>
@@ -386,11 +387,15 @@
                             <button class="products-item" id="products-item-cmt" onclick="op_comment()">
                                 Nhận xét
                             </button>
+                            <button class="products-item" id="products-item-cmt1" onclick="loadMore()" >
+                                Hiển thị thêm
+                            </button>
                         </div>
                         <div class="products_contents">
-                            <div class="products_cmt" id="product_contentcomment">
+                            <div class="products_cmt row" id="product_contentcomment">
                                 <c:forEach items="${listF}" var="f">
-                                    <div class="products_cmt-item">
+                                    
+                                    <div class="products_cmt-item feedbackok">
                                         <div class="products_cmt-top">
                                             <img src="./assets/img/frog (5).png" class="img_avatar-user">
                                             <div class="user_rated">
@@ -409,12 +414,14 @@
                                             <p>${f.note}
                                             </p>
                                         </div>
-                                    </div> 
+                                    </div>
+                                            
                                 </c:forEach> 
                             </div>
                         </div>
                     </div>
                 </c:if>
+               
 
                 <!--end display comment-->
                 <div>
@@ -422,9 +429,9 @@
                         <div class="user_ratingproducts-title">
                             Đánh giá của bạn cho sản phẩm này
                         </div>
-                        <form action="pdetail" method="post">
+                        <form action="feedback" method="post">
                             <c:set value="${product}" var="p"></c:set>
-                            <input type="hidden" name="id" value="${p.id}">
+                            <input class="myClass" type="hidden" name="id" value="${p.id}">
                             <input type="hidden" name="sid" value="${sid}">
                             <input type="hidden" name="gid" value="${gid}">
                             <div class="user_ratingproducts-content">
@@ -448,6 +455,9 @@
                                 <div class="user_ratingproducts-cmt">
                                     <span>Nhận xét của bạn</span> <br>
                                     <textarea name="review" id="editor2" rows="4" cols="50" class="user_ratingproducts-cmt-child input"></textarea>
+                                </div>
+                                <div class="user_ratingproducts-cmt">
+                                    <span style="color: red">${note}</span> <br>
                                 </div>
                                 <button class="btn_submit">Gửi</button>
                             </div>
@@ -666,6 +676,29 @@
             }
 
             CKEDITOR.replace('editor2');
+            
+            
+            
+             function loadMore() {
+                 var productid = document.querySelector('.myClass');
+                 var pid = productid.value;
+                 var amount = document.getElementsByClassName("feedbackok").length;
+                $.ajax({
+                    url: "/SWP/load",
+                    type: "Get", //send it through get method
+                    data: {
+                        exist: amount,
+                        product_id: pid
+                    },
+                    success: function (data) {
+                        var row = document.getElementById("product_contentcomment");
+                        row.innerHTML += data;
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    }
+                });
+            }
 
         </script>
         <!-- end footer -->

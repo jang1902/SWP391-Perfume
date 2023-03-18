@@ -16,6 +16,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <link rel="stylesheet" href="./assets/boostrap4/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="./assets/boostrap4/js/bootstrap.min.js"/>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <title>BOT STORE</title>
         <style>
             .mg-16{
@@ -117,6 +120,42 @@
                     max-width: 255px;
                 }
             }
+            /*            slider-range-price*/
+            .range-slider {
+                position: relative;
+                width: 100%;
+                height: 30px;
+                margin-top: 10px;
+            }
+
+            .range-slider input {
+                position: absolute;
+                width: 100%;
+                height: 30px;
+                margin: 0;
+                -webkit-appearance: none;
+                background-color: #ddd;
+                outline: none;
+                border-radius: 10px;
+            }
+
+            .range-slider input::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 30px;
+                height: 30px;
+                background-color: #2196f3;
+                cursor: pointer;
+                border-radius: 50%;
+            }
+
+            .range-slider input::-moz-range-thumb {
+                width: 30px;
+                height: 30px;
+                background-color: #2196f3;
+                cursor: pointer;
+                border-radius: 50%;
+            }
         </style>
     </head>
     <body>
@@ -168,21 +207,14 @@
                                 <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                             </a>
                         </div>
-
-
                         <form action="search" method="get">
                             <div class="search">
                                 <input name="txtSearch" type="text" value="${txtSearch}" placeholder="Tìm Kiếm..." class="input_search">
                             <div class="search-item">
-                                <button type="submit">
-                                    <i class="fa-solid fa-magnifying-glass icon-search"></i>
-                                </button>
+                                <i class="fa-solid fa-magnifying-glass icon-search" onclick="submitForm()"></i>
                             </div>
                         </div>
                     </form>
-
-
-
                     <div class="login-cart">
                         <a href="login" class="login_cart-item-link">
                             <div class="login-cart_item">
@@ -200,7 +232,7 @@
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    <button class="menu_left">
+<!--                    <button class="menu_left">
                         <i class="fa-solid fa-bars icon_list"></i>
                         Danh mục sản phẩm
                         <div class="menu_left-child">
@@ -257,7 +289,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </button>
+                    </button>-->
                     <!-- end menu left -->
                     <!-- menu right -->
                     <ul class="menu_right">
@@ -284,24 +316,29 @@
             <!-- end mid -->
         </div>
         <!-- end header -->
-
         <!-- body -->
         <div id="body">
             <div class="container">
                 <div class="row justify-content-end">
                     <div class=" row col-sm-9 justify-content-end">
                         <c:if test="${listP.size()>0}"><button type="button" class="btn btn-secondary mg-16">Hiển thị ${listP.size()}/${total} sản phẩm</button></c:if>
-                        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;    &nbsp;  &nbsp;  &nbsp;  &nbsp;     
-                        <button type="button" class="btn btn-secondary mg-16">Bán chạy</button>
-                        <button type="button" class="btn btn-secondary mg-16">Mới nhất</button>
-                    </div>
-                    
-                    <div class="input-group col-sm-3">
-                        <form id="selectSort" action="sort" method="get">
+                            &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;    &nbsp;  &nbsp;  &nbsp;  &nbsp;     
+                           <form >
+                                <input type="text" value="${isDiscount}"hidden="">
+                                <button type="button" class="btn btn-secondary mg-16"><a href="searchByDiscount" style="color: inherit; text-decoration: none;">Ưu đãi</a></button>
+                            </form>
+                            <form >
+                                <input type="text" value="${isNew}"hidden="">
+                                <button type="button" class="btn btn-secondary mg-16"><a href="newList" style="color: inherit; text-decoration: none;">Mới nhất</a></button>
+                            </form>
+                        </div>
 
-                            <select  name="typeSort"  onchange="document.getElementById('selectSort').submit()"  class="custom-select mg-16" id="inputGroupSelect01">
-                                <option selected>Sắp xếp theo</option>
-                                <option value="By price asc" ${typeSort.equals('By price asc')?'selected':''}   >Giá tăng dần</option>
+                        <div class="input-group col-sm-3">
+                            <form id="selectSort" action="sort" method="get">
+
+                                <select  name="typeSort"  onchange="document.getElementById('selectSort').submit()"  class="custom-select mg-16" id="inputGroupSelect01">
+                                    <option selected>Sắp xếp theo</option>
+                                    <option value="By price asc" ${typeSort.equals('By price asc')?'selected':''}   >Giá tăng dần</option>
                                 <option value="By price desc" ${typeSort.equals('By price desc')?'selected':''} >Giá giảm dần</option>
                                 <option value="AZ" ${typeSort.equals('AZ')?'selected':''}                       >Tên từ A-Z</option>
                                 <option value="ZA" ${typeSort.equals('ZA')?'selected':''}                       >Tên từ Z-A</option>
@@ -313,8 +350,6 @@
                 <hr/>
                 <div class="row">
                     <div class="col-sm-3">
-
-
                         <div class="card bg-light mb-3">
                             <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-list"></i> Danh mục </div>
                             <ul class="list-group category_block">
@@ -333,20 +368,18 @@
                             </ul>
                         </div>
                         <hr/>
-                        <form action="searchByPrice" method="get">
-                            <ul class="list-group">
-                                <li class="list-group-item active text-center text-uppercase">Lọc theo giá</li>
-                                <li class="list-group-item">
-                                    <div class="input-group">
-                                        <input type="number" name="from" maxlength="13" class="form-control form-control-1" placeholder="₫ TỪ" value="${from}">
-                                        <input type="number" name="to"   maxlength="13" class="form-control form-control-1" placeholder="₫ ĐẾN" value="${to}">
-                                    </div>
-                                    <h6 style="text-align: center; color: red">${msg}</h6>
-                                </li>
-                                <li class="list-group-item"><button type="submit" class="btn btn-outline-success btn-1">OK</button></li>
-                            </ul>  
-                        </form>   
-                        <hr/>        
+                        <div class="card bg-light mb-3">
+                            <form action="searchByPrice" method="get">
+                                <div id="slider-range"></div>
+                                <p>
+                                    <label for="amount" style="margin-left: 80px">Price range:</label>
+                                    <input  name="price-range" type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;margin-left: 15px;text-align: center">
+                                </p>     
+                                <br/>
+                                <button type="submit" style="margin-left: 90px; margin-bottom: 20px; border-radius: 6px;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                                        ">Search</but10pxton>
+                            </form>
+                        </div>
                     </div>
                     <div class="col-sm-9 row align-content-start">
                         <h3>${message}</h3>
@@ -364,12 +397,15 @@
                                                 <i class="fa-solid fa-star icon_star"></i>
                                                 <i class="fa-solid fa-star icon_star"></i>
                                                 <i class="fa-solid fa-star icon_star"></i>
+                                                <i class="fa-solid fa-star icon_star"></i>
+                                                
+                                                                                         
                                             </span>
                                             <div>
-                                             <c:if test="${o.discount.value!=0}">
+                                                <c:if test="${o.discount.value!=0}">
                                                     <span class="info_price">${o.sizeproduct.price_out- o.sizeproduct.price_out*o.discount.value/100}₫</span>
                                                     <span class="oldprice">${o.sizeproduct.price_out}₫
-					</span>
+                                                    </span>
                                                 </c:if>
                                                 <c:if test="${o.discount.value==0}">
                                                     <span class="info_price">${o.sizeproduct.price_out}₫</span>
@@ -378,6 +414,9 @@
                                         </div>
                                         <div class="add_like_products">
                                             <i class="fa-regular fa-heart icon_heart"></i>
+                                            <c:if test="${o.discount.value>0}">
+                                                 <i class="" style="font-size: 13px; color: red;">-${o.discount.value}%</i>
+                                            </c:if>
                                             <button class="btn_deal-item"><i class="fa-solid fa-plus"></i></button>
                                         </div>
                                     </div>
@@ -391,7 +430,7 @@
                     <c:if test="${maxPage>1}">
                         <div class="paging mt-5">
                             <nav aria-label="Page navigation example">
-                                <c:if test="${cateId == null && genderId==null && txtSearch==null && fromValue==null && toValue==null && typeSort==null}">
+                                <c:if test="${cateId == null && genderId==null && txtSearch==null && fromValue==null && toValue==null && typeSort==null && a==null &&isNew==null && isDiscount==null}">
                                     <ul class="pagination ">
                                         <c:if test="${backPage>0}">
                                             <li class="page-item">
@@ -438,6 +477,52 @@
                                         </c:if>
                                     </ul>
                                 </c:if>
+                                 <c:if test="${isNew!=null}">
+                                    <ul class="pagination ">
+                                        <c:if test="${backPage>0}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="newList?pageIndex=${backPage}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${maxPage}" step="1" var="i">
+                                            <li class="page-item ${i==pageIndex?"active":""}"><a class="page-link" href="newList?pageIndex=${i}">${i}</a></li>
+                                            </c:forEach>        
+                                            <c:if test="${nextPage<maxPage+1}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="newList?pageIndex=${nextPage}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                    </ul>
+                                </c:if>
+                                 <c:if test="${isDiscount!=null}">
+                                    <ul class="pagination ">
+                                        <c:if test="${backPage>0}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="searchByDiscount?pageIndex=${backPage}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${maxPage}" step="1" var="i">
+                                            <li class="page-item ${i==pageIndex?"active":""}"><a class="page-link" href="searchByDiscount?pageIndex=${i}">${i}</a></li>
+                                            </c:forEach>        
+                                            <c:if test="${nextPage<maxPage+1}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="searchByDiscount?pageIndex=${nextPage}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+                                    </ul>
+                                </c:if>
 
                                 <c:if test="${typeSort !=null}">
                                     <ul class="pagination ">
@@ -463,28 +548,27 @@
                                     </ul>
                                 </c:if>
 
-                                <c:if test="${toValue !=null}">
-                                    <ul class="pagination ">
+                                <c:if test="${a!=null}">
+                                    <ul class="pagination">
                                         <c:if test="${backPage>0}">
-                                            <li class="page-item">
-                                                <a class="page-link" href="searchByPrice?pageIndex=${backPage}&from=${fromValue}&to=${toValue}" aria-label="Previous">
+                                            <li class="page-item ">
+                                                <a class="page-link" href="searchByPrice?pageIndex=${backPage}&price-range=${a}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
+                                                    <span class="sr-only">Previous</span>                                                </a>
                                             </li>
                                         </c:if>
                                         <c:forEach begin="1" end="${maxPage}" step="1" var="i">
-                                            <li class="page-item ${i==pageIndex?"active":""}"><a class="page-link" href="searchByPrice?pageIndex=${i}&from=${fromValue}&to=${toValue}">${i}</a></li>
-                                            </c:forEach>        
+                                            <li class="page-item ${i==pageIndex?"active":""}"> <a class="page-link" href="searchByPrice?pageIndex=${i}&price-range=${a}">${i}</a></li>
+                                            </c:forEach>
                                             <c:if test="${nextPage<maxPage+1}">
-                                            <li class="page-item">
-                                                <a class="page-link" href="searchByPrice?pageIndex=${nextPage}&from=${fromValue}&to=${toValue}" aria-label="Next">
+                                            <li class="page-item ">
+                                                <a class="page-link" href="searchByPrice?pageIndex=${nextPage}&price-range=${a}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </li>
                                         </c:if>
-                                    </ul>
+                                    </ul> 
                                 </c:if>
 
                                 <c:if test="${cateId != null}">
@@ -649,5 +733,37 @@
                 </div>
             </div>
             <!-- end footer -->
+            <script>
+                var de;
+                <c:if test="${price==null}">
+                de = [1000000, 2000000];
+                </c:if>
+                <c:if test="${price!=null}">
+                de = [${price}];
+                </c:if>
+                $(function () {
+                    $("#slider-range").slider({
+                        range: true,
+                        min: 0,
+                        max: 3000000,
+                        step: 100000,
+                        values: de,
+                        slide: function (event, ui) {
+                            $("#amount").val(ui.values[ 0 ] + "₫" + " - " + ui.values[ 1 ] + "₫");
+                        }
+                    });
+                    $("#amount").val($("#slider-range").slider("values", 0) + "₫" +
+                            " - " + $("#slider-range").slider("values", 1) + "₫");
+                }
+                );
+
+                function submitForm() {
+                    // get a reference to the form element
+                    const form = document.querySelector('form');
+
+                    // submit the form
+                    form.submit();
+                }
+            </script>
     </body>
 </html>

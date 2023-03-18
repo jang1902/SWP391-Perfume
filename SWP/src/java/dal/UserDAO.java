@@ -55,7 +55,7 @@ public User checkAccount(String username, String password){
         }
     }
     
-    public void updateUser(String firstname,String lastname,String phonenumber,int id) {
+    public void updateUser(int id, String firstname,String lastname,String phonenumber) {
         String sql = "UPDATE [dbo].[Users]\n"
                 + "   SET [firstname] = ?\n"
                 + "      ,[lastname] = ?\n"
@@ -72,6 +72,42 @@ public User checkAccount(String username, String password){
         } catch (Exception e) {
 
         }
+    }
+    
+    public void updateAvatar(int id, String avatar) {
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET [avatar] = ?\n"
+                + " WHERE id = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, avatar);
+            st.setInt(2, id);
+            st.executeUpdate();
+        } catch (Exception e) {
+
+        }
+    }
+    
+    public User getUserById(int id) {
+        String sql = "Select * from Users where id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                User c = new User(id, rs.getInt("loginType"), rs.getInt("role_id"),
+                        rs.getString("firstname"),
+                        rs.getString("lastname"), rs.getString("username"), rs.getString("password"),
+                        rs.getString("email"), rs.getString("phone_number"),
+                        rs.getDate("created_at"), rs.getDate("updated_at"), rs.getInt("deleted"), rs.getString("avatar")
+                );
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
     
     

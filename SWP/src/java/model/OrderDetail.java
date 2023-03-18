@@ -9,15 +9,32 @@ package model;
  * @author canduykhanh
  */
 public class OrderDetail {
+
     private int id;
     private int order_id;
+    private int size_id;
     private int product_id;
     private int price;
     private int num;
     private int total_money_in;
     private int total_money_out;
+    private Product product;
+    private Size size;
 
     public OrderDetail() {
+    }
+
+    public OrderDetail(int id, int order_id, int size_id, int product_id, int price, int num, int total_money_in, int total_money_out, Product product, Size size) {
+        this.id = id;
+        this.order_id = order_id;
+        this.size_id = size_id;
+        this.product_id = product_id;
+        this.price = price;
+        this.num = num;
+        this.total_money_in = total_money_in;
+        this.total_money_out = total_money_out;
+        this.product = product;
+        this.size = size;
     }
 
     public OrderDetail(int id, int order_id, int product_id, int price, int num, int total_money_in, int total_money_out) {
@@ -44,6 +61,14 @@ public class OrderDetail {
 
     public void setOrder_id(int order_id) {
         this.order_id = order_id;
+    }
+
+    public int getSize_id() {
+        return size_id;
+    }
+
+    public void setSize_id(int size_id) {
+        this.size_id = size_id;
     }
 
     public int getProduct_id() {
@@ -85,8 +110,21 @@ public class OrderDetail {
     public void setTotal_money_out(int total_money_out) {
         this.total_money_out = total_money_out;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
     
-    
-    
-    
+     public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
 }

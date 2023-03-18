@@ -55,6 +55,12 @@
     color: rgb(132, 132, 132);
     padding: 7px 10px;
 }
+.status-yellow{
+    border-radius: 20px;
+    background-color: #ffff99;
+    color: #ffa9b8;
+    padding: 7px 10px;
+}
 .body_right-oders-title{
     display: flex;
     margin-top: 20px;
