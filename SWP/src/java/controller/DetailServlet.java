@@ -5,6 +5,7 @@
 package controller;
 
 //import dal.CartDAO;
+import dal.DashboardDAO;
 import dal.FeedBackDAO;
 import dal.ProductDAO;
 import java.io.IOException;
@@ -77,13 +78,19 @@ public class DetailServlet extends HttpServlet {
         String id_raw = request.getParameter("id");
         String sid_raw = request.getParameter("sid");
         String gid_raw = request.getParameter("gid");
-
+//        String quantity_raw = request.getParameter("quantity");
+//        
+//        int quantity = Integer.parseInt(quantity_raw);
         int id = Integer.parseInt(id_raw);
         int sid = Integer.parseInt(sid_raw);
         int gid = Integer.parseInt(gid_raw);
         request.setAttribute("sizeid", sid);
-
+        DashboardDAO dd  = new DashboardDAO();
         ProductDAO dao = new ProductDAO();
+        request.setAttribute("pQuantity", dd.getQuantity(id, sid));
+        request.setAttribute("msg", "Trong kho chỉ còn lại "+dd.getQuantity(id, sid)+" sản phẩm");
+//        request.setAttribute("quantity", quantity);
+        
         Product p = dao.getProductByID(id);
 
         SizeProduct getP = dao.getSizeProductByPidSid(id, sid);
@@ -92,14 +99,13 @@ public class DetailServlet extends HttpServlet {
 
         List<Gallery> listg = dao.getGalleryByPid(id);
 
-        Category getC = dao.getCategoryNameById(p.getCategory_id());
+        Category getC = dao.getCategoryNameById(p.getCategory().getId());
 
         Gender g = dao.getGenderByID(id);
         List<Product> lg;
 
         FeedBackDAO fb = new FeedBackDAO();
-       // List<Feedback> listF = fb.getFeedbackByPid(id);
-        List<Feedback> listF = fb.getTop3NewFeedbackByPid(id);
+        List<Feedback> listF = fb.getFeedbackByPid(id);
         try {
             lg = dao.randomRelative(gid, id);
             request.setAttribute("relativeproducts", lg);
@@ -114,9 +120,7 @@ public class DetailServlet extends HttpServlet {
         request.setAttribute("listF", listF);
         request.setAttribute("sid", sid);
         request.setAttribute("gid", gid);
-        int i = 1;
 
-        request.setAttribute("count", ++i);
 
         request.getRequestDispatcher("productdetail.jsp").forward(request, response);
     }
@@ -204,5 +208,8 @@ public class DetailServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    public static void main(String[] args) {
+        ProductDAO dao = new ProductDAO();
+        System.out.println(dao.getProductByID(17).getCategory());
+    }
 }

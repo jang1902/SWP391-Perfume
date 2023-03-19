@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
+import java.util.Calendar;
 import model.Address_Detail;
 import model.User;
 
@@ -91,17 +92,19 @@ public class AddAccount extends HttpServlet {
 //        String role_id_raw = request.getParameter("role");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
+        String image = request.getParameter("image");
         int role_id = Integer.parseInt(request.getParameter("roleid"));
 
 //        String created_date = request.getParameter("created_date");
-
 //        int price = Integer.parseInt(price_raw);
 //        int cid = Integer.parseInt(cid_raw);
         DashboardDAO d = new DashboardDAO();
 //        String msg ="Create account successful!";
+        java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         try {
             // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
-            User u = new User(role_id, firstname, lastname, username, password, email, phonenum, null, null, 0);
+
+            User u = new User(role_id, firstname, lastname, username, password, email, phonenum, curDate, null, 0, image);
             d.addAccount(u);
             response.sendRedirect("addaddress");
 

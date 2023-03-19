@@ -51,7 +51,9 @@ public class ProductDAO extends DBContext {
     }
 
     public Product getProductByID(int id) {
-        String sql = "select * from Products where id=?";
+        String sql = "select * from Products p join Discounts d\n"
+                + "on p.discount_id=d.id\n"
+                + "where p.id=?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -59,10 +61,17 @@ public class ProductDAO extends DBContext {
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("id"));
-                p.setCategory_id(rs.getInt("category_id"));
+                Category ca = new Category();
+                ca.setId(rs.getInt("category_id"));
+                p.setCategory(ca);
                 p.setTitle(rs.getString("title"));
-                p.setGender_id(rs.getInt("gender_id"));
-                p.setDiscount_id(rs.getInt("discount_id"));
+                Gender g = new Gender();
+                g.setId(rs.getInt("gender_id"));
+                p.setGender(g);
+                Discount d = new Discount();
+                d.setId(rs.getInt("discount_id"));
+                d.setValue(rs.getInt("value"));
+                p.setDiscount(d);   
                 p.setThumbnail(rs.getString("thumbnail"));
                 p.setDescription(rs.getString("description"));
                 p.setCreated_at(rs.getDate("created_at"));
