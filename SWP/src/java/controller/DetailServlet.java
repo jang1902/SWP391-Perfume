@@ -105,7 +105,7 @@ public class DetailServlet extends HttpServlet {
         List<Product> lg;
 
         FeedBackDAO fb = new FeedBackDAO();
-        List<Feedback> listF = fb.getFeedbackByPid(id);
+        List<Feedback> listF = fb.getTop3NewFeedbackByPid(id);
         try {
             lg = dao.randomRelative(gid, id);
             request.setAttribute("relativeproducts", lg);
