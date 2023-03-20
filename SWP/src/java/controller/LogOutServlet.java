@@ -33,6 +33,7 @@ public class LogOutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesson =request.getSession();
         sesson.removeAttribute("userNow");
+       sesson.removeAttribute("note");
         response.sendRedirect("home");
         }
      
