@@ -112,69 +112,11 @@
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    <button class="menu_left">
-                        <i class="fa-solid fa-bars icon_list"></i>
-                        Danh mục sản phẩm
-                        <div class="menu_left-child">
-                            <ul>
-                                <li class="menu_left-item">
-                                    Mô hình xe hơi
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Lego
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình phim</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Marvel</li>
-                                            <li class="menu_left-item-child">DC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Transformer
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình anime</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Naruto</li>
-                                            <li class="menu_left-item-child">One Piece</li>
-                                            <li class="menu_left-item-child">Dragon Ball</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Figger
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình khác</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Mô hình cây mini</li>
-                                            <li class="menu_left-item-child">Mô hình trang trí</li>
-                                            <li class="menu_left-item-child">Mô hình PC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </button>
                     <!-- end menu left -->
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./index.html">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="./home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -183,10 +125,10 @@
                             <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/oder.html">Đơn hàng</a>
+                            <a class="link_decor_remover hover-link" href="myOrder">Đơn hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
+                            <a class="link_decor_remover hover-link" href="profile">Trang cá nhân</a>
                         </li>
                     </ul>
                     <!-- end menu right -->
