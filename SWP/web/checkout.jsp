@@ -177,7 +177,7 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./index.html">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -186,10 +186,10 @@
                             <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/oder.html">Đơn hàng</a>
+                            <a class="link_decor_remover hover-link" href="myOrder">Đơn hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
+                            <a class="link_decor_remover hover-link" href="profile">Trang cá nhân</a>
                         </li>
                     </ul>
                     <!-- end menu right -->
@@ -454,7 +454,7 @@
                 <div class="footer_contact-title">Liên hệ chúng tôi</div>
                 <!-- địa chỉ -->
                 <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
-                <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
+                <p class="footer_contact-text">Email: boonbo.vn@gmail.com</p>
                 <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
                 <div class="footer_contact-icon">
                     <a class="about-link" href="#">
@@ -477,7 +477,7 @@
                             <i class="fa-brands fa-youtube"></i>
                         </div>
                     </a>
-                    <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
+                    <a class="about-link" href="https://github.com/jang1902">
                         <div class="footer_contact-icon-child">
                             <i class="fa-brands fa-github"></i>
                         </div>
