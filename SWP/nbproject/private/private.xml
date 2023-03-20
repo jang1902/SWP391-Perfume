@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/dal/ProductDAO.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/admin/AddAddress.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/admin/ShowAllUser.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/web/dashboard/addaccount.jsp</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/controller/DetailServlet.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/admin/AddAccount.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/dal/DashboardDAO.java</file>
+            <file>file:/C:/Users/asus/Desktop/SWP_Boon_Bo/SWP/src/java/admin/ActiveUser.java</file>
+        </group>
     </open-files>
 </project-private>

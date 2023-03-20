@@ -104,16 +104,16 @@
                                                         <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách danh mục</a>
+                                                        <a class="sidebar-link lh-1" href="dashboardc">Danh sách thể loại</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách thư viện</a>
+                                                        <a class="sidebar-link lh-1" href="dashboardg">Danh sách thư viện</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách dung tích</a>
+                                                        <a class="sidebar-link lh-1" href="dashboards">Danh sách kích thước</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách giảm giá</a>
+                                                        <a class="sidebar-link lh-1" href="dashboardd">Danh sách mã giảm giá</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -170,7 +170,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    
+
                                 </ul>
                             </div>
                         </div>

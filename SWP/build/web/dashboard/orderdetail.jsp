@@ -105,16 +105,16 @@
                                                         <a class="sidebar-link lh-1" href="dashboardp">Danh sách sản phẩm</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách danh mục</a>
+                                                        <a class="sidebar-link lh-1" href="dashboardc">Danh sách thể loại</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách thư viện</a>
+                                                        <a class="sidebar-link lh-1" href="dashboardg">Danh sách thư viện</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách dung tích</a>
+                                                        <a class="sidebar-link lh-1" href="dashboards">Danh sách kích thước</a>
                                                     </li>
                                                     <li class="sidebar-item">
-                                                        <a class="sidebar-link lh-1" href="">Danh sách giảm giá</a>
+                                                        <a class="sidebar-link lh-1" href="dashboardd">Danh sách mã giảm giá</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -163,7 +163,7 @@
                                     </c:if>
                                     <c:if test="${a.role_id==1}">
                                         <li class="list-group-item px-0 py-0 sidebar-item mb-1">
-                                            <a href="feedbacklist" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
+                                            <a href="feedbacklist?page=1" class="text-heading lh-1 sidebar-link py-2 px-3 px-xl-4 d-block">
                                                 <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-18">
                                                     <i class="fas fa-comment-alt-lines"></i>
                                                 </span>
@@ -171,7 +171,7 @@
                                             </a>
                                         </li>
                                     </c:if>
-                                    
+
                                 </ul>
                             </div>
                         </div>
