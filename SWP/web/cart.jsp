@@ -340,7 +340,7 @@
                     <div class="footer_contact-title">Liên hệ chúng tôi</div>
                     <!-- địa chỉ -->
                     <p class="footer_contact-text">69 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</p>
-                    <p class="footer_contact-text">Email: botstore.vn@gmail.com</p>
+                    <p class="footer_contact-text">Email: boonbo.vn@gmail.com</p>
                     <p class="footer_contact-text">Số điện thoại: +84 969420123</p>
                     <div class="footer_contact-icon">
                         <a class="about-link" href="#">
@@ -363,7 +363,7 @@
                                 <i class="fa-brands fa-youtube"></i>
                             </div>
                         </a>
-                        <a class="about-link" href="https://github.com/EmLongDauLung/WebDoChoi">
+                        <a class="about-link" href="https://github.com/jang1902">
                             <div class="footer_contact-icon-child">
                                 <i class="fa-brands fa-github"></i>
                             </div>
