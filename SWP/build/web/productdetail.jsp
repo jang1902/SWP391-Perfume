@@ -172,7 +172,7 @@
 
                         </c:if>
 
-                        <a href="cart.html" class="login_cart-item-link">
+                        <a href="cart" class="login_cart-item-link">
                             <div class="login-cart_item">
                                 <i class="fa-solid fa-bag-shopping"></i>
                             </div>
@@ -207,6 +207,22 @@
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Giới thiệu</a>
                         </li>
+                         <c:if test="${userNow.role_id==1}">
+                             <li class="menu_right-item">
+                             <a class="link_decor_remover hover-link" href="dashboard">Dashboard</a>
+                        </li>
+                         </c:if>
+                           <c:if test="${userNow.role_id==3}">
+                             <li class="menu_right-item">
+                             <a class="link_decor_remover hover-link" href="orderlist?page=1">Dashboard</a>
+                        </li>
+                         </c:if>
+                           <c:if  test="${userNow.role_id==4}">
+                             <li class="menu_right-item">
+                             <a class="link_decor_remover hover-link" href="dashboardp">Dashboard</a>
+                        </li>
+                        </c:if>
+                        
                     </div> 
                     <!-- end menu right -->
                 </div>
@@ -220,9 +236,6 @@
         <!-- body -->
 
 
-        <!--        <form action="pdetail" method="post" id="myform">
-                    <input type="hidden" name="cid" value="${p.category_id}" readonly="readonly" />
-                </form>-->
 
         <c:set value="${requestScope.detail}" var="pd"/>
         <c:set value="${requestScope.product}" var="p"/>
@@ -355,7 +368,7 @@
 
                                     <div class="products_cmt-item feedbackok">
                                         <div class="products_cmt-top">
-                                            <img src="./assets/img/frog (5).png" class="img_avatar-user">
+                                            <img src="${f.user.avatar}" class="img_avatar-user">
                                             <div class="user_rated">
                                                 <span class="user_rated-name">${f.user.username}</span>
                                                 <div>

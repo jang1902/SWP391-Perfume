@@ -40,7 +40,7 @@ public User checkAccount(String username, String password){
     
     public void addUser(String username,String password, String email) {
         java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        String sql ="insert into Users values(1, 1, null, null, ?, ?, ?, null,? , null, null, null)";
+        String sql ="insert into Users values(1, 1, null, null, ?, ?, ?, null,? , null, 0, ?)";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -48,6 +48,7 @@ public User checkAccount(String username, String password){
             st.setString(2, password);
             st.setString(3, email);
             st.setDate(4, curDate);
+            st.setString(5, "avatar/defaultavatar.jpg");
 
             st.executeUpdate();
         } catch (Exception e) {

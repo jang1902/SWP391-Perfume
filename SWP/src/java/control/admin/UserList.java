@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -19,8 +19,8 @@ import model.User;
  *
  * @author asus
  */
-@WebServlet(name = "ShowAllStaff", urlPatterns = {"/showallstaff"})
-public class ShowAllStaff extends HttpServlet {
+@WebServlet(name = "UserList", urlPatterns = {"/userlist"})
+public class UserList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class ShowAllStaff extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowAllStaff</title>");            
+            out.println("<title>Servlet UserList</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowAllStaff at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UserList at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,11 +60,9 @@ public class ShowAllStaff extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DashboardDAO d = new DashboardDAO();
-        List<User> lsS = d.getAllStaff();
-        request.setAttribute("listStaff", lsS);
+        
 
-        request.getRequestDispatcher("staffcards").forward(request, response);
+        request.getRequestDispatcher("dashboard/userlist.jsp").forward(request, response);
     }
 
     /**

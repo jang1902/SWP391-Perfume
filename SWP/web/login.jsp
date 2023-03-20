@@ -54,9 +54,7 @@
                 </div>
                 <hr class="body_right-decoration">
                 <div>
-                    <form action="register.jsp" method="post">
-                        <button class="body_right-btncreateacc-login" id="btn_createaccount" href="register" >Tạo Tài Khoản</button>
-                    </form>
+                        <a class="body_right-btncreateacc-login" id="btn_createaccount" href="register" >Tạo Tài Khoản</a>
                 </div>
             </div>
         </div>

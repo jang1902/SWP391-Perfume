@@ -108,6 +108,7 @@ public class CheckoutServlet extends HttpServlet {
         request.setAttribute("totalQuan", totalQuantity);
         request.setAttribute("listItem", listItem);
         request.setAttribute("cart", cart);
+        
         request.getRequestDispatcher("checkout.jsp").forward(request, response);
     }
 
@@ -184,6 +185,7 @@ public class CheckoutServlet extends HttpServlet {
                     c.setMaxAge(60 * 60 * 2 * 24);
                     response.addCookie(c);
                 }
+                session.removeAttribute("note");
                 response.sendRedirect("myOrder");
             }
         }

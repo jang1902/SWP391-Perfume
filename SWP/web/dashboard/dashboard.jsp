@@ -194,7 +194,7 @@
                                         <div class="dropdown pl-2 py-2">
                                             <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                                 <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                    <img src="${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right w-100">
@@ -345,7 +345,7 @@
                                                             <div class="d-flex align-items-center justify-content-between mb-6">
                                                                 <div class="media">
                                                                     <div class="w-40px mr-2">
-                                                                        <img src="./avt/${nu.avatar}" alt="" class="rounded-circle ">
+                                                                        <img src="${nu.avatar}" alt="" class="rounded-circle ">
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h6 class="fs-14 mb-0 lh-1">${nu.firstname} ${nu.lastname}</h6>

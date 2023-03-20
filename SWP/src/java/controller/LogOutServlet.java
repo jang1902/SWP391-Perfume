@@ -34,6 +34,7 @@ public class LogOutServlet extends HttpServlet {
         HttpSession sesson =request.getSession();
         sesson.removeAttribute("userNow");
         response.sendRedirect("home.jsp");
+        sesson.removeAttribute("note");
         }
      
 

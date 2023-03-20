@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -13,15 +13,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.OrderDetail;
-import model.SizeProduct;
+import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "OrderDetail", urlPatterns = {"/orderdetail"})
-public class OrderDetailByID extends HttpServlet {
+@WebServlet(name = "ShowAllStaff", urlPatterns = {"/showallstaff"})
+public class ShowAllStaff extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class OrderDetailByID extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OrderDetail</title>");
+            out.println("<title>Servlet ShowAllStaff</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OrderDetail at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ShowAllStaff at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,18 +60,11 @@ public class OrderDetailByID extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String order_id_raw = request.getParameter("order_id");
-        DashboardDAO dd = new DashboardDAO();
-        int order_id = Integer.parseInt(order_id_raw);
+        DashboardDAO d = new DashboardDAO();
+        List<User> lsS = d.getAllStaff();
+        request.setAttribute("listStaff", lsS);
 
-        OrderDetail od = dd.getOrderDetailById(order_id);
-        List<OrderDetail> listOD = dd.getODbyID(order_id);
-//        Order o = dd.getO
-
-        request.setAttribute("listOD", listOD);
-        request.setAttribute("orderdetail", od);
-
-        request.getRequestDispatcher("dashboard/orderdetail.jsp").forward(request, response);
+        request.getRequestDispatcher("staffcards").forward(request, response);
     }
 
     /**
@@ -86,24 +78,7 @@ public class OrderDetailByID extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String order_id_raw = request.getParameter("orderid");
-        int order_id = Integer.parseInt(order_id_raw);
-        String status_id_raw = request.getParameter("statusid");
-        int statusid = Integer.parseInt(status_id_raw);
-        DashboardDAO dd = new DashboardDAO();
-
-        try {
-            OrderDetail od = dd.getOrderDetailById(order_id);
-            od.getOrder().setStatus_id(statusid);
-            dd.updateStatus(od);
-            if (od.getOrder().getStatus_id()==4) {
-                dd.updateQuantity(od, dd.getQuantity(od.getProduct().getId(), od.getSize().getId()).getQuantity());
-            }
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
-        response.sendRedirect("orderdetail?order_id=" + order_id);
+        processRequest(request, response);
     }
 
     /**
@@ -116,20 +91,4 @@ public class OrderDetailByID extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static void main(String[] args) {
-        DashboardDAO dd = new DashboardDAO();
-        OrderDetail od = dd.getOrderDetailById(1018);
-//        System.out.println(od.getProduct().getId());
-//        System.out.println(od.getSize().getId());
-//        System.out.println(od);
-//        System.out.println(dd.getQuantity(od.getProduct().getId(), od.getSize().getId()).getQuantity());
-//        dd.updateQuantity(od, dd.getQuantity(od.getProduct().getId(), od.getSize().getId()).getQuantity());
-        //dang khong update dc
-        
-//        System.out.println(od.getSizeproduct().getQuantity());
-//        System.out.println(od.getProduct().getId());
-//        System.out.println(od.getOrder().getStatus_id());
-        System.out.println(dd.getQuantity(od.getProduct().getId(), od.getSize().getId()).getQuantity());
-        
-    }
 }

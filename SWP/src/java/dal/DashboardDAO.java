@@ -295,7 +295,7 @@ public class DashboardDAO extends DBContext {
         String sql = "select * from \n"
                 + "  Users u join Roles r on u.role_id = r.id\n"
                 + "  join Address_Detail ad on ad.uid = u.id\n"
-                + "  where u.id = ? and is_default=1";
+                + "  where u.id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -732,7 +732,7 @@ public class DashboardDAO extends DBContext {
                 + "  on ad.uid = u.id\n"
                 + "  join [Status] st \n"
                 + "  on st.id = o.status_id\n"
-                + "  where o.id=? and ad.is_default=1 and s.id=od.size_id";
+                + "  where o.id=? and s.id=od.size_id";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);

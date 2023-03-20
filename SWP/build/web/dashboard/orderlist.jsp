@@ -69,16 +69,7 @@
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse bg-white" id="primaryMenuSidebar">
-                                <form class="d-block d-xl-none pt-5 px-3">
-                                    <div class="input-group position-relative bg-gray">
-                                        <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
-                                        <div class="input-group-append fs-14 px-3 border-left border-2x ">
-                                            <button class="bg-transparent border-0 outline-none">
-                                                <i class="fal fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                      
 
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <c:if test="${a.role_id==1}">
@@ -188,7 +179,7 @@
                                         <div class="dropdown pl-2 py-2">
                                             <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                                 <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                    <img src="${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right w-100">
@@ -209,7 +200,6 @@
                                     <p class="mb-0">Tổng số lượng đơn hàng</p>
                                 </div>
                                 <div class="col-sm-3 d-flex flex-wrap justify-content-sm-end">
-                                    <input class="form-control border-primary w-100" type="text" placeholder="Search Categories">
                                 </div>
                             </div>
 
@@ -298,9 +288,31 @@
 
                             </div>
                             <c:set var="maxPage" value="${requestScope.maxPage}"/>
-                            <c:if test="${requestScope.size !=0}">
+                            <c:if test="${requestScope.size !=0 && param.status_id==null}">
+                                <nav aria-label="Page navigation example" class="mt-5 mb-4">
+                                    <ul class="pagination justify-content-start">
 
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=1}">
+                                                <a class="page-link" href="orderlist?page=${param.page-1}">
+                                                    <i class="far fa-chevron-left"></i>
+                                                </a>
+                                            </c:if>
+                                        </li>
+                                        <li class="page-item active mx-1"><a class="page-link" href="orderlist?page=${param.page}">${param.page}</a></li>
 
+                                        <li class="page-item mx-1">
+                                            <c:if test="${param.page!=requestScope.maxPage}">
+                                                <a class="page-link" href="orderlist?page=${param.page+1}">
+                                                    <i class="far fa-chevron-right"></i>
+                                                </a>
+                                            </c:if>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </c:if>
+                            <c:if test="${requestScope.size !=0 && param.status_id!=null}">
                                 <nav aria-label="Page navigation example" class="mt-5 mb-4">
                                     <ul class="pagination justify-content-start">
 
@@ -310,7 +322,6 @@
                                                     <i class="far fa-chevron-left"></i>
                                                 </a>
                                             </c:if>
-
                                         </li>
                                         <li class="page-item active mx-1"><a class="page-link" href="orderlist?status_id=${param.status_id}&page=${param.page}">${param.page}</a></li>
 

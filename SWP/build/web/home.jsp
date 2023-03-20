@@ -100,22 +100,7 @@
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    <%-- This is JSP comment 
-                    <button class="menu_left">
-                        <i class="fa-solid fa-bars icon_list"></i>
-                        Danh mục sản phẩm
-                        <div class="menu_left-child">
-                            <ul>
-
-                                <!-- suggest: nen chia nho cac category -->
-                                <c:forEach items="${category}" var="c"> 
-                                <li class="menu_left-item">
-                                    ${c.name}
-                                </li>
-                                </c:forEach>
-                            </ul>
-                        </div>                        
-                    </button>--%>
+                   
                     <!-- end menu left -->
                     <!-- menu right -->
                     <div class="menu_right">             
@@ -123,17 +108,32 @@
                             <a class="link_decor_remover hover-link" href="shop">Cửa hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Nước hoa</a>
+                            <a class="link_decor_remover hover-link" href="shop">Nước hoa</a>
                         </li>                        
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Nến thơm và tinh dầu</a>
+                            <a class="link_decor_remover hover-link" href="shop">Nến thơm và tinh dầu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Sản phẩm khác</a>
+                            <a class="link_decor_remover hover-link" href="shop">Sản phẩm khác</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Giới thiệu</a>
                         </li>
+                        <c:if test="${userNow.role_id==1}">
+                             <li class="menu_right-item">
+                             <a class="link_decor_remover hover-link" href="dashboard">Dashboard</a>
+                        </li>
+                         </c:if>
+                           <c:if test="${userNow.role_id==3}">
+                             <li class="menu_right-item">
+                             <a class="link_decor_remover hover-link" href="orderlist?page=1">Dashboard</a>
+                        </li>
+                         </c:if>
+                           <c:if  test="${userNow.role_id==4}">
+                             <li class="menu_right-item">
+                             <a class="link_decor_remover hover-link" href="dashboardp">Dashboard</a>
+                        </li>
+                        </c:if>
                     </div> 
                     <!-- end menu right -->
                 </div>

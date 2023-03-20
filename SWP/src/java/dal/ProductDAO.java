@@ -68,6 +68,7 @@ public class ProductDAO extends DBContext {
                 Gender g = new Gender();
                 g.setId(rs.getInt("gender_id"));
                 p.setGender(g);
+                p.setGender_id(rs.getInt("gender_id"));
                 Discount d = new Discount();
                 d.setId(rs.getInt("discount_id"));
                 d.setValue(rs.getInt("value"));

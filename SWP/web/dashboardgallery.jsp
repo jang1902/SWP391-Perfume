@@ -84,11 +84,11 @@
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse bg-white" id="primaryMenuSidebar">
-                                <form class="d-block d-xl-none pt-5 px-3">
+                                <form action="gallerysearch" method="get" class="d-block d-xl-none pt-5 px-3">
                                     <div class="input-group position-relative bg-gray">
-                                        <input type="text" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Search Item">
+                                        <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
                                         <div class="input-group-append fs-14 px-3 border-left border-2x ">
-                                            <button class="bg-transparent border-0 outline-none">
+                                            <button type="submit" class="bg-transparent border-0 outline-none">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
@@ -197,13 +197,25 @@
                     <header class="main-header bg-white position-relative d-none d-xl-block">
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
+                                <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
+                                    <form action="gallerysearch" method="get" >
+                                        <div class="input-group position-relative bg-input rounded">
+                                            <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
+                                            <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
+                                                <button type="submit" class="bg-transparent border-0 outline-none">
+                                                    <i class="fal fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 <c:if test="${a!=null}">
                                     <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
 
                                         <div class="dropdown pl-2 py-2">
                                             <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                                 <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                    <img src="${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right w-100">

@@ -187,7 +187,7 @@
                                         <div class="dropdown pl-2 py-2">
                                             <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                                 <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                    <img src="${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right w-100">
@@ -211,7 +211,7 @@
                                     <div class="row">
                                         <div class="col-xl col-lg flex-grow-0" style="flex-basis: 230px">
                                             <div class="img-thumbnail shadow w-100 bg-white position-relative text-center" style="height: 190px; width: 200px; margin-top: -120px">
-                                                <img class="img-fluid" src="./avt/${u.avatar}" alt="Logo Brand">
+                                                <img class="img-fluid" src="${u.avatar}" alt="Logo Brand">
                                             </div>
                                         </div>
 

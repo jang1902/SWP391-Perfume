@@ -248,7 +248,7 @@ public class FeedBackDAO extends DBContext {
         List<Order> list = new ArrayList<>();
         String sql = "select  o1.status_id from Orders o1 \n"
                 + "join Order_Details o2 on o1.id = o2.order_id\n"
-                + "where o1.user_id = " + u + " and o2.product_id = " + i + " and o1.status_id = 2";
+                + "where o1.user_id = " + u + " and o2.product_id = " + i + " and o1.status_id = 3";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();

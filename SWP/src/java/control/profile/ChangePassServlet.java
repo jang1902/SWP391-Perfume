@@ -85,9 +85,7 @@ public class ChangePassServlet extends HttpServlet {
             dao.updatePass(newpass,u.getId());
             
             session.setAttribute("userNow", u2);
-            request.setAttribute("userNow", u2);
-            request.setAttribute("updatepass", "Đổi mật khẩu thành công");
-            request.getRequestDispatcher("changepass.jsp").forward(request, response);
+            response.sendRedirect("changeProfile");
         } else {
            
             request.setAttribute("updatepass", "Mật khẩu hiện tại sai, vui lòng thử lại!");

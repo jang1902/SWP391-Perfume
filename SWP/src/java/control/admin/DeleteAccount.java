@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -12,15 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "OrderStaffList", urlPatterns = {"/orderstafflist"})
-public class OrderStaffList extends HttpServlet {
+@WebServlet(name = "DeleteAccount", urlPatterns = {"/deleteaccount"})
+public class DeleteAccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class OrderStaffList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OrderStaffList</title>");            
+            out.println("<title>Servlet DeleteAccount</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OrderStaffList at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteAccount at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,9 +59,15 @@ public class OrderStaffList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DashboardDAO d = new DashboardDAO();
-        List<User> os = d.getAllOrderStaff();
-        request.setAttribute("listOS", os);
-        request.getRequestDispatcher("staffcards").forward(request, response);
+        String id_raw = request.getParameter("id");
+        int id = Integer.parseInt(id_raw);
+        try {
+                
+                d.delete(id);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+        request.getRequestDispatcher("dashboard").forward(request, response);
     }
 
     /**

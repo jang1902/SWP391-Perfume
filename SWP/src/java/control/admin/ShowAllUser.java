@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package control.admin;
 
-import dal.UserDAO;
+import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,15 +12,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import model.User;
 
 /**
  *
- * @author Phuong-Linh
+ * @author asus
  */
-@WebServlet(name = "ChangePassServlet", urlPatterns = {"/changepassword"})
-public class ChangePassServlet extends HttpServlet {
+@WebServlet(name = "ShowAllUser", urlPatterns = {"/alluser"})
+public class ShowAllUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class ChangePassServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePassServlet</title>");
+            out.println("<title>Servlet ShowAllUser</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangePassServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ShowAllUser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,8 +60,69 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("changepass.jsp").forward(request, response);
+        DashboardDAO d = new DashboardDAO();
+        List<User> list = d.getAllUser();
 
+        int page = 0;
+        String pageStr = request.getParameter("page");
+        if (list.size() != 0) {
+
+            final int PAGE_SIZE = 8;
+
+            int maxPage = list.size() / 8;
+            if (pageStr != null && !pageStr.equals("0")) {
+                page = Integer.parseInt(pageStr);
+            }
+
+            double max = (double) list.size() / (double) 8;
+            if (list.size() % 8 != 0) {
+                maxPage += 1;
+            }
+            int numOfPro = page * PAGE_SIZE;
+            String str = String.valueOf(max - (maxPage - 1));
+            String[] split = str.split("\\.");
+            if (page == maxPage) {
+                if (split[1].equals("125")) {
+                    numOfPro = numOfPro - 7;
+                }
+                if (split[1].equals("25")) {
+                    numOfPro = numOfPro - 6;
+                }
+                if (split[1].equals("375")) {
+                    numOfPro = numOfPro - 5;
+                }
+                if (split[1].equals("5")) {
+                    numOfPro = numOfPro - 4;
+                }
+                if (split[1].equals("625")) {
+                    numOfPro = numOfPro - 3;
+                }
+                if (split[1].equals("75")) {
+                    numOfPro = numOfPro - 2;
+                }
+                if (split[1].equals("875")) {
+                    numOfPro = numOfPro - 1;
+                }
+
+            }
+            int from = (page - 1) * PAGE_SIZE;
+            if (!(pageStr != null && !pageStr.equals("0"))) {
+                maxPage = 0;
+                from = 0;
+                numOfPro = 0;
+            }
+
+            request.setAttribute("maxPage", maxPage);
+
+            request.setAttribute("numPrd", list.size());
+
+            request.setAttribute("listUser", list.subList(from, numOfPro));
+        }
+        else{
+            request.setAttribute("maxPage", 1);
+            request.setAttribute("listUser", list);
+        }
+        request.getRequestDispatcher("userlist").forward(request, response);
     }
 
     /**
@@ -75,25 +136,7 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("userNow");
-        String pass = request.getParameter("password");
-        String newpass = request.getParameter("newpassword");
-        if (pass.equals(u.getPassword())) {
-            UserDAO dao = new UserDAO();
-            User u2= dao.getAccountByLoginName(u.getUsername());
-            dao.updatePass(newpass,u.getId());
-            
-            session.setAttribute("userNow", u2);
-            request.setAttribute("userNow", u2);
-            request.setAttribute("updatepass", "Đổi mật khẩu thành công");
-            request.getRequestDispatcher("changepass.jsp").forward(request, response);
-        } else {
-           
-            request.setAttribute("updatepass", "Mật khẩu hiện tại sai, vui lòng thử lại!");
-            request.getRequestDispatcher("changepass.jsp").forward(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**

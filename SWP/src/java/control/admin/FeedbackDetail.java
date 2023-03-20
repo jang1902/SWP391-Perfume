@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package control.admin;
 
-import dal.OrderDAO;
+import dal.DashboardDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,15 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
- * @author Phuong-Linh
+ * @author asus
  */
-@WebServlet(name = "ProfileServlet", urlPatterns = {"/profile"})
-public class ProfileServlet extends HttpServlet {
+@WebServlet(name = "FeedbackDetail", urlPatterns = {"/feedbackdetail"})
+public class FeedbackDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class ProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfileServlet</title>");
+            out.println("<title>Servlet FeedbackDetail</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProfileServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FeedbackDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +58,12 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User usernow = (User) session.getAttribute("userNow");
-        OrderDAO od = new OrderDAO();
-        int sumMoney = od.getSumTotalMoney(usernow.getId());
-        request.setAttribute("userNow", usernow);
-        request.setAttribute("sumMoney", sumMoney);
-        request.getRequestDispatcher("profile_info.jsp").forward(request, response);
+        String fid_raw = request.getParameter("fid");
+        DashboardDAO dd = new DashboardDAO();
+        
+        request.setAttribute("feedback", dd.getFeedbackbyID(Integer.parseInt(fid_raw)));
+        
+        request.getRequestDispatcher("dashboard/feedbackdetail.jsp").forward(request, response);
     }
 
     /**
@@ -80,7 +77,24 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String note = request.getParameter("note");
+        
+        DashboardDAO d = new DashboardDAO();
+        model.Feedback f = d.getFeedbackbyID(Integer.parseInt(request.getParameter("fid")));
+        
+        try {
+            // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
+//            response.sendRedirect("addaccount");
+
+            //uid, city, district, ward, detail, status
+            model.Feedback nf = new model.Feedback();
+            nf.setNote(note);
+            d.updateFeedback(nf);
+            response.sendRedirect("feedback");
+
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
     }
 
     /**

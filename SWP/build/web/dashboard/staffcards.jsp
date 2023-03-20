@@ -189,7 +189,7 @@
                                         <div class="dropdown pl-2 py-2">
                                             <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                                 <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                    <img src="${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right w-100">
@@ -255,7 +255,7 @@
                                             <div class="col-sm-6 col-lg-3 mb-6">
                                                 <div class="card card-user rounded-xl">
                                                     <div class="card-header text-center">
-                                                        <img class="img-avatar" src="./avt/${ls.avatar}" >
+                                                        <img class="img-avatar" src="${ls.avatar}" >
                                                     </div>
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title mt-8 fs-16 mb-3">${ls.username}</h5>
@@ -277,7 +277,7 @@
                                             <div class="col-sm-6 col-lg-3 mb-6">
                                                 <div class="card card-user rounded-xl">
                                                     <div class="card-header text-center">
-                                                        <img class="img-avatar" src="./avt/${sm.avatar}" >
+                                                        <img class="img-avatar" src="${sm.avatar}" >
                                                     </div>
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title mt-8 fs-16 mb-3">${sm.username}</h5>
@@ -299,7 +299,7 @@
                                             <div class="col-sm-6 col-lg-3 mb-6">
                                                 <div class="card card-user rounded-xl">
                                                     <div class="card-header text-center">
-                                                        <img class="img-avatar" src="./avt/${os.avatar}" >
+                                                        <img class="img-avatar" src="${os.avatar}" >
                                                     </div>
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title mt-8 fs-16 mb-3">${os.username}</h5>

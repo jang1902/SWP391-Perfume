@@ -70,7 +70,7 @@ public class LoadMoreFeedbackServlet extends HttpServlet {
         for (Feedback f : listf) {
             out.println("<div class=\"products_cmt-item feedbackok\">\n" +
 "                                        <div class=\"products_cmt-top\">\n" +
-"                                            <img src=\"./assets/img/frog (5).png\" class=\"img_avatar-user\">\n" +
+"                                            <img src=\""+f.getUser().getAvatar()+"\" class=\"img_avatar-user\">\n" +
 "                                            <div class=\"user_rated\">\n" +
 "                                                <span class=\"user_rated-name\">"+f.getUser().getUsername()+"</span>\n" +
 "                                                <div>\n" +

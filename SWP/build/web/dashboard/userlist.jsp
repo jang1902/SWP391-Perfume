@@ -235,6 +235,9 @@
                                 </div>
                                 <div class="card-body p-4">
                                     <div class="table-responsive">
+                                        <%--<c:if test="${listUser==null && listUserA == null && listUserI==null}">--%>
+                                            <!--<h2 class="fs-24 mb-0">Không có người dùng phù hợp!</h2>-->
+                                        <%--</c:if>--%>
                                         <table class="table table-hover align-middle table-nowrap mb-0 table-borderless">
                                             <thead class="table-light">
                                                 <tr>
@@ -366,7 +369,7 @@
                                                     </tr>
                                                 </c:forEach>
                                             </c:if>
-                                                <c:if test="${requestScope.listUserI==null && requestScope.listUser==null && requestScope.listUserA == null}">
+                                            <c:if test="${requestScope.listUserI==null && requestScope.listUser==null && requestScope.listUserA == null}">
                                                 <h2 class="fs-24 mb-0">Không có người dùng phù hợp!</h2>
                                             </c:if>
                                             </tbody>
@@ -401,6 +404,7 @@
                                     </ul>
                                 </nav>
                             </c:if>
+
                             <c:if test="${requestScope.listUserA !=null}">
                                 <c:set var="maxPage" value="${requestScope.maxPage}"/>
                                 <nav aria-label="Page navigation example" class="mt-5 mb-4">
@@ -415,7 +419,7 @@
 
                                         </li>
                                         <li class="page-item active mx-1"><a class="page-link" href="activeuser?page=${param.page}">${param.page}</a></li>
-
+                                        
                                         <li class="page-item mx-1">
                                             <c:if test="${param.page!=requestScope.maxPage}">
                                                 <a class="page-link" href="activeuser?page=${param.page+1}">
@@ -423,10 +427,10 @@
                                                 </a>
                                             </c:if>
                                         </li>
-
                                     </ul>
                                 </nav>
                             </c:if>
+
                             <c:if test="${requestScope.listUserI !=null}">
                                 <c:set var="maxPage" value="${requestScope.maxPage}"/>
                                 <nav aria-label="Page navigation example" class="mt-5 mb-4">

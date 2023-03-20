@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -12,17 +12,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.util.Calendar;
-import model.Address_Detail;
-import model.User;
+import java.util.List;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "AddAccount", urlPatterns = {"/addaccount"})
-public class AddAccount extends HttpServlet {
+@WebServlet(name = "Feedback", urlPatterns = {"/feedbacklist"})
+public class Feedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +38,10 @@ public class AddAccount extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddAccount</title>");
+            out.println("<title>Servlet Feedback</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddAccount at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Feedback at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,16 +59,74 @@ public class AddAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String check = request.getParameter("email");
-//        String msg ;
-//        if (check!=null) {
-//            msg ="Create account successful!";
-//        }
-//        else{
-//            msg="Create account sai sai!";
-//        }
-//        request.setAttribute("msg", msg);
-        request.getRequestDispatcher("dashboard/addaccount.jsp").forward(request, response);
+        DashboardDAO dd = new DashboardDAO();
+        
+        
+        List<model.Feedback> f = dd.listFeedback();
+        
+        if(f.size()==0){
+            request.setAttribute("msg", "Chưa có đánh giá nào!");
+        }
+        else{
+            int page = 0;
+        String pageStr = request.getParameter("page");
+
+        final int PAGE_SIZE = 8;
+        List<model.Feedback> list = dd.listFeedback();
+        int maxPage = list.size() / 8;
+        if (pageStr != null && !pageStr.equals("0")) {
+            page = Integer.parseInt(pageStr);
+        }
+        
+
+        double max = (double) list.size() / (double) 8;
+        if (list.size() % 8 != 0) {
+            maxPage += 1;
+        }
+        int numOfPro = page * PAGE_SIZE;
+        String str = String.valueOf(max - (maxPage - 1));
+        String[] split = str.split("\\.");
+        if (page == maxPage) {
+            if (split[1].equals("125")) {
+                numOfPro = numOfPro - 7;
+            }
+            if (split[1].equals("25")) {
+                numOfPro = numOfPro - 6;
+            }
+            if (split[1].equals("375")) {
+                numOfPro = numOfPro - 5;
+            }
+            if (split[1].equals("5")) {
+                numOfPro = numOfPro - 4;
+            }
+            if (split[1].equals("625")) {
+                numOfPro = numOfPro - 3;
+            }
+            if (split[1].equals("75")) {
+                numOfPro = numOfPro - 2;
+            }
+            if (split[1].equals("875")) {
+                numOfPro = numOfPro - 1;
+            }
+ 
+        }
+        int from = (page - 1) * PAGE_SIZE;
+        if (!(pageStr != null && !pageStr.equals("0"))) {
+            maxPage = 0;
+            from = 0;
+            numOfPro = 0;
+        }
+
+        request.setAttribute("maxPage", maxPage);
+
+        request.setAttribute("numPrd", list.size());
+    
+        request.setAttribute("listFeedback", list.subList(from, numOfPro));
+        }
+        
+        
+        
+        request.getRequestDispatcher("dashboard/feedback.jsp").forward(request, response);
     }
 
     /**
@@ -85,32 +140,7 @@ public class AddAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String phonenum = request.getParameter("phonenum");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-//        String role_id_raw = request.getParameter("role");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String image = request.getParameter("image");
-        int role_id = Integer.parseInt(request.getParameter("roleid"));
-
-//        String created_date = request.getParameter("created_date");
-//        int price = Integer.parseInt(price_raw);
-//        int cid = Integer.parseInt(cid_raw);
-        DashboardDAO d = new DashboardDAO();
-//        String msg ="Create account successful!";
-        java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        try {
-            // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
-
-            User u = new User(role_id, firstname, lastname, username, password, email, phonenum, curDate, null, 0, image);
-            d.addAccount(u);
-            response.sendRedirect("addaddress");
-
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
+        processRequest(request, response);
     }
 
     /**

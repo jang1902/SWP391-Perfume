@@ -67,7 +67,7 @@
         <div class="body_container">
             <div class="back">
                 <i class="fa fa-angle-double-left"></i>
-                <a href="changeprofile"><h4>Quay về</h4></a>
+                <a href="changeProfile"><h4>Quay về</h4></a>
             </div>
             <div class="body_right" style="margin-left: 270px">
 

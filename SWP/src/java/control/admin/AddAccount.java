@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -12,15 +12,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import java.sql.Date;
+import java.util.Calendar;
+import model.Address_Detail;
 import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "UserList", urlPatterns = {"/userlist"})
-public class UserList extends HttpServlet {
+@WebServlet(name = "AddAccount", urlPatterns = {"/addaccount"})
+public class AddAccount extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +41,10 @@ public class UserList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserList</title>");
+            out.println("<title>Servlet AddAccount</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserList at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddAccount at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +62,16 @@ public class UserList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-
-        request.getRequestDispatcher("dashboard/userlist.jsp").forward(request, response);
+//        String check = request.getParameter("email");
+//        String msg ;
+//        if (check!=null) {
+//            msg ="Create account successful!";
+//        }
+//        else{
+//            msg="Create account sai sai!";
+//        }
+//        request.setAttribute("msg", msg);
+        request.getRequestDispatcher("dashboard/addaccount.jsp").forward(request, response);
     }
 
     /**
@@ -76,7 +85,32 @@ public class UserList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String email = request.getParameter("email");
+        String phonenum = request.getParameter("phonenum");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+//        String role_id_raw = request.getParameter("role");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String image = request.getParameter("image");
+        int role_id = Integer.parseInt(request.getParameter("roleid"));
+
+//        String created_date = request.getParameter("created_date");
+//        int price = Integer.parseInt(price_raw);
+//        int cid = Integer.parseInt(cid_raw);
+        DashboardDAO d = new DashboardDAO();
+//        String msg ="Create account successful!";
+        java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        try {
+            // role, firstname, lastname, username, password, email, phonenum, create, update, isDelete
+
+            User u = new User(role_id, firstname, lastname, username, password, email, phonenum, curDate, null, 0, image);
+            d.addAccount(u);
+            response.sendRedirect("addaddress");
+
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
     }
 
     /**

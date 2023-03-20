@@ -104,8 +104,7 @@ public class RegisterServlet extends HttpServlet {
         } else {
             //dc sign up
             dao.addUser(username,password,email);
-            request.setAttribute("ms", "Success!");
-           request.getRequestDispatcher("login.jsp").forward(request, response);
+            response.sendRedirect("login");
         }
     }
 

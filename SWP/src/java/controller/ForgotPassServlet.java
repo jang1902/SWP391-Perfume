@@ -80,15 +80,15 @@ public class ForgotPassServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
        
-       final String usernameMail = "hoclaptrinhfullhouse@gmail.com";
-        final String passwordMail = "rtmupxtqyfnalvvb";
+       final String usernameMail = "boonbooshop@gmail.com";
+        final String passwordMail = "xghvrpkpgftignkr";
         String email = request.getParameter("email");
         UserDAO ud = new UserDAO();
         int otpValue = 0;
         HttpSession mySession = request.getSession();
         if (ud.existedEmailUser(email) == true) {
             Random r = new Random();
-            otpValue = r.nextInt(12255650);
+            otpValue = r.nextInt(999999);
             String to = email;
             //get the session object
             Properties  prop = new Properties();
@@ -105,7 +105,7 @@ public class ForgotPassServlet extends HttpServlet {
                try {
 
             Message  message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("cankhanh343@gmail.com"));
+            message.setFrom(new InternetAddress("boonbooshop@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)

@@ -63,15 +63,40 @@ public class DashbroadProductServlet extends HttpServlet {
         
         CrudDAO crud = new CrudDAO();
         
-        List<Product> allp = crud.getAllProduct();
-        request.setAttribute("allp", allp);        
-        
         List<Category> allc = crud.getAllCategory();
         request.setAttribute("allc", allc);
         
         List<Gender> allg = crud.getAllGender();
         request.setAttribute("allg", allg);
         
+        
+        request.setCharacterEncoding("UTF-8");
+        int pageIndex = 1;
+        try {
+            pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+        } catch (Exception e) {
+
+        }
+        int pageSize = 12;
+        int totalRow = crud.countAllProduct();
+        int maxPage=0;
+        if(totalRow==0){
+            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
+        }
+        else{
+            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
+            maxPage = totalRow/pageSize  + (totalRow%pageSize > 0  ? 1:0);
+            int nextPage = pageIndex+1;
+            int backPage = pageIndex-1;
+            List<Product> allp = crud.getAllProduct(pageIndex, pageSize);
+            request.setAttribute("allp", allp);
+            request.setAttribute("maxPage", maxPage);
+            request.setAttribute("nextPage", nextPage);
+            request.setAttribute("backPage", backPage);
+            request.setAttribute("pageIndex", pageIndex);
+            request.setAttribute("total", totalRow);
+        }
+ 
         request.getRequestDispatcher("dashboardproduct.jsp").forward(request, response);
             
        

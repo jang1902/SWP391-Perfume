@@ -365,7 +365,7 @@
                                                 <div>
                                                     <span class="description"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${detail.price}"></fmt:formatNumber> x ${detail.num}</span>
                                                     </div>
-                                                <c:if test="${order.status.id == 3}">
+                                                <c:if test="${order.status.id == 2}">
                                                     <div>
                                                         <a href="pdetail?id=${detail.product.id}&sid=${detail.size_id}&gid=${detail.product.gender_id}" style="text-decoration: none"><span class="review">Viết đánh giá</span></a>
                                                     </div>

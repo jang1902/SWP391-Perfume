@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -13,14 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "ShowAllUser", urlPatterns = {"/alluser"})
-public class ShowAllUser extends HttpServlet {
+@WebServlet(name = "SortFBup", urlPatterns = {"/sortfeedbackup"})
+public class SortFBup extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class ShowAllUser extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowAllUser</title>");
+            out.println("<title>Servlet SortFBup</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowAllUser at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SortFBup at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,15 +59,20 @@ public class ShowAllUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DashboardDAO d = new DashboardDAO();
+        DashboardDAO dd = new DashboardDAO();
         
         
-
-        int page = 0;
+        List<model.Feedback> f = dd.listFeedback();
+        
+        if(f.size()==0){
+            request.setAttribute("msg", "Chưa có đánh giá nào!");
+        }
+        else{
+            int page = 0;
         String pageStr = request.getParameter("page");
 
         final int PAGE_SIZE = 8;
-        List<User> list = d.getAllUser();
+        List<model.Feedback> list = dd.listFeedbackUp();
         int maxPage = list.size() / 8;
         if (pageStr != null && !pageStr.equals("0")) {
             page = Integer.parseInt(pageStr);
@@ -117,8 +121,12 @@ public class ShowAllUser extends HttpServlet {
 
         request.setAttribute("numPrd", list.size());
     
-        request.setAttribute("listUser", list.subList(from, numOfPro));
-        request.getRequestDispatcher("userlist").forward(request, response);
+        request.setAttribute("listFeedback", list.subList(from, numOfPro));
+        }
+        
+        
+        
+        request.getRequestDispatcher("feedback").forward(request, response);
     }
 
     /**

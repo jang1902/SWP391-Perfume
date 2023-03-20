@@ -2,11 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
-import dal.CategoryDAO;
 import dal.DashboardDAO;
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,18 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Category;
-import model.Order;
-import model.OrderDetail;
-import model.Product;
-import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "Dashboard", urlPatterns = {"/dashboard"})
-public class Dashboard extends HttpServlet {
+@WebServlet(name = "SortFBdown", urlPatterns = {"/sortfeedbackdown"})
+public class SortFBdown extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +38,10 @@ public class Dashboard extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Dashboard</title>");
+            out.println("<title>Servlet SortFBdown</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Dashboard at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SortFBdown at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,70 +59,69 @@ public class Dashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String year_raw = request.getParameter("year");
-        int year;
-        if (year_raw != null) {
-            year = Integer.parseInt(year_raw);
-        } else {
-            year = 2023;
-        }
-
         DashboardDAO dd = new DashboardDAO();
-        ProductDAO pd = new ProductDAO();
-        CategoryDAO cd = new CategoryDAO();
-        List<User> u = dd.getNewestUser();
-        List<Order> o = dd.getAllSuccessOrder(year);
-        List<Product> p = pd.getAllProduct();
-        List<Category> c = cd.getAllCategory();
-        List<Order> allyear = dd.getAllYear();
 
-        int  totalorders = 0, totalproducts = 0, totalcates = 0;
-        for (Order order : o) {
-            totalorders += 1;
+        List<model.Feedback> f = dd.listFeedback();
 
-        }
-        for (Product product : p) {
-            totalproducts += 1;
-        }
-        for (Category category : c) {
-            totalcates += 1;
-        }
-        List<OrderDetail> od;
-
-        if (year_raw != null) {
-            int totalmoney = 0 ;
-            od = dd.getRevenueByEachMonth(year);
-            for (OrderDetail orderDetail : od) {
-                totalmoney += orderDetail.getOrder().getTotal_money();
-            }
-            request.setAttribute("totalmoney", totalmoney);
-            request.setAttribute("avgMoney", totalmoney / 12);
-            request.setAttribute("revenueByMonth", od);
+        if (f.size() == 0) {
+            request.setAttribute("msg", "Chưa có đánh giá nào!");
         } else {
-            int totalmoney = 0;
-            od = dd.getRevenueByEachMonth(2023);
-            for (OrderDetail orderDetail : od) {
-                totalmoney += orderDetail.getOrder().getTotal_money();
+            int page = 0;
+            String pageStr = request.getParameter("page");
+
+            final int PAGE_SIZE = 8;
+            List<model.Feedback> list = dd.listFeedbackDown();
+            int maxPage = list.size() / 8;
+            if (pageStr != null && !pageStr.equals("0")) {
+                page = Integer.parseInt(pageStr);
             }
-            request.setAttribute("totalmoney", totalmoney);
-            request.setAttribute("avgMoney", totalmoney / 12);
-            request.setAttribute("revenueByMonth", od);
-        }
-        List<OrderDetail> od2;
-        if (year_raw != null) {
-            od2 = dd.getProfitEachMonth(year);
-            request.setAttribute("profit", od2);
-        } else {
-            request.setAttribute("profit", dd.getProfitEachMonth(2023));
+
+            double max = (double) list.size() / (double) 8;
+            if (list.size() % 8 != 0) {
+                maxPage += 1;
+            }
+            int numOfPro = page * PAGE_SIZE;
+            String str = String.valueOf(max - (maxPage - 1));
+            String[] split = str.split("\\.");
+            if (page == maxPage) {
+                if (split[1].equals("125")) {
+                    numOfPro = numOfPro - 7;
+                }
+                if (split[1].equals("25")) {
+                    numOfPro = numOfPro - 6;
+                }
+                if (split[1].equals("375")) {
+                    numOfPro = numOfPro - 5;
+                }
+                if (split[1].equals("5")) {
+                    numOfPro = numOfPro - 4;
+                }
+                if (split[1].equals("625")) {
+                    numOfPro = numOfPro - 3;
+                }
+                if (split[1].equals("75")) {
+                    numOfPro = numOfPro - 2;
+                }
+                if (split[1].equals("875")) {
+                    numOfPro = numOfPro - 1;
+                }
+
+            }
+            int from = (page - 1) * PAGE_SIZE;
+            if (!(pageStr != null && !pageStr.equals("0"))) {
+                maxPage = 0;
+                from = 0;
+                numOfPro = 0;
+            }
+
+            request.setAttribute("maxPage", maxPage);
+
+            request.setAttribute("numPrd", list.size());
+
+            request.setAttribute("listFeedback", list.subList(from, numOfPro));
         }
 
-        request.setAttribute("totalorders", totalorders);
-        request.setAttribute("totalProducts", totalproducts);
-        request.setAttribute("totalCates", totalcates);
-        request.setAttribute("newestUser", u);
-        request.setAttribute("allyear", allyear);
-        request.setAttribute("year", year);
-        request.getRequestDispatcher("dashboard/dashboard.jsp").forward(request, response);
+        request.getRequestDispatcher("feedback").forward(request, response);
     }
 
     /**

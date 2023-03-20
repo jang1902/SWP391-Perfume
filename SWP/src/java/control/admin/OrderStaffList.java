@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -13,13 +13,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "SortFBup", urlPatterns = {"/sortfeedbackup"})
-public class SortFBup extends HttpServlet {
+@WebServlet(name = "OrderStaffList", urlPatterns = {"/orderstafflist"})
+public class OrderStaffList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class SortFBup extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SortFBup</title>");            
+            out.println("<title>Servlet OrderStaffList</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SortFBup at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OrderStaffList at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,74 +60,10 @@ public class SortFBup extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DashboardDAO dd = new DashboardDAO();
-        
-        
-        List<model.Feedback> f = dd.listFeedback();
-        
-        if(f.size()==0){
-            request.setAttribute("msg", "Chưa có đánh giá nào!");
-        }
-        else{
-            int page = 0;
-        String pageStr = request.getParameter("page");
-
-        final int PAGE_SIZE = 8;
-        List<model.Feedback> list = dd.listFeedbackUp();
-        int maxPage = list.size() / 8;
-        if (pageStr != null && !pageStr.equals("0")) {
-            page = Integer.parseInt(pageStr);
-        }
-        
-
-        double max = (double) list.size() / (double) 8;
-        if (list.size() % 8 != 0) {
-            maxPage += 1;
-        }
-        int numOfPro = page * PAGE_SIZE;
-        String str = String.valueOf(max - (maxPage - 1));
-        String[] split = str.split("\\.");
-        if (page == maxPage) {
-            if (split[1].equals("125")) {
-                numOfPro = numOfPro - 7;
-            }
-            if (split[1].equals("25")) {
-                numOfPro = numOfPro - 6;
-            }
-            if (split[1].equals("375")) {
-                numOfPro = numOfPro - 5;
-            }
-            if (split[1].equals("5")) {
-                numOfPro = numOfPro - 4;
-            }
-            if (split[1].equals("625")) {
-                numOfPro = numOfPro - 3;
-            }
-            if (split[1].equals("75")) {
-                numOfPro = numOfPro - 2;
-            }
-            if (split[1].equals("875")) {
-                numOfPro = numOfPro - 1;
-            }
- 
-        }
-        int from = (page - 1) * PAGE_SIZE;
-        if (!(pageStr != null && !pageStr.equals("0"))) {
-            maxPage = 0;
-            from = 0;
-            numOfPro = 0;
-        }
-
-        request.setAttribute("maxPage", maxPage);
-
-        request.setAttribute("numPrd", list.size());
-    
-        request.setAttribute("listFeedback", list.subList(from, numOfPro));
-        }
-        
-        
-        
-        request.getRequestDispatcher("feedback").forward(request, response);
+        DashboardDAO d = new DashboardDAO();
+        List<User> os = d.getAllOrderStaff();
+        request.setAttribute("listOS", os);
+        request.getRequestDispatcher("staffcards").forward(request, response);
     }
 
     /**

@@ -932,13 +932,36 @@ public class CrudDAO extends DBContext {
         }
         return list;
     }
+    
+    public int countAllProduct() {
+        
+        String sql = "select count(*) from products p join SizeProduct sp \n"
+                + "on p.id = sp.pid "
+               ;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);  
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
 
-    public List<Product> getAllProduct() {
+    public List<Product> getAllProduct(int pageIndex, int pageSize) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from products p join SizeProduct sp \n"
-                + "on p.id = sp.pid";
+        String sql = "select * from products p join SizeProduct sp \n" +
+"                on p.id = sp.pid \n" +
+"				order by p.id asc\n" +
+"                OFFSET (?-1)*? rows   \n" +
+"                FETCH NEXT ? rows only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,pageIndex);
+            st.setInt(2, pageSize);
+            st.setInt(3, pageSize);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product c = new Product();

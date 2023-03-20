@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -61,12 +61,15 @@ public class ActiveUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DashboardDAO d = new DashboardDAO();
-        List<User> lA = d.getAllActiveUser();
+
+        
+        
         int page = 0;
         String pageStr = request.getParameter("page");
-
-        final int PAGE_SIZE = 8;
         List<User> list = d.getAllActiveUser();
+        if(list.size()!=0){
+            final int PAGE_SIZE = 8;
+        
         int maxPage = list.size() / 8;
         if (pageStr != null && !pageStr.equals("0")) {
             page = Integer.parseInt(pageStr);
@@ -116,6 +119,13 @@ public class ActiveUser extends HttpServlet {
         request.setAttribute("numPrd", list.size());
     
         request.setAttribute("listUserA", list.subList(from, numOfPro));
+        }
+        else
+        {
+            request.setAttribute("listUserA", list);
+            request.setAttribute("maxPage", 1);
+        }
+        
         request.getRequestDispatcher("userlist").forward(request, response);
     }
 

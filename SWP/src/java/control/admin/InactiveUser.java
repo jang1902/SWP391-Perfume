@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package admin;
+package control.admin;
 
 import dal.DashboardDAO;
 import java.io.IOException;
@@ -12,13 +12,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "DeleteAccount", urlPatterns = {"/deleteaccount"})
-public class DeleteAccount extends HttpServlet {
+@WebServlet(name = "InactiveUser", urlPatterns = {"/inactiveuser"})
+public class InactiveUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,10 @@ public class DeleteAccount extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteAccount</title>");            
+            out.println("<title>Servlet InactiveUser</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteAccount at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet InactiveUser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,15 +61,70 @@ public class DeleteAccount extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DashboardDAO d = new DashboardDAO();
-        String id_raw = request.getParameter("id");
-        int id = Integer.parseInt(id_raw);
-        try {
-                
-                d.delete(id);
-        } catch (NumberFormatException e) {
-            System.out.println(e);
+        List<User> list = d.getAllInactiveUser();
+        int page = 0;
+        String pageStr = request.getParameter("page");
+
+        if (list.size() != 0) {
+
+            final int PAGE_SIZE = 8;
+
+            int maxPage = list.size() / 8;
+            if (pageStr != null && !pageStr.equals("0")) {
+                page = Integer.parseInt(pageStr);
+            }
+
+            double max = (double) list.size() / (double) 8;
+            if (list.size() % 8 != 0) {
+                maxPage += 1;
+            }
+            int numOfPro = page * PAGE_SIZE;
+            String str = String.valueOf(max - (maxPage - 1));
+            String[] split = str.split("\\.");
+            if (page == maxPage) {
+
+                if (split[1].equals("125")) {
+                    numOfPro = numOfPro - 7;
+                }
+                if (split[1].equals("25")) {
+                    numOfPro = numOfPro - 6;
+                }
+                if (split[1].equals("375")) {
+                    numOfPro = numOfPro - 5;
+                }
+                if (split[1].equals("5")) {
+                    numOfPro = numOfPro - 4;
+                }
+                if (split[1].equals("625")) {
+                    numOfPro = numOfPro - 3;
+                }
+                if (split[1].equals("75")) {
+                    numOfPro = numOfPro - 2;
+                }
+                if (split[1].equals("875")) {
+                    numOfPro = numOfPro - 1;
+                }
+
+            }
+            int from = (page - 1) * PAGE_SIZE;
+            if (!(pageStr != null && !pageStr.equals("0"))) {
+                maxPage = 0;
+                from = 0;
+                numOfPro = 0;
+            }
+
+            request.setAttribute("maxPage", maxPage);
+
+            request.setAttribute("numPrd", list.size());
+
+            request.setAttribute("listUserI", list.subList(from, numOfPro));
+        } else {
+            request.setAttribute("maxPage", 1);
+
+            request.setAttribute("listUserI", list);
         }
-        request.getRequestDispatcher("dashboard").forward(request, response);
+
+        request.getRequestDispatcher("userlist").forward(request, response);
     }
 
     /**
