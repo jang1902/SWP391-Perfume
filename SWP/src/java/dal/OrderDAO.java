@@ -103,7 +103,7 @@ public class OrderDAO extends DBContext {
         List<Order> list = new ArrayList<>();
         String sql = "select o.id as oid, user_id, firstname, lastname, email, phone_number, address_id, note,"
                 + "order_date, status_id, total_money, s.name as sname"
-                + " from Orders o join Status s on o.status_id = s.id where user_id = ?";
+                + " from Orders o join Status s on o.status_id = s.id where user_id = ? order by o.id desc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
