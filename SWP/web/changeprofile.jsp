@@ -295,19 +295,19 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="../index.html">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
+                            <a class="link_decor_remover hover-link" href="shop">Hàng mới</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
+                            <a class="link_decor_remover hover-link" href="shop">Thương hiệu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="../src/oder.html">Đơn hàng</a>
+                            <a class="link_decor_remover hover-link" href="myOrder">Đơn hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="../src/profile_info.html">Trang cá nhân</a>
+                            <a class="link_decor_remover hover-link" href="profile">Trang cá nhân</a>
                         </li>
                     </ul>
                     <!-- end menu right -->

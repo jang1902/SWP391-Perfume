@@ -196,13 +196,13 @@
                             <a class="link_decor_remover hover-link" href="shop">Cửa hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Nước hoa</a>
+                            <a class="link_decor_remover hover-link" href="shop">Nước hoa</a>
                         </li>                        
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Nến thơm và tinh dầu</a>
+                            <a class="link_decor_remover hover-link" href="shop">Nến thơm và tinh dầu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Sản phẩm khác</a>
+                            <a class="link_decor_remover hover-link" href="shop">Sản phẩm khác</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Giới thiệu</a>

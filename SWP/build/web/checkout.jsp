@@ -123,10 +123,10 @@
                             <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
+                            <a class="link_decor_remover hover-link" href="shop">Hàng mới</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
+                            <a class="link_decor_remover hover-link" href="shop">Thương hiệu</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="myOrder">Đơn hàng</a>

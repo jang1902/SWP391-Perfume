@@ -163,19 +163,19 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./index.html">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
+                            <a class="link_decor_remover hover-link" href="shop">Hàng mới</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="#">Thương hiệu</a>
+                            <a class="link_decor_remover hover-link" href="shop">Thương hiệu</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/oder.html">Đơn hàng</a>
+                            <a class="link_decor_remover hover-link" href="myOrder">Đơn hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
+                            <a class="link_decor_remover hover-link" href="profile">Trang cá nhân</a>
                         </li>
                     </ul>
                     <!-- end menu right -->
@@ -262,7 +262,7 @@
                                     </div> 
                                 </c:if>
                                 <!-- dang van chuyen -->
-                                <c:if test="${order.status.id == 3}">
+                                <c:if test="${order.status.id == 2}">
                                     <div class="oders_info-status">
                                         <div class="oders_info-status-circle statusbar_active">
                                             <div class="check_status">
@@ -284,7 +284,7 @@
                                 </c:if>
 
                                 <!-- da giao hang -->
-                                <c:if test="${order.status.id == 2}">
+                                <c:if test="${order.status.id == 3}">
                                     <div class="oders_info-status">
                                         <div class="oders_info-status-circle statusbar_active">
                                             <div class="check_status">
@@ -365,7 +365,7 @@
                                                 <div>
                                                     <span class="description"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${detail.price}"></fmt:formatNumber> x ${detail.num}</span>
                                                     </div>
-                                                <c:if test="${order.status.id == 2}">
+                                                <c:if test="${order.status.id == 3}">
                                                     <div>
                                                         <a href="pdetail?id=${detail.product.id}&sid=${detail.size_id}&gid=${detail.product.gender_id}" style="text-decoration: none"><span class="review">Viết đánh giá</span></a>
                                                     </div>
