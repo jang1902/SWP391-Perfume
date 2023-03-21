@@ -314,16 +314,24 @@
                                 </div>
                             </form> 
                             <nav aria-label="Page navigation example" class="mt-6 mb-4">
+                                <c:if test="${maxPage>1}">
                                 <ul class="pagination justify-content-start">
-                                    <li class="page-item active mx-1"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item mx-1"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item mx-1"><a class="page-link" href="#">16</a></li>
+                                    <c:if test="${backPage>0}">
                                     <li class="page-item mx-1">
-                                        <a class="page-link" href="#"><i class="far fa-chevron-right"></i></a>
+                                        <a class="page-link" href="dashboardg?pageIndex=${backPage}"><i class="far fa-chevron-left"></i></a>
                                     </li>
+                                    </c:if>
+                                    
+                                    <c:forEach begin="1" end="${maxPage}" step="1" var="i">
+                                        <li class="page-item ${i==pageIndex?"active":""} mx-1"><a class="page-link" href="dashboardg?pageIndex=${i}">${i}</a></li>         
+                                    </c:forEach> 
+                                        <c:if test="${nextPage<maxPage+1}">
+                                    <li class="page-item mx-1">
+                                        <a class="page-link" href="dashboardg?pageIndex=${nextPage}"><i class="far fa-chevron-right"></i></a>
+                                    </li>
+                                       </c:if>
                                 </ul>
+                                </c:if>
                             </nav>
                         </div>
                         <footer class="pt-3 pb-6 footer-dashboard mt-auto">
