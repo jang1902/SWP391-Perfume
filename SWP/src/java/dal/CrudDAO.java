@@ -796,13 +796,34 @@ public class CrudDAO extends DBContext {
         return list;
     }
 
-    public List<Gallery> getAllGallery() {
-        List<Gallery> list = new ArrayList<>();
+    public int countAllGallery() {
+       
         String sql = "select * from Galeries"
                 + " order by product_id asc ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);    
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    
+    public List<Gallery> getAllGallery(int pageIndex, int pageSize) {
+        List<Gallery> list = new ArrayList<>();
+        String sql = "select * from Galeries"
+                + " order by product_id asc "
++ "                OFFSET (?-1)*? rows   \n" +
+"                FETCH NEXT ? rows only";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1,pageIndex);
+            st.setInt(2, pageSize);
+            st.setInt(3, pageSize);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Gallery c = new Gallery();

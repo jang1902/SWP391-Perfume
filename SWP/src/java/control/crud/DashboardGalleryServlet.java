@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
 import model.Gallery;
+import model.Product;
 
 /**
  *
@@ -60,9 +61,34 @@ public class DashboardGalleryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         CrudDAO crud = new CrudDAO();
+     
+        request.setCharacterEncoding("UTF-8");
+        int pageIndex = 1;
+        try {
+            pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+        } catch (Exception e) {
+
+        }
+        int pageSize = 12;
+        int totalRow = crud.countAllProduct();
+        int maxPage=0;
+        if(totalRow==0){
+            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
+        }
+        else{
+            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
+            maxPage = totalRow/pageSize  + (totalRow%pageSize > 0  ? 1:0);
+            int nextPage = pageIndex+1;
+            int backPage = pageIndex-1;
+            List<Gallery> allg = crud.getAllGallery(pageIndex, pageSize);
+            request.setAttribute("allg", allg);
+            request.setAttribute("maxPage", maxPage);
+            request.setAttribute("nextPage", nextPage);
+            request.setAttribute("backPage", backPage);
+            request.setAttribute("pageIndex", pageIndex);
+            request.setAttribute("total", totalRow);
+        }
         
-        List<Gallery> allg = crud.getAllGallery();
-        request.setAttribute("allg", allg);
         
         request.getRequestDispatcher("dashboardgallery.jsp").forward(request, response);
     } 
