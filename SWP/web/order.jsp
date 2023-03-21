@@ -252,8 +252,8 @@
                                             <div class="oders_items-child">${order.id}</div>
                                             <div class="oders_items-child ">
                                                 <c:if test="${order.status.id == 1}"><span class="status-gray">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 3}"><span class="status-yellow">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 2}"><span class="status-green">${order.status.name}</span></c:if>
+                                                <c:if test="${order.status.id == 2}"><span class="status-yellow">${order.status.name}</span></c:if>
+                                                <c:if test="${order.status.id == 3}"><span class="status-green">${order.status.name}</span></c:if>
                                                 <c:if test="${order.status.id == 4}"><span class="status-red">${order.status.name}</span></c:if>
                                                 </div>
                                                 <div class="oders_items-child">${order.order_date}</div>
