@@ -74,7 +74,9 @@ public class DeleteProductServlet extends HttpServlet {
         
         
         crud.deleteSizeProduct(pid, sid);// phai xoa het pid ben sizeproduct thi moi xoa duoc product
-        crud.deleteProduct(pid);
+        
+        //crud.deleteProduct(pid);
+        
         request.getRequestDispatcher("dashboardp").forward(request, response);
         
         

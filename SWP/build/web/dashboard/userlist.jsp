@@ -192,7 +192,7 @@
                                         <div class="dropdown pl-2 py-2">
                                             <a href="#" class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end" data-toggle="dropdown">
                                                 <div class="w-40px">
-                                                    <img src="./avt/${a.avatar}" alt="${a.username}" class="rounded-circle">
+                                                    <img src="${a.avatar}" alt="${a.username}" class="rounded-circle">
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right w-100">
@@ -257,7 +257,7 @@
                                                             <td>
                                                                 <div class="media">
                                                                     <div class="w-60px height-60 mr-3">
-                                                                        <img class="img-avatar" src="./avt/${lu.avatar}" >
+                                                                        <img class="img-avatar" src="${lu.avatar}" >
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <a href="./showprofile?id=${lu.id}">${lu.firstname} ${lu.lastname}</a>
@@ -298,7 +298,7 @@
                                                         <td>
                                                             <div class="media">
                                                                 <div class="w-60px height-60 mr-3">
-                                                                    <img class="img-avatar" src="./avt/${lA.avatar}" >
+                                                                    <img class="img-avatar" src="${lA.avatar}" >
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <a href="./showprofile?id=${lA.id}">${lA.firstname} ${lA.lastname}</a>
@@ -339,7 +339,7 @@
                                                         <td>
                                                             <div class="media">
                                                                 <div class="w-60px height-60 mr-3">
-                                                                    <img class="img-avatar" src="./avt/${lI.avatar}" >
+                                                                    <img class="img-avatar" src="${lI.avatar}" >
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <a href="./showprofile?id=${lI.id}">${lI.firstname} ${lI.lastname}</a>

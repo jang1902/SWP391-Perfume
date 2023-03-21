@@ -230,7 +230,7 @@
 
                                         
                                         
-                                        <a href="addcategory.jsp" class="btn btn-primary">Tạo mới
+                                        <a href="addcategoryjsp" class="btn btn-primary">Tạo mới
                                         </a>
                                     </div>
                                 </div>

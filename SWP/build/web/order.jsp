@@ -84,12 +84,12 @@
                     <div class="login-cart">
                         <div class="login-cart_item">
                             <!-- test -->
-                            <a href="./src/login.html" class="login_cart-item-link">
+                            <a href="profile" class="login_cart-item-link">
                                 <i class="fa-solid fa-user"></i>
                             </a>
                         </div>
                         <div class="login-cart_item">
-                            <a href="./src/cart.html" class="login_cart-item-link">
+                            <a href="cart" class="login_cart-item-link">
                                 <i class="fa-solid fa-bag-shopping"></i>
                             </a>
                         </div>
@@ -99,64 +99,7 @@
                 <!-- header mid bot -->
                 <div class="mid-bot">
                     <!-- menu left -->
-                    <button class="menu_left">
-                        <i class="fa-solid fa-bars icon_list"></i>
-                        Danh mục sản phẩm
-                        <div class="menu_left-child">
-                            <ul>
-                                <li class="menu_left-item">
-                                    Mô hình xe hơi
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Lego
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình phim</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Marvel</li>
-                                            <li class="menu_left-item-child">DC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Transformer
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình anime</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Naruto</li>
-                                            <li class="menu_left-item-child">One Piece</li>
-                                            <li class="menu_left-item-child">Dragon Ball</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu_left-item">
-                                    Mô hình Figger
-                                </li>
-                                <li class="menu_left-item">
-                                    <div class="menu_left-item-title">
-                                        <div class="menu_left-item-title-child">Mô hình khác</div>
-                                        <i class="fa-solid fa-angle-right icon_arrow-menulv2"></i> 
-                                    </div>
-                                    <div class="menu_left-item-lv2">
-                                        <ul>
-                                            <li class="menu_left-item-child">Mô hình cây mini</li>
-                                            <li class="menu_left-item-child">Mô hình trang trí</li>
-                                            <li class="menu_left-item-child">Mô hình PC</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </button>
+                    <div></div>
                     <!-- end menu left -->
                     <!-- menu right -->
                     <ul class="menu_right">
@@ -173,7 +116,7 @@
                             <a class="link_decor_remover hover-link" href="myOrder">Đơn hàng</a>
                         </li>
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./src/profile_info.html">Trang cá nhân</a>
+                            <a class="link_decor_remover hover-link" href="profile">Trang cá nhân</a>
                         </li>
                     </ul>
                     <!-- end menu right -->
@@ -252,8 +195,8 @@
                                             <div class="oders_items-child">${order.id}</div>
                                             <div class="oders_items-child ">
                                                 <c:if test="${order.status.id == 1}"><span class="status-gray">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 3}"><span class="status-yellow">${order.status.name}</span></c:if>
-                                                <c:if test="${order.status.id == 2}"><span class="status-green">${order.status.name}</span></c:if>
+                                                <c:if test="${order.status.id == 2}"><span class="status-yellow">${order.status.name}</span></c:if>
+                                                <c:if test="${order.status.id == 3}"><span class="status-green">${order.status.name}</span></c:if>
                                                 <c:if test="${order.status.id == 4}"><span class="status-red">${order.status.name}</span></c:if>
                                                 </div>
                                                 <div class="oders_items-child">${order.order_date}</div>
@@ -278,19 +221,24 @@
 
                             <!-- page button -->
                             <div class="page_button">
+                                <c:if test="${maxPage>1}">
                                 <ul class="page_button_container">
+                                    <c:if test="${backPage>0}">
                                     <li class="page_button-child">
-                                        <i class="fa-solid fa-angle-left"></i>
+                                        <a href="myOrder?pageIndex=${backPage}"><i class="fa-solid fa-angle-left"></i></a>
                                     </li>
-                                    <li class="page_button-child page_button-current"><span>1</span></li>
-                                    <li class="page_button-child"><span>2</span></li>
-                                    <li class="page_button-child"><span>3</span></li>
-                                    <li class="page_button-child"><span>4</span></li>
-                                    <li class="page_button-child"><span>5</span></li>
+                                    </c:if>
+                                    <c:forEach begin="1" end="${maxPage}" step="1" var="i">
+                                    <li class="page_button-child"><a  href="myOrder?pageIndex=${i}">${i}</a></li>
+                                    </c:forEach>
+                                    <c:if test="${nextPage<maxPage+1}">
                                     <li class="page_button-child">
-                                        <i class="fa-solid fa-angle-right"></i>
+                                        <a href="myOrder?pageIndex=${nextPage}"> <i class="fa-solid fa-angle-right"></i></a>
+                                      
                                     </li>
+                                    </c:if>
                                 </ul>
+                                </c:if>
                             </div>
                         </div>
                     </div>

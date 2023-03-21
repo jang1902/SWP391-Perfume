@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Order;
+import model.Product;
 import model.User;
 
 /**
@@ -67,12 +68,43 @@ public class ViewOwnOrder extends HttpServlet {
         User usernow = (User) session.getAttribute("userNow");
         OrderDAO dao = new OrderDAO();
         AddressDAO adao = new AddressDAO();
-        int sumOrder = dao.getNumberOfOrder();
+        int sumOrder = dao.getNumberOfOrder(usernow.getId());
         int sumAddress = adao.getTotalAddress(usernow.getId());
-        List<Order> list = dao.getOrderByUserId(usernow.getId());
+        
+        
+        
+        request.setCharacterEncoding("UTF-8");
+        int pageIndex = 1;
+        try {
+            pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+        } catch (Exception e) {
+
+        }
+        int pageSize = 12;
+        int totalRow = dao.getNumberOfOrder(usernow.getId());
+        int maxPage=0;
+        if(totalRow==0){
+            request.setAttribute("message", "Không tìm thấy sản phẩm phù hợp");
+        }
+        else{
+            //Tìm xem có bao nhiêu trang  : 13/4 =3  +1 =4
+            maxPage = totalRow/pageSize  + (totalRow%pageSize > 0  ? 1:0);
+            int nextPage = pageIndex+1;
+            int backPage = pageIndex-1;
+            List<Order> listOrder = dao.getOrderByUserIdOrderByDate(usernow.getId(), pageIndex, pageSize);
+            request.setAttribute("listOrder", listOrder);
+            request.setAttribute("maxPage", maxPage);
+            request.setAttribute("nextPage", nextPage);
+            request.setAttribute("backPage", backPage);
+            request.setAttribute("pageIndex", pageIndex);
+            request.setAttribute("total", totalRow);
+        }
+        
+        
+        
         request.setAttribute("sumOrder", sumOrder);
         request.setAttribute("sumAddress", sumAddress);
-        request.setAttribute("listOrder", list);
+       
         request.getRequestDispatcher("order.jsp").forward(request, response);
     }
 

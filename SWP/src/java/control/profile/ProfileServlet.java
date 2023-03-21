@@ -65,7 +65,7 @@ public class ProfileServlet extends HttpServlet {
         User usernow = (User) session.getAttribute("userNow");
         OrderDAO od = new OrderDAO();
         AddressDAO adao = new AddressDAO();
-        int sumOrder = od.getNumberOfOrder();
+        int sumOrder = od.getNumberOfOrder(usernow.getId());
         int sumAddress = adao.getTotalAddress(usernow.getId());
         int sumMoney = od.getSumTotalMoney(usernow.getId());
         request.setAttribute("sumOrder", sumOrder);

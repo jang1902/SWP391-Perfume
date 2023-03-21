@@ -197,6 +197,18 @@
                         <div class="container-fluid">
                             <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
                                 <c:if test="${a!=null}">
+                                    <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
+                                    <form action="dashboardsearch" method="get" >
+                                        <div class="input-group position-relative bg-input rounded">
+                                            <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" value="${search}" placeholder="Tìm kiếm sản phẩm ...">
+                                            <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
+                                                <button type="submit" class="bg-transparent border-0 outline-none">
+                                                    <i class="fal fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                     <div class="col-md-6 d-flex flex-wrap justify-content-md-end align-items-center order-0 order-md-1">
 
                                         <div class="dropdown pl-2 py-2">
@@ -227,7 +239,7 @@
 
                                         
                                         
-                                        <a href="addproduct" class="btn btn-primary">Tạo mới
+                                        <a href="addcontrol" class="btn btn-primary">Tạo mới
                                         </a>
                                     </div>
                                 </div>

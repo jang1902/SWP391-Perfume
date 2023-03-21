@@ -66,6 +66,8 @@ public class SearchGalleryServlet extends HttpServlet {
         List<Gallery> allg = d.getAllGalleryByPid(id);
         request.setAttribute("allg", allg);
         
+        request.setAttribute("search", id);
+        
         request.getRequestDispatcher("dashboardgallery.jsp").forward(request, response);
         
     } 

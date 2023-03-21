@@ -230,7 +230,7 @@
 
                                         
                                         
-                                        <a href="adddiscount.jsp" class="btn btn-primary">Tạo mới
+                                        <a href="adddiscountjsp" class="btn btn-primary">Tạo mới
                                         </a>
                                     </div>
                                 </div>

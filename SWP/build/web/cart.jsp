@@ -85,7 +85,7 @@
 
                         </c:if>
                         <c:if test="${sessionScope.userNow.role_id!=null}">
-                            <a href="#" class="login_cart-item-link" >
+                            <a href="profile" class="login_cart-item-link" >
                                 <div class="login-cart_item">
                                     <i class="fa-solid fa-user"></i>
                                 </div>
@@ -93,7 +93,7 @@
 
                         </c:if>
 
-                        <a href="cart.html" class="login_cart-item-link">
+                        <a href="cart" class="login_cart-item-link">
                             <div class="login-cart_item">
                                 <i class="fa-solid fa-bag-shopping"></i>
                             </div>
@@ -116,7 +116,7 @@
                     <!-- menu right -->
                     <ul class="menu_right">
                         <li class="menu_right-item">
-                            <a class="link_decor_remover hover-link" href="./home">Trang chủ</a>
+                            <a class="link_decor_remover hover-link" href="home">Trang chủ</a>
                         </li>
                         <li class="menu_right-item">
                             <a class="link_decor_remover hover-link" href="#">Hàng mới</a>
@@ -250,7 +250,7 @@
                                 <div class="body_right-item">
 
                                     <div class="button_position">
-                                        <form action="${sessionScope.userNow==null?"login":"checkout"}">
+                                        <form action="${sessionScope.userNow==null?"login":"checkoutitem"}">
 
                                         <button ${totalQuan==0?"disabled":""} class="place_order">Checkout</button> 
                                     </form>

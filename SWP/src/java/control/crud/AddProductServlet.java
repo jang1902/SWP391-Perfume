@@ -19,6 +19,7 @@ import java.util.List;
 import model.Category;
 import model.Discount;
 import model.Gender;
+import model.Product;
 import model.Size;
 
 
@@ -73,7 +74,8 @@ public class AddProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
+        String title = request.getParameter("title");
+        
         CrudDAO crud = new CrudDAO();
 
         List<Category> allc = crud.getAllCategory();
@@ -87,7 +89,18 @@ public class AddProductServlet extends HttpServlet {
         
         List<Size> alls = crud.getAllSize();
         request.setAttribute("alls", alls);
-
+        Product p = null;
+        try{
+        if(crud.checkTitle(title)){
+            p = crud.getProductByTitle(title);
+        }
+        }catch(Exception e){
+                
+            }
+        request.setAttribute("product", p);
+        
+        request.setAttribute("title", title);
+        
         request.getRequestDispatcher("addproduct1.jsp").forward(request, response);
 
     }

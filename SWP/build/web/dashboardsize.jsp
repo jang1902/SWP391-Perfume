@@ -235,7 +235,7 @@
 
                                         
                                         
-                                        <a href="addsize.jsp" class="btn btn-primary">Tạo mới
+                                        <a href="addsizejsp" class="btn btn-primary">Tạo mới
                                         </a>
                                     </div>
                                 </div>

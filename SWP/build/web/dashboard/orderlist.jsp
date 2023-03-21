@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse bg-white" id="primaryMenuSidebar">
-                      
+                                
 
                                 <ul class="list-group list-group-flush list-group-no-border w-100 p-3">
                                     <c:if test="${a.role_id==1}">
@@ -220,9 +220,7 @@
                                                 <option value="orderlist?status_id=4&page=1">Đã hủy</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-2 col-6 text-sm-right">
-                                            <button class="btn btn-primary">Phân loại</button>
-                                        </div>
+                                        
                                     </div>
                                 </div>
 

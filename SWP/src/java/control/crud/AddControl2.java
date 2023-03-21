@@ -19,7 +19,7 @@ import model.SizeProduct;
  *
  * @author hp
  */
-@WebServlet(name = "AddControl", urlPatterns = {"/add2"})
+@WebServlet(name = "AddControl2", urlPatterns = {"/add2"})
 public class AddControl2 extends HttpServlet {
 
     /**
@@ -89,7 +89,7 @@ public class AddControl2 extends HttpServlet {
             } else {
                 d.insertSizeProduct(d.getIdLastProduct().getId(), sid, quantity, price_in, price_out);
             }
-            response.sendRedirect("addproduct");
+            response.sendRedirect("dashboardp");
         } catch (IOException e) {
             System.out.println(e);
         }

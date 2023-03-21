@@ -92,27 +92,14 @@ public class LogInServlet extends HttpServlet {
             request.setAttribute("mess", "Wrong user name or password!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
-        } else {
+        } else if(user.getDeleted()!=0){
+            request.setAttribute("mess", "Tài khoản này tạm thời bị vô hiệu hóa");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+        
+        else{
            
-        //    Cookie cu = new Cookie("cuser", u);
-         //   Cookie cp = new Cookie("cpass", p);
-         //   Cookie cr = new Cookie("remember", remem);
-            //if (remem != null) {
-         //       //tick create living time for cookie
-          //      cu.setMaxAge(60 * 60 * 24 * 20);
-          //      cp.setMaxAge(60 * 60 * 24 * 20);
-          //      cr.setMaxAge(60 * 60 * 24 * 20);
-          //  } else {
-                //not tick delete cookie
-           //     cu.setMaxAge(0);
-          //      cp.setMaxAge(0);
-          //      cr.setMaxAge(0);
-          //  }
-          //  response.addCookie(cu);
-         //   response.addCookie(cu);
-          //  response.addCookie(cp);
-         //   response.addCookie(cr);
-            
+        
             HttpSession session = request.getSession();
             session.setAttribute("userNow", user);
           

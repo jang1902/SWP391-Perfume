@@ -208,7 +208,7 @@
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
                         
-                        <form action="add1" method="get">
+                        <form action="add1" method="post" enctype="multipart/form-data">
                         <div class="dashboard-page-content">
                             <div class="row">
                                 <div class="col-xxl-6">
@@ -231,13 +231,75 @@
                                                     <h6 class="fs-16 font-weight-500">1. Thông tin chung</h6>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <div class="mb-4">
+                                                    
+                                                    
+                                                    
+                                                    <c:if test="${product != null}">
+                                                        
+                                                        <div class="mb-4">
                                                         <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Tên sản phẩm</label>
-                                                        <input required type="text" name="title" placeholder="Type here" class="form-control bg-input border-0" id="product-title">
+                                                        <input readonly type="text" name="title" value="${title}" class="form-control bg-input border-0" id="product-title">
+                                                        </div>
+                                                    
+                                                        <div class="mb-4">
+                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="description">Thông tin</label>
+                                                        <textarea readonly  name="description" class="form-control bg-input border-0" rows="4" >${product.description}</textarea>
                                                     </div>
                                                     <div class="mb-4">
+                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Giới tính</label>
+                                                      
+                                                        <select readonly name="gender_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">                                                       
+                                                              
+                                                                <option checked value="${product.gender.id}"> ${product.gender.name} </option>
+               
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Dung tích</label>
+                                                        <select required name="size_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
+                                                            <c:forEach items="${alls}" var="s">
+                                                                <option value="${s.id}"> ${s.value}ml </option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Giảm giá</label>
+                                                        <select readonly name="discount_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
+                                                           
+                                                                <option checked value="${product.discount.id}"> ${product.discount.value}% </option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Thể loại</label>
+                                                        <c:forEach items="${allc}" var="c">
+                                                            
+                                                        <label class="mb-1 form-check">
+                                                            <c:if test="${c.id == product.category.id}">
+                                                            <input checked name="category_id" class="form-check-input" value="${c.id}" type="radio">
+                                                            </c:if>
+                                                            <c:if test="${c.id != product.category_id}">
+                                                            <input disabled name="category_id" class="form-check-input" value="${c.id}" type="radio">
+                                                            </c:if>
+                                                            <span class="form-check-label">${c.name}</span>
+                                                        </label>
+                                                       
+                                                        </c:forEach>
+                                                    </div>
+                                                    
+                                                        
+                                                    </c:if>
+                                                    
+                                                    <c:if test="${product == null}">
+                                                        
+                                                        <div class="mb-4">
+                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Tên sản phẩm</label>
+                                                        <input readonly type="text" name="title" value="${title}" class="form-control bg-input border-0" id="product-title">
+                                                        </div>
+                                                                                                                     
+                                                    <div class="mb-4">
                                                         <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="description">Thông tin</label>
-                                                        <textarea required name="description" placeholder="Type here" class="form-control bg-input border-0" rows="4" id="description"></textarea>
+                                                        <textarea id="editor1" required name="description" placeholder="Type here" class="form-control bg-input border-0" rows="4" ></textarea>
                                                     </div>
                                                     <div class="mb-4">
                                                         <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Giới tính</label>
@@ -276,6 +338,7 @@
                                                         <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">Hình ảnh</label>
                                                         <input required name="thumbnail" class="form-control bg-input border-0" type="file">
                                                     </div>
+                                                    </c:if>
                                                 </div>
                                         </div>
                                     </div>
@@ -391,3 +454,5 @@
 </body>
 
 </html>
+<script src="ckeditor/ckeditor.js"></script>
+<script> CKEDITOR.replace('editor1');</script>

@@ -147,7 +147,7 @@
 
 
             <div class="body_container">
-                <form action="checkout" method="post">
+                <form action="checkoutitem" method="post">
                     <div class="body_left" >
                         <div class="body_left-item">
                             <div class="body_left-item-title">

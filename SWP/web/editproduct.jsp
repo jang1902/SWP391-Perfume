@@ -206,7 +206,7 @@
                     </header>
                     <main id="content" class="bg-gray-01 d-flex flex-column main-content">
 
-                        <form action="edit" method="get">
+                        <form action="edit" method="post" enctype="multipart/form-data">
                             <div class="dashboard-page-content">
                                 <div class="row">
                                     <div class="col-xxl-6">
@@ -236,15 +236,15 @@
                                                         </div>
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Tên sản phẩm</label>
-                                                            <input type="text" name="title" value="${product.title}" class="form-control bg-input border-0" id="product-title">
+                                                            <input required type="text" name="title" value="${product.title}" class="form-control bg-input border-0" id="product-title">
                                                         </div>
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="description">Thông tin</label>
-                                                            <textarea name="description" class="form-control bg-input border-0" rows="4" id="description">${product.description}</textarea>
+                                                            <textarea required id="editor1" name="description" class="form-control bg-input border-0" rows="4" id="description">${product.description}</textarea>
                                                         </div>
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Giới tính</label>
-                                                            <select name="gender_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">                                                                                                                     
+                                                            <select required name="gender_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">                                                                                                                     
 
                                                                 <c:forEach items="${allg}" var="g">
                                                                     <c:if test="${product.gender.id == g.id}">
@@ -259,7 +259,7 @@
                                                         </div>
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Dung tích</label>
-                                                            <select name="sid_new" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
+                                                            <select required name="sid_new" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
 
                                                                 <c:forEach items="${alls}" var="s">
                                                                     <c:if test="${product.size.id == s.id}">
@@ -274,7 +274,7 @@
                                                         </div>
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="product-title">Số lượng</label>
-                                                            <input type="number" name="quantity" value="${product.sizeproduct.quantity}" class="form-control bg-input border-0" id="product-title">
+                                                            <input required type="number" name="quantity" value="${product.sizeproduct.quantity}" class="form-control bg-input border-0" id="product-title">
                                                         </div>
 
                                                     </div>
@@ -289,13 +289,13 @@
                                                     <div class="col-md-9">
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá vốn</label>
-                                                            <input name="price_in" type="number" value="${product.sizeproduct.price_in}" class="form-control bg-input border-0" id="cost">
+                                                            <input required name="price_in" type="number" value="${product.sizeproduct.price_in}" class="form-control bg-input border-0" id="cost">
                                                             <label style="margin-top: 15px" class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="cost">Giá bán</label>
-                                                            <input name="price_out" type="number" value="${product.sizeproduct.price_out}" class="form-control bg-input border-0" id="cost">
+                                                            <input required name="price_out" type="number" value="${product.sizeproduct.price_out}" class="form-control bg-input border-0" id="cost">
                                                         </div>
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="brand-name">Giảm giá</label>
-                                                            <select name="discount_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
+                                                            <select required name="discount_id" class="form-control bg-input border-0" id="brand-name" data-style="form-control w-100 border rounded">
 
                                                                 <c:forEach items="${alld}" var="d">
                                                                     <c:if test="${product.discount.id == d.id}">
@@ -324,13 +324,13 @@
 
                                                                 <c:if test="${product.category.id == c.id}">
                                                                     <label class="mb-1 form-check">
-                                                                    <input name="category_id" class="form-check-input" checked="" value="${c.id}" type="radio">
+                                                                    <input required name="category_id" class="form-check-input" checked="" value="${c.id}" type="radio">
                                                                     <span class="form-check-label">${c.name}</span>
                                                                 </label>
                                                                 </c:if>
                                                                 <c:if test="${product.category.id != c.id}">
                                                                     <label class="mb-1 form-check">
-                                                                    <input name="category_id" class="form-check-input" value="${c.id}" type="radio">
+                                                                    <input required name="category_id" class="form-check-input" value="${c.id}" type="radio">
                                                                     <span class="form-check-label">${c.name}</span>
                                                                 </label>
                                                                 </c:if>
@@ -350,7 +350,7 @@
                                                     <div class="col-md-9">
                                                         <div class="mb-4">
                                                             <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase"></label>
-                                                            <input name="thumbnail" class="form-control bg-input border-0" type="file">
+                                                            <input required name="thumbnail" class="form-control bg-input border-0" type="file">
                                                         </div>
                                                     </div>
 
@@ -470,3 +470,5 @@
     </body>
 
 </html>
+<script src="ckeditor/ckeditor.js"></script>
+<script> CKEDITOR.replace('editor1');</script>

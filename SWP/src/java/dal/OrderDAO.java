@@ -34,7 +34,7 @@ import model.User;
  */
 public class OrderDAO extends DBContext {
 
-    public void addOrder(User u, int address_id, Cart cart, String note,List<Discount> ld) {
+    public void addOrder(User u, int address_id, Cart cart, String note, List<Discount> ld) {
         java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
         try {
@@ -64,8 +64,8 @@ public class OrderDAO extends DBContext {
                     st.setInt(3, i.getSizeproduct().getSid());
                     st.setDouble(4, cart.getExactItemMoneyOut(i, ld));
                     st.setInt(5, i.getQuantity());
-                    st.setDouble(6, i.getQuantity()*i.getSizeproduct().getPrice_in());
-                    st.setDouble(7, cart.getExactItemMoneyOut(i, ld)*i.getQuantity());
+                    st.setDouble(6, i.getQuantity() * i.getSizeproduct().getPrice_in());
+                    st.setDouble(7, cart.getExactItemMoneyOut(i, ld) * i.getQuantity());
                     st.executeUpdate();
                 }
                 String sql4 = "update SizeProduct set quantity=quantity-? where pid=? AND sid=?";
@@ -107,6 +107,35 @@ public class OrderDAO extends DBContext {
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                Status status = new Status(rs.getInt("status_id"), rs.getString("sname"));
+                Order o = new Order(rs.getInt("oid"), rs.getInt("user_id"), rs.getString("firstname"), rs.getString("lastname"),
+                        rs.getString("email"), rs.getString("phone_number"), rs.getInt("address_id"), rs.getString("note"),
+                        rs.getDate("order_date"), rs.getInt("status_id"), rs.getInt("total_money"), status);
+                list.add(o);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+   
+
+    public List<Order> getOrderByUserIdOrderByDate(int id, int pageIndex, int pageSize) {
+        List<Order> list = new ArrayList<>();
+        String sql = "select o.id as oid, user_id, firstname, lastname, email, phone_number, address_id, note,"
+                + "order_date, status_id, total_money, s.name as sname"
+                + " from Orders o join Status s on o.status_id = s.id where user_id = ? order by order_date desc"
+                +"                OFFSET (?-1)*? rows   \n" 
+                +"                FETCH NEXT ? rows only";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.setInt(2,pageIndex);
+            st.setInt(3, pageSize);
+            st.setInt(4, pageSize);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
@@ -191,11 +220,12 @@ public class OrderDAO extends DBContext {
         return null;
     }
 
-    public int getNumberOfOrder() {
-        String sql = "select count(id) as number from Orders";
+    public int getNumberOfOrder(int uid) {
+        String sql = "select count(id) as number from Orders where user_id = ?";
         int n = 0;
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uid);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 n = rs.getInt(1);
@@ -248,10 +278,11 @@ public class OrderDAO extends DBContext {
         } catch (Exception e) {
         }
     }
-    
+
     public static void main(String[] args) {
         OrderDAO o = new OrderDAO();
-        o.updateStatusOrder(45, 4);
+        int cnt = o.getNumberOfOrder(11);
+        System.out.println(cnt);
     }
 
     public Discount getDiscountById(int id) {
@@ -281,4 +312,5 @@ public class OrderDAO extends DBContext {
         }
         return sum;
     }
+   
 }

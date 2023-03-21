@@ -209,7 +209,7 @@
 
                                         <div class="col-lg-9 px-5">
                                             <section class="p-xl-5">
-                                                <form action="orderdetail" method="post" class="form-control-01">
+                                                <form action="feedbacklist" method="post" class="form-control-01">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <c:set value="${requestScope.feedback}" var="f"/>
@@ -229,13 +229,13 @@
                                                                     <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="email">Sản phẩm</label>
                                                                     <input readonly="" class="form-control bg-input border-0" type="email" placeholder="${f.product.title}" id="email" name="title">
                                                                 </div>
-                                                                
-                                                                    <div class="col-lg-12 mb-3">
-                                                                        <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="phone">Nội dung</label>
-                                                                        <input class="form-control bg-input border-0" type="tel" placeholder="${f.note}" id="note" name="note">
-                                                                    </div>
-                                                                    <button class="btn btn-primary" type="submit">Save changes</button>
-                                                                
+
+                                                                <div class="col-lg-12 mb-3">
+                                                                    <label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase" for="phone">Nội dung</label>
+                                                                    <input class="form-control bg-input border-0" type="tel" placeholder="${f.note}" id="note" name="note">
+                                                                </div>
+                                                                <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+
 
                                                             </div>
 

@@ -86,7 +86,7 @@
                             <div class="collapse navbar-collapse bg-white" id="primaryMenuSidebar">
                                 <form action="gallerysearch" method="get" class="d-block d-xl-none pt-5 px-3">
                                     <div class="input-group position-relative bg-gray">
-                                        <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
+                                        <input type="text" name="id" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Id sản phẩm ...">
                                         <div class="input-group-append fs-14 px-3 border-left border-2x ">
                                             <button type="submit" class="bg-transparent border-0 outline-none">
                                                 <i class="fal fa-search"></i>
@@ -200,7 +200,7 @@
                                 <div class="col-md-4 px-0 px-md-6 order-1 order-md-0 form-control-01">
                                     <form action="gallerysearch" method="get" >
                                         <div class="input-group position-relative bg-input rounded">
-                                            <input type="text" name="title" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Tìm kiếm sản phẩm">
+                                            <input type="text" name="id" value="${search}" class="form-control border-0 bg-transparent pl-4 shadow-none" placeholder="Id sản phẩm ...">
                                             <div class="input-group-append fs-14 px-3 border-left border-2x bg-hover-primary ">
                                                 <button type="submit" class="bg-transparent border-0 outline-none">
                                                     <i class="fal fa-search"></i>
@@ -240,7 +240,7 @@
 
                                         
                                         
-                                        <a href="addgallery.jsp" class="btn btn-primary">Tạo mới
+                                        <a href="addgalleryjsp" class="btn btn-primary">Tạo mới
                                         </a>
                                     </div>
                                 </div>

@@ -60,11 +60,18 @@ public class DashboardSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String title = request.getParameter("title");
+        String txtSearch_raw = request.getParameter("title");
+        
+        String txtSearch = txtSearch_raw.replaceAll("\\s+", " ");
+        
+        txtSearch = txtSearch.trim();
+        
         
         CrudDAO d = new CrudDAO();
         
-        List<Product> p = d.getAllProductByTitle(title);
+        request.setAttribute("search", txtSearch);
+        
+        List<Product> p = d.getAllProductByTitle(txtSearch);
         request.setAttribute("allp", p);
         
         List<Category> allc = d.getAllCategory();

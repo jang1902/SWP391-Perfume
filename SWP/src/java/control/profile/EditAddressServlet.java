@@ -70,7 +70,7 @@ public class EditAddressServlet extends HttpServlet {
         OrderDAO od = new OrderDAO();
         try {
             int aid = Integer.parseInt(id);
-            int sumOrder = od.getNumberOfOrder();
+            int sumOrder = od.getNumberOfOrder(user.getId());
             int sumAddress = dao.getTotalAddress(user.getId());
             Address_Detail a = dao.getAddressDetailByID(aid);
             request.setAttribute("sumOrder", sumOrder);

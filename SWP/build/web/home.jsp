@@ -17,6 +17,8 @@
         <!-- <link rel="icon" href="./assets/img/small_logo.png"> --> 
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy ="no-referrer" /> -->
         <title>Boon Bo</title>
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
     <body>
         <!-- header -->
@@ -54,14 +56,14 @@
                             <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>
-                    <div class="search">
-
-                        <input type="text" placeholder="Tìm kiếm ..." class="input_search">
-
-                        <div class="search-item">
-                            <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                    <form action="search" method="get">
+                            <div class="search">
+                                <input name="txtSearch" type="text" value="${txtSearch}" placeholder="Tìm Kiếm..." class="input_search">
+                            <div class="search-item">
+                                <i class="fa-solid fa-magnifying-glass icon-search" onclick="submitForm()"></i>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="login-cart">
                     <c:if test="${sessionScope.userNow.role_id==null}">
 

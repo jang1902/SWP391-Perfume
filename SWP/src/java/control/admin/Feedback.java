@@ -140,7 +140,21 @@ public class Feedback extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String feedback = request.getParameter("note");
+        int id = Integer.parseInt(request.getParameter("fid"));
+        
+        DashboardDAO d = new DashboardDAO();
+        try {
+            
+
+            model.Feedback f = d.getFeedbackbyID(id);
+            model.Feedback f1 = new model.Feedback(id, f.getUser(), f.getProduct(), f.getFirstname(), f.getLastname(), f.getEmail(), f.getPhone_number(), feedback, f.getCreated_at(), f.getUpdated_at(), f.getRating());
+            d.updateFeedback(f1);
+            response.sendRedirect("feedbacklist?page=1");
+
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
     }
 
     /**

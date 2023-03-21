@@ -75,7 +75,7 @@ public class ViewOwnOrderDetail extends HttpServlet {
             int oid = Integer.parseInt(id);
             Order order = dao.getOrderById(oid);
             List<OrderDetail> list = dao.getOrderDetailByOrderId(oid);
-            int sumOrder = dao.getNumberOfOrder();
+            int sumOrder = dao.getNumberOfOrder(usernow.getId());
             int sumAddress = adao.getTotalAddress(usernow.getId());
             int money = dao.getSumMoney(list);
             

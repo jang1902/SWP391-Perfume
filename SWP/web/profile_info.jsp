@@ -66,7 +66,7 @@
                 <!-- header mid top -->
                 <div class="mid-top">
                     <div class="logo">
-                        <a href="../index.html">
+                        <a href="home">
                             <img src="./assets/img/Logo.png" alt="Logo" id="img_logo">
                         </a>
                     </div>

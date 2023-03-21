@@ -798,8 +798,7 @@ public class CrudDAO extends DBContext {
 
     public int countAllGallery() {
        
-        String sql = "select * from Galeries"
-                + " order by product_id asc ";
+        String sql = "select count(*) from Galeries";
         try {
             PreparedStatement st = connection.prepareStatement(sql);    
             ResultSet rs = st.executeQuery();
@@ -956,8 +955,8 @@ public class CrudDAO extends DBContext {
     
     public int countAllProduct() {
         
-        String sql = "select count(*) from products p join SizeProduct sp \n"
-                + "on p.id = sp.pid "
+        String sql = "select count(*) from products p join SizeProduct sp \n" +
+                     "                on p.id = sp.pid where sp.quantity > 0";
                ;
         try {
             PreparedStatement st = connection.prepareStatement(sql);  
@@ -974,7 +973,8 @@ public class CrudDAO extends DBContext {
     public List<Product> getAllProduct(int pageIndex, int pageSize) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from products p join SizeProduct sp \n" +
-"                on p.id = sp.pid \n" +
+"                on p.id = sp.pid \n"
+                + " where sp.quantity > 0 \n" +
 "				order by p.id asc\n" +
 "                OFFSET (?-1)*? rows   \n" +
 "                FETCH NEXT ? rows only";

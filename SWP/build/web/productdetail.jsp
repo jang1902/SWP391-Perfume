@@ -164,7 +164,7 @@
 
                         </c:if>
                         <c:if test="${sessionScope.userNow.role_id!=null}">
-                            <a href="#" class="login_cart-item-link" >
+                            <a href="profile" class="login_cart-item-link" >
                                 <div class="login-cart_item">
                                     <i class="fa-solid fa-user"></i>
                                 </div>
@@ -441,29 +441,32 @@
                     </div>
                     <div class="products_same-child">
 
-                        <c:forEach items="${requestScope.relativeproducts}" var="rp">
-                            <form action="pdetail" method="post">
-                                <input type="hidden" value="1" name="sid"/>
-                                <input type="hidden" value="${rp.id}" name="id"/>
-                                <c:set value="${requestScope.detail}" var="lgd"/>
-                            </form>
+                        <c:forEach items="${requestScope.relativeproducts}" var="rp">         
 
                             <div class="products">
-                                <a href="pdetail?id=${rp.id}&sid=1&gid=${rp.gender_id}">
+                                <a href="pdetail?id=${rp.id}&sid=1&gid=${param.gid}">
                                     <img src="${rp.thumbnail}" alt="" class="img_products">
                                 </a>
                                 <div class="describe_products">
                                     <div class="ratings_products">
                                         <span>${rp.title}</span>
                                         <span>
+<!--                                            <i class="fa-solid fa-star icon_star"></i>
                                             <i class="fa-solid fa-star icon_star"></i>
                                             <i class="fa-solid fa-star icon_star"></i>
                                             <i class="fa-solid fa-star icon_star"></i>
-                                            <i class="fa-solid fa-star icon_star"></i>
-                                            <i class="fa-solid fa-star icon_star"></i>
+                                            <i class="fa-solid fa-star icon_star"></i>-->
                                         </span>
                                         <div>
-                                            <span class="info_price">${lgd.price_out} đ</span>
+                                            <c:if test="${rp.discount.value == 0}">
+                                                <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out}"></fmt:formatNumber> đ</span>
+                                            </c:if> 
+                                            <c:if test="${rp.discount.value != 0}">
+                                                <span class="info_price"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out * ((100 - rp.discount.value) / 100)}"></fmt:formatNumber>₫</span>
+                                                <span class="oldprice"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${rp.sizeproduct.price_out}"></fmt:formatNumber>₫</span>
+                                            </c:if>
+
+
                                         </div>
                                     </div>
                                     <div class="add_like_products">

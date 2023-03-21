@@ -62,7 +62,7 @@ public class AddAddressServlet extends HttpServlet {
         User user = (User) session.getAttribute("userNow");
         AddressDAO dao = new AddressDAO();
         OrderDAO od = new OrderDAO();
-        int sumOrder = od.getNumberOfOrder();
+        int sumOrder = od.getNumberOfOrder(user.getId());
         int sumAddress = dao.getTotalAddress(user.getId());
         request.setAttribute("sumOrder", sumOrder);
         request.setAttribute("sumAddress", sumAddress);
