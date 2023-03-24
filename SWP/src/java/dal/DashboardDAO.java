@@ -214,6 +214,27 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
+    
+    public List<Status> listStatus() {
+        List<Status> list = new ArrayList<>();
+        String sql = "SELECT [id]\n"
+                + "      ,[name]\n"
+                + "  FROM [dbo].[Status]";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Status s = new Status();
+                s.setId(rs.getInt("id"));
+                s.setName(rs.getString("name"));
+
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
     public List<User> getAllActiveUser() {
         List<User> list = new ArrayList<>();

@@ -40,7 +40,7 @@ public User checkAccount(String username, String password){
     
     public void addUser(String username,String password, String email) {
         java.sql.Date curDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        String sql ="insert into Users values(1, 1, null, null, ?, ?, ?, null,? , null, 0, ?)";
+        String sql ="insert into Users values(1, 2, null, null, ?, ?, ?, null,? , null, 0, ?)";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);

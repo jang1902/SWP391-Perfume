@@ -134,7 +134,7 @@ public class CheckoutItemServlet extends HttpServlet {
         if (action.equals("action1")) {
             Address_Detail ad = adao.getAddressDetailByID(address_id);
             session.setAttribute("ad", ad);
-            response.sendRedirect("checkout");
+            response.sendRedirect("checkoutitem");
 
         } else if(action.equals("action2")){
             

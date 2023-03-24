@@ -17,7 +17,7 @@
         <script type="text/javascript" language="javascript" src="./main.js"></script>
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.1.1/css/all.min.css">
         <link rel="icon" href="./assets/img/small_logo1.png">
-        <title>BOT STORE</title>
+        <title>BOONBO STORE</title>
     </head>
     <!-- body -->
     <body id="body">
@@ -40,7 +40,7 @@
                             <a href="forgot" class="body_right-forgotpass">Forgotten Password ?</a>
                             
                             <div class="col s12 m6 offset-m3 center-align">
-                                <a class="oauth-container btn darken-4 white black-text" href="https://accounts.google.com/o/oauth2/auth?scope=email&profile&redirect_uri=http://localhost:9999/SWP/login-google&response_type=code
+                                <a class="oauth-container btn darken-4 white black-text" href="https://accounts.google.com/o/oauth2/auth?scope=email&profile&redirect_uri=http://localhost:8080/SWP/login-google&response_type=code
                                &client_id=845236234675-gl7te8a81vmkokgdfjcf4s71g3jkll59.apps.googleusercontent.com&approval_prompt=force" style="text-transform:none">
                                     <div class="left">
                                         <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" 

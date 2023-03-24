@@ -96,7 +96,7 @@ public class QuickAddAddressServlet extends HttpServlet {
             dao.addAddress(ad);
         }
         session.setAttribute("ad", address);
-        response.sendRedirect("checkout");
+        response.sendRedirect("checkoutitem");
 
     }
 

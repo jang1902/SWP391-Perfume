@@ -250,21 +250,21 @@
                         <form id="form_add_address" action="add_address" method="post">
                             <label>Tỉnh\Thành phố:</label>
 
-                            <input class="input" style="margin-left: 30px" name="city" type="text"/>
+                            <input required="" class="input" style="margin-left: 30px" name="city" type="text"/>
 
                             <br/> <br/>
 
                             <label>Quận\Huyện:</label>
-                            <input class="input" style="margin-left: 52px" name="district" type="text"/>
+                            <input required="" class="input" style="margin-left: 52px" name="district" type="text"/>
 
                             <br/><br/>
                             <label>Xã\Phường:</label>
 
-                            <input class="input" style="margin-left: 63px" name="ward" type="text"/>
+                            <input required="" class="input" style="margin-left: 63px" name="ward" type="text"/>
 
                             <br/><br/>
                             <label>Địa chỉ cụ thể:</label>
-                            <input class="input" style="margin-left: 48px" name="detail" type="text"/>
+                            <input required="" class="input" style="margin-left: 48px" name="detail" type="text"/>
                             <br/><br/>
 
                             <button type="submit">Thêm</button>

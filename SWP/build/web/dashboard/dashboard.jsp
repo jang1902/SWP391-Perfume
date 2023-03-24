@@ -306,7 +306,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h6 class="mb-1 card-title fs-16">Thu nhập hàng tháng</h6>
+                                                    <h6 class="mb-1 card-title fs-16">Doanh thu hàng tháng</h6>
                                                     <span class="fs-24 d-block font-weight-500 text-primary lh-12"><fmt:formatNumber type = "currency" pattern="###,###,###" value="${requestScope.avgMoney}"></fmt:formatNumber> VND</span>
                                                     <span class="fs-14">Năm ${getYear}</span>
                                                 </div>

@@ -64,14 +64,14 @@ public class OrderDetailByID extends HttpServlet {
         String order_id_raw = request.getParameter("order_id");
         DashboardDAO dd = new DashboardDAO();
         int order_id = Integer.parseInt(order_id_raw);
-
+        
         OrderDetail od = dd.getOrderDetailById(order_id);
         List<OrderDetail> listOD = dd.getODbyID(order_id);
 //        Order o = dd.getO
 
         request.setAttribute("listOD", listOD);
         request.setAttribute("orderdetail", od);
-
+        request.setAttribute("listStatus", dd.listStatus());
         request.getRequestDispatcher("dashboard/orderdetail.jsp").forward(request, response);
     }
 

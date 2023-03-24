@@ -226,10 +226,11 @@
                                                         <div class="mw-210 mr-1 my-1">
                                                             <select class="form-control bg-input border-0 " name="statusid">
                                                                 <option value="${od.order.status.id}" >Thay đổi trạng thái</option>
-                                                                <option value="1">Chờ xác nhận</option>
-                                                                <option value="2">Đang vận chuyển</option>
-                                                                <option value="3">Đã giao</option>
-                                                                <option value="4">Đã hủy</option>
+
+                                                                <c:forEach items="${requestScope.listStatus}" var="sta">
+                                                                    <option value="${sta.id}">${sta.name}</option>
+
+                                                                </c:forEach>
                                                             </select>
                                                         </div>
                                                         <button class="btn btn-primary my-1" >Thay đổi</button>

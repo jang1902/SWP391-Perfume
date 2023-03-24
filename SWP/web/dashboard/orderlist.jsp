@@ -214,10 +214,10 @@
                                             <select class="form-control bg-input border-0"  name="status_id" onchange="location = this.value">
                                                 <option value="orderlist?status_id=0&page=1">Chọn trạng thái</option>
                                                 <option value="orderlist?status_id=0&page=1">Tất cả trạng thái</option>
-                                                <option value="orderlist?status_id=1&page=1">Chờ xác nhận</option>
-                                                <option value="orderlist?status_id=2&page=1">Đang vận chuyển</option>
-                                                <option value="orderlist?status_id=3&page=1">Đã giao hàng</option>
-                                                <option value="orderlist?status_id=4&page=1">Đã hủy</option>
+                                                
+                                                <c:forEach items="${requestScope.listStatus}" var="sta">
+                                                   <option value="orderlist?status_id=${sta.id}&page=1">${sta.name}</option> 
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         

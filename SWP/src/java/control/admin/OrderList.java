@@ -245,7 +245,7 @@ public class OrderList extends HttpServlet {
             request.setAttribute("maxPage", maxPage);
 
             request.setAttribute("numPrd", list.size());
-
+            request.setAttribute("listStatus", dd.listStatus());
             request.setAttribute("orderlist", list.subList(from, numOfPro));
         }
 
